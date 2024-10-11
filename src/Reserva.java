@@ -1,7 +1,17 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
+/**
+ * La clase Reserva tiene como campos su id, momento de realizacion, dia de reserva,
+ * hora de reserva, cliente, mesa y cantidad de personas
+ * tiene un constructor con todos los atributos
+ * metodos:
+ * otros metodos:
+ *
+ * @author Brenda
+ * @since 2024
+ * @version 1
+ */
 public class Reserva {
     private static int contador = 0;
     private int id;

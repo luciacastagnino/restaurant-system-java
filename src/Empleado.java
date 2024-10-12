@@ -8,6 +8,9 @@
  * @since 2024
  * @version 1
  */
-public class Empleado extends Persona{
+public abstract class Empleado extends Persona {
     protected double sueldo;
+    private int aniosAntiguedad;
+    private int horasExtra;
+
 }

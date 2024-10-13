@@ -13,10 +13,9 @@ public abstract class Empleado extends Persona {
     protected double sueldo;
     //protected int horasExtra; deberia ser parametro en calcularSueldo, porque puede variar cada vez
 
-    public Empleado(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo/*, int horasExtra*/) {
+    public Empleado(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo) {
         super(nombre, apellido, dni, telefono, direccion, email);
         this.sueldo = sueldo;
-        //this.horasExtra = horasExtra;
     }
 
     ///Getters y Setters
@@ -27,15 +26,5 @@ public abstract class Empleado extends Persona {
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
-
-   /* public int getHorasExtra() {
-        return horasExtra;
-    }
-
-    public void setHorasExtra(int horasExtra) {
-        this.horasExtra = horasExtra;
-    }
-
-    */
 
 }

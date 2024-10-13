@@ -24,4 +24,14 @@ public class EmpleadoTiempoCompleto extends Empleado{
     public void setAniosAntiguedad(int aniosAntiguedad) {
         this.aniosAntiguedad = aniosAntiguedad;
     }
+
+    /*
+    public double calcularHorasExtra (double horasExtra){
+        return horasExtra * Math.pow(precio????, 2);
+    }
+
+    public double calcularSueldo (double horasExtra){
+        return (horasTrabajadas * precioXhora) + calcularHorasExtra(horasExtra);
+    }
+     */
 }

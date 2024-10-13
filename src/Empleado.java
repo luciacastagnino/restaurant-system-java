@@ -2,7 +2,7 @@
  * La clase Empleado es abstracta y tiene como campos su nombre, apellido, dni,
  * telefono, direccion, email, sueldo y horas extra
  * tiene un constructor ...
- * metodos:
+ * metodos: getters y setters
  * otros metodos:
  *
  * @author Brenda

@@ -1,6 +1,6 @@
 /**
  * La clase Cliente tiene como campos su nombre, apellido, dni, telefono, direccion e email
- * tiene un constructor ...
+ * tiene un constructor con todos los atributos
  * metodos:
  * otros metodos:
  *

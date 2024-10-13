@@ -1,7 +1,7 @@
 /**
  * La clase Empleado tiene como campos su nombre, apellido, dni, telefono, direccion e email
- * tiene un constructor ...
- * metodos:
+ * tiene un constructor con todos los atributos
+ * metodos: getters y setters
  * otros metodos:
  *
  * @author Brenda

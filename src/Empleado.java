@@ -1,5 +1,6 @@
 /**
- * La clase Empleado tiene como campos su nombre, apellido, dni, telefono, direccion e email
+ * La clase Empleado es abstracta y tiene como campos su nombre, apellido, dni,
+ * telefono, direccion, email, sueldo y horas extra
  * tiene un constructor ...
  * metodos:
  * otros metodos:
@@ -10,7 +11,6 @@
  */
 public abstract class Empleado extends Persona {
     protected double sueldo;
-    private int aniosAntiguedad;
     private int horasExtra;
 
 }

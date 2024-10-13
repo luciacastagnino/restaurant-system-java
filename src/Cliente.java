@@ -8,7 +8,7 @@
  * @since 2024
  * @version 1
  */
-public class Cliente extends Persona{
+public class Cliente /*extends Persona*/{
     //private enum tipoCliente;
     //holi probando esto
 

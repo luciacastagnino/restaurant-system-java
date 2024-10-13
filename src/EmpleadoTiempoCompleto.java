@@ -15,4 +15,13 @@ public class EmpleadoTiempoCompleto extends Empleado{
         super(nombre, apellido, dni, telefono, direccion, email, sueldo, horasExtra);
         this.aniosAntiguedad = aniosAntiguedad;
     }
+
+    ///Getters y Setters
+    public int getAniosAntiguedad() {
+        return aniosAntiguedad;
+    }
+
+    public void setAniosAntiguedad(int aniosAntiguedad) {
+        this.aniosAntiguedad = aniosAntiguedad;
+    }
 }

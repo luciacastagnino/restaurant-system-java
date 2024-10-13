@@ -18,4 +18,21 @@ public abstract class Empleado extends Persona {
         this.sueldo = sueldo;
         this.horasExtra = horasExtra;
     }
+
+    ///Getters y Setters
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public int getHorasExtra() {
+        return horasExtra;
+    }
+
+    public void setHorasExtra(int horasExtra) {
+        this.horasExtra = horasExtra;
+    }
 }

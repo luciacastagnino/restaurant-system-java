@@ -1,5 +1,6 @@
 /**
- * La clase EmpleadoMedioTiempo tiene como campos su nombre, apellido, dni, telefono, direccion e email
+ * La clase EmpleadoMedioTiempo tiene como campos su nombre, apellido, dni, telefono, direccion
+ * email y horas trabajadas
  * tiene un constructor ...
  * metodos:
  * otros metodos:
@@ -15,4 +16,15 @@ public class EmpleadoMedioTiempo extends Empleado{
         super(nombre, apellido, dni, telefono, direccion, email, sueldo, horasExtra);
         this.horasTrabajadas = horasTrabajadas;
     }
+
+    ///Getters y Setters
+
+    public int getHorasTrabajadas() {
+        return horasTrabajadas;
+    }
+
+    public void setHorasTrabajadas(int horasTrabajadas) {
+        this.horasTrabajadas = horasTrabajadas;
+    }
 }
+

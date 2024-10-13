@@ -10,4 +10,9 @@
  */
 public class EmpleadoTiempoCompleto extends Empleado{
     private int aniosAntiguedad;
+
+    public EmpleadoTiempoCompleto(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo, int horasExtra, int aniosAntiguedad) {
+        super(nombre, apellido, dni, telefono, direccion, email, sueldo, horasExtra);
+        this.aniosAntiguedad = aniosAntiguedad;
+    }
 }

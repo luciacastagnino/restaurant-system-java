@@ -11,6 +11,11 @@
  */
 public abstract class Empleado extends Persona {
     protected double sueldo;
-    private int horasExtra;
+    protected int horasExtra;
 
+    public Empleado(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo, int horasExtra) {
+        super(nombre, apellido, dni, telefono, direccion, email);
+        this.sueldo = sueldo;
+        this.horasExtra = horasExtra;
+    }
 }

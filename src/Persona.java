@@ -4,7 +4,7 @@
  * tiene un constructor con todos los atributos
  * metodos: getters y setters
  * otros metodos:
- * 
+ *
  * @author Brenda
  * @since 2024
  * @version 1

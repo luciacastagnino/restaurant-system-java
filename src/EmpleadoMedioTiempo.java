@@ -12,8 +12,8 @@
 public class EmpleadoMedioTiempo extends Empleado{
     private int horasTrabajadas;
 
-    public EmpleadoMedioTiempo(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo, int horasExtra, int horasTrabajadas) {
-        super(nombre, apellido, dni, telefono, direccion, email, sueldo, horasExtra);
+    public EmpleadoMedioTiempo(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo, /*int horasExtra,*/ int horasTrabajadas) {
+        super(nombre, apellido, dni, telefono, direccion, email, sueldo /*,horasExtra*/);
         this.horasTrabajadas = horasTrabajadas;
     }
 

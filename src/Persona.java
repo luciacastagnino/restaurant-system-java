@@ -16,8 +16,8 @@ public abstract class Persona {
     protected String telefono;
     protected String direccion;
     protected String email;
-    //protected String usuario;
-    //protected String contrasenia;
+    protected String usuario;
+    protected String contrasenia;
 
     public Persona(String nombre, String apellido, String dni, String telefono, String direccion, String email) {
         this.nombre = nombre;
@@ -26,6 +26,8 @@ public abstract class Persona {
         this.telefono = telefono;
         this.direccion = direccion;
         this.email = email;
+        this.usuario = nombre;
+        this.contrasenia = dni;
     }
 
     ///Getters y Setters

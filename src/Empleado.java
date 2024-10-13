@@ -11,7 +11,6 @@
  */
 public abstract class Empleado extends Persona {
     protected double sueldo;
-    //protected int horasExtra; deberia ser parametro en calcularSueldo, porque puede variar cada vez
 
     public Empleado(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo) {
         super(nombre, apellido, dni, telefono, direccion, email);

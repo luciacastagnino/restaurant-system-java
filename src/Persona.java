@@ -19,6 +19,8 @@ public abstract class Persona {
     protected String usuario;
     protected String contrasenia;
 
+    /// Constructor ////////////
+
     public Persona(String nombre, String apellido, String dni, String telefono, String direccion, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -30,10 +32,9 @@ public abstract class Persona {
         this.contrasenia = dni;
     }
 
-    ///Getters y Setters
-    public String getNombre() {
-        return nombre;
-    }
+    ///Getters y Setters ////////////
+
+    public String getNombre() { return nombre; }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;

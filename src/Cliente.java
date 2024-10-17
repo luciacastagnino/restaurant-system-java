@@ -1,7 +1,7 @@
 /**
  * La clase Cliente tiene como campos su nombre, apellido, dni, telefono, direccion e email
  * tiene un constructor con todos los atributos
- * metodos:
+ * metodos: getters y setters, ToString
  * otros metodos:
  *
  * @author Brenda
@@ -24,5 +24,21 @@ public class Cliente extends Persona{
 
     public void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
+    }
+
+    ///ToString
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "usuario='" + usuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", tipoCliente=" + tipoCliente +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
     }
 }

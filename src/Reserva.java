@@ -21,6 +21,7 @@ public class Reserva {
     private Cliente cliente;
     private int mesa;
     private int cantPersonas;
+    private int estado;
 
     public Reserva(LocalDate dia, LocalTime hora, Cliente cliente, int mesa, int cantPersonas) {
         this.id = ++contador;
@@ -30,6 +31,7 @@ public class Reserva {
         this.cliente = cliente;
         this.mesa = mesa;
         this.cantPersonas = cantPersonas;
+        this.estado = 1;
     }
 
     ///Getters y Setters

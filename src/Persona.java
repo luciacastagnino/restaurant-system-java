@@ -18,6 +18,7 @@ public abstract class Persona {
     protected String email;
     protected String usuario;
     protected String contrasenia;
+    protected int estado;
 
     /// Constructor ////////////
 
@@ -30,6 +31,7 @@ public abstract class Persona {
         this.email = email;
         this.usuario = nombre;
         this.contrasenia = dni;
+        this.estado = 1;
     }
 
     ///Getters y Setters ////////////
@@ -78,5 +80,44 @@ public abstract class Persona {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    ///ToString
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "usuario='" + usuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
     }
 }

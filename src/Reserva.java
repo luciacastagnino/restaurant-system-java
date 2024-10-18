@@ -5,7 +5,7 @@ import java.time.LocalTime;
  * La clase Reserva tiene como campos su id, momento de realizacion, dia de reserva,
  * hora de reserva, cliente, mesa y cantidad de personas
  * tiene un constructor con todos los atributos
- * metodos:
+ * metodos: getters y setters, ToString
  * otros metodos:
  *
  * @author Brenda
@@ -21,6 +21,7 @@ public class Reserva {
     private Cliente cliente;
     private int mesa;
     private int cantPersonas;
+    private boolean estado;
 
     public Reserva(LocalDate dia, LocalTime hora, Cliente cliente, int mesa, int cantPersonas) {
         this.id = ++contador;
@@ -30,6 +31,7 @@ public class Reserva {
         this.cliente = cliente;
         this.mesa = mesa;
         this.cantPersonas = cantPersonas;
+        this.estado = true;
     }
 
     ///Getters y Setters
@@ -88,6 +90,29 @@ public class Reserva {
 
     public void setCantPersonas(int cantPersonas) {
         this.cantPersonas = cantPersonas;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    //ToString
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "Nro de reserva=" + id +
+                ", Fecha de realizacion=" + momento +
+                ", dia=" + dia +
+                ", hora=" + hora +
+                ", cliente=" + cliente +
+                ", mesa=" + mesa +
+                ", cantPersonas=" + cantPersonas +
+                '}';
     }
 }
 

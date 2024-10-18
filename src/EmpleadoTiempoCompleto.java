@@ -25,13 +25,34 @@ public class EmpleadoTiempoCompleto extends Empleado{
         this.aniosAntiguedad = aniosAntiguedad;
     }
 
-    /*
-    public double calcularHorasExtra (double horasExtra){
-        return horasExtra * Math.pow(precio????, 2);
+    ///ToString
+
+
+    @Override
+    public String toString() {
+        return "EmpleadoTiempoCompleto{" +
+                "aniosAntiguedad=" + aniosAntiguedad +
+                ", usuario='" + usuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", sueldo=" + sueldo +
+                '}';
     }
 
-    public double calcularSueldo (double horasExtra){
-        return (horasTrabajadas * precioXhora) + calcularHorasExtra(horasExtra);
-    }
+    /**
+     * El metodo calcular sueldo se encarga de sumar el sueldo normal del trabajador a
+     * tiempo completo y las horas extra en caso de tenerlas.
+     *
+     * @param horasExtra
+     * @param precioXhora
+     * @return Total del sueldo
      */
+
+    public double calcularSueldo (double horasExtra, double precioXhora){
+        return sueldo + (horasExtra * precioXhora);
+    }
 }

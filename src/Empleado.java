@@ -26,4 +26,16 @@ public abstract class Empleado extends Persona {
         this.sueldo = sueldo;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                ", usuario='" + usuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
+    }
 }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * La clase Persona es abstracta y tiene como campos su nombre, apellido, dni, telefono,
  * direccion e email
@@ -119,5 +121,19 @@ public abstract class Persona {
                 ", email='" + email + '\'' +
                 ", direccion='" + direccion + '\'' +
                 '}';
+    }
+
+    //Equals
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Persona persona)) return false;
+        return Objects.equals(nombre, persona.nombre) && Objects.equals(apellido, persona.apellido) && Objects.equals(dni, persona.dni);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * Objects.hash(nombre, apellido, dni);
     }
 }

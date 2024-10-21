@@ -18,8 +18,6 @@ public abstract class Persona {
     protected String telefono;
     protected String direccion;
     protected String email;
-    protected String usuario;
-    protected String contrasenia;
     protected int estado;
 
     /// Constructor ////////////
@@ -31,8 +29,6 @@ public abstract class Persona {
         this.telefono = telefono;
         this.direccion = direccion;
         this.email = email;
-        this.usuario = nombre;
-        this.contrasenia = dni;
         this.estado = 1;
     }
 
@@ -84,22 +80,6 @@ public abstract class Persona {
         this.email = email;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
     public int getEstado() {
         return estado;
     }
@@ -113,7 +93,6 @@ public abstract class Persona {
     @Override
     public String toString() {
         return "Persona{" +
-                "usuario='" + usuario + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +

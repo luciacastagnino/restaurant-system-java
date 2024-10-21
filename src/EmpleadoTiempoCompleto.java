@@ -32,7 +32,6 @@ public class EmpleadoTiempoCompleto extends Empleado{
     public String toString() {
         return "EmpleadoTiempoCompleto{" +
                 "aniosAntiguedad=" + aniosAntiguedad +
-                ", usuario='" + usuario + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +

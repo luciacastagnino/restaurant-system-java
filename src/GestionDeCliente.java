@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import Archivos.GestionArchivos;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class GestionDeCliente {
 
@@ -49,13 +51,26 @@ public class GestionDeCliente {
         }
     }
 
+    //no se que hice
     public void cargarArray(){
+        JSONArray arreglo = GestionArchivos.leerArchivo("clientes.txt");
 
+        for (int i = 0; i < arreglo.length(); i++) {
+            JSONObject aux1 = arreglo.getJSONObject(i);
+            try {
+                Cliente aux = Cliente.JSONObjectToCliente(aux1);
+                listaDeClientes.add(aux);
+            }
+            catch (Exception e){
+                System.out.println("Ocurrio un error al convertir JSONObject a Cliente");
+            }
+
+        }
     }
+
 
     public void mostrarListaDeClientes(){
         listaDeClientes.forEach(System.out::println);
-        //ojala funcione
     }
 
 

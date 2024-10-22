@@ -1,4 +1,7 @@
 package Archivos;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.*;
 
 
@@ -12,10 +15,7 @@ public class GestionArchivos {
                 PrintWriter salida = new PrintWriter(file);
                 salida.close();
             }
-            else {
-                System.out.println("El archivo existe");
-                ///este else despues se quita
-            }
+
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
@@ -56,14 +56,16 @@ public class GestionArchivos {
         }
     }
 
-    public static void leerArchivo(String nombreArchivo){
+    public static JSONArray leerArchivo(String nombreArchivo){
         File file = new File(nombreArchivo);
+        JSONArray arreglo = new JSONArray();
 
         try {
            BufferedReader entrada = new BufferedReader(new FileReader(file));
            String lineaActual = entrada.readLine();
            while (lineaActual != null){
-               System.out.println(lineaActual);
+               JSONObject aux = new JSONObject(lineaActual);
+               arreglo.put(aux);
                lineaActual = entrada.readLine();
            }
            entrada.close();
@@ -73,6 +75,7 @@ public class GestionArchivos {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return arreglo;
     }
 
     public static void borrarContenido(String nombreArchivo){

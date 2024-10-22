@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class GestionDeCliente {
 
     private List<Cliente> listaDeClientes;
+    private GestionArchivos archi;
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
+        archi.crearArchivo("cliente.txt");
     }
 
     public static Cliente crearCliente(){
@@ -43,7 +45,6 @@ public class GestionDeCliente {
 
         while (op == 's'){
             Cliente aux = crearCliente();
-            listaDeClientes.add(aux);
 
             System.out.println("Desea seguir ingresando Clientes?");
             op = scan.nextLine().charAt(0);

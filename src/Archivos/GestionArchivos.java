@@ -1,4 +1,7 @@
+package Archivos;
+
 import java.io.*;
+
 
 public class GestionArchivos {
 
@@ -22,14 +25,15 @@ public class GestionArchivos {
         System.out.println("El archivo se ha creado correctamente");
     }
 
-    public static void escribirArchivo(String nombreArchivo, String contenido){
+    ///hay que hacerle cambios a este
+    public static void modificarArchivo(String nombreArchivo, String contenido){
         File file = new File(nombreArchivo);
 
         try {
             PrintWriter salida = new PrintWriter(file);
             salida.println(contenido);
             salida.close();
-            System.out.println("El archivo se escribio correctamente");
+            System.out.println("El archivo se modifico correctamente");
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
@@ -40,7 +44,7 @@ public class GestionArchivos {
         File file = new File(nombreArchivo);
 
         try {
-            PrintWriter salida = new PrintWriter(new FileWriter(file));
+            PrintWriter salida = new PrintWriter(new FileWriter(file, true));
             salida.println(contenido);
             salida.close();
             System.out.println("El archivo se escribio correctamente");

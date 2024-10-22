@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.util.Objects;
 
 /**
@@ -56,5 +58,31 @@ public class Cliente extends Persona{
     @Override
     public int hashCode() {
         return 31 * Objects.hash(super.hashCode(), tipoCliente);
+    }
+
+
+    public JSONObject ClientetoJSONObject() {
+        JSONObject json = new JSONObject();
+        json.put("nombre", this.nombre);
+        json.put("apellido", this.apellido);
+        json.put("dni", this.dni);
+        json.put("tel", this.telefono);
+        json.put("dir", this.direccion);
+        json.put("mail", this.email);
+        json.put("tipoCliente", this.tipoCliente);
+        json.put("estado", this.estado);
+        return json;
+    }
+
+    public static Cliente JSONObjectToCliente(JSONObject json) {
+        String nombre = json.getString("nombre");
+        String apellido = json.getString("apellido");
+        String  dni = json.getString("dni");
+        String  tel = json.getString("tel");
+        String  dir = json.getString("dir");
+        String  mail = json.getString("mail");
+        String tipoClienteStr = json.getString("tipoCliente");
+        TipoCliente  tipoCliente = TipoCliente.valueOf(tipoClienteStr);
+        return new Cliente(nombre, apellido, dni, tel, dir, mail, tipoCliente);
     }
 }

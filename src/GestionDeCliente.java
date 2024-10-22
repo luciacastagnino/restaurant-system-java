@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import Archivos.GestionArchivos;
 
 public class GestionDeCliente {
 
     private List<Cliente> listaDeClientes;
-    private GestionArchivos archi;
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
-        archi.crearArchivo("cliente.txt");
+        GestionArchivos.crearArchivo("clientes.txt");
     }
 
     public static Cliente crearCliente(){
@@ -33,22 +33,24 @@ public class GestionDeCliente {
         System.out.println("Ingrese email");
         String mail = scan.nextLine();
 
-        scan.close();
-
         return new Cliente(nombre, apellido, dni, tel, dir, mail, TipoCliente.ESTANDAR);
     }
 
-    //no se que estoy haciendo
     public void ingresarClientes(){
         char op = 's';
         Scanner scan = new Scanner(System.in);
 
         while (op == 's'){
             Cliente aux = crearCliente();
+            GestionArchivos.agregarInformacion("clientes.txt", aux.ClientetoJSONObject().toString());
 
             System.out.println("Desea seguir ingresando Clientes?");
             op = scan.nextLine().charAt(0);
         }
+    }
+
+    public void cargarArray(){
+
     }
 
     public void mostrarListaDeClientes(){

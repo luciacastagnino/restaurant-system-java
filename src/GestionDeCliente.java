@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import Archivos.GestionArchivos;
@@ -67,9 +68,12 @@ public class GestionDeCliente {
 
         }
     }
-
-
+    
     public void mostrarListaDeClientes(){
+        if(listaDeClientes.isEmpty()){
+            cargarArray();
+        }
+        Collections.sort(listaDeClientes);
         listaDeClientes.forEach(System.out::println);
     }
 

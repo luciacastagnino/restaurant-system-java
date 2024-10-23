@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-
+//rehacer
 public class GestionArchivos {
 
     public static void crearArchivo(String nombreArchivo){

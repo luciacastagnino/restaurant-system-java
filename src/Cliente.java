@@ -12,7 +12,7 @@ import java.util.Objects;
  * @since 2024
  * @version 1
  */
-public class Cliente extends Persona{
+public class Cliente extends Persona implements Comparable{
     private TipoCliente  tipoCliente;
 
     public Cliente(String nombre, String apellido, String dni, String telefono, String direccion, String email, TipoCliente tipoCliente) {
@@ -84,5 +84,22 @@ public class Cliente extends Persona{
         String tipoClienteStr = json.getString("tipoCliente");
         TipoCliente  tipoCliente = TipoCliente.valueOf(tipoClienteStr);
         return new Cliente(nombre, apellido, dni, tel, dir, mail, tipoCliente);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        int nombreComparison = this.nombre.compareTo(((Cliente) o).nombre);
+        if (nombreComparison != 0) {
+            return nombreComparison;
+        }
+
+        // Comparar por apellido
+        int apellidoComparison = this.apellido.compareTo(((Cliente) o).apellido);
+        if (apellidoComparison != 0) {
+            return apellidoComparison;
+        }
+
+        // Comparar por DNI
+        return this.dni.compareTo(((Cliente) o).dni);
     }
 }

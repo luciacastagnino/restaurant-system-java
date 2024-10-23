@@ -12,7 +12,7 @@ public class GestionDeCliente {
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
-        GestionArchivos.crearArchivo("clientes.txt");
+        GestionArchivos.crearArchivo("clientes.json");
     }
 
     public static Cliente crearCliente(){
@@ -39,13 +39,14 @@ public class GestionDeCliente {
         return new Cliente(nombre, apellido, dni, tel, dir, mail, TipoCliente.ESTANDAR);
     }
 
+    ///REVISAR
     public void ingresarClientes(){
         char op = 's';
         Scanner scan = new Scanner(System.in);
 
         while (op == 's'){
             Cliente aux = crearCliente();
-            GestionArchivos.agregarInformacion("clientes.txt", aux.ClientetoJSONObject().toString());
+            GestionArchivos.agregarInformacion("clientes.json", aux.ClientetoJSONObject().toString());
 
             System.out.println("Desea seguir ingresando Clientes?");
             op = scan.nextLine().charAt(0);
@@ -54,7 +55,7 @@ public class GestionDeCliente {
 
     //no se que hice
     public void cargarArray(){
-        JSONArray arreglo = GestionArchivos.leerArchivo("clientes.txt");
+        JSONArray arreglo = GestionArchivos.leerArchivo("clientes.json");
 
         for (int i = 0; i < arreglo.length(); i++) {
             JSONObject aux1 = arreglo.getJSONObject(i);
@@ -68,7 +69,7 @@ public class GestionDeCliente {
 
         }
     }
-    
+
     public void mostrarListaDeClientes(){
         if(listaDeClientes.isEmpty()){
             cargarArray();

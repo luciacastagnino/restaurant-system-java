@@ -39,7 +39,7 @@ public class GestionDeCliente {
 
         return new Cliente(nombre, apellido, dni, tel, dir, mail, TipoCliente.ESTANDAR);
     }
-    
+
     public void ingresarClientes(){
         char op = 's';
         Scanner scan = new Scanner(System.in);
@@ -53,7 +53,6 @@ public class GestionDeCliente {
         }
     }
 
-    //no se que hice
     public void cargarArray(){
         JSONArray arreglo = GestionJSON.leerArchivo("clientes.json");
 

@@ -1,3 +1,4 @@
+
 package Archivos;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -6,7 +7,7 @@ import java.io.*;
 
 //rehacer
 public class GestionArchivos {
-
+/*
     public static void crearArchivo(String nombreArchivo){
         File file = new File(nombreArchivo);
 
@@ -108,4 +109,6 @@ public class GestionArchivos {
             e.printStackTrace();
         }
     }
+
+ */
 }

@@ -3,12 +3,24 @@ package Archivos;
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class GestionJSON {
+
+    public static void crearArchivoJSON(String nombreArchivo){
+        File file = new File(nombreArchivo);
+
+        if(!file.exists()) {
+            try {
+                FileWriter archi = new FileWriter(nombreArchivo);
+                //archi.write();
+                archi.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     public static void grabar(JSONArray array, String nombreArchivo) throws IOException {
         try {
             FileWriter file = new FileWriter(nombreArchivo);

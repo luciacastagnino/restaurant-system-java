@@ -12,7 +12,7 @@ public class GestionDeCliente {
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
-        GestionArchivos.crearArchivo("clientes.json");
+        //GestionArchivos.crearArchivo("clientes.json");
     }
 
     public static Cliente crearCliente(){

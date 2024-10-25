@@ -2,7 +2,6 @@ package Archivos;
 
 import org.json.JSONArray;
 import org.json.JSONTokener;
-
 import java.io.*;
 
 public class GestionJSON {
@@ -30,7 +29,6 @@ public class GestionJSON {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public static JSONTokener leer(String nombreArchivo){

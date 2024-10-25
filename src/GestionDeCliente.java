@@ -3,6 +3,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import Archivos.GestionArchivos;
+import Archivos.GestionJSON;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -12,7 +13,7 @@ public class GestionDeCliente {
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
-        //GestionArchivos.crearArchivo("clientes.json");
+        GestionJSON.crearArchivoJSON("clientes.json");
     }
 
     public static Cliente crearCliente(){
@@ -38,15 +39,14 @@ public class GestionDeCliente {
 
         return new Cliente(nombre, apellido, dni, tel, dir, mail, TipoCliente.ESTANDAR);
     }
-
-    ///REVISAR
+    
     public void ingresarClientes(){
         char op = 's';
         Scanner scan = new Scanner(System.in);
 
         while (op == 's'){
             Cliente aux = crearCliente();
-            GestionArchivos.agregarInformacion("clientes.json", aux.ClientetoJSONObject().toString());
+            GestionJSON.agregarElemento("clientes.json", aux.ClientetoJSONObject());
 
             System.out.println("Desea seguir ingresando Clientes?");
             op = scan.nextLine().charAt(0);
@@ -55,7 +55,7 @@ public class GestionDeCliente {
 
     //no se que hice
     public void cargarArray(){
-        JSONArray arreglo = GestionArchivos.leerArchivo("clientes.json");
+        JSONArray arreglo = GestionJSON.leerArchivo("clientes.json");
 
         for (int i = 0; i < arreglo.length(); i++) {
             JSONObject aux1 = arreglo.getJSONObject(i);

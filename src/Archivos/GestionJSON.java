@@ -1,6 +1,7 @@
 package Archivos;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import java.io.*;
@@ -30,7 +31,7 @@ public class GestionJSON {
         }
     }
 
-    public static void sobrescribir(JSONArray array, String nombreArchivo) throws IOException {
+    public static void modificar(JSONArray array, String nombreArchivo) throws IOException {
         try {
             FileWriter file = new FileWriter(nombreArchivo);
             file.write(array.toString());
@@ -41,6 +42,34 @@ public class GestionJSON {
         }
     }
 
+    public static JSONArray leerArchivo(String nombreArchivo){
+        File file = new File(nombreArchivo);
+        JSONArray arreglo = new JSONArray();
+
+        try {
+            BufferedReader entrada = new BufferedReader(new FileReader(file));
+            String lineaActual;
+
+            while ((lineaActual = entrada.readLine()) != null){
+                try {
+                    JSONObject aux = new JSONObject(lineaActual);
+                    arreglo.put(aux);
+                }catch (JSONException e){
+                    System.out.println("Error en la linea" + lineaActual);
+                    e.printStackTrace();
+                }
+            }
+            entrada.close();
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arreglo;
+    }
+
+    /*
     public static JSONTokener leer(String nombreArchivo){
         JSONTokener aux = null;
         try {
@@ -50,4 +79,5 @@ public class GestionJSON {
         }
         return aux;
     }
+     */
 }

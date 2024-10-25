@@ -1,6 +1,7 @@
 package Archivos;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONTokener;
 import java.io.*;
 
@@ -12,7 +13,6 @@ public class GestionJSON {
         if(!file.exists()) {
             try {
                 FileWriter archi = new FileWriter(nombreArchivo);
-                //archi.write();
                 archi.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -20,7 +20,17 @@ public class GestionJSON {
         }
     }
 
-    public static void grabar(JSONArray array, String nombreArchivo) throws IOException {
+    public static void agregarElemento(String nombreArchivo, JSONObject aux){
+        try{
+            FileWriter file = new FileWriter(nombreArchivo, true);
+            file.write(aux.toString());
+            file.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void sobrescribir(JSONArray array, String nombreArchivo) throws IOException {
         try {
             FileWriter file = new FileWriter(nombreArchivo);
             file.write(array.toString());

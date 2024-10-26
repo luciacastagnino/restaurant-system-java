@@ -12,7 +12,7 @@ import java.util.Objects;
  * @since 2024
  * @version 1
  */
-public class Cliente extends Persona implements Comparable{
+public class Cliente extends Usuario implements Comparable{
     private TipoCliente  tipoCliente;
 
     public Cliente(String nombre, String apellido, String dni, String telefono, String direccion, String email, TipoCliente tipoCliente) {

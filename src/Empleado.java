@@ -9,7 +9,7 @@
  * @since 2024
  * @version 1
  */
-public abstract class Empleado extends Persona {
+public abstract class Empleado extends Usuario {
     protected double sueldo;
 
     public Empleado(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo) {

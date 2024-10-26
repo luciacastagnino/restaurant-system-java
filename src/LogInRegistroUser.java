@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class LogInRegistroUser <Usuario> {
+public class LogInRegistroUser {
 
     private HashMap<String, Usuario> usuarios;
 
@@ -11,31 +11,101 @@ public class LogInRegistroUser <Usuario> {
 
     //Registro de usuario
 
-    public boolean registro (String username, String contrasenia, String nombreCompleto, String dni, String email){
+
+    public void validarContrasenia (String contrasenia) throws ContraseniaInvalidaException{
+        if (contrasenia.length()<10){
+            throw new ContraseniaInvalidaException("La contraseña debe tener al menos 10 caracteres.");
+        }
+
+        if(!contrasenia.matches(".*[0-9].*")){
+            throw new ContraseniaInvalidaException("La contraseña debe tener al menos un numero.");
+        }
+
+        if (!contrasenia.matches(".*[!@#$%^&*(),.?\":{}|<>].*")){
+            throw new ContraseniaInvalidaException("La contraseña debe tener al menos un caracter especial.");
+        }
+    }
+
+    public void ingresoDatosRegistro (){
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Complete con sus datos:\n");
+
+        System.out.println("Username: ");
+        String username = scanner.nextLine();
+
+        String contrasenia = "";
+        boolean contraseniaValida = false;
+
+        while (!contraseniaValida){
+            System.out.println("Contraseña: ");
+            contrasenia = scanner.nextLine();
+
+            try {
+                validarContrasenia(contrasenia);
+                contraseniaValida = true;
+            }catch (ContraseniaInvalidaException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente.");
+            }
+        }
+
+        //despues sigo, tengo que agregar excepciones de q no pueden haber numeros
+        // en el nombre, lenght del dni, etc
+
+        System.out.println("Nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.println("Apellido: ");
+        String apellido = scanner.nextLine();
+
+        System.out.println("DNI: ");
+        String dni = scanner.nextLine();
+
+        System.out.println("Telefono: ");
+        String telefono = scanner.nextLine();
+
+        System.out.println("Direccion: ");
+        String direccion = scanner.nextLine();
+
+        System.out.println("Email: ");
+        String email = scanner.nextLine();
+
+        boolean estado = true;
+
+        registro(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+
+    }
+
+    //no se si funca, despues pruebo
+    public boolean registro (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado){
         if (usuarios.containsKey(username)){
             System.out.println("El usuario ya existe.");
             return false;
         }
 
-        T nuevoUser = new T(username, contrasenia, nombreCompleto, dni, email); //esto no se puede hacer jiji
-        usuarios.put(username, nuevoUser);
-        System.out.println("¡Registro exitoso!);
+        Usuario nuevoUser = new Usuario(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+        usuarios.put(username, contrasenia);
+        System.out.println("¡Registro exitoso!");
         return true;
     }
 
-    public static void LogIn () {
+    //Inicio de sesion
 
-        Scanner scanner = new Scanner(System.in);
+    public boolean logIn (String username, String contrasenia){
+        if (!usuarios.containsKey(username)){
+            System.out.println("Usuario no encontrado.");
+            return false;
+        }
 
-        System.out.println("Bienvenido! Ingrese sus datos:");
+        if (!usuarios.get(username).equals(contrasenia)){
+            System.out.println("Contraseña incorrecta.");
+            return false;
+        }
 
-        System.out.println("Nombre de usuario: ");
-        String usuario = scanner.nextLine();
-
-        System.out.println("Contraseña: ");
-        String contrasenia = scanner.nextLine();
-
-
-
+        System.out.println("¡Inicio de sesion exitoso!");
+        return true;
     }
+
+
+
 }

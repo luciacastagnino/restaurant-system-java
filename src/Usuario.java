@@ -11,7 +11,7 @@ import java.util.Objects;
  * @since 2024
  * @version 1
  */
-public abstract class Usuario {
+public class Usuario {
     protected String username;
     protected String contrasenia;
     protected String nombre;
@@ -20,11 +20,11 @@ public abstract class Usuario {
     protected String telefono;
     protected String direccion;
     protected String email;
-    protected int estado;
+    protected boolean estado;
 
     /// Constructor ////////////
 
-    public Usuario(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, int estado) {
+    public Usuario(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
         this.username = username;
         this.contrasenia = contrasenia;
         this.nombre = nombre;
@@ -100,11 +100,11 @@ public abstract class Usuario {
         this.email = email;
     }
 
-    public int getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 

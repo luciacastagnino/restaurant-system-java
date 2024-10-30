@@ -11,7 +11,7 @@ import java.util.Objects;
  * @since 2024
  * @version 1
  */
-public class Usuario {
+public abstract class Usuario {
     protected String username;
     protected String contrasenia;
     protected String nombre;
@@ -136,7 +136,7 @@ public class Usuario {
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, contrasenia, nombre, apellido, dni);
+        return 31 * Objects.hash(username, contrasenia, nombre, apellido, dni);
     }
 
 }

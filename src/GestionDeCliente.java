@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -70,6 +71,27 @@ public class GestionDeCliente {
             catch (JSONException e){
                 System.out.println("Ocurrio un error al convertir JSONObject a Cliente");
             }
+    }
+
+    public void cargarArchivoConArreglo(){
+        JSONArray arreglo = null;
+        try {
+            arreglo = new JSONArray();
+            JSONObject aux = null;
+
+            for(int i = 0; i < listaDeClientes.size(); i++){
+                aux = (listaDeClientes.get(i)).ClientetoJSONObject();
+                arreglo.put(aux);
+            }
+
+            GestionJSON.agregarElemento("clientes.json", arreglo);
+        }
+        catch (JSONException e){
+            System.out.println("Hubo un problema al cargar el archivo con array");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void mostrarListaDeClientes(){

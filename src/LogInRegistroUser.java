@@ -202,54 +202,6 @@ public class LogInRegistroUser {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Complete con sus datos:\n");
 
-        System.out.println("Username: ");
-        String username = scanner.nextLine();
-
-        String contrasenia = "";
-        boolean contraseniaValida = false;
-
-        while (!contraseniaValida){
-            System.out.println("Contraseña: ");
-            contrasenia = scanner.nextLine();
-
-            try {
-                validarContrasenia(contrasenia);
-                contraseniaValida = true;
-            }catch (ContraseniaInvalidaException e){
-                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente.");
-            }
-        }
-
-        String nombre = "";
-        boolean nombreValido = false;
-
-        while (!nombreValido){
-            System.out.println("Nombre: ");
-            nombre = scanner.nextLine();
-
-            try {
-                validarCadenas(nombre);
-                nombreValido = true;
-            }catch (DatoInvalidoException e){
-                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-            }
-        }
-
-        String apellido = "";
-        boolean apellidoValido = false;
-
-        while (!apellidoValido){
-            System.out.println("Apellido: ");
-            apellido = scanner.nextLine();
-
-            try {
-                validarCadenas(apellido);
-                apellidoValido = true;
-            }catch (DatoInvalidoException e){
-                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-            }
-        }
-
         String dni = "";
         boolean dniValido = false;
         while (!dniValido){
@@ -264,49 +216,9 @@ public class LogInRegistroUser {
             }
         }
 
-        String telefono = "";
-        boolean telefonoValido = false;
-        while (!telefonoValido) {
-            System.out.println("Telefono: ");
-            telefono = scanner.nextLine();
-            try {
-                validarTelefono(telefono);
-                telefonoValido = true;
-            }catch (DatoInvalidoException e){
-                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-            }
-        }
-
-        String direccion = "";
-        boolean direccionValida = false;
-        while (!direccionValida){
-            System.out.println("Direccion: ");
-            direccion = scanner.nextLine();
-            try {
-                validarDireccion(direccion);
-                direccionValida = true;
-            }catch (DatoInvalidoException e){
-                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-            }
-        }
-
-
-        String email = "";
-        boolean emailValido = false;
-        while(!emailValido){
-            System.out.println("Email: ");
-            email = scanner.nextLine();
-            try {
-                validarEmail(email);
-                emailValido = true;
-            }catch (DatoInvalidoException e){
-                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-            }
-        }
-
         boolean estado = true;
 
-        registroAdmin(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+        registroEmpleado(dni, dni, "", "", dni, "", "", "", estado);
 
     }
 
@@ -325,6 +237,20 @@ public class LogInRegistroUser {
                 direccion,
                 email,
                 estado);
+        usuarios.put(username, administrador);
+
+        System.out.println("¡Registro exitoso!");
+        return true;
+    }
+
+    //FALTA TERMINAR EN UN RATO SIGO
+    public boolean registroEmpleado (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado){
+        if (usuarios.containsKey(username)){
+            System.out.println("El usuario ya existe.");
+            return false;
+        }
+
+        Empleado empleado = new empleado
         usuarios.put(username, administrador);
 
         System.out.println("¡Registro exitoso!");

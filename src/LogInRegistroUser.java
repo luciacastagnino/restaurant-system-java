@@ -11,7 +11,6 @@ public class LogInRegistroUser {
 
     //Registro de usuario
 
-
     public void validarContrasenia (String contrasenia) throws ContraseniaInvalidaException{
         if (contrasenia.length()<10){
             throw new ContraseniaInvalidaException("La contraseña debe tener al menos 10 caracteres.");
@@ -48,9 +47,6 @@ public class LogInRegistroUser {
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente.");
             }
         }
-
-        //despues sigo, tengo que agregar excepciones de q no pueden haber numeros
-        // en el nombre, lenght del dni, etc
 
         System.out.println("Nombre: ");
         String nombre = scanner.nextLine();

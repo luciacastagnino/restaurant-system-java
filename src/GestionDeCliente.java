@@ -89,9 +89,6 @@ public class GestionDeCliente {
         catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array");
         }
-        catch (IOException e){
-            e.printStackTrace();
-        }
     }
 
     public void mostrarListaDeClientes(){

@@ -312,9 +312,8 @@ public class LogInRegistroUser {
         }
 
         System.out.println("¡Inicio de sesion exitoso!");
-        scanner.close();
+
         return true;
     }
-
 
 }

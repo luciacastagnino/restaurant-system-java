@@ -14,7 +14,7 @@ public class GestionEmpleados {
         GestionJSON.crearArchivoJSON("empleados.json");
     }
 
-    public static Cliente crearCliente(){
+    public static Empleado crearEmpleado(){
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Ingrese nombre");
@@ -35,7 +35,7 @@ public class GestionEmpleados {
         System.out.println("Ingrese email");
         String mail = scan.nextLine();
 
-        return new Cliente(nombre, apellido, dni, tel, dir, mail, TipoCliente.ESTANDAR);
+        return new Empleado(nombre, apellido, dni, tel, dir, mail);
     }
 
     public void ingresarClientes(){
@@ -43,8 +43,8 @@ public class GestionEmpleados {
         Scanner scan = new Scanner(System.in);
 
         while (op == 's'){
-            Cliente aux = crearCliente();
-            listaDeClientes.add(aux);
+            Empleado aux = crearEmpleado();
+            listaEmpleados.add(aux);
 
             System.out.println("Desea seguir ingresando Clientes?");
             op = scan.nextLine().charAt(0);

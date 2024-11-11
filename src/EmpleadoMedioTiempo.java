@@ -25,7 +25,7 @@ public class EmpleadoMedioTiempo extends Empleado{
         this.nombre = json.getString("nombre");
         this.apellido = json.getString("apellido");
         this.dni = json.getString("dni");
-        
+
     }
 
     ///Getters y Setters

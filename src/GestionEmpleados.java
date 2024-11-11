@@ -52,19 +52,19 @@ public class GestionEmpleados {
     }
 
     public void cargarArrayConArchivo(){
-        JSONTokener aux = GestionJSON.leer("clientes.json");
+        JSONTokener aux = GestionJSON.leer("empleados.json");
 
         try {
             JSONArray arreglo = new JSONArray(aux);
 
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
-                Cliente cliente = new Cliente(aux1);
-                listaDeClientes.add(cliente);
+                Empleado empleado = new Empleado(aux1); ///hay que hacer el constructor
+                listaEmpleados.add(empleado);
             }
         }
         catch (JSONException e){
-            System.out.println("Ocurrio un error al convertir JSONObject a Cliente");
+            System.out.println("Ocurrio un error al convertir JSONObject a Empleado");
         }
     }
 

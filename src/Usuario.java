@@ -36,6 +36,20 @@ public abstract class Usuario {
         this.estado = estado;
     }
 
+    public Usuario(String dni) {
+        this.username = dni;
+        this.contrasenia = dni;
+        this.nombre = "";
+        this.apellido = "";
+        this.dni = dni;
+        this.telefono = "";
+        this.direccion = "";
+        this.email = "";
+        this.estado = true;
+    }
+
+
+
     ///Getters y Setters ////////////
 
     public String getUsername() {

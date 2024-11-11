@@ -16,19 +16,22 @@ import java.util.Objects;
 public class Cliente extends Usuario implements Comparable{
     private TipoCliente  tipoCliente;
 
-    public Cliente(String nombre, String apellido, String dni, String telefono, String direccion, String email, TipoCliente tipoCliente) {
-        super(nombre, apellido, dni, telefono, direccion, email);
+    public Cliente(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, TipoCliente tipoCliente) {
+        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
         this.tipoCliente = tipoCliente;
     }
 
     public Cliente (JSONObject json) {
         try {
+            this.username = json.getString("username");
+            this.contrasenia = json.getString("contrasenia");
             this.nombre = json.getString("nombre");
             this.apellido = json.getString("apellido");
             this.dni= json.getString("dni");
-            this.telefono = json.getString("tel");
-            this.direccion = json.getString("dir");
-            this.email = json.getString("mail");
+            this.telefono = json.getString("telefono");
+            this.direccion = json.getString("direccion");
+            this.email = json.getString("email");
+            this.estado = json.getBoolean("estado");
             String tipoClienteStr = json.getString("tipoCliente");
             this.tipoCliente = TipoCliente.valueOf(tipoClienteStr);
         }

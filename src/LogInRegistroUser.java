@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class LogInRegistroUser {
 
     private HashMap<String, Usuario> usuarios;
+    private Scanner scanner;
 
     public LogInRegistroUser() {
         this.usuarios = new HashMap<>();
+        this.scanner = new Scanner(System.in);
     }
 
     //VALIDACION INGRESO DE DATOS
@@ -87,7 +89,6 @@ public class LogInRegistroUser {
 
     public void ingresoDatosRegistroAdmin (){
 
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Complete con sus datos:\n");
 
         System.out.println("Username: ");
@@ -197,9 +198,8 @@ public class LogInRegistroUser {
         registroAdmin(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
     }
 
-    public void ingresoDatosRegistroEmpleado (){
+    public void ingresoDatosRegistroEmpleadoTC (){
 
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Complete con sus datos:\n");
 
         String dni = "";
@@ -218,9 +218,33 @@ public class LogInRegistroUser {
 
         boolean estado = true;
 
-        registroEmpleado(dni, dni, "", "", dni, "", "", "", estado);
-
+        registroEmpleadoTC(dni, dni, "", "", dni, "", "", "", estado, 0);
     }
+
+    public void ingresoDatosRegistroEmpleadoMT (){
+
+        System.out.println("Complete con sus datos:\n");
+
+        String dni = "";
+        boolean dniValido = false;
+        while (!dniValido){
+            System.out.println("DNI: ");
+            dni = scanner.nextLine();
+
+            try {
+                validarDNI(dni);
+                dniValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        boolean estado = true;
+
+        registroEmpleadoMT(dni, dni, "", "", dni, "", "", "", estado, 0, 0);
+    }
+
+    //registro admin
 
     public boolean registroAdmin (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado){
         if (usuarios.containsKey(username)){
@@ -243,19 +267,36 @@ public class LogInRegistroUser {
         return true;
     }
 
-    //FALTA TERMINAR EN UN RATO SIGO
-    public boolean registroEmpleado (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado){
+    //registro empleado tiempo completo
+
+    public boolean registroEmpleadoTC (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, int añosAntiguedad){
         if (usuarios.containsKey(username)){
             System.out.println("El usuario ya existe.");
             return false;
         }
 
-        Empleado empleado = new empleado
-        usuarios.put(username, administrador);
+        EmpleadoTiempoCompleto empleado = new EmpleadoTiempoCompleto(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, 0);
+        usuarios.put(username, empleado);
 
         System.out.println("¡Registro exitoso!");
         return true;
     }
+
+    //registro empleado medio tiempo
+
+    public boolean registroEmpleadoMT (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, int horasTrabajadas, double precioXhora){
+        if (usuarios.containsKey(username)){
+            System.out.println("El usuario ya existe.");
+            return false;
+        }
+
+        EmpleadoMedioTiempo empleado = new EmpleadoMedioTiempo(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, 0, 0);
+        usuarios.put(username, empleado);
+
+        System.out.println("¡Registro exitoso!");
+        return true;
+    }
+
 
     //Inicio de sesion universal
 
@@ -271,7 +312,9 @@ public class LogInRegistroUser {
         }
 
         System.out.println("¡Inicio de sesion exitoso!");
+        scanner.close();
         return true;
     }
+
 
 }

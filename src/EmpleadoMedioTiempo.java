@@ -15,11 +15,13 @@ public class EmpleadoMedioTiempo extends Empleado{
     private int horasTrabajadas;
     private double precioXhora;
 
-    public EmpleadoMedioTiempo(String nombre, String apellido, String dni, String telefono, String direccion, String email, int horasTrabajadas, double precioXhora, double sueldo) {
-        super(nombre, apellido, dni, telefono, direccion, email, sueldo);
+    public EmpleadoMedioTiempo(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, int horasTrabajadas, double precioXhora) {
+        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
         this.horasTrabajadas = horasTrabajadas;
         this.precioXhora = precioXhora;
     }
+
+
 
     public EmpleadoMedioTiempo(JSONObject json){
         this.nombre = json.getString("nombre");

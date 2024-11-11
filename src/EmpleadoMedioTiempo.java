@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 /**
  * La clase EmpleadoMedioTiempo tiene como campos su nombre, apellido, dni, telefono,
  * direccion, email y horas trabajadas
@@ -17,6 +19,13 @@ public class EmpleadoMedioTiempo extends Empleado{
         super(nombre, apellido, dni, telefono, direccion, email, sueldo);
         this.horasTrabajadas = horasTrabajadas;
         this.precioXhora = precioXhora;
+    }
+
+    public EmpleadoMedioTiempo(JSONObject json){
+        this.nombre = json.getString("nombre");
+        this.apellido = json.getString("apellido");
+        this.dni = json.getString("dni");
+        
     }
 
     ///Getters y Setters

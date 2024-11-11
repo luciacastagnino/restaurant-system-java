@@ -2,10 +2,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import Archivos.GestionArchivos;
+
 import Archivos.GestionJSON;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 public class GestionDeCliente {
 
@@ -46,32 +48,33 @@ public class GestionDeCliente {
 
         while (op == 's'){
             Cliente aux = crearCliente();
-            GestionJSON.agregarElemento("clientes.json", aux.ClientetoJSONObject());
+            listaDeClientes.add(aux);
 
             System.out.println("Desea seguir ingresando Clientes?");
             op = scan.nextLine().charAt(0);
         }
     }
 
-    public void cargarArray(){
-        JSONArray arreglo = GestionJSON.leerArchivo("clientes.json");
+    public void cargarArrayConArchivo(){
+        JSONTokener aux = GestionJSON.leer("clientes.json");
 
-        for (int i = 0; i < arreglo.length(); i++) {
-            JSONObject aux1 = arreglo.getJSONObject(i);
             try {
-                Cliente aux = Cliente.JSONObjectToCliente(aux1);
-                listaDeClientes.add(aux);
+                JSONArray arreglo = new JSONArray(aux);
+
+                for(int i = 0; i < arreglo.length(); i++){
+                    JSONObject aux1 = arreglo.getJSONObject(i);
+                    Cliente cliente = new Cliente(aux1);
+                    listaDeClientes.add(cliente);
+                }
             }
-            catch (Exception e){
+            catch (JSONException e){
                 System.out.println("Ocurrio un error al convertir JSONObject a Cliente");
             }
-
-        }
     }
 
     public void mostrarListaDeClientes(){
         if(listaDeClientes.isEmpty()){
-            cargarArray();
+            cargarArrayConArchivo();
         }
         Collections.sort(listaDeClientes);
         listaDeClientes.forEach(System.out::println);

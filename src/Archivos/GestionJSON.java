@@ -21,10 +21,10 @@ public class GestionJSON {
         }
     }
 
-    public static void agregarElemento(String nombreArchivo, JSONObject aux){
+    public static void agregarElemento(String nombreArchivo, JSONArray aux){
         try{
-            FileWriter file = new FileWriter(nombreArchivo, true);
-            file.write(aux.toString());
+            FileWriter file = new FileWriter(nombreArchivo);
+            file.write(aux.toString(16));
             file.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -42,6 +42,7 @@ public class GestionJSON {
         }
     }
 
+    /*
     public static JSONArray leerArchivo(String nombreArchivo){
         File file = new File(nombreArchivo);
         JSONArray arreglo = new JSONArray();
@@ -69,7 +70,8 @@ public class GestionJSON {
         return arreglo;
     }
 
-    /*
+     */
+
     public static JSONTokener leer(String nombreArchivo){
         JSONTokener aux = null;
         try {
@@ -79,5 +81,5 @@ public class GestionJSON {
         }
         return aux;
     }
-     */
+
 }

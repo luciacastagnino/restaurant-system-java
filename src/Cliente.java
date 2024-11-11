@@ -1,3 +1,4 @@
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -18,6 +19,24 @@ public class Cliente extends Usuario implements Comparable{
     public Cliente(String nombre, String apellido, String dni, String telefono, String direccion, String email, TipoCliente tipoCliente) {
         super(nombre, apellido, dni, telefono, direccion, email);
         this.tipoCliente = tipoCliente;
+    }
+
+    public Cliente (JSONObject json) {
+        try {
+            this.nombre = json.getString("nombre");
+            this.apellido = json.getString("apellido");
+            this.dni= json.getString("dni");
+            this.telefono = json.getString("tel");
+            this.direccion = json.getString("dir");
+            this.email = json.getString("mail");
+            String tipoClienteStr = json.getString("tipoCliente");
+            this.tipoCliente = TipoCliente.valueOf(tipoClienteStr);
+        }
+        catch (JSONException e){
+            System.out.println("Hubo un problema al crear un cliente con JSONObject");
+            e.printStackTrace();
+        }
+
     }
 
     ///Getters y Setters
@@ -72,18 +91,6 @@ public class Cliente extends Usuario implements Comparable{
         json.put("tipoCliente", this.tipoCliente);
         json.put("estado", this.estado);
         return json;
-    }
-
-    public static Cliente JSONObjectToCliente(JSONObject json) {
-        String nombre = json.getString("nombre");
-        String apellido = json.getString("apellido");
-        String  dni = json.getString("dni");
-        String  tel = json.getString("tel");
-        String  dir = json.getString("dir");
-        String  mail = json.getString("mail");
-        String tipoClienteStr = json.getString("tipoCliente");
-        TipoCliente  tipoCliente = TipoCliente.valueOf(tipoClienteStr);
-        return new Cliente(nombre, apellido, dni, tel, dir, mail, tipoCliente);
     }
 
     @Override

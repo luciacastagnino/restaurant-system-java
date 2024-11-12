@@ -9,6 +9,8 @@ public class Validaciones {
         if (username.contains(" ")){
             throw new DatoInvalidoException("El username no puede contener espacios.");
         }
+
+        //FALTA AGREGAR VALIDACION PARA QUE NO SE REPITAN LOS USUARIOS :)))
     }
 
     public static void validarContrasenia(String contrasenia) throws DatoInvalidoException {

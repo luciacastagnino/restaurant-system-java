@@ -20,7 +20,7 @@ public class LogIn {
     //tipos de usuario
     // 1. admin, 2. empleado, 3. cliente
 
-    public Usuario inicioSesion(String username, String contrasenia, int tipoUsuario) throws FileNotFoundException {
+    public Usuario inicioSesion (String username, String contrasenia, int tipoUsuario) throws FileNotFoundException {
 
         String namepath = archivoSegunTipoUsuario(tipoUsuario);
         if (namepath==null){
@@ -28,7 +28,7 @@ public class LogIn {
         }
 
         JSONTokener = GestionJSON.leer(namepath);
-        
+
     }
 
     private String archivoSegunTipoUsuario (int tipoUsuario){

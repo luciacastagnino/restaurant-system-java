@@ -14,12 +14,14 @@ public class Plato {
     private String descripcion;
     private double precio;
     private boolean disponibilidad;
+    private TipoPlato tipoPlato;
 
     public Plato(String nombre) {
         this.nombre = nombre;
         this.descripcion = null;
         this.precio = 0;
         this.disponibilidad = false;
+        this.tipoPlato = null;
     }
 
     public Plato(String nombre, String descripcion) {
@@ -27,13 +29,15 @@ public class Plato {
         this.descripcion = descripcion;
         this.precio = 0;
         this.disponibilidad = false;
+        this.tipoPlato = null;
     }
 
-    public Plato(String nombre, String descripcion, double precio) {
+    public Plato(String nombre, String descripcion, double precio, TipoPlato tipoPlato) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.disponibilidad = true;
+        this.tipoPlato = tipoPlato;
     }
 
     ///Getters y Setters

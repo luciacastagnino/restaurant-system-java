@@ -1,0 +1,5 @@
+public enum TipoPlato {
+
+    DESAYUNO, BRUNCH, ALMUERZO, CENA, POSTRE, BEBIDA, ENTRADAS;
+
+}

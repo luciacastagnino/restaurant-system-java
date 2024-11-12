@@ -23,11 +23,11 @@ public class EmpleadoMedioTiempo extends Empleado{
 
 
 
-    public EmpleadoMedioTiempo(JSONObject json){
+    /*public EmpleadoMedioTiempo(JSONObject json){
         this.nombre = json.getString("nombre");
         this.apellido = json.getString("apellido");
         this.dni = json.getString("dni");
-    }
+    }*/
 
     ///Getters y Setters
 

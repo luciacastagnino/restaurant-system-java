@@ -1,10 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        LogInRegistroUser logInRegistroUser = new LogInRegistroUser();
-        logInRegistroUser.registro();
+        RegistroUser logInRegistroUser = new RegistroUser();
 
-        if (logInRegistroUser.registro()==false){
+        if (logInRegistroUser.==false){
             System.out.println("Hubo un problema al crear el usuario.");
         }else {
             System.out.println("Registro exitoso");

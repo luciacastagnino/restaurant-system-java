@@ -1,14 +1,10 @@
-import java.security.PublicKey;
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class LogInRegistroUser {
+public final class RegistroUser {
 
-    private HashMap<String, Usuario> usuarios;
     private Scanner scanner;
 
-    public LogInRegistroUser() {
-        this.usuarios = new HashMap<>();
+    public RegistroUser() {
         this.scanner = new Scanner(System.in);
     }
 
@@ -87,7 +83,7 @@ public class LogInRegistroUser {
 
     // REGISTRO DE USUARIO ADMIN
 
-    public void ingresoDatosRegistroAdmin (){
+    public Administrador registroAdmin (){
 
         System.out.println("Complete con sus datos:\n");
 
@@ -195,10 +191,12 @@ public class LogInRegistroUser {
 
         boolean estado = true;
 
-        registroAdmin(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+        Administrador admin = new Administrador(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+
+        return admin;
     }
 
-    public void ingresoDatosRegistroEmpleadoTC (){
+    public EmpleadoTiempoCompleto registroEmpleadoTC (){
 
         System.out.println("Complete con sus datos:\n");
 
@@ -218,10 +216,12 @@ public class LogInRegistroUser {
 
         boolean estado = true;
 
-        registroEmpleadoTC(dni, dni, "", "", dni, "", "", "", estado, 0);
+        EmpleadoTiempoCompleto empleTC = new EmpleadoTiempoCompleto(dni, dni, "", "", dni, "", "", "", estado, 0);
+
+        return empleTC;
     }
 
-    public void ingresoDatosRegistroEmpleadoMT (){
+    public EmpleadoMedioTiempo registroEmpleadoMT (){
 
         System.out.println("Complete con sus datos:\n");
 
@@ -241,79 +241,57 @@ public class LogInRegistroUser {
 
         boolean estado = true;
 
-        registroEmpleadoMT(dni, dni, "", "", dni, "", "", "", estado, 0, 0);
+        EmpleadoMedioTiempo empleMT = new EmpleadoMedioTiempo(dni, dni, "", "", dni, "", "", "", estado, 0, 0);
+        return empleMT;
     }
 
-    //registro admin
+    public Cliente registroCliente (){
 
-    public boolean registroAdmin (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado){
-        if (usuarios.containsKey(username)){
-            System.out.println("El usuario ya existe.");
-            return false;
+        System.out.println("Complete con sus datos:\n");
+
+        String dni = "";
+        boolean dniValido = false;
+        while (!dniValido){
+            System.out.println("DNI: ");
+            dni = scanner.nextLine();
+
+            try {
+                validarDNI(dni);
+                dniValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
         }
 
-        Administrador administrador = new Administrador(username,
-                contrasenia,
-                nombre,
-                apellido,
-                dni,
-                telefono,
-                direccion,
-                email,
-                estado);
-        usuarios.put(username, administrador);
+        boolean estado = true;
 
-        System.out.println("¡Registro exitoso!");
-        return true;
-    }
+        boolean tipoClienteValido = false;
 
-    //registro empleado tiempo completo
+        Cliente cliente = null;
+        while (!tipoClienteValido){
 
-    public boolean registroEmpleadoTC (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, int añosAntiguedad){
-        if (usuarios.containsKey(username)){
-            System.out.println("El usuario ya existe.");
-            return false;
+            System.out.println("\nTipo de cliente: ");
+            System.out.println("1. Estandar.");
+            System.out.println("2. Premium.");
+            System.out.println("3. VIP.");
+            int tipoCliente = scanner.nextInt();
+            scanner.nextLine();
+
+            if (tipoCliente==1){
+                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado, TipoCliente.ESTANDAR);
+                tipoClienteValido = true;
+            }else if (tipoCliente == 2){
+                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado, TipoCliente.PREMIUM);
+                tipoClienteValido = true;
+            }else if (tipoCliente == 3){
+                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado, TipoCliente.VIP);
+                tipoClienteValido = true;
+            }else {
+                System.out.println("Opcion invalida. Por favor, ingrese 1, 2 o 3.");
+            }
         }
 
-        EmpleadoTiempoCompleto empleado = new EmpleadoTiempoCompleto(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, 0);
-        usuarios.put(username, empleado);
-
-        System.out.println("¡Registro exitoso!");
-        return true;
-    }
-
-    //registro empleado medio tiempo
-
-    public boolean registroEmpleadoMT (String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, int horasTrabajadas, double precioXhora){
-        if (usuarios.containsKey(username)){
-            System.out.println("El usuario ya existe.");
-            return false;
-        }
-
-        EmpleadoMedioTiempo empleado = new EmpleadoMedioTiempo(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, 0, 0);
-        usuarios.put(username, empleado);
-
-        System.out.println("¡Registro exitoso!");
-        return true;
-    }
-
-
-    //Inicio de sesion universal
-
-    public boolean logIn (String username, String contrasenia){
-        if (!usuarios.containsKey(username)){
-            System.out.println("Usuario no encontrado.");
-            return false;
-        }
-
-        if (!usuarios.get(username).equals(contrasenia)){
-            System.out.println("Contraseña incorrecta.");
-            return false;
-        }
-
-        System.out.println("¡Inicio de sesion exitoso!");
-
-        return true;
+        return cliente;
     }
 
 }

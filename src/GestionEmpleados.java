@@ -8,45 +8,35 @@ import java.util.*;
 
 public class GestionEmpleados {
     private Set<Empleado> listaEmpleados;
+    private RegistroUser registroUser;
 
     public GestionEmpleados() {
         this.listaEmpleados = new TreeSet<Empleado>();
         GestionJSON.crearArchivoJSON("empleados.json");
     }
 
-    public static Empleado crearEmpleado(){
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Ingrese nombre");
-        String nombre = scan.nextLine();
-
-        System.out.println("Ingrese apellido");
-        String apellido = scan.nextLine();
-
-        System.out.println("Ingrese DNI");
-        String dni = scan.nextLine();
-
-        System.out.println("Ingrese telefono");
-        String tel = scan.nextLine();
-
-        System.out.println("Ingrese direccion");
-        String dir = scan.nextLine();
-
-        System.out.println("Ingrese email");
-        String mail = scan.nextLine();
-
-        return new Empleado(nombre, apellido, dni, tel, dir, mail);
-    }
-
-    public void ingresarClientes(){
+    public void ingresarEmpleados(){
         char op = 's';
         Scanner scan = new Scanner(System.in);
 
         while (op == 's'){
-            Empleado aux = crearEmpleado();
-            listaEmpleados.add(aux);
+            System.out.println("\nSeleccione el tipo de empleado que desea ingresar: ");
+            System.out.println("1. Empleado tiempo completo.");
+            System.out.println("2. Empleado medio tiempo.");
 
-            System.out.println("Desea seguir ingresando Clientes?");
+            int tipoEmpleado = scan.nextInt();
+            scan.nextLine();
+            if (tipoEmpleado == 1){
+                EmpleadoTiempoCompleto aux = registroUser.registroEmpleadoTC();
+                listaEmpleados.add(aux);
+            }else if (tipoEmpleado == 2){
+                EmpleadoMedioTiempo aux = registroUser.registroEmpleadoMT();
+                listaEmpleados.add(aux);
+            }else {
+                System.out.println("Opcion invalida. Por favor, seleccione 1 o 2.");
+            }
+
+            System.out.println("\n¿Desea seguir ingresando empleados?");
             op = scan.nextLine().charAt(0);
         }
     }
@@ -87,7 +77,7 @@ public class GestionEmpleados {
         }
     }
 
-    public void mostrarListaDeClientes(){
+    public void mostrarListaDeEmpleados(){
         if(listaEmpleados.isEmpty()){
             cargarArrayConArchivo();
         }

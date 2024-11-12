@@ -9,38 +9,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
 public class GestionDeCliente {
 
     private List<Cliente> listaDeClientes;
+    private RegistroUser registroUser;
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
         GestionJSON.crearArchivoJSON("clientes.json");
-    }
-
-    public static Cliente crearCliente(){
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Ingrese nombre");
-        String nombre = scan.nextLine();
-
-        System.out.println("Ingrese apellido");
-        String apellido = scan.nextLine();
-
-        System.out.println("Ingrese DNI");
-        String dni = scan.nextLine();
-
-        System.out.println("Ingrese telefono");
-        String tel = scan.nextLine();
-
-        System.out.println("Ingrese direccion");
-        String dir = scan.nextLine();
-
-        System.out.println("Ingrese email");
-        String mail = scan.nextLine();
-
-        return new Cliente(nombre, apellido, dni, tel, dir, mail, TipoCliente.ESTANDAR);
     }
 
     public void ingresarClientes(){
@@ -48,7 +24,7 @@ public class GestionDeCliente {
         Scanner scan = new Scanner(System.in);
 
         while (op == 's'){
-            Cliente aux = crearCliente();
+            Cliente aux = registroUser.registroCliente();
             listaDeClientes.add(aux);
 
             System.out.println("Desea seguir ingresando Clientes?");
@@ -97,9 +73,7 @@ public class GestionDeCliente {
         }
         Collections.sort(listaDeClientes);
         listaDeClientes.forEach(System.out::println);
-    }
-
-
 
     }
+}
 

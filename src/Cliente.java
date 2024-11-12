@@ -21,7 +21,7 @@ public class Cliente extends Usuario implements Comparable{
         this.tipoCliente = tipoCliente;
     }
 
-    public Cliente (JSONObject json) {
+    /*public Cliente (JSONObject json) {
         try {
             this.username = json.getString("username");
             this.contrasenia = json.getString("contrasenia");
@@ -40,7 +40,7 @@ public class Cliente extends Usuario implements Comparable{
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     ///Getters y Setters
 

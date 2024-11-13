@@ -1,3 +1,4 @@
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -15,19 +16,15 @@ public class EmpleadoMedioTiempo extends Empleado{
     private int horasTrabajadas;
     private double precioXhora;
 
+    public EmpleadoMedioTiempo(){
+
+    }
+
     public EmpleadoMedioTiempo(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, int horasTrabajadas, double precioXhora) {
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
         this.horasTrabajadas = horasTrabajadas;
         this.precioXhora = precioXhora;
     }
-
-
-
-    /*public EmpleadoMedioTiempo(JSONObject json){
-        this.nombre = json.getString("nombre");
-        this.apellido = json.getString("apellido");
-        this.dni = json.getString("dni");
-    }*/
 
     ///Getters y Setters
 
@@ -45,6 +42,52 @@ public class EmpleadoMedioTiempo extends Empleado{
 
     public void setHorasTrabajadas(int horasTrabajadas) {
         this.horasTrabajadas = horasTrabajadas;
+    }
+
+    public JSONObject toJson (EmpleadoMedioTiempo e){
+
+        JSONObject jsonObject = null;
+        try{
+            jsonObject = new JSONObject();
+            jsonObject.put("username", e.getUsername());
+            jsonObject.put("contrasenia", e.getContrasenia());
+            jsonObject.put("nombre", e.getNombre());
+            jsonObject.put("apellido", e.getApellido());
+            jsonObject.put("dni", e.getDni());
+            jsonObject.put("telefono", e.getTelefono());
+            jsonObject.put("direccion", e.getDireccion());
+            jsonObject.put("email", e.getEmail());
+            jsonObject.put("estado", e.getEstado());
+            jsonObject.put("horasTrabajadas", e.getHorasTrabajadas());
+            jsonObject.put("precioPorHora", e.getPrecioXhora());
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        return jsonObject;
+    }
+
+    //JSON TO EMPLEADO
+
+    public EmpleadoMedioTiempo jsonToEmpleadoMT (JSONObject json){
+
+        EmpleadoMedioTiempo empleadoLeido = new EmpleadoMedioTiempo();
+        try {
+            empleadoLeido.setUsername(json.getString("username"));
+            empleadoLeido.setContrasenia(json.getString("contrasenia"));
+            empleadoLeido.setNombre(json.getString("nombre"));
+            empleadoLeido.setApellido(json.getString("apellido"));
+            empleadoLeido.setDni(json.getString("dni"));
+            empleadoLeido.setTelefono(json.getString("telefono"));
+            empleadoLeido.setDireccion(json.getString("direccion"));
+            empleadoLeido.setEmail(json.getString("email"));
+            empleadoLeido.setEstado(json.getBoolean("estado"));
+            empleadoLeido.setHorasTrabajadas(json.getInt("horasTrabajadas"));
+            empleadoLeido.setPrecioXhora(json.getDouble("precioPorHora"));
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return empleadoLeido;
     }
 
     /**

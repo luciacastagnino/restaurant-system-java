@@ -214,11 +214,11 @@ public class GestionAdministrador {
 
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
-                Administrador administrador = new Administrador(aux1); ///hay que hacer el constructor
+                Administrador administrador =  ad///hay que hacer el constructor
                 listaAdmins.add(administrador);
             }
         } catch (JSONException e){
-            System.out.println("Ocurrio un error al convertir JSONObject a Empleado");
+            System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
         }
     }
 

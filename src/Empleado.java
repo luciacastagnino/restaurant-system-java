@@ -16,6 +16,9 @@ public abstract class Empleado extends Usuario {
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
     }
 
+    protected Empleado() {
+    }
+
 
     ///Getters y Setters
     public double getSueldo() {

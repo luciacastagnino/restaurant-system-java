@@ -16,31 +16,13 @@ import java.util.Objects;
 public class Cliente extends Usuario implements Comparable{
     private TipoCliente  tipoCliente;
 
+    public Cliente() {
+    }
+
     public Cliente(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, TipoCliente tipoCliente) {
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
         this.tipoCliente = tipoCliente;
     }
-
-    /*public Cliente (JSONObject json) {
-        try {
-            this.username = json.getString("username");
-            this.contrasenia = json.getString("contrasenia");
-            this.nombre = json.getString("nombre");
-            this.apellido = json.getString("apellido");
-            this.dni= json.getString("dni");
-            this.telefono = json.getString("telefono");
-            this.direccion = json.getString("direccion");
-            this.email = json.getString("email");
-            this.estado = json.getBoolean("estado");
-            String tipoClienteStr = json.getString("tipoCliente");
-            this.tipoCliente = TipoCliente.valueOf(tipoClienteStr);
-        }
-        catch (JSONException e){
-            System.out.println("Hubo un problema al crear un cliente con JSONObject");
-            e.printStackTrace();
-        }
-
-    }*/
 
     ///Getters y Setters
 
@@ -52,19 +34,49 @@ public class Cliente extends Usuario implements Comparable{
         this.tipoCliente = tipoCliente;
     }
 
-    ///ToString
+    // CLIENTE TO JSON
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", tipoCliente=" + tipoCliente +
-                ", dni='" + dni + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", email='" + email + '\'' +
-                ", direccion='" + direccion + '\'' +
-                '}';
+    public JSONObject toJson (Cliente e){
+
+        JSONObject jsonObject = null;
+        try{
+            jsonObject = new JSONObject();
+            jsonObject.put("username", e.getUsername());
+            jsonObject.put("contrasenia", e.getContrasenia());
+            jsonObject.put("nombre", e.getNombre());
+            jsonObject.put("apellido", e.getApellido());
+            jsonObject.put("dni", e.getDni());
+            jsonObject.put("telefono", e.getTelefono());
+            jsonObject.put("direccion", e.getDireccion());
+            jsonObject.put("email", e.getEmail());
+            jsonObject.put("estado", e.getEstado());
+            jsonObject.put("tipoCliente", e.getTipoCliente());
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    //CLIENTE TO JSON
+
+    public Cliente jsonToCliente (JSONObject json){
+
+        Cliente clienteLeido = new Cliente();
+        try {
+            clienteLeido.setUsername(json.getString("username"));
+            clienteLeido.setContrasenia(json.getString("contrasenia"));
+            clienteLeido.setNombre(json.getString("nombre"));
+            clienteLeido.setApellido(json.getString("apellido"));
+            clienteLeido.setDni(json.getString("dni"));
+            clienteLeido.setTelefono(json.getString("telefono"));
+            clienteLeido.setDireccion(json.getString("direccion"));
+            clienteLeido.setEmail(json.getString("email"));
+            clienteLeido.setEstado(json.getBoolean("estado"));
+            clienteLeido.setTipoCliente(json.getEnum(TipoCliente.class, "tipoCliente"));
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return clienteLeido;
     }
 
     //Equals
@@ -83,19 +95,6 @@ public class Cliente extends Usuario implements Comparable{
     }
 
 
-    public JSONObject ClientetoJSONObject() {
-        JSONObject json = new JSONObject();
-        json.put("nombre", this.nombre);
-        json.put("apellido", this.apellido);
-        json.put("dni", this.dni);
-        json.put("tel", this.telefono);
-        json.put("dir", this.direccion);
-        json.put("mail", this.email);
-        json.put("tipoCliente", this.tipoCliente);
-        json.put("estado", this.estado);
-        return json;
-    }
-
     @Override
     public int compareTo(Object o) {
         int nombreComparison = this.nombre.compareTo(((Cliente) o).nombre);
@@ -112,4 +111,20 @@ public class Cliente extends Usuario implements Comparable{
         // Comparar por DNI
         return this.dni.compareTo(((Cliente) o).dni);
     }
+
+    ///ToString
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", tipoCliente=" + tipoCliente +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
+    }
+
 }

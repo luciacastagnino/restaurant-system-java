@@ -74,6 +74,14 @@ public class Plato {
         this.disponibilidad = disponibilidad;
     }
 
+    public TipoPlato getTipoPlato() {
+        return tipoPlato;
+    }
+
+    public void setTipoPlato(TipoPlato tipoPlato) {
+        this.tipoPlato = tipoPlato;
+    }
+
     ///ToString
 
     @Override

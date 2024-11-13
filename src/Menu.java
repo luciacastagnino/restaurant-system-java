@@ -1,6 +1,89 @@
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Menu {
 
+    private Scanner scanner;
+    RegistroUser registroUser;
+    LogIn logIn;
 
+    public Menu() {
+        this.scanner = new Scanner(System.in);
+        this.registroUser = new RegistroUser();
+        this.logIn = new LogIn();
+    }
+
+    public void MenuPrincipal(){
+
+
+        System.out.println("Bienvenido a GastroLab");
+        System.out.println("Seleccione su tipo de usuario:");
+        System.out.printf("1. Empleado");
+        System.out.println("2. Cliente");
+        System.out.println("3. Salir.");
+        int opcion = scanner.nextInt();
+        scanner.nextLine();
+        switch (opcion){
+            case -1:
+                menuAdmin();
+                break;
+            case 1:
+                menuEmpleado();
+                break;
+            case 2:
+                menuCliente();
+                break;
+            case 3:
+                System.out.println("Saliendo del sistema...");
+                break;
+            default:
+                System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
+                break;
+        }
+
+    }
+
+    public void menuAdmin(){
+        System.out.println("--------- Menu de Administrador ---------");
+        System.out.println("1. Registrarse.");
+        System.out.println("2. Iniciar sesion.");
+        int op = scanner.nextInt();
+        scanner.nextLine();
+        switch (op){
+            case 1:
+                registroUser.registroAdmin();
+                break;
+            case 2:
+                try {
+                    logIn.inicioSesion(1);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            default:
+                System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
+                break;
+        }
+    }
+
+    public void menuEmpleado(){
+        System.out.println("--------- Menu de Empleado ---------");
+        try {
+            logIn.inicioSesion(2);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void menuCliente(){
+        System.out.println("--------- Menu de Cliente ---------");
+        try {
+            logIn.inicioSesion(3);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }

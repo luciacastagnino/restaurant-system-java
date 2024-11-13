@@ -1,13 +1,28 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        RegistroUser logInRegistroUser = new RegistroUser();
+        //para mostrar el logo, no se si lo podremos hacer de esta forma :)
+        try{
+            File file = new File("logo.txt");
+            Scanner reader = new Scanner(file);
 
-        if (logInRegistroUser.==false){
-            System.out.println("Hubo un problema al crear el usuario.");
-        }else {
-            System.out.println("Registro exitoso");
+            while (reader.hasNextLine()){
+                String line = reader.nextLine();
+                System.out.println(line);
+                Thread.sleep(20);
+            }
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (InterruptedException e){
+            e.printStackTrace();
         }
+
+        Menu menu = new Menu();
+        menu.MenuPrincipal();
 
     }
 }

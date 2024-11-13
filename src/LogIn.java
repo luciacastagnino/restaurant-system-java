@@ -20,12 +20,16 @@ public class LogIn {
     //tipos de usuario
     // 1. admin, 2. empleado, 3. cliente
 
-    public Usuario inicioSesion (String username, String contrasenia, int tipoUsuario) throws FileNotFoundException {
+    public Usuario inicioSesion (int tipoUsuario) throws FileNotFoundException {
 
         String namepath = archivoSegunTipoUsuario(tipoUsuario);
         if (namepath==null){
             throw new FileNotFoundException("El archivo no existe.");
         }
+
+        System.out.println("Username: ");
+
+        System.out.println("Contraseña: ");
 
         JSONTokener = GestionJSON.leer(namepath);
 

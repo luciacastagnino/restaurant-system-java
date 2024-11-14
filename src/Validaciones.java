@@ -129,7 +129,7 @@ public class Validaciones {
     /**
      * validarEmail recibe un String, verifica que el correo tenga mas de 5 caracteres y que contenga el
      * simbolo @
-     * 
+     *
      * @param email
      * @throws DatoInvalidoException
      */

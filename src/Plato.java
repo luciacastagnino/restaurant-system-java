@@ -92,8 +92,6 @@ public class Plato {
                 ", precio=" + precio +
                 ", disponibilidad=" + disponibilidad +
                 '}';
-
-
-        ///comentario
+        
     }
 }

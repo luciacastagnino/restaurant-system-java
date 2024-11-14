@@ -81,7 +81,7 @@ public class Administrador extends Usuario implements Comparable<Administrador>{
                 adminLeido.setEstado(json.getBoolean("estado"));
             }
             else {
-                throw new FormatoIncorrectoException("El formato de json es incorrecto");
+                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un administrador");
             }
         }catch (JSONException e){
             e.printStackTrace();

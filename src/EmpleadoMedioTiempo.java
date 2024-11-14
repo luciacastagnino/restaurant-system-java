@@ -1,3 +1,4 @@
+import Archivos.FormatoIncorrectoException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,21 +70,30 @@ public class EmpleadoMedioTiempo extends Empleado{
 
     //JSON TO EMPLEADO
 
-    public EmpleadoMedioTiempo jsonToEmpleadoMT (JSONObject json){
+    public EmpleadoMedioTiempo jsonToEmpleadoMT (JSONObject json) throws FormatoIncorrectoException {
 
         EmpleadoMedioTiempo empleadoLeido = new EmpleadoMedioTiempo();
         try {
-            empleadoLeido.setUsername(json.getString("username"));
-            empleadoLeido.setContrasenia(json.getString("contrasenia"));
-            empleadoLeido.setNombre(json.getString("nombre"));
-            empleadoLeido.setApellido(json.getString("apellido"));
-            empleadoLeido.setDni(json.getString("dni"));
-            empleadoLeido.setTelefono(json.getString("telefono"));
-            empleadoLeido.setDireccion(json.getString("direccion"));
-            empleadoLeido.setEmail(json.getString("email"));
-            empleadoLeido.setEstado(json.getBoolean("estado"));
-            empleadoLeido.setHorasTrabajadas(json.getInt("horasTrabajadas"));
-            empleadoLeido.setPrecioXhora(json.getDouble("precioPorHora"));
+            if(json.has("id") && json.has("username") && json.has("contrasenia") &&
+                    json.has("nombre") && json.has("apellido") && json.has("dni") &&
+                    json.has("telefono") && json.has("direccion") && json.has("email") &&
+                    json.has("estado") && json.has("horasTrabajadas") && json.has("precioPorHora")){
+                empleadoLeido.setUsername(json.getString("username"));
+                empleadoLeido.setContrasenia(json.getString("contrasenia"));
+                empleadoLeido.setNombre(json.getString("nombre"));
+                empleadoLeido.setApellido(json.getString("apellido"));
+                empleadoLeido.setDni(json.getString("dni"));
+                empleadoLeido.setTelefono(json.getString("telefono"));
+                empleadoLeido.setDireccion(json.getString("direccion"));
+                empleadoLeido.setEmail(json.getString("email"));
+                empleadoLeido.setEstado(json.getBoolean("estado"));
+                empleadoLeido.setHorasTrabajadas(json.getInt("horasTrabajadas"));
+                empleadoLeido.setPrecioXhora(json.getDouble("precioPorHora"));
+            }
+            else {
+                throw new FormatoIncorrectoException("El formato JSON no corresponde a un empleado de medio tiempo");
+            }
+
         }catch (JSONException e){
             e.printStackTrace();
         }

@@ -76,7 +76,6 @@ public class Administrador extends Usuario implements Comparable<Administrador>{
         }catch (JSONException e){
             e.printStackTrace();
         }
-
         return adminLeido;
     }
 

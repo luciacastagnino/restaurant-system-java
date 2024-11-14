@@ -1,6 +1,18 @@
 [
                 {
                                 "estado": true,
+                                "apellido": "Castagnino",
+                                "direccion": "Carasa 5609",
+                                "contrasenia": "Probando2.",
+                                "id": 0,
+                                "telefono": "2235383131",
+                                "nombre": "Mariano",
+                                "dni": "24678272",
+                                "email": "marianocastag@gmail.com",
+                                "username": "MarianoC"
+                },
+                {
+                                "estado": true,
                                 "apellido": "Vera",
                                 "direccion": "Carasa 5609",
                                 "contrasenia": "Probando2.",

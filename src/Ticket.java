@@ -51,14 +51,6 @@ public class Ticket {
         this.horaEmision = horaEmision;
     }
 
-    public LocalDate getDia() {
-        return dia;
-    }
-
-    public void setDia(LocalDate dia) {
-        this.dia = dia;
-    }
-
     public double getPrecio() {
         return precio;
     }
@@ -145,10 +137,8 @@ public class Ticket {
                 ", reserva=" + reserva +
                 ", empleado=" + empleado +
                 ", horaEmision=" + horaEmision +
-                ", dia=" + dia +
                 ", precio=" + precio +
                 ", propina=" + propina +
-                ", mostrarTicket=" + mostrarTicket +
                 '}';
     }
 }

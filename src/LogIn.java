@@ -38,11 +38,11 @@ public class LogIn {
         String contrasenia = scanner.nextLine();
 
         Administrador adminLeido = null;
-        for (Object admin : admins) {
-            if (admin.equals(username) && admin.equals(contrasenia)) {
+        for (int i =0; i<admins.length(); i++) {
+            if (admins.get(i).equals(username) && admins.get(i).equals(contrasenia)) {
                 adminLeido = new Administrador();
-                adminLeido = adminLeido.jsonToAdmin((JSONObject) admin);
-            }else if (admin.equals(username) || admin.equals(contrasenia)){
+                adminLeido = adminLeido.jsonToAdmin((admins.getJSONObject(i));
+            }else if (admins.get(i).equals(username) || admins.get(i).equals(contrasenia)){
                 System.out.println("Usuario o contraseña incorrectos.");
             }
         }
@@ -57,30 +57,66 @@ public class LogIn {
 
     public Cliente inicioSesionCliente (String nombreArch) throws FileNotFoundException {
 
-        if (nombreArch==null){
+        if (nombreArch == null) {
             throw new FileNotFoundException("El archivo no existe.");
         }
+
+        JSONTokener jsonTokener = GestionJSON.leer(nombreArch);
+        JSONArray clientes = new JSONArray(jsonTokener);
 
         System.out.println("Username: ");
         String username = scanner.nextLine();
         System.out.println("Contraseña: ");
         String contrasenia = scanner.nextLine();
 
-        return ;
+        Cliente clienteLeido = null;
+        for (int i =0; i<clientes.length(); i++) {
+            if (clientes.get(i).equals(username) && clientes.get(i).equals(contrasenia)) {
+                clienteLeido = new Cliente();
+                clienteLeido = clienteLeido.jsonToCliente(clientes.getJSONObject(i));
+            }else if (clientes.get(i).equals(username) || clientes.get(i).equals(contrasenia)){
+                System.out.println("Usuario o contraseña incorrectos.");
+            }
+        }
+
+        if (clienteLeido == null){
+            System.out.println("Hubo un problema, ingrese correctamente las credenciales.");
+            return null;
+        }
+
+        return clienteLeido;
     }
 
-    public Empleado inicioSesionEmpleado (String nombreArch) throws FileNotFoundException {
+    public Cliente inicioSesionEmpleado (String nombreArch) throws FileNotFoundException {
 
-        if (nombreArch==null){
+        if (nombreArch == null) {
             throw new FileNotFoundException("El archivo no existe.");
         }
+
+        JSONTokener jsonTokener = GestionJSON.leer(nombreArch);
+        JSONArray clientes = new JSONArray(jsonTokener);
 
         System.out.println("Username: ");
         String username = scanner.nextLine();
         System.out.println("Contraseña: ");
         String contrasenia = scanner.nextLine();
 
-        return ;
+        Cliente clienteLeido = null;
+        for (int i =0; i<clientes.length(); i++) {
+            if (clientes.get(i).equals(username) && clientes.get(i).equals(contrasenia)) {
+                clienteLeido = new Cliente();
+                clienteLeido = clienteLeido.jsonToCliente(clientes.getJSONObject(i));
+            }else if (clientes.get(i).equals(username) || clientes.get(i).equals(contrasenia)){
+                System.out.println("Usuario o contraseña incorrectos.");
+            }
+        }
+
+        if (clienteLeido == null){
+            System.out.println("Hubo un problema, ingrese correctamente las credenciales.");
+            return null;
+        }
+
+        return clienteLeido;
     }
 
 }

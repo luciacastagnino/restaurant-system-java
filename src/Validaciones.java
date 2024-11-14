@@ -47,7 +47,7 @@ public class Validaciones {
             throw new DatoInvalidoException("La contraseña debe tener al menos un numero.");
         }
 
-        if (!contrasenia.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+        if (!contrasenia.matches(".*[!@#$%^&*_(),.?\":{}|<>].*")) {
             throw new DatoInvalidoException("La contraseña debe tener al menos un caracter especial.");
         }
 

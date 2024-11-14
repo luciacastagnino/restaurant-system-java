@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Ticket {
@@ -125,6 +126,17 @@ public class Ticket {
         return precioTotal+interes;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return id == ticket.id && Double.compare(precio, ticket.precio) == 0 && Double.compare(propina, ticket.propina) == 0 && Objects.equals(reserva, ticket.reserva) && Objects.equals(empleado, ticket.empleado) && Objects.equals(horaEmision, ticket.horaEmision) && Objects.equals(platos, ticket.platos) && tipoPago == ticket.tipoPago;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, reserva, empleado, horaEmision, platos, precio, tipoPago, propina);
+    }
 
     @Override
     public String toString() {

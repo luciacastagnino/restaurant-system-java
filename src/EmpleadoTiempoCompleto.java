@@ -1,3 +1,4 @@
+import Archivos.FormatoIncorrectoException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -76,20 +77,28 @@ public class EmpleadoTiempoCompleto extends Empleado{
 
     //JSON TO EMPLEADO
 
-    public EmpleadoTiempoCompleto jsonToEmpleadoTC (JSONObject json){
+    public EmpleadoTiempoCompleto jsonToEmpleadoTC (JSONObject json) throws FormatoIncorrectoException {
 
         EmpleadoTiempoCompleto empleadoLeido = new EmpleadoTiempoCompleto();
         try {
-            empleadoLeido.setUsername(json.getString("username"));
-            empleadoLeido.setContrasenia(json.getString("contrasenia"));
-            empleadoLeido.setNombre(json.getString("nombre"));
-            empleadoLeido.setApellido(json.getString("apellido"));
-            empleadoLeido.setDni(json.getString("dni"));
-            empleadoLeido.setTelefono(json.getString("telefono"));
-            empleadoLeido.setDireccion(json.getString("direccion"));
-            empleadoLeido.setEmail(json.getString("email"));
-            empleadoLeido.setEstado(json.getBoolean("estado"));
-            empleadoLeido.setAniosAntiguedad(json.getInt("aniosAntiguedad"));
+            if(json.has("id") && json.has("username") && json.has("contrasenia") &&
+                    json.has("nombre") && json.has("apellido") && json.has("dni") &&
+                    json.has("telefono") && json.has("direccion") && json.has("email") &&
+                    json.has("estado") && json.has("aniosAntiguedad")){
+                empleadoLeido.setUsername(json.getString("username"));
+                empleadoLeido.setContrasenia(json.getString("contrasenia"));
+                empleadoLeido.setNombre(json.getString("nombre"));
+                empleadoLeido.setApellido(json.getString("apellido"));
+                empleadoLeido.setDni(json.getString("dni"));
+                empleadoLeido.setTelefono(json.getString("telefono"));
+                empleadoLeido.setDireccion(json.getString("direccion"));
+                empleadoLeido.setEmail(json.getString("email"));
+                empleadoLeido.setEstado(json.getBoolean("estado"));
+                empleadoLeido.setAniosAntiguedad(json.getInt("aniosAntiguedad"));
+            }
+            else {
+                throw new FormatoIncorrectoException("El formato JSON no corresponde a un empleado de tiempo completo");
+            }
         }catch (JSONException e){
             e.printStackTrace();
         }

@@ -1,3 +1,4 @@
+import Archivos.FormatoIncorrectoException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,20 +60,29 @@ public class Cliente extends Usuario implements Comparable{
 
     //CLIENTE TO JSON
 
-    public Cliente jsonToCliente (JSONObject json){
+    public Cliente jsonToCliente (JSONObject json) throws FormatoIncorrectoException {
 
         Cliente clienteLeido = new Cliente();
         try {
-            clienteLeido.setUsername(json.getString("username"));
-            clienteLeido.setContrasenia(json.getString("contrasenia"));
-            clienteLeido.setNombre(json.getString("nombre"));
-            clienteLeido.setApellido(json.getString("apellido"));
-            clienteLeido.setDni(json.getString("dni"));
-            clienteLeido.setTelefono(json.getString("telefono"));
-            clienteLeido.setDireccion(json.getString("direccion"));
-            clienteLeido.setEmail(json.getString("email"));
-            clienteLeido.setEstado(json.getBoolean("estado"));
-            clienteLeido.setTipoCliente(json.getEnum(TipoCliente.class, "tipoCliente"));
+            if(json.has("id") && json.has("username") && json.has("contrasenia") &&
+                    json.has("nombre") && json.has("apellido") && json.has("dni") &&
+                    json.has("telefono") && json.has("direccion") && json.has("email") &&
+                    json.has("estado") && json.has("tipoCliente")){
+                clienteLeido.setUsername(json.getString("username"));
+                clienteLeido.setContrasenia(json.getString("contrasenia"));
+                clienteLeido.setNombre(json.getString("nombre"));
+                clienteLeido.setApellido(json.getString("apellido"));
+                clienteLeido.setDni(json.getString("dni"));
+                clienteLeido.setTelefono(json.getString("telefono"));
+                clienteLeido.setDireccion(json.getString("direccion"));
+                clienteLeido.setEmail(json.getString("email"));
+                clienteLeido.setEstado(json.getBoolean("estado"));
+                clienteLeido.setTipoCliente(json.getEnum(TipoCliente.class, "tipoCliente"));
+            }
+            else{
+                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un Cliente");
+            }
+
         }catch (JSONException e){
             e.printStackTrace();
         }

@@ -55,7 +55,8 @@ public class Menu {
                 break;
             case 2:
                 try {
-                    logIn.inicioSesionAdmin("administradores.json");
+                    Administrador admin = logIn.inicioSesionAdmin("administradores.json");
+                    System.out.println("Bienvenido/a " + admin.getNombre() + " " + admin.getApellido());
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }

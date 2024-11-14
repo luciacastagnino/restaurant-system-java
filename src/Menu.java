@@ -1,3 +1,5 @@
+import Archivos.GestionJSON;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -47,11 +49,12 @@ public class Menu {
         System.out.println("--------- Menu de Administrador ---------");
         System.out.println("1. Registrarse.");
         System.out.println("2. Iniciar sesion.");
+        GestionAdministrador gestionAdministrador = new GestionAdministrador();
         int op = scanner.nextInt();
         scanner.nextLine();
         switch (op){
             case 1:
-                registroUser.registroAdmin();
+                gestionAdministrador.ingresarAdmin();
                 break;
             case 2:
                 try {

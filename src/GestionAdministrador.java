@@ -17,6 +17,7 @@ public class GestionAdministrador {
     public GestionAdministrador() {
         this.listaAdmins = new TreeSet<Administrador>();
         GestionJSON.crearArchivoJSON("administrador.json");
+        this.registroUser = new RegistroUser();
     }
 
     public void ingresarAdmin(){

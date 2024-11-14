@@ -3,7 +3,7 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
-public class Administrador extends Usuario {
+public class Administrador extends Usuario implements Comparable<Administrador>{
 
     private static int contadorId = 0;
     private int id;
@@ -78,6 +78,11 @@ public class Administrador extends Usuario {
         }
 
         return adminLeido;
+    }
+
+    @Override
+    public int compareTo(Administrador o) {
+        return this.dni.compareTo(o.dni);
     }
 
     @Override

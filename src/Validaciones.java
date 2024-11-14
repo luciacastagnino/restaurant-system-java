@@ -1,6 +1,25 @@
+/**
+ * La clase Validaciones no tiene atributos, se encarga de verificar que los datos ingresados sean
+ * correctos.
+ * metodos: validarNombreUsuario, validarContrasenia, validarCadenas, validarDNI, validarTelefono,
+ * validarDireccion, validarEmail.
+ *
+ * @author Lucia
+ * @since 2024
+ * @version 1
+ */
 public class Validaciones {
 
     //VALIDACION INGRESO DE DATOS
+
+    /**
+     * validarNombreUsuario se encarga de verificar que el nombre de usuario tenga al menos 5 caracteres
+     * y que no tenga espacios
+     *
+     * @param username
+     * @throws DatoInvalidoException si el nombre de usuario tiene menos de 5 caracteres, mas de 30 caracteres
+     * o espacios
+     */
 
     public static void validarNombreUsuario (String username) throws DatoInvalidoException{
         if (username.length() < 5 || username.length() > 30){
@@ -13,6 +32,12 @@ public class Validaciones {
         //FALTA AGREGAR VALIDACION PARA QUE NO SE REPITAN LOS USUARIOS :)))
     }
 
+    /**
+     * validarContrasenia, recibe un String, verifica que la contrasenia tenga al menos 10 caracteres
+     *
+     * @param contrasenia
+     * @throws DatoInvalidoException
+     */
     public static void validarContrasenia(String contrasenia) throws DatoInvalidoException {
         if (contrasenia.length() < 10) {
             throw new DatoInvalidoException("La contraseña debe tener al menos 10 caracteres.");
@@ -28,6 +53,13 @@ public class Validaciones {
 
     }
 
+    /**
+     * validarCadena recibe un String, verifica que el String no contenga numeros,
+     * por ejemplo en el nombre o apellido
+     *
+     * @param cadena
+     * @throws DatoInvalidoException si el String contiene numeros
+     */
     public static void validarCadenas(String cadena) throws DatoInvalidoException {
 
         for (int i = 0; i < cadena.length(); i++) {
@@ -37,6 +69,12 @@ public class Validaciones {
         }
     }
 
+    /**
+     * validarDNI recibe un String, verifica que el DNI contenga solo numeros
+     *
+     * @param dni
+     * @throws DatoInvalidoException si contiene simbolos o letras y si no se encuentra entre 1.000.000 y 99.999.999
+     */
     public static void validarDNI(String dni) throws DatoInvalidoException {
 
         if (!dni.matches("^[0-9]+$")) {
@@ -49,6 +87,13 @@ public class Validaciones {
         }
     }
 
+    /**
+     * validarTelefono recibe un String, verifica que solo contenga numeros y que tenga entre 10 y 11 digitos
+     *
+     * @param telefono
+     * @throws DatoInvalidoException si contiene letras o simbolos y si tiene menos o mas de 10 u 11 digitos
+     */
+
     public static void validarTelefono (String telefono) throws DatoInvalidoException{
 
         if (!telefono.matches("^[0-9]+$")) {
@@ -59,6 +104,13 @@ public class Validaciones {
             throw new DatoInvalidoException("Teléfono inválido: debe tener entre 10 y 11 dígitos.");
         }
     }
+
+    /**
+     * validarDireccion recibe un String, verifica que la direccion tenga entre 5 y 100 caracteres,
+     * que no contenga simbolos y que tenga si o si letras y numeros
+     * @param direccion
+     * @throws DatoInvalidoException
+     */
 
     public static void validarDireccion (String direccion) throws DatoInvalidoException{
         if (direccion.length() < 5 || direccion.length() > 100){
@@ -74,6 +126,13 @@ public class Validaciones {
         }
     }
 
+    /**
+     * validarEmail recibe un String, verifica que el correo tenga mas de 5 caracteres y que contenga el
+     * simbolo @
+     * 
+     * @param email
+     * @throws DatoInvalidoException
+     */
     public static void validarEmail (String email) throws DatoInvalidoException{
         if (email.length() < 5){
             throw new DatoInvalidoException("El correo electronico es demasiado corto.");

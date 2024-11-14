@@ -1,3 +1,4 @@
+import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,11 +56,15 @@ public class GestionAdministrador {
         try {
 
             for (Administrador admin : listaAdmins){
-                JSONObject json = admin.toJson(admin);
-                arreglo.put(json);
+                try {
+                    JSONObject json = admin.toJson(admin);
+                    arreglo.put(json);
+                    GestionJSON.agregarElemento("administrador.json", arreglo);
+                }
+                catch (FormatoIncorrectoException e){
+                    System.out.println(e.getMessage());
+                }
             }
-
-            GestionJSON.agregarElemento("administrador.json", arreglo);
         } catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }

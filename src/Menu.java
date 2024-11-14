@@ -15,10 +15,10 @@ public class Menu {
 
     public void MenuPrincipal(){
 
-
+        System.out.println();
         System.out.println("Bienvenido a GastroLab");
-        System.out.println("Seleccione su tipo de usuario:");
-        System.out.printf("1. Empleado");
+        System.out.println("\nSeleccione su tipo de usuario:");
+        System.out.println("\n1. Empleado");
         System.out.println("2. Cliente");
         System.out.println("3. Salir.");
         int opcion = scanner.nextInt();

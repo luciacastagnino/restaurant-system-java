@@ -1,4 +1,5 @@
 import Archivos.GestionJSON;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -20,33 +21,66 @@ public class LogIn {
     //tipos de usuario
     // 1. admin, 2. empleado, 3. cliente
 
-    public Usuario inicioSesion (int tipoUsuario) throws FileNotFoundException {
+    //A CHEQUEAR QUE ESTO FUNCIONE xdddd :')))
 
-        String namepath = archivoSegunTipoUsuario(tipoUsuario);
-        if (namepath==null){
+    public Administrador inicioSesionAdmin (String nombreArch) throws FileNotFoundException {
+
+        if (nombreArch == null) {
+            throw new FileNotFoundException("El archivo no existe.");
+        }
+
+        JSONTokener jsonTokener = GestionJSON.leer(nombreArch);
+        JSONArray admins = new JSONArray(jsonTokener);
+
+        System.out.println("Username: ");
+        String username = scanner.nextLine();
+        System.out.println("Contraseña: ");
+        String contrasenia = scanner.nextLine();
+
+        Administrador adminLeido = null;
+        for (Object admin : admins) {
+            if (admin.equals(username) && admin.equals(contrasenia)) {
+                adminLeido = new Administrador();
+                adminLeido = adminLeido.jsonToAdmin((JSONObject) admin);
+            }else if (admin.equals(username) || admin.equals(contrasenia)){
+                System.out.println("Usuario o contraseña incorrectos.");
+            }
+        }
+
+        if (adminLeido == null){
+            System.out.println("Hubo un problema, ingrese correctamente las credenciales.");
+            return null;
+        }
+
+        return adminLeido;
+    }
+
+    public Cliente inicioSesionCliente (String nombreArch) throws FileNotFoundException {
+
+        if (nombreArch==null){
             throw new FileNotFoundException("El archivo no existe.");
         }
 
         System.out.println("Username: ");
-
+        String username = scanner.nextLine();
         System.out.println("Contraseña: ");
+        String contrasenia = scanner.nextLine();
 
-        JSONTokener = GestionJSON.leer(namepath);
-
+        return ;
     }
 
-    private String archivoSegunTipoUsuario (int tipoUsuario){
+    public Empleado inicioSesionEmpleado (String nombreArch) throws FileNotFoundException {
 
-        if (tipoUsuario == 1){
-            return "administrador.json";
-        }else if (tipoUsuario == 2){
-            return "empleados.json";
-        }else if (tipoUsuario == 3){
-            return "clientes.json";
+        if (nombreArch==null){
+            throw new FileNotFoundException("El archivo no existe.");
         }
 
-        return null;
-    }
+        System.out.println("Username: ");
+        String username = scanner.nextLine();
+        System.out.println("Contraseña: ");
+        String contrasenia = scanner.nextLine();
 
+        return ;
+    }
 
 }

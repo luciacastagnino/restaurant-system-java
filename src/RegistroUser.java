@@ -145,7 +145,7 @@ public final class RegistroUser {
             dni = scanner.nextLine();
 
             try {
-                validarDNI(dni);
+                Validaciones.validarDNI(dni);
                 dniValido = true;
             }catch (DatoInvalidoException e){
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
@@ -170,7 +170,7 @@ public final class RegistroUser {
             dni = scanner.nextLine();
 
             try {
-                validarDNI(dni);
+                Validaciones.validarDNI(dni);
                 dniValido = true;
             }catch (DatoInvalidoException e){
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
@@ -194,7 +194,7 @@ public final class RegistroUser {
             dni = scanner.nextLine();
 
             try {
-                validarDNI(dni);
+                Validaciones.validarDNI(dni);
                 dniValido = true;
             }catch (DatoInvalidoException e){
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");

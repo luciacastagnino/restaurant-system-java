@@ -446,8 +446,17 @@ public class GestionEmpleados {
 
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
-                Empleado empleado = new Empleado(aux1); ///hay que hacer el constructor
-                listaEmpleados.add(empleado);
+                if (aux1.has("aniosAntiguedad")) {
+                    EmpleadoTiempoCompleto empleadoTiempoCompleto = new EmpleadoTiempoCompleto();
+                    empleadoTiempoCompleto = empleadoTiempoCompleto.jsonToEmpleadoTC(aux1);
+                    listaEmpleados.add(empleadoTiempoCompleto);
+                }else if (aux1.has("precioPorHora") && aux1.has("horasTrabajadas")){
+                    EmpleadoMedioTiempo empleadoMedioTiempo = new EmpleadoMedioTiempo();
+                    empleadoMedioTiempo = empleadoMedioTiempo.jsonToEmpleadoMT(aux1);
+                    listaEmpleados.add(empleadoMedioTiempo);
+                }else {
+                    System.out.println("Ocurrio un error. Por favor, intentelo de nuevo.");
+                }
             }
         }
         catch (JSONException e){

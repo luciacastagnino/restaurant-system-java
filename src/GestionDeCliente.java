@@ -238,7 +238,8 @@ public class GestionDeCliente {
 
                 for(int i = 0; i < arreglo.length(); i++){
                     JSONObject aux1 = arreglo.getJSONObject(i);
-                    Cliente cliente = new Cliente(aux1);
+                    Cliente cliente = new Cliente();
+                    cliente = cliente.jsonToCliente(aux1);
                     listaDeClientes.add(cliente);
                 }
             }
@@ -253,8 +254,8 @@ public class GestionDeCliente {
             arreglo = new JSONArray();
             JSONObject aux = null;
 
-            for(int i = 0; i < listaDeClientes.size(); i++){
-                aux = (listaDeClientes.get(i)).ClientetoJSONObject();
+            for (Cliente c : listaDeClientes){
+                aux = c.toJson(c);
                 arreglo.put(aux);
             }
 

@@ -55,7 +55,7 @@ public class Menu {
                 break;
             case 2:
                 try {
-                    logIn.inicioSesion(1);
+                    logIn.inicioSesionAdmin("administradores.json");
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -69,7 +69,7 @@ public class Menu {
     public void menuEmpleado(){
         System.out.println("--------- Menu de Empleado ---------");
         try {
-            logIn.inicioSesion(2);
+            logIn.inicioSesionEmpleado("empleados.json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -79,7 +79,7 @@ public class Menu {
     public void menuCliente(){
         System.out.println("--------- Menu de Cliente ---------");
         try {
-            logIn.inicioSesion(3);
+            logIn.inicioSesionCliente("clientes.json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -46,7 +46,11 @@ public class Menu {
     }
 
     public void menuAdmin(){
-        System.out.println("--------- Menu de Administrador ---------");
+
+        System.out.println("-----------------------------------------");
+        System.out.println("M E N U  D E  A D M I N I S T R A D O R");
+        System.out.println("-----------------------------------------");
+
         System.out.println("1. Registrarse.");
         System.out.println("2. Iniciar sesion.");
         GestionAdministrador gestionAdministrador = new GestionAdministrador();

@@ -4,10 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.util.Iterator;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class GestionAdministrador {
 
@@ -28,6 +25,7 @@ public class GestionAdministrador {
 
             Administrador aux = registroUser.registroAdmin();
             listaAdmins.add(aux);
+            cargarArchivoConArreglo(listaAdmins);
 
             System.out.println("\n¿Desea seguir ingresando empleados?");
             op = scan.nextLine().charAt(0);
@@ -224,7 +222,7 @@ public class GestionAdministrador {
         }
     }
 
-    public void cargarArchivoConArreglo(){
+    public void cargarArchivoConArreglo(Set<Administrador> listaAdmins){
         JSONArray arreglo = null;
         try {
             arreglo = new JSONArray();

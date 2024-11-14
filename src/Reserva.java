@@ -12,6 +12,7 @@ import java.time.LocalTime;
  * @since 2024
  * @version 1
  */
+
 public class Reserva {
     private static int contador = 0;
     private int id;

@@ -51,8 +51,8 @@ public class Administrador extends Usuario {
             jsonObject.put("direccion", e.getDireccion());
             jsonObject.put("email", e.getEmail());
             jsonObject.put("estado", e.getEstado());
-        }catch (JSONException e){
-            e.printStackTrace();
+        }catch (JSONException ex){
+            ex.printStackTrace();
         }
         return jsonObject;
     }

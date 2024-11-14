@@ -24,6 +24,9 @@ public abstract class Usuario {
 
     /// Constructor ////////////
 
+    public Usuario() {
+    }
+
     public Usuario(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
         this.username = username;
         this.contrasenia = contrasenia;
@@ -47,8 +50,6 @@ public abstract class Usuario {
         this.email = "";
         this.estado = true;
     }
-
-
 
     ///Getters y Setters ////////////
 

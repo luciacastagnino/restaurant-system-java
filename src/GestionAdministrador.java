@@ -214,7 +214,7 @@ public class GestionAdministrador {
 
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
-                //Administrador administrador =
+                Administrador administrador =
                 listaAdmins.add(administrador);
             }
         } catch (JSONException e){

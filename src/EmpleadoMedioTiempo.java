@@ -60,8 +60,8 @@ public class EmpleadoMedioTiempo extends Empleado{
             jsonObject.put("estado", e.getEstado());
             jsonObject.put("horasTrabajadas", e.getHorasTrabajadas());
             jsonObject.put("precioPorHora", e.getPrecioXhora());
-        }catch (JSONException e){
-            e.printStackTrace();
+        }catch (JSONException ex){
+            ex.printStackTrace();
         }
 
         return jsonObject;

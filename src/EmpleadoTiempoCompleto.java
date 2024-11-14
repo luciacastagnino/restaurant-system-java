@@ -68,8 +68,8 @@ public class EmpleadoTiempoCompleto extends Empleado{
             jsonObject.put("email", e.getEmail());
             jsonObject.put("estado", e.getEstado());
             jsonObject.put("aniosAntiguedad", e.getAniosAntiguedad());
-        }catch (JSONException e){
-            e.printStackTrace();
+        }catch (JSONException ex){
+            ex.printStackTrace();
         }
         return jsonObject;
     }

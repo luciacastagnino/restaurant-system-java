@@ -51,8 +51,8 @@ public class Cliente extends Usuario implements Comparable{
             jsonObject.put("email", e.getEmail());
             jsonObject.put("estado", e.getEstado());
             jsonObject.put("tipoCliente", e.getTipoCliente());
-        }catch (JSONException e){
-            e.printStackTrace();
+        }catch (JSONException ex){
+            ex.printStackTrace();
         }
         return jsonObject;
     }

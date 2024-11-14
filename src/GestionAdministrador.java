@@ -19,11 +19,11 @@ public class GestionAdministrador {
 
     public void ingresarAdmin(){
         Scanner scan = new Scanner(System.in);
-
+            System.out.println();
             Administrador aux = registroUser.registroAdmin();
             listaAdmins.add(aux);
             cargarArchivoConArreglo(listaAdmins);
-            System.out.println("Administrador " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
+            System.out.println("\nAdministrador/a " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
 
     }
 

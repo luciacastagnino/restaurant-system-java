@@ -1,12 +1,12 @@
 [{
                 "estado": true,
-                "apellido": "Castagnino",
-                "direccion": "Carasa 5609",
+                "apellido": "Fernandez",
+                "direccion": "Gascon 1234",
                 "contrasenia": "TpProgra2.",
                 "id": 0,
-                "telefono": "2236199551",
-                "nombre": "Lucia",
-                "dni": "46564543",
-                "email": "luciacastagninoo@gmail.com",
-                "username": "Admin1"
+                "telefono": "2234489755",
+                "nombre": "Brenda",
+                "dni": "46560001",
+                "email": "brenfernandez@gmail.com",
+                "username": "Admin2"
 }]

@@ -25,7 +25,7 @@ public class Menu {
         System.out.println("3. Salir.");
         String opcion = scanner.nextLine();
 
-        switch (opcion){
+        switch (opcion.toLowerCase()){
             case "admin":
                 menuAdmin();
                 break;

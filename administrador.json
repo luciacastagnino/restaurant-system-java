@@ -1,12 +1,48 @@
-[{
-                "estado": true,
-                "apellido": "Fernandez",
-                "direccion": "Gascon 1234",
-                "contrasenia": "TpProgra2.",
-                "id": 0,
-                "telefono": "2234489755",
-                "nombre": "Brenda",
-                "dni": "46560001",
-                "email": "brenfernandez@gmail.com",
-                "username": "Admin2"
-}]
+[
+                {
+                                "estado": true,
+                                "apellido": "Vera",
+                                "direccion": "Carasa 5609",
+                                "contrasenia": "Probando2.",
+                                "id": 0,
+                                "telefono": "2234483600",
+                                "nombre": "Carla",
+                                "dni": "25186505",
+                                "email": "carlavera5609@gmail.com",
+                                "username": "CarlaV"
+                },
+                {
+                                "estado": true,
+                                "apellido": "DiMeglio",
+                                "direccion": "Alberti 2231",
+                                "contrasenia": "TpProgra2.",
+                                "id": 0,
+                                "telefono": "2236199554",
+                                "nombre": "Melina",
+                                "dni": "46564541",
+                                "email": "melidimeglio@gmail.com",
+                                "username": "MelinaDiMeglio"
+                },
+                {
+                                "estado": false,
+                                "apellido": "Castagnino",
+                                "direccion": "Carasa 5609",
+                                "contrasenia": "TpProgra2.",
+                                "id": 0,
+                                "telefono": "2236199551",
+                                "nombre": "Lucia",
+                                "dni": "46564543",
+                                "username": "Admin1"
+                },
+                {
+                                "estado": false,
+                                "apellido": "Fernandez",
+                                "direccion": "Gascon 1234",
+                                "contrasenia": "TpfinalProgra2.",
+                                "id": 0,
+                                "telefono": "2236199554",
+                                "nombre": "Brenda",
+                                "dni": "46564547",
+                                "username": "Admin2"
+                }
+]

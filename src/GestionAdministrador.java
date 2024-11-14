@@ -21,10 +21,48 @@ public class GestionAdministrador {
         Scanner scan = new Scanner(System.in);
             System.out.println();
             Administrador aux = registroUser.registroAdmin();
-            listaAdmins.add(aux);
-            cargarArchivoConArreglo(listaAdmins);
+            agregarYguardar(aux);
             System.out.println("\nAdministrador/a " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
 
+    }
+
+    public void cargarArrayConArchivo(){
+        JSONTokener aux = GestionJSON.leer("administrador.json");
+
+        try {
+
+            JSONArray arreglo = new JSONArray(aux);
+
+            for(int i = 0; i < arreglo.length(); i++){
+                JSONObject aux1 = arreglo.getJSONObject(i);
+                Administrador administrador = new Administrador();
+                administrador = administrador.jsonToAdmin(aux1);
+                listaAdmins.add(administrador);
+            }
+        } catch (JSONException e){
+            System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
+        }
+    }
+
+    public void agregarYguardar (Administrador nuevoAdmin){
+        cargarArrayConArchivo();
+        listaAdmins.add(nuevoAdmin);
+        cargarArchivoConArreglo(listaAdmins);
+    }
+
+    public void cargarArchivoConArreglo(Set<Administrador> listaAdmins){
+        JSONArray arreglo = new JSONArray();
+        try {
+
+            for (Administrador admin : listaAdmins){
+                JSONObject json = admin.toJson(admin);
+                arreglo.put(json);
+            }
+
+            GestionJSON.agregarElemento("administrador.json", arreglo);
+        } catch (JSONException e){
+            System.out.println("Hubo un problema al cargar el archivo con array.");
+        }
     }
 
     public Administrador modificarAdmin (Administrador c){
@@ -196,39 +234,6 @@ public class GestionAdministrador {
         }
 
         return c;
-    }
-
-    public void cargarArrayConArchivo(){
-        JSONTokener aux = GestionJSON.leer("administrador.json");
-
-        try {
-
-            JSONArray arreglo = new JSONArray(aux);
-
-            for(int i = 0; i < arreglo.length(); i++){
-                JSONObject aux1 = arreglo.getJSONObject(i);
-                Administrador administrador = new Administrador();
-                administrador = administrador.jsonToAdmin(aux1);
-                listaAdmins.add(administrador);
-            }
-        } catch (JSONException e){
-            System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
-        }
-    }
-
-    public void cargarArchivoConArreglo(Set<Administrador> listaAdmins){
-        JSONArray arreglo = new JSONArray();
-        try {
-
-            for (Administrador admin : listaAdmins){
-                JSONObject json = admin.toJson(admin);
-                arreglo.put(json);
-            }
-
-            GestionJSON.agregarElemento("administrador.json", arreglo);
-        } catch (JSONException e){
-            System.out.println("Hubo un problema al cargar el archivo con array.");
-        }
     }
 
     public void mostrarListaDeAdmins(){

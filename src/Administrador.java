@@ -1,4 +1,3 @@
-import Archivos.FormatoIncorrectoException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,29 +59,20 @@ public class Administrador extends Usuario implements Comparable<Administrador>{
 
     // JSON TO ADMIN
 
-    public Administrador jsonToAdmin (JSONObject json) throws FormatoIncorrectoException {
+    public Administrador jsonToAdmin (JSONObject json){
 
         Administrador adminLeido = new Administrador();
         try {
-            if(json.has("id") && json.has("username") && json.has("contrasenia") &&
-                    json.has("nombre") && json.has("apellido") && json.has("dni") &&
-                    json.has("telefono") && json.has("direccion") && json.has("email") &&
-                    json.has("estado")){
-                adminLeido.setId(json.getInt("id"));
-                adminLeido.setUsername(json.getString("username"));
-                adminLeido.setContrasenia(json.getString("contrasenia"));
-                adminLeido.setNombre(json.getString("nombre"));
-                adminLeido.setApellido(json.getString("apellido"));
-                adminLeido.setDni(json.getString("dni"));
-                adminLeido.setTelefono(json.getString("telefono"));
-                adminLeido.setDireccion(json.getString("direccion"));
-                adminLeido.setEmail(json.getString("email"));
-                adminLeido.setEstado(json.getBoolean("estado"));
-            }
-            else {
-                throw new FormatoIncorrectoException("El formato de json es incorrecto");
-            }
-
+            adminLeido.setId(json.getInt("id"));
+            adminLeido.setUsername(json.getString("username"));
+            adminLeido.setContrasenia(json.getString("contrasenia"));
+            adminLeido.setNombre(json.getString("nombre"));
+            adminLeido.setApellido(json.getString("apellido"));
+            adminLeido.setDni(json.getString("dni"));
+            adminLeido.setTelefono(json.getString("telefono"));
+            adminLeido.setDireccion(json.getString("direccion"));
+            adminLeido.setEmail(json.getString(email));
+            adminLeido.setEstado(json.getBoolean("estado"));
         }catch (JSONException e){
             e.printStackTrace();
         }

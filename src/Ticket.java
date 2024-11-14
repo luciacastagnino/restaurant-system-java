@@ -89,7 +89,7 @@ public class Ticket {
             System.out.println("                                Pago con credito: $" + calcularPrecioInteres(precio));
         }
         System.out.println("**************************************");
-        System.out.println("▌│█║▌║▌║ ║▌║▌║█│▌║▌║▌║█│▌");
+        System.out.println("▌│█║▌║▌║║▌║▌║█│▌║▌║▌║█│▌");
         System.out.println("*** GRACIAS POR SSU VISITA ***");
         System.out.println("--------------------------------------");
 

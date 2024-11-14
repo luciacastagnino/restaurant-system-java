@@ -23,19 +23,19 @@ public class Menu {
         System.out.println("\n1. Empleado");
         System.out.println("2. Cliente");
         System.out.println("3. Salir.");
-        int opcion = scanner.nextInt();
-        scanner.nextLine();
+        String opcion = scanner.nextLine();
+
         switch (opcion){
-            case -1:
+            case "admin":
                 menuAdmin();
                 break;
-            case 1:
+            case "1":
                 menuEmpleado();
                 break;
-            case 2:
+            case "2":
                 menuCliente();
                 break;
-            case 3:
+            case "3":
                 System.out.println("Saliendo del sistema...");
                 break;
             default:

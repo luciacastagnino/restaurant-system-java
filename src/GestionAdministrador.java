@@ -18,19 +18,13 @@ public class GestionAdministrador {
     }
 
     public void ingresarAdmin(){
-        char op = 's';
         Scanner scan = new Scanner(System.in);
-
-        while (op == 's'){
 
             Administrador aux = registroUser.registroAdmin();
             listaAdmins.add(aux);
             cargarArchivoConArreglo(listaAdmins);
+            System.out.println("Administrador " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
 
-            System.out.println("\n¿Desea seguir ingresando empleados?");
-            op = scan.nextLine().charAt(0);
-
-        }
     }
 
     public Administrador modificarAdmin (Administrador c){
@@ -223,15 +217,14 @@ public class GestionAdministrador {
     }
 
     public void cargarArchivoConArreglo(Set<Administrador> listaAdmins){
-        JSONArray arreglo = null;
+        JSONArray arreglo = new JSONArray();
         try {
-            arreglo = new JSONArray();
-            JSONObject aux = null;
 
-            Iterator<Administrador> it = listaAdmins.iterator();
-            while(it.hasNext()){
-                arreglo.put(aux);
+            for (Administrador admin : listaAdmins){
+                JSONObject json = admin.toJson(admin);
+                arreglo.put(json);
             }
+
             GestionJSON.agregarElemento("administrador.json", arreglo);
         } catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array.");

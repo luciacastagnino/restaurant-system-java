@@ -1,9 +1,7 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
+import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,18 +15,58 @@ public class GestionDeCliente {
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
         GestionJSON.crearArchivoJSON("clientes.json");
+        this.registroUser = new RegistroUser();
     }
 
-    public void ingresarClientes(){
-        char op = 's';
+    public void ingresarCliente(){
         Scanner scan = new Scanner(System.in);
+        System.out.println();
+        Cliente aux = registroUser.registroCliente();
+        agregarYguardar(aux);
+        System.out.println("\nCliente " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
 
-        while (op == 's'){
-            Cliente aux = registroUser.registroCliente();
-            listaDeClientes.add(aux);
+    }
 
-            System.out.println("Desea seguir ingresando Clientes?");
-            op = scan.nextLine().charAt(0);
+    public void cargarArrayConArchivo(){
+        JSONTokener aux = GestionJSON.leer("clientes.json");
+
+        try {
+
+            JSONArray arreglo = new JSONArray(aux);
+
+            for(int i = 0; i < arreglo.length(); i++){
+                JSONObject aux1 = arreglo.getJSONObject(i);
+                Cliente cliente = new Cliente();
+                cliente = cliente.jsonToCliente(aux1);
+                listaDeClientes.add(cliente);
+            }
+        } catch (JSONException e){
+            System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
+        }
+    }
+
+    public void agregarYguardar (Cliente nuevoCliente){
+        cargarArrayConArchivo();
+        listaDeClientes.add(nuevoCliente);
+        cargarArchivoConArreglo(listaDeClientes);
+    }
+
+    public void cargarArchivoConArreglo(List<Cliente> listaDeClientes){
+        JSONArray arreglo = new JSONArray();
+        try {
+
+            for (Cliente cliente : listaDeClientes){
+                try {
+                    JSONObject json = cliente.toJson(cliente);
+                    arreglo.put(json);
+                    GestionJSON.agregarElemento("clientes.json", arreglo);
+                }
+                catch (FormatoIncorrectoException e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        } catch (JSONException e){
+            System.out.println("Hubo un problema al cargar el archivo con array.");
         }
     }
 
@@ -228,42 +266,6 @@ public class GestionDeCliente {
         }
 
         return c;
-    }
-
-    public void cargarArrayConArchivo(){
-        JSONTokener aux = GestionJSON.leer("clientes.json");
-
-            try {
-                JSONArray arreglo = new JSONArray(aux);
-
-                for(int i = 0; i < arreglo.length(); i++){
-                    JSONObject aux1 = arreglo.getJSONObject(i);
-                    Cliente cliente = new Cliente();
-                    cliente = cliente.jsonToCliente(aux1);
-                    listaDeClientes.add(cliente);
-                }
-            }
-            catch (JSONException e){
-                System.out.println("Ocurrio un error al convertir JSONObject a Cliente");
-            }
-    }
-
-    public void cargarArchivoConArreglo(){
-        JSONArray arreglo = null;
-        try {
-            arreglo = new JSONArray();
-            JSONObject aux = null;
-
-            for (Cliente c : listaDeClientes){
-                aux = c.toJson(c);
-                arreglo.put(aux);
-            }
-
-            GestionJSON.agregarElemento("clientes.json", arreglo);
-        }
-        catch (JSONException e){
-            System.out.println("Hubo un problema al cargar el archivo con array");
-        }
     }
 
     public void mostrarListaDeClientes(){

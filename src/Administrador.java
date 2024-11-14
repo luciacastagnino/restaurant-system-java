@@ -71,7 +71,7 @@ public class Administrador extends Usuario implements Comparable<Administrador>{
             adminLeido.setDni(json.getString("dni"));
             adminLeido.setTelefono(json.getString("telefono"));
             adminLeido.setDireccion(json.getString("direccion"));
-            adminLeido.setEmail(json.getString(email));
+            adminLeido.setEmail(json.getString("email"));
             adminLeido.setEstado(json.getBoolean("estado"));
         }catch (JSONException e){
             e.printStackTrace();

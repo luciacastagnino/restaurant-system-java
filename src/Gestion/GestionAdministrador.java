@@ -301,7 +301,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
     }
 
     @Override
-    public void darDeBajaUsuario(Administrador administrador) {
+    public void darDeBajaUsuario(Administrador a) {
         listaAdmins = cargarArrayConArchivo();
 
         for (Administrador admin : listaAdmins){

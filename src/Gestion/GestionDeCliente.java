@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-public class GestionDeCliente {
+public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
 
     private List<Cliente> listaDeClientes;
     private RegistroUser registroUser;
@@ -72,7 +72,7 @@ public class GestionDeCliente {
         }
     }
 
-    public Cliente modificarCliente (Cliente c){
+    public Cliente modificarUsuario (Cliente c){
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n Que desea modificar?");
@@ -270,7 +270,7 @@ public class GestionDeCliente {
         return c;
     }
 
-    public void mostrarListaDeClientes(){
+    public void mostrarColeccion(){
         if(listaDeClientes.isEmpty()){
             cargarArrayConArchivo();
         }

@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("prueba");
         //para mostrar el logo, no se si lo podremos hacer de esta forma :)
         try{
             File file = new File("logo.txt");

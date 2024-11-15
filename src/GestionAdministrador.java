@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import java.io.IOException;
 import java.util.*;
 
 public class GestionAdministrador {
@@ -29,7 +30,7 @@ public class GestionAdministrador {
 
     }
 
-    public void cargarArrayConArchivo(){
+    public Set<Administrador> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("administrador.json");
 
         try {
@@ -45,6 +46,8 @@ public class GestionAdministrador {
         } catch (JSONException e){
             System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
         }
+
+        return listaAdmins;
     }
 
     public void agregarYguardar (Administrador nuevoAdmin){
@@ -74,17 +77,27 @@ public class GestionAdministrador {
 
     public void mostrarDatos (Administrador a){
 
+        listaAdmins = cargarArrayConArchivo();
+
         for (Administrador admin : listaAdmins){
             if (a.equals(admin)){
+                System.out.println();
+                System.out.println("--------------------------------------------");
+                System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombre() + " " + a.getApellido());
+                System.out.println("--------------------------------------------");
+
+
                 System.out.println("Username: " + a.getUsername());
                 System.out.println("Contraseña: " + a.getContrasenia());
-                System.out.printf("ID: " + a.getId());
+                System.out.println("ID: " + a.getId());
                 System.out.println("Nombre: " + a.getNombre());
                 System.out.println("Apellido: " + a.getApellido());
                 System.out.println("DNI: " + a.getDni());
                 System.out.println("Telefono: " + a.getTelefono());
                 System.out.println("Direccion: " + a.getDireccion());
                 System.out.println("Email: " + a.getEmail());
+                System.out.println("--------------------------------------------");
+
                 return;
             }
         }
@@ -95,6 +108,7 @@ public class GestionAdministrador {
 
     public Administrador modificarAdmin (Administrador c) {
 
+        listaAdmins = cargarArrayConArchivo();
         boolean salir = false;
 
         for (Administrador administrador : listaAdmins) {
@@ -266,7 +280,12 @@ public class GestionAdministrador {
                             break;
                     }
                 }
-
+                try {
+                    cargarArchivoConArreglo(listaAdmins);
+                    System.out.println("¡Cambios guardados con exito!");
+                }catch (IOException e){
+                    System.out.println("Error al guardar los cambios. ");
+                }
                 return c;
             }
         }
@@ -274,27 +293,39 @@ public class GestionAdministrador {
     }
 
     public void darDeBaja (Administrador a){
-        System.out.println("¿Esta seguro de eliminar el usuario? SI o NO.");
-        String opcion = scanner.nextLine();
-        if (opcion.toLowerCase().equals("si")){
-            int intentosContra = 0;
-            while (intentosContra < 3){
-                System.out.printf("Ingrese su contraseña para eliminar su cuenta:");
-                String contraseña = scanner.nextLine();
-                if (contraseña.equals(a.contrasenia)){
-                    a.setEstado(false);
-                    System.out.printf("Cuenta eliminada con exito.");
+
+        listaAdmins = cargarArrayConArchivo();
+
+        for (Administrador admin : listaAdmins){
+            if (a.equals(admin)){
+                System.out.println("¿Esta seguro de eliminar el usuario? SI o NO.");
+                String opcion = scanner.nextLine();
+                if (opcion.toLowerCase().equals("si")){
+                    int intentosContra = 0;
+                    while (intentosContra < 3){
+                        System.out.printf("Ingrese su contraseña para eliminar su cuenta:");
+                        String contraseña = scanner.nextLine();
+                        if (contraseña.equals(a.contrasenia)){
+                            a.setEstado(false);
+                            System.out.printf("Cuenta eliminada con exito.");
+                            cargarArchivoConArreglo(listaAdmins);
+                            return;
+                        }else {
+                            intentosContra++;
+                            System.out.printf("Contraseña incorrecta, intentelo nuevamente.");
+                        }
+                    }
+                    System.out.printf("Se supero el numero maximo de intentos. El usuario no fue dado de baja.");
+                }else if (opcion.toLowerCase().equals("no")){
+                    System.out.printf("Operacion cancelada.");
+                    return;
                 }else {
-                    intentosContra++;
-                    System.out.printf("Contraseña incorrecta, intentelo nuevamente.");
+                    System.out.printf("Opcion invalida.");
                 }
             }
-            System.out.printf("Se supero el numero maximo de intentos. El usuario no fue dado de baja.");
-        }else if (opcion.toLowerCase("no")){
-            System.out.printf("Operacion cancelada.");
-        }else {
-            System.out.printf("Opcion invalida.");
         }
+
+        System.out.println("No se encontro al usuario.");
     }
 
     public void mostrarListaDeAdmins () {

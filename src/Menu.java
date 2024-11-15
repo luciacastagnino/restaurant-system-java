@@ -90,6 +90,7 @@ public class Menu {
                                 break;
                             }
                             System.out.println("\nBienvenido/a " + admin.getNombre() + " " + admin.getApellido());
+                            menuInicioSesionAdmin(admin);
                         } catch (FileNotFoundException e) {
                             System.out.println("No se encontró el archivo de administradores.");
                             throw new RuntimeException(e);
@@ -113,9 +114,9 @@ public class Menu {
     }
 
     public void menuInicioSesionAdmin (Administrador admin){
-        System.out.println("Hola " + admin.getNombre() + " " + admin.getNombre() + ", bienvenido.");
         int op = 0;
         do {
+            System.out.println();
             System.out.println("¿Que desea hacer?");
             System.out.println("1. Mi cuenta.");
             System.out.println("2. Gestion empleados");
@@ -156,6 +157,7 @@ public class Menu {
     public void cuentaAdmin (Administrador admin){
         int op = 0;
         do {
+            System.out.println();
             System.out.println("¿Que desea hacer?");
             System.out.println("1. Ver mi perfil.");
             System.out.println("2. Modificar mi cuenta.");

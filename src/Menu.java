@@ -1,6 +1,7 @@
 import Archivos.GestionJSON;
 
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -51,46 +52,56 @@ public class Menu {
         }
     }
 
-    public void menuAdmin(){
-
+    public void menuAdmin() {
         System.out.println("-----------------------------------------");
         System.out.println("M E N U  D E  A D M I N I S T R A D O R");
         System.out.println("-----------------------------------------");
 
-        System.out.println("1. Registrarse.");
-        System.out.println("2. Iniciar sesion.");
-        System.out.println("3. Atras.");
         GestionAdministrador gestionAdministrador = new GestionAdministrador();
-        int op = scanner.nextInt();
-        scanner.nextLine();
-        do {
-            switch (op){
-                case 1:
-                    gestionAdministrador.ingresarAdmin();
-                    break;
-                case 2:
-                    try {
-                        Administrador admin = logIn.inicioSesionAdmin("administrador.json");
-                        if (admin == null){
-                            System.out.println("El proceso de inicio de sesión ha sido cancelado.");
-                            op = 3;
-                            break;
-                        }
-                        System.out.println("\nBienvenido/a " + admin.getNombre() + " " + admin.getApellido());
-                    } catch (FileNotFoundException e) {
-                        System.out.println("No se encontro el archivo de administradores.");
-                        throw new RuntimeException(e);
-                    }
-                    break;
-                case 3:
-                    System.out.println("Volviendo al menu principal...");
-                    break;
-                default:
-                    System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
-                    break;
-            }
-        }while (op!=3);
+        int op = 0;
 
+        do {
+            System.out.println("1. Registrarse.");
+            System.out.println("2. Iniciar sesión.");
+            System.out.println("3. Atrás.");
+
+            try {
+                op = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (op) {
+                    case 1:
+                        gestionAdministrador.ingresarAdmin();
+                        break;
+                    case 2:
+                        try {
+                            Administrador admin = logIn.inicioSesionAdmin("administrador.json");
+                            if (admin == null) {
+                                System.out.println("El proceso de inicio de sesión ha sido cancelado.");
+                                op = 3;
+                                break;
+                            }
+                            System.out.println("\nBienvenido/a " + admin.getNombre() + " " + admin.getApellido());
+                        } catch (FileNotFoundException e) {
+                            System.out.println("No se encontró el archivo de administradores.");
+                            throw new RuntimeException(e);
+                        }
+                        break;
+                    case 3:
+                        System.out.println("Volviendo al menú principal...");
+                        MenuPrincipal();
+                        break;
+                    default:
+                        System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opción inválida. Por favor, introduce un número.");
+                scanner.nextLine();
+                op = -1;
+            }
+
+        } while (op != 3);
     }
 
     public void menuEmpleado(){

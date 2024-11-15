@@ -75,7 +75,9 @@ public class Menu {
     }
 
     public void menuEmpleado(){
-        System.out.println("--------- Menu de Empleado ---------");
+        System.out.println("-----------------------------------------");
+        System.out.println("   M E N U  D E  E M P L E A D O   ");
+        System.out.println("-----------------------------------------");
         try {
             logIn.inicioSesionEmpleado("empleados.json");
         } catch (FileNotFoundException e) {
@@ -85,7 +87,9 @@ public class Menu {
     }
 
     public void menuCliente(){
-        System.out.println("--------- Menu de Cliente ---------");
+        System.out.println("-----------------------------------------");
+        System.out.println("     M E N U  D E  C L I E N T E S     ");
+        System.out.println("-----------------------------------------");
         try {
             logIn.inicioSesionCliente("clientes.json");
         } catch (FileNotFoundException e) {

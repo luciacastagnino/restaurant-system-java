@@ -173,7 +173,6 @@ public class Menu {
                         break;
                     case 2:
                         admin = gestionAdministrador.modificarAdmin(admin);
-                        System.out.println("Cambios realizados.");
                         break;
                     case 3:
                         gestionAdministrador.darDeBaja(admin);

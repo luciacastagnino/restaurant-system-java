@@ -113,6 +113,8 @@ public class GestionAdministrador {
 
         for (Administrador administrador : listaAdmins) {
             if (c.equals(administrador)) {
+                listaAdmins.remove(administrador);
+                c=administrador;
                 while (!salir) {
                     System.out.println("\n Que desea modificar?");
                     System.out.println("1. Username.");
@@ -150,15 +152,19 @@ public class GestionAdministrador {
                             String contrasenia = "";
                             boolean contraseniaValida = false;
 
-                            while (!contraseniaValida) {
-                                System.out.println("Ingrese su nueva contrasenia: ");
-                                contrasenia = scanner.nextLine();
-                                try {
-                                    Validaciones.validarContrasenia(contrasenia);
-                                    c.setContrasenia(contrasenia);
-                                    contraseniaValida = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                            System.out.println("Ingrese su contraseña actual:");
+                            String contraseñaActual = scanner.nextLine();
+                            if (c.getContrasenia().equals(contraseñaActual)){
+                                while (!contraseniaValida) {
+                                    System.out.println("Ingrese su nueva contrasenia: ");
+                                    contrasenia = scanner.nextLine();
+                                    try {
+                                        Validaciones.validarContrasenia(contrasenia);
+                                        c.setContrasenia(contrasenia);
+                                        contraseniaValida = true;
+                                    } catch (DatoInvalidoException e) {
+                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    }
                                 }
                             }
 
@@ -280,12 +286,9 @@ public class GestionAdministrador {
                             break;
                     }
                 }
-                try {
-                    cargarArchivoConArreglo(listaAdmins);
-                    System.out.println("¡Cambios guardados con exito!");
-                }catch (IOException e){
-                    System.out.println("Error al guardar los cambios. ");
-                }
+                listaAdmins.add(c);
+                cargarArchivoConArreglo(listaAdmins);
+                System.out.println("¡Cambios guardados con exito!");
                 return c;
             }
         }

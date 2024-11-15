@@ -90,6 +90,19 @@ public class Administrador extends Usuario implements Comparable<Administrador>{
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Administrador that = (Administrador) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id);
+    }
+
+    @Override
     public int compareTo(Administrador o) {
         return this.dni.compareTo(o.dni);
     }

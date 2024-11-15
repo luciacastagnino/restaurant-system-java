@@ -216,13 +216,13 @@ public final class RegistroUser {
             scanner.nextLine();
 
             if (tipoCliente==1){
-                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado, TipoCliente.ESTANDAR);
+                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado);
                 tipoClienteValido = true;
             }else if (tipoCliente == 2){
-                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado, TipoCliente.PREMIUM);
+                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado);
                 tipoClienteValido = true;
             }else if (tipoCliente == 3){
-                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado, TipoCliente.VIP);
+                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado);
                 tipoClienteValido = true;
             }else {
                 System.out.println("Opcion invalida. Por favor, ingrese 1, 2 o 3.");

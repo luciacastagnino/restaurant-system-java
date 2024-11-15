@@ -15,14 +15,13 @@ import java.util.Objects;
  * @version 1
  */
 public class Cliente extends Usuario implements Comparable{
-    private TipoCliente  tipoCliente;
+    private TipoCliente tipoCliente = TipoCliente.ESTANDAR;
 
     public Cliente() {
     }
 
-    public Cliente(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, TipoCliente tipoCliente) {
+    public Cliente(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
-        this.tipoCliente = tipoCliente;
     }
 
     ///Getters y Setters
@@ -136,5 +135,4 @@ public class Cliente extends Usuario implements Comparable{
                 ", direccion='" + direccion + '\'' +
                 '}';
     }
-
 }

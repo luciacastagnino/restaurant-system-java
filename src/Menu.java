@@ -24,25 +24,31 @@ public class Menu {
         System.out.println("2. Cliente");
         System.out.println("3. Salir.");
         String opcion = scanner.nextLine();
+        boolean valido = false;
 
-        switch (opcion.toLowerCase()){
-            case "admin":
-                menuAdmin();
-                break;
-            case "1":
-                menuEmpleado();
-                break;
-            case "2":
-                menuCliente();
-                break;
-            case "3":
-                System.out.println("Saliendo del sistema...");
-                break;
-            default:
-                System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
-                break;
+        while (!valido){
+            switch (opcion.toLowerCase()){
+                case "admin":
+                    valido=true;
+                    menuAdmin();
+                    break;
+                case "1":
+                    valido=true;
+                    menuEmpleado();
+                    break;
+                case "2":
+                    valido=true;
+                    menuCliente();
+                    break;
+                case "3":
+                    valido=true;
+                    System.out.println("Saliendo del sistema...");
+                    break;
+                default:
+                    System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
+                    break;
+            }
         }
-
     }
 
     public void menuAdmin(){
@@ -53,25 +59,38 @@ public class Menu {
 
         System.out.println("1. Registrarse.");
         System.out.println("2. Iniciar sesion.");
+        System.out.println("3. Atras.");
         GestionAdministrador gestionAdministrador = new GestionAdministrador();
         int op = scanner.nextInt();
         scanner.nextLine();
-        switch (op){
-            case 1:
-                gestionAdministrador.ingresarAdmin();
-                break;
-            case 2:
-                try {
-                    Administrador admin = logIn.inicioSesionAdmin("administradores.json");
-                    System.out.println("Bienvenido/a " + admin.getNombre() + " " + admin.getApellido());
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                break;
-            default:
-                System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
-                break;
-        }
+        do {
+            switch (op){
+                case 1:
+                    gestionAdministrador.ingresarAdmin();
+                    break;
+                case 2:
+                    try {
+                        Administrador admin = logIn.inicioSesionAdmin("administrador.json");
+                        if (admin == null){
+                            System.out.println("El proceso de inicio de sesión ha sido cancelado.");
+                            op = 3;
+                            break;
+                        }
+                        System.out.println("\nBienvenido/a " + admin.getNombre() + " " + admin.getApellido());
+                    } catch (FileNotFoundException e) {
+                        System.out.println("No se encontro el archivo de administradores.");
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case 3:
+                    System.out.println("Volviendo al menu principal...");
+                    break;
+                default:
+                    System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
+                    break;
+            }
+        }while (op!=3);
+
     }
 
     public void menuEmpleado(){

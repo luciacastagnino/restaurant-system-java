@@ -23,33 +23,48 @@ public class LogIn {
 
     //A CHEQUEAR QUE ESTO FUNCIONE xdddd :')))
 
-    public Administrador inicioSesionAdmin (String nombreArch) throws FileNotFoundException {
-
+    public Administrador inicioSesionAdmin(String nombreArch) throws FileNotFoundException {
         if (nombreArch == null) {
             throw new FileNotFoundException("El archivo no existe.");
         }
 
         JSONTokener jsonTokener = GestionJSON.leer(nombreArch);
         JSONArray admins = new JSONArray(jsonTokener);
-
-        System.out.println("Username: ");
-        String username = scanner.nextLine();
-        System.out.println("Contraseña: ");
-        String contrasenia = scanner.nextLine();
-
         Administrador adminLeido = null;
-        for (int i =0; i<admins.length(); i++) {
-            if (admins.get(i).equals(username) && admins.get(i).equals(contrasenia)) {
-                adminLeido = new Administrador();
-                adminLeido = adminLeido.jsonToAdmin(admins.getJSONObject(i));
-            }else if (admins.get(i).equals(username) || admins.get(i).equals(contrasenia)){
-                System.out.println("Usuario o contraseña incorrectos.");
-            }
-        }
+        while (adminLeido == null){
+            System.out.print("Username: ");
+            String username = scanner.nextLine();
+            System.out.print("Contraseña: ");
+            String contrasenia = scanner.nextLine();
 
-        if (adminLeido == null){
-            System.out.println("Hubo un problema, ingrese correctamente las credenciales.");
-            return null;
+
+            for (int i = 0; i < admins.length(); i++) {
+                JSONObject adminObj = admins.getJSONObject(i);
+
+                String adminUsername = adminObj.getString("username");
+                String adminContra = adminObj.getString("contrasenia");
+
+                if (adminUsername.equals(username) && adminContra.equals(contrasenia)) {
+                    adminLeido = new Administrador();
+                    adminLeido = adminLeido.jsonToAdmin(adminObj);
+                    return adminLeido;
+                }else if (adminUsername.equals(username) || adminContra.equals(contrasenia)){
+                    System.out.println("Username o contraseña incorrectos.");
+                }
+            }
+
+            System.out.println("¿Desea salir del proceso o intentar nuevamente? Seleccione una opcion.");
+            System.out.println("1. Salir.");
+            System.out.println("2. Reintentar.");
+            int op = scanner.nextInt();
+            scanner.nextLine();
+            if (op == 1){
+                System.out.println("Saliendo del inicio de sesion...");
+                break;
+            }else if (op!=2){
+                System.out.println("Opcion invalida. Se lo enviara al inicio de sesion.");
+            }
+
         }
 
         return adminLeido;

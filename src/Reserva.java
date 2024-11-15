@@ -1,6 +1,11 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
+import java.util.Scanner;
+
 /**
  * La clase Reserva tiene como campos su id, momento de realizacion, dia de reserva,
  * hora de reserva, cliente, mesa y cantidad de personas
@@ -115,5 +120,54 @@ public class Reserva {
                 ", cantPersonas=" + cantPersonas +
                 '}';
     }
-}
 
+    public Reserva ingresarReserva() {
+
+        System.out.println("Complete con los datos:\n");
+        Scanner scanner = new Scanner(System.in);
+
+        LocalDate dia = null;
+        boolean diaValido = false;
+
+        while (!diaValido) {
+            System.out.println("Por favor, ingresa el día (formato: dd/MM):");
+            String diaInput = scanner.nextLine();
+
+            DateTimeFormatter formatoDia = DateTimeFormatter.ofPattern("dd/MM");
+            try {
+                dia = LocalDate.parse(diaInput, formatoDia);
+                diaValido = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Error: El formato del día no es correcto.");
+            }
+        }
+
+        LocalTime hora = null;
+        boolean horaValida = false;
+
+        while (!horaValida) {
+            System.out.println("Ingrese el día (formato: dd/MM):");
+            String horaInput = scanner.nextLine();
+
+            DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("hh:mm");
+            try {
+                dia = LocalDate.parse(horaInput, formatoHora);
+                horaValida = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Error: El formato de la hora no es correcto.");
+            }
+        }
+
+        ///FALTA CLIENTE NUEVO O POR BUSQUEDA
+
+        System.out.println("Ingrese la mesa:");
+        int mesa = scanner.nextInt();
+
+        System.out.println("Ingrese la cantidad de personas:");
+        int cantPersonas = scanner.nextInt();
+
+
+        return new Reserva(dia, hora, cliente ,mesa, cantPersonas);
+    }
+
+}

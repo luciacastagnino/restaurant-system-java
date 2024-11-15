@@ -1,3 +1,5 @@
+import Archivos.GestionJSON;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +21,19 @@ public class GestionReserva {
 
     public GestionReserva() {
         this.reservasPorCliente = new HashMap<>();
+        GestionJSON.crearArchivoJSON("reservas.json");
+    }
+
+    public void crearReserva(){
+        Reserva reserva = Reserva.ingresarReserva();
+        agregarYguardar(reserva);
+        System.out.println("\nReserva " + reserva.getId() + " del Cliente " + reserva.getCliente().getNombre() + " agregado con exito!");
+    }
+
+    public void agregarYguardar (Reserva nuevaReserva){
+        cargarMapConArchivo();
+        reservasPorCliente.put(nuevaReserva);
+        cargarArchivoConMap(reservasPorCliente);
     }
 
     /**

@@ -104,6 +104,48 @@ public class Menu {
         } while (op != 3);
     }
 
+    public void menuInicioSesionAdmin (Administrador admin){
+        System.out.println("Hola " + admin.getNombre() + " " + admin.getNombre() + ", bienvenido.");
+        int op = 0;
+        do {
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Mi cuenta.");
+            System.out.println("2. Gestion empleados");
+            System.out.println("3. Gestion clientes.");
+            System.out.println("4. Gestion reservas.");
+            System.out.println("5. Gestion menu/platos.");
+            System.out.println("6. Salir.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        }while (op!=6);
+
+    }
+
     public void menuEmpleado(){
         System.out.println("-----------------------------------------");
         System.out.println("   M E N U  D E  E M P L E A D O   ");

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public final class RegistroUser {
+public final class RegistroUser <T>{
 
     private Scanner scanner;
 
@@ -8,6 +8,154 @@ public final class RegistroUser {
         this.scanner = new Scanner(System.in);
     }
 
+    public T registroUser (){
+
+        System.out.println("Complete con sus datos:\n");
+
+        T t = null;
+
+        String username = "";
+        boolean usernameValido = false;
+
+        while (!usernameValido){
+            System.out.println("Username: ");
+            username = scanner.nextLine();
+            try {
+                Validaciones.validarNombreUsuario(username);
+                usernameValido=true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente.");
+            }
+        }
+
+        String contrasenia = "";
+        boolean contraseniaValida = false;
+
+        while (!contraseniaValida){
+            System.out.println("Contraseña: ");
+            contrasenia = scanner.nextLine();
+
+            try {
+                Validaciones.validarContrasenia(contrasenia);
+                contraseniaValida = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente.");
+            }
+        }
+
+        String nombre = "";
+        boolean nombreValido = false;
+
+        while (!nombreValido){
+            System.out.println("Nombre: ");
+            nombre = scanner.nextLine();
+
+            try {
+                Validaciones.validarCadenas(nombre);
+                nombreValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        String apellido = "";
+        boolean apellidoValido = false;
+
+        while (!apellidoValido){
+            System.out.println("Apellido: ");
+            apellido = scanner.nextLine();
+
+            try {
+                Validaciones.validarCadenas(apellido);
+                apellidoValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        String dni = "";
+        boolean dniValido = false;
+        while (!dniValido){
+            System.out.println("DNI: ");
+            dni = scanner.nextLine();
+
+            try {
+                Validaciones.validarDNI(dni);
+                dniValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        String telefono = "";
+        boolean telefonoValido = false;
+        while (!telefonoValido) {
+            System.out.println("Telefono: ");
+            telefono = scanner.nextLine();
+            try {
+                Validaciones.validarTelefono(telefono);
+                telefonoValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        String direccion = "";
+        boolean direccionValida = false;
+        while (!direccionValida){
+            System.out.println("Direccion: ");
+            direccion = scanner.nextLine();
+            try {
+                Validaciones.validarDireccion(direccion);
+                direccionValida = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+
+        String email = "";
+        boolean emailValido = false;
+        while(!emailValido){
+            System.out.println("Email: ");
+            email = scanner.nextLine();
+            try {
+                Validaciones.validarEmail(email);
+                emailValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        boolean estado = true;
+
+        if(t instanceof Cliente){
+            t = (T) new Cliente(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+        }
+        else if (t instanceof EmpleadoMedioTiempo) {
+            System.out.println("Horas Trabajadas: ");
+            int hsTrabajadas = scanner.nextInt();
+
+            System.out.println("Horas Trabajadas: ");
+            double precioXhora = scanner.nextDouble();
+
+            t = (T) new EmpleadoMedioTiempo(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, hsTrabajadas, precioXhora);
+        }
+        else if (t instanceof EmpleadoTiempoCompleto){
+            System.out.println("Anios de antiguedad: ");
+            int anios = scanner.nextInt();
+
+            t = (T) new EmpleadoTiempoCompleto(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, anios);
+        }
+        else {
+            t = (T) new Administrador(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+        }
+
+        return t;
+    }
+
+
+    /*
     // REGISTRO DE USUARIO ADMIN
 
     public Administrador registroAdmin (){
@@ -232,4 +380,6 @@ public final class RegistroUser {
         return cliente;
     }
 
+
+     */
 }

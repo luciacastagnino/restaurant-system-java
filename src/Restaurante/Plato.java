@@ -1,5 +1,7 @@
+package Restaurante;
+
 /**
- * La clase Plato tiene como campos su nombre, descripcion, disponibilidad y precio
+ * La clase Restaurante.Plato tiene como campos su nombre, descripcion, disponibilidad y precio
  * tiene un constructor con todos los atributos, uno solo con nombre
  * y otro con nombre y descripcion
  * metodos:
@@ -86,7 +88,7 @@ public class Plato {
 
     @Override
     public String toString() {
-        return "Plato{" +
+        return "Restaurante.Plato{" +
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +

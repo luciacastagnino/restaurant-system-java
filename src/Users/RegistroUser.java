@@ -1,3 +1,7 @@
+package Users;
+
+import Users.Administrador;
+
 import java.util.Scanner;
 
 public final class RegistroUser{

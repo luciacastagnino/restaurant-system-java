@@ -1,5 +1,7 @@
+package Users;
+
 /**
- * La clase Validaciones no tiene atributos, se encarga de verificar que los datos ingresados sean
+ * La clase Users.Validaciones no tiene atributos, se encarga de verificar que los datos ingresados sean
  * correctos.
  * metodos: validarNombreUsuario, validarContrasenia, validarCadenas, validarDNI, validarTelefono,
  * validarDireccion, validarEmail.
@@ -21,7 +23,7 @@ public class Validaciones {
      * o espacios
      */
 
-    public static void validarNombreUsuario (String username) throws DatoInvalidoException{
+    public static void validarNombreUsuario (String username) throws DatoInvalidoException {
         if (username.length() < 5 || username.length() > 30){
             throw new DatoInvalidoException("El username debe tener al menos 5 caracteres.");
         }
@@ -94,7 +96,7 @@ public class Validaciones {
      * @throws DatoInvalidoException si contiene letras o simbolos y si tiene menos o mas de 10 u 11 digitos
      */
 
-    public static void validarTelefono (String telefono) throws DatoInvalidoException{
+    public static void validarTelefono (String telefono) throws DatoInvalidoException {
 
         if (!telefono.matches("^[0-9]+$")) {
             throw new DatoInvalidoException("Teléfono inválido: solo debe contener números.");
@@ -112,7 +114,7 @@ public class Validaciones {
      * @throws DatoInvalidoException
      */
 
-    public static void validarDireccion (String direccion) throws DatoInvalidoException{
+    public static void validarDireccion (String direccion) throws DatoInvalidoException {
         if (direccion.length() < 5 || direccion.length() > 100){
             throw new DatoInvalidoException("La dirección debe tener entre 5 y 100 caracteres.");
         }
@@ -133,7 +135,7 @@ public class Validaciones {
      * @param email
      * @throws DatoInvalidoException
      */
-    public static void validarEmail (String email) throws DatoInvalidoException{
+    public static void validarEmail (String email) throws DatoInvalidoException {
         if (email.length() < 5){
             throw new DatoInvalidoException("El correo electronico es demasiado corto.");
         }

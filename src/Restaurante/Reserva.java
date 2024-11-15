@@ -1,13 +1,13 @@
+package Restaurante;
+
+import Users.Cliente;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Date;
-import java.util.Scanner;
 
 /**
- * La clase Reserva tiene como campos su id, momento de realizacion, dia de reserva,
+ * La clase Restaurante.Reserva tiene como campos su id, momento de realizacion, dia de reserva,
  * hora de reserva, cliente, mesa y cantidad de personas
  * tiene un constructor con todos los atributos
  * metodos: getters y setters, ToString
@@ -110,7 +110,7 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" +
+        return "Restaurante.Reserva{" +
                 "Nro de reserva=" + id +
                 ", Fecha de realizacion=" + momento +
                 ", dia=" + dia +
@@ -122,7 +122,7 @@ public class Reserva {
     }
 
     /*
-    public static Reserva ingresarReserva() {
+    public static Restaurante.Reserva ingresarReserva() {
 
         System.out.println("Complete con los datos:\n");
         Scanner scanner = new Scanner(System.in);
@@ -168,7 +168,7 @@ public class Reserva {
         int cantPersonas = scanner.nextInt();
 
 
-        return new Reserva(dia, hora, cliente ,mesa, cantPersonas);
+        return new Restaurante.Reserva(dia, hora, cliente ,mesa, cantPersonas);
     }
 
      */

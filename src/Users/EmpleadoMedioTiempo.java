@@ -1,9 +1,11 @@
+package Users;
+
 import Archivos.FormatoIncorrectoException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * La clase EmpleadoMedioTiempo tiene como campos su nombre, apellido, dni, telefono,
+ * La clase Users.EmpleadoMedioTiempo tiene como campos su nombre, apellido, dni, telefono,
  * direccion, email y horas trabajadas
  * tiene un constructor con todos los atributos
  * metodos: getters y setters, ToString
@@ -13,7 +15,7 @@ import org.json.JSONObject;
  * @since 2024
  * @version 1
  */
-public class EmpleadoMedioTiempo extends Empleado{
+public class EmpleadoMedioTiempo extends Empleado {
     private int horasTrabajadas;
     private double precioXhora;
 

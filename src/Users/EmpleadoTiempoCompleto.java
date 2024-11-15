@@ -1,11 +1,11 @@
+package Users;
+
 import Archivos.FormatoIncorrectoException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.cert.PKIXCertPathBuilderResult;
-
 /**
- * La clase Empleado tiene como campos su nombre, apellido, dni, telefono, direccion e email
+ * La clase Users.Empleado tiene como campos su nombre, apellido, dni, telefono, direccion e email
  * tiene un constructor con todos los atributos
  * metodos: getters y setters
  * otros metodos:
@@ -14,7 +14,7 @@ import java.security.cert.PKIXCertPathBuilderResult;
  * @since 2024
  * @version 1
  */
-public class EmpleadoTiempoCompleto extends Empleado{
+public class EmpleadoTiempoCompleto extends Empleado {
     private int aniosAntiguedad;
 
     public EmpleadoTiempoCompleto(){
@@ -40,7 +40,7 @@ public class EmpleadoTiempoCompleto extends Empleado{
 
     @Override
     public String toString() {
-        return "EmpleadoTiempoCompleto{" +
+        return "Users.EmpleadoTiempoCompleto{" +
                 "aniosAntiguedad=" + aniosAntiguedad +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +

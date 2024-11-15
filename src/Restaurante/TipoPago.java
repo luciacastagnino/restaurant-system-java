@@ -1,5 +1,7 @@
+package Restaurante;
+
 /**
- * El enum TipoPago representa los diferentes métodos de pago disponibles en el restaurante.
+ * El enum Restaurante.TipoPago representa los diferentes métodos de pago disponibles en el restaurante.
  * Los métodos de pago incluyen:
  * - EFECTIVO: Pago realizado con dinero en efectivo.
  * - CREDITO: Pago realizado mediante tarjeta de crédito.

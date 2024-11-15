@@ -1,4 +1,7 @@
-import java.time.LocalDate;
+package Restaurante;
+
+import Users.Empleado;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -73,7 +76,7 @@ public class Ticket {
         System.out.println("RESTAURANTE GRASTROLAB S.A");
         System.out.println("Emitido en: Av. Dorrego 281, Mar del Plata, Argentina");
         System.out.println();
-        System.out.println("Empleado: " + empleado.getNombre() + " " + empleado.getApellido());
+        System.out.println("Users.Empleado: " + empleado.getNombre() + " " + empleado.getApellido());
         System.out.println("T" + id + "                   " + horaEmision);
         System.out.println("------------------------------------------");
         int cant = mostrarPlatos();
@@ -132,7 +135,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" +
+        return "Restaurante.Ticket{" +
                 "id=" + id +
                 ", reserva=" + reserva +
                 ", empleado=" + empleado +

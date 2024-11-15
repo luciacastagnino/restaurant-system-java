@@ -1,8 +1,10 @@
+package Restaurante;
+
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * La clase MenuRestaurante gestiona el menú de un restaurante, permitiendo mostrar los platos disponibles
+ * La clase Restaurante.MenuRestaurante gestiona el menú de un restaurante, permitiendo mostrar los platos disponibles
  * organizados por categorías como desayuno, brunch, entradas, almuerzo, cena, postre y bebidas.
  * Además, maneja la disponibilidad de los platos y sus precios.
  *
@@ -18,7 +20,7 @@ public class MenuRestaurante {
     private Set<Plato> platos;
 
     /**
-     * Constructor de la clase MenuRestaurante.
+     * Constructor de la clase Restaurante.MenuRestaurante.
      * Inicializa un conjunto vacío de platos que compondrán el menú del restaurante.
      *
      */

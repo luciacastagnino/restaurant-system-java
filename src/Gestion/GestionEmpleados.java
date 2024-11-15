@@ -1,4 +1,7 @@
+package Gestion;
+
 import Archivos.GestionJSON;
+import Users.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,8 +24,8 @@ public class GestionEmpleados {
 
         while (op == 's'){
             System.out.println("\nSeleccione el tipo de empleado que desea ingresar: ");
-            System.out.println("1. Empleado tiempo completo.");
-            System.out.println("2. Empleado medio tiempo.");
+            System.out.println("1. Users.Empleado tiempo completo.");
+            System.out.println("2. Users.Empleado medio tiempo.");
 
             int tipoEmpleado = scan.nextInt();
             scan.nextLine();
@@ -460,7 +463,7 @@ public class GestionEmpleados {
             }
         }
         catch (JSONException e){
-            System.out.println("Ocurrio un error al convertir JSONObject a Empleado");
+            System.out.println("Ocurrio un error al convertir JSONObject a Users.Empleado");
         }
     }
 

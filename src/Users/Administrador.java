@@ -1,4 +1,7 @@
+package Users;
+
 import Archivos.FormatoIncorrectoException;
+import Users.Usuario;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -1,3 +1,5 @@
+package Users;
+
 /**
  * Exception lanzada al ingresar datos invalidos
  * Casos de uso: contrasenia con cierta cantidad de caracteres, que tenga un numero, para aumentar la seguridad,

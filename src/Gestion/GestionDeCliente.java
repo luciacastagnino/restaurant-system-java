@@ -1,8 +1,10 @@
-import java.io.IOException;
+package Gestion;
+
 import java.util.*;
 
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
+import Users.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +25,7 @@ public class GestionDeCliente {
         System.out.println();
         Cliente aux = registroUser.registroCliente();
         agregarYguardar(aux);
-        System.out.println("\nCliente " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
+        System.out.println("\nUsers.Cliente " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
 
     }
 
@@ -41,7 +43,7 @@ public class GestionDeCliente {
                 listaDeClientes.add(cliente);
             }
         } catch (JSONException e){
-            System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
+            System.out.println("Ocurrio un error al convertir JSONObject a Users.Administrador.");
         }
     }
 

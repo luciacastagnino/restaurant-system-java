@@ -1,5 +1,7 @@
+package Users;
+
 /**
- * El enum TipoCliente representa los diferentes tipos de clientes en el restaurante.
+ * El enum Users.TipoCliente representa los diferentes tipos de clientes en el restaurante.
  * Los tipos de clientes incluyen:
  * - ESTANDAR: Clientes regulares del restaurante.
  * - PREMIUM: Clientes que disfrutan de beneficios adicionales debido a su nivel de membresía.

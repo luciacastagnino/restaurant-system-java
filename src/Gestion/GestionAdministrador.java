@@ -1,11 +1,16 @@
+package Gestion;
+
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
+import Users.Administrador;
+import Users.DatoInvalidoException;
+import Users.RegistroUser;
+import Users.Validaciones;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.IOException;
 import java.util.*;
 
 public class GestionAdministrador {
@@ -308,7 +313,7 @@ public class GestionAdministrador {
                     while (intentosContra < 3){
                         System.out.printf("Ingrese su contraseña para eliminar su cuenta:");
                         String contraseña = scanner.nextLine();
-                        if (contraseña.equals(a.contrasenia)){
+                        if (contraseña.equals(a.getContrasenia())){
                             a.setEstado(false);
                             System.out.printf("Cuenta eliminada con exito.");
                             cargarArchivoConArreglo(listaAdmins);

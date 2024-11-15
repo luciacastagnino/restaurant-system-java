@@ -1,3 +1,5 @@
+package Users;
+
 import java.util.Objects;
 
 /**
@@ -126,7 +128,7 @@ public abstract class Usuario {
     /// ToString
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "Users.Usuario{" +
                 "username='" + username + '\'' +
                 ", contrasenia='" + contrasenia + '\'' +
                 ", nombre='" + nombre + '\'' +

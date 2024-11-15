@@ -1,5 +1,7 @@
+package Users;
+
 /**
- * La clase Empleado es abstracta y tiene como campos su nombre, apellido, dni,
+ * La clase Users.Empleado es abstracta y tiene como campos su nombre, apellido, dni,
  * telefono, direccion, email, sueldo y horas extra
  * tiene un constructor ...
  * metodos: getters y setters
@@ -31,7 +33,7 @@ public abstract class Empleado extends Usuario {
 
     @Override
     public String toString() {
-        return "Empleado{" + '\'' +
+        return "Users.Empleado{" + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +

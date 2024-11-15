@@ -1,10 +1,15 @@
+package Gestion;
+
 import Archivos.GestionJSON;
+import Restaurante.Reserva;
+import Users.Cliente;
+import Users.TipoCliente;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * La clase GestionReserva maneja las reservas realizadas por los clientes.
+ * La clase Gestion.GestionReserva maneja las reservas realizadas por los clientes.
  * Permite agregar reservas, actualizar el tipo de cliente en función de la cantidad
  * de reservas, obtener el tipo de cliente y la cantidad de reservas realizadas por cada cliente.
  *
@@ -25,9 +30,9 @@ public class GestionReserva {
     }
 
     public void crearReserva(){
-       // Reserva reserva = Reserva.ingresarReserva();
+       // Restaurante.Reserva reserva = Restaurante.Reserva.ingresarReserva();
        // agregarYguardar(reserva);
-       // System.out.println("\nReserva " + reserva.getId() + " del Cliente " + reserva.getCliente().getNombre() + " agregado con exito!");
+       // System.out.println("\nReserva " + reserva.getId() + " del Users.Cliente " + reserva.getCliente().getNombre() + " agregado con exito!");
     }
 
     public void agregarYguardar (Reserva nuevaReserva){

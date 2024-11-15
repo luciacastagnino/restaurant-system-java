@@ -1,3 +1,5 @@
+package Users;
+
 import Archivos.FormatoIncorrectoException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -5,7 +7,7 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 /**
- * La clase Cliente tiene como campos su nombre, apellido, dni, telefono, direccion e email
+ * La clase Users.Cliente tiene como campos su nombre, apellido, dni, telefono, direccion e email
  * tiene un constructor con todos los atributos
  * metodos: getters y setters, ToString
  * otros metodos:
@@ -79,7 +81,7 @@ public class Cliente extends Usuario implements Comparable{
                 clienteLeido.setTipoCliente(json.getEnum(TipoCliente.class, "tipoCliente"));
             }
             else{
-                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un Cliente");
+                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un Users.Cliente");
             }
 
         }catch (JSONException e){
@@ -125,7 +127,7 @@ public class Cliente extends Usuario implements Comparable{
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "Users.Cliente{" +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", tipoCliente=" + tipoCliente +

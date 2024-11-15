@@ -1,12 +1,12 @@
+package Visualuzacion;
+
 import Archivos.GestionJSON;
+import Users.*;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class LogIn {
@@ -90,7 +90,7 @@ public class LogIn {
                 clienteLeido = new Cliente();
                 clienteLeido = clienteLeido.jsonToCliente(clientes.getJSONObject(i));
             }else if (clientes.get(i).equals(username) || clientes.get(i).equals(contrasenia)){
-                System.out.println("Usuario o contraseña incorrectos.");
+                System.out.println("Users.Usuario o contraseña incorrectos.");
             }
         }
 
@@ -129,7 +129,7 @@ public class LogIn {
                     return empleadoMT.jsonToEmpleadoMT(jsonObject);
                 }
             }else if (empleados.get(i).equals(username) || empleados.get(i).equals(contrasenia)){
-                System.out.println("Usuario o contraseña incorrectos.");
+                System.out.println("Users.Usuario o contraseña incorrectos.");
             }
         }
 

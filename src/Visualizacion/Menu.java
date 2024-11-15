@@ -141,8 +141,10 @@ public class Menu {
                         cuentaAdmin(admin);
                         break;
                     case 2:
+                        gestorDeEmpleadosAdmin();
                         break;
                     case 3:
+                        gestorDeClientesAdmin();
                         break;
                     case 4:
                         break;

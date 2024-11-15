@@ -226,7 +226,7 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-                        gestionEmpleados.mostrarListaDeEmpleados();
+                        gestionEmpleados.mostrarColeccion();
                         break;
                     case 2:
                         gestionEmpleados.ingresarUsuario();

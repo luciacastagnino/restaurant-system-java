@@ -85,7 +85,7 @@ public class GestionAdministrador {
         listaAdmins = cargarArrayConArchivo();
 
         for (Administrador admin : listaAdmins){
-            if (a.equals(admin)){
+            if (admin.getId() == a.getId()){
                 System.out.println();
                 System.out.println("--------------------------------------------");
                 System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombre() + " " + a.getApellido());

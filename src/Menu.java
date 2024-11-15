@@ -129,7 +129,7 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-
+                        cuentaAdmin(admin);
                         break;
                     case 2:
                         break;

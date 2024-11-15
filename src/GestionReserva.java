@@ -25,15 +25,15 @@ public class GestionReserva {
     }
 
     public void crearReserva(){
-        Reserva reserva = Reserva.ingresarReserva();
-        agregarYguardar(reserva);
-        System.out.println("\nReserva " + reserva.getId() + " del Cliente " + reserva.getCliente().getNombre() + " agregado con exito!");
+       // Reserva reserva = Reserva.ingresarReserva();
+       // agregarYguardar(reserva);
+       // System.out.println("\nReserva " + reserva.getId() + " del Cliente " + reserva.getCliente().getNombre() + " agregado con exito!");
     }
 
     public void agregarYguardar (Reserva nuevaReserva){
-        cargarMapConArchivo();
-        reservasPorCliente.put(nuevaReserva);
-        cargarArchivoConMap(reservasPorCliente);
+        //cargarMapConArchivo();
+        //reservasPorCliente.put(nuevaReserva);
+       // cargarArchivoConMap(reservasPorCliente);
     }
 
     /**

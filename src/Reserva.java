@@ -121,6 +121,7 @@ public class Reserva {
                 '}';
     }
 
+    /*
     public static Reserva ingresarReserva() {
 
         System.out.println("Complete con los datos:\n");
@@ -169,5 +170,7 @@ public class Reserva {
 
         return new Reserva(dia, hora, cliente ,mesa, cantPersonas);
     }
+
+     */
 
 }

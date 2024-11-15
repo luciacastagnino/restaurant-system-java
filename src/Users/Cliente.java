@@ -16,17 +16,37 @@ import java.util.Objects;
  * @since 2024
  * @version 1
  */
-public class Cliente extends Usuario implements Comparable{
+public class Cliente extends Usuario implements Comparable<Cliente>{
     private TipoCliente tipoCliente = TipoCliente.ESTANDAR;
+    private static int contadorId = 0;
+    private int id;
 
     public Cliente() {
     }
 
     public Cliente(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+        this.id = contadorId++;
     }
 
+
     ///Getters y Setters
+
+    public static int getContadorId() {
+        return contadorId;
+    }
+
+    public static void setContadorId(int contadorId) {
+        Cliente.contadorId = contadorId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public TipoCliente getTipoCliente() {
         return tipoCliente;
@@ -43,6 +63,7 @@ public class Cliente extends Usuario implements Comparable{
         JSONObject jsonObject = null;
         try{
             jsonObject = new JSONObject();
+            jsonObject.put("id", e.getId());
             jsonObject.put("username", e.getUsername());
             jsonObject.put("contrasenia", e.getContrasenia());
             jsonObject.put("nombre", e.getNombre());
@@ -69,6 +90,7 @@ public class Cliente extends Usuario implements Comparable{
                     json.has("nombre") && json.has("apellido") && json.has("dni") &&
                     json.has("telefono") && json.has("direccion") && json.has("email") &&
                     json.has("estado") && json.has("tipoCliente")){
+                clienteLeido.setId(json.getInt("id"));
                 clienteLeido.setUsername(json.getString("username"));
                 clienteLeido.setContrasenia(json.getString("contrasenia"));
                 clienteLeido.setNombre(json.getString("nombre"));
@@ -92,22 +114,22 @@ public class Cliente extends Usuario implements Comparable{
 
     //Equals
 
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Cliente cliente)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        return Objects.equals(nombre, cliente.nombre) && Objects.equals(apellido, cliente.apellido) && Objects.equals(dni, cliente.dni);
+        Cliente cliente = (Cliente) o;
+        return id == cliente.id && tipoCliente == cliente.tipoCliente;
     }
 
     @Override
     public int hashCode() {
-        return 31 * Objects.hash(super.hashCode(), tipoCliente);
+        return Objects.hash(super.hashCode(), tipoCliente, id);
     }
 
-
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(Cliente o) {
         int nombreComparison = this.nombre.compareTo(((Cliente) o).nombre);
         if (nombreComparison != 0) {
             return nombreComparison;
@@ -127,14 +149,17 @@ public class Cliente extends Usuario implements Comparable{
 
     @Override
     public String toString() {
-        return "Users.Cliente{" +
+        return "Cliente{" +
+                "tipoCliente=" + tipoCliente +
+                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
-                ", tipoCliente=" + tipoCliente +
                 ", dni='" + dni + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", email='" + email + '\'' +
                 ", direccion='" + direccion + '\'' +
-                '}';
+                ", email='" + email + '\'' +
+                "} ";
     }
 }

@@ -91,10 +91,9 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
                 System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombre() + " " + a.getApellido());
                 System.out.println("--------------------------------------------");
 
-
+                System.out.println("ID: " + a.getId());
                 System.out.println("Username: " + a.getUsername());
                 System.out.println("Contraseña: " + a.getContrasenia());
-                System.out.println("ID: " + a.getId());
                 System.out.println("Nombre: " + a.getNombre());
                 System.out.println("Apellido: " + a.getApellido());
                 System.out.println("DNI: " + a.getDni());
@@ -117,7 +116,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
         boolean salir = false;
 
         for (Administrador administrador : listaAdmins) {
-            if (c.equals(administrador)) {
+            if (c.getId() == administrador.getId()) {
                 listaAdmins.remove(administrador);
                 c=administrador;
                 while (!salir) {

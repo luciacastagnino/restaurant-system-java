@@ -121,7 +121,7 @@ public class Reserva {
                 '}';
     }
 
-    public Reserva ingresarReserva() {
+    public static Reserva ingresarReserva() {
 
         System.out.println("Complete con los datos:\n");
         Scanner scanner = new Scanner(System.in);

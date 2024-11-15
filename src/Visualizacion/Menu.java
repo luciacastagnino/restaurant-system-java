@@ -215,6 +215,7 @@ public class Menu {
             System.out.println("4. Mostrar Empleados Activos.");
             System.out.println("5. Mostrar Empleados Inactivos.");
             System.out.println("6. Calcular Sueldo.");
+            System.out.println("7. Modificar Empleado.");
             System.out.println(". Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");

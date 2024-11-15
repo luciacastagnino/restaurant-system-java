@@ -5,6 +5,7 @@ import Gestion.GestionDeCliente;
 import Gestion.GestionEmpleados;
 import Gestion.GestionReserva;
 import Users.Administrador;
+import Users.Empleado;
 import Users.RegistroUser;
 
 import java.io.FileNotFoundException;
@@ -183,6 +184,53 @@ public class Menu {
                         break;
                     case 3:
                         gestionAdministrador.darDeBajaUsuario(admin);
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        }while (op!=6);
+
+    }
+
+    public void gestorDeEmpleadosAdmin (){
+        int op = 0;
+        do {
+            System.out.println();
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Mostrar todos los Empleados.");
+            System.out.println("2. Ingresar Empleado.");
+            System.out.println("3. Dar de baja empleado.");
+            System.out.println("4. Mostrar Empleados Activos.");
+            System.out.println("5. Mostrar Empleados Inactivos.");
+            System.out.println("6. Calcular Sueldo.");
+            System.out.println("7. Modificar Empleado.");
+            System.out.println(". Salir.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+                        gestionEmpleados.mostrarListaDeEmpleados();
+                        break;
+                    case 2:
+                        gestionEmpleados.ingresarUsuario();
+                        break;
+                    case 3:
+                        ///encontrar user
+                        gestionEmpleados.darDeBajaUsuario(aux);
                         break;
                     case 4:
                         break;

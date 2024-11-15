@@ -216,6 +216,7 @@ public class Menu {
             System.out.println("5. Mostrar Empleados Inactivos.");
             System.out.println("6. Calcular Sueldo.");
             System.out.println("7. Modificar Empleado.");
+            System.out.println("7. Buscar Empleado.");
             System.out.println(". Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
@@ -248,6 +249,55 @@ public class Menu {
                 scanner.nextLine();
             }
         }while (op!=6);
+
+    }
+
+    public void gestorDeClientesAdmin (){
+        ///SE PUEDE USAR PARA EMPLEADOS
+        int op = 0;
+        do {
+            System.out.println();
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Mostrar todos los Clientes.");
+            System.out.println("2. Ingresar Cliente.");
+            System.out.println("3. Dar de baja Cliente.");
+            System.out.println("4. Mostrar Clientes Activos.");
+            System.out.println("5. Mostrar Clientes Inactivos.");
+            System.out.println("6. Mostrar Tikets de Cliente.");
+            System.out.println("7. Modificar Cliente.");
+            System.out.println("8. Buscar Cliente.");
+            System.out.println(". Salir.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+                        gestionDeCliente.mostrarColeccion();
+                        break;
+                    case 2:
+                        gestionDeCliente.ingresarUsuario();
+                        break;
+                    case 3:
+                        ///encontrar user
+                        gestionDeCliente.darDeBajaUsuario(aux);
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        }while (op!=9);
 
     }
 

@@ -7,13 +7,22 @@ import java.util.Scanner;
 public class Menu {
 
     private Scanner scanner;
-    RegistroUser registroUser;
-    LogIn logIn;
+    private final RegistroUser registroUser;
+    private final LogIn logIn;
+    private final GestionAdministrador gestionAdministrador;
+    private final GestionDeCliente gestionDeCliente;
+    private final GestionEmpleados gestionEmpleados;
+    private final GestionReserva gestionReserva;
+
 
     public Menu() {
         this.scanner = new Scanner(System.in);
         this.registroUser = new RegistroUser();
         this.logIn = new LogIn();
+        this.gestionAdministrador = new GestionAdministrador();
+        this.gestionDeCliente = new GestionDeCliente();
+        this.gestionEmpleados = new GestionEmpleados();
+        this.gestionReserva = new GestionReserva();
     }
 
     public void MenuPrincipal(){
@@ -57,7 +66,6 @@ public class Menu {
         System.out.println("M E N U  D E  A D M I N I S T R A D O R");
         System.out.println("-----------------------------------------");
 
-        GestionAdministrador gestionAdministrador = new GestionAdministrador();
         int op = 0;
 
         do {
@@ -124,6 +132,46 @@ public class Menu {
 
                         break;
                     case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        }while (op!=6);
+    }
+
+    public void cuentaAdmin (Administrador admin){
+        int op = 0;
+        do {
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Ver mi perfil.");
+            System.out.println("2. Modificar mi cuenta.");
+            System.out.println("3. Eliminar cuenta.");
+            System.out.println("4. Salir.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+                        gestionAdministrador.mostrarDatos(admin);
+                        break;
+                    case 2:
+                        admin = gestionAdministrador.modificarAdmin(admin);
+                        System.out.println("Cambios realizados.");
                         break;
                     case 3:
                         break;

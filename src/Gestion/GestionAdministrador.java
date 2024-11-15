@@ -13,7 +13,7 @@ import org.json.JSONTokener;
 
 import java.util.*;
 
-public class GestionAdministrador {
+public class GestionAdministrador implements MetodosBasicosGestion<Administrador> {
 
     private Set<Administrador> listaAdmins;
     private RegistroUser registroUser;
@@ -26,7 +26,7 @@ public class GestionAdministrador {
         this.scanner = new Scanner(System.in);
     }
 
-    public void ingresarAdmin(){
+    public void ingresarUsuario(){
         Scanner scan = new Scanner(System.in);
             System.out.println();
             Administrador aux = registroUser.registroAdmin();
@@ -80,7 +80,7 @@ public class GestionAdministrador {
         }
     }
 
-    public void mostrarDatos (Administrador a){
+    public void mostrarDatosUsuario (Administrador a){
 
         listaAdmins = cargarArrayConArchivo();
 
@@ -111,7 +111,7 @@ public class GestionAdministrador {
 
     }
 
-    public Administrador modificarAdmin (Administrador c) {
+    public Administrador modificarUsuario (Administrador c) {
 
         listaAdmins = cargarArrayConArchivo();
         boolean salir = false;
@@ -300,8 +300,8 @@ public class GestionAdministrador {
             return null;
     }
 
-    public void darDeBaja (Administrador a){
-
+    @Override
+    public void darDeBajaUsuario(Administrador administrador) {
         listaAdmins = cargarArrayConArchivo();
 
         for (Administrador admin : listaAdmins){
@@ -336,7 +336,8 @@ public class GestionAdministrador {
         System.out.println("No se encontro al usuario.");
     }
 
-    public void mostrarListaDeAdmins () {
+
+    public void mostrarColeccion () {
         if (listaAdmins.isEmpty()) {
             cargarArrayConArchivo();
         }

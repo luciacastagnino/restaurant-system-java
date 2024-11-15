@@ -1,4 +1,4 @@
-import Visualuzacion.Menu;
+import Visualizacion.Menu;
 
 import java.io.File;
 import java.io.FileNotFoundException;

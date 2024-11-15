@@ -1,4 +1,4 @@
-package Visualuzacion;
+package Visualizacion;
 
 import Archivos.GestionJSON;
 import Users.*;

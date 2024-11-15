@@ -1,13 +1,11 @@
-package Visualuzacion;
+package Visualizacion;
 
-import Archivos.GestionJSON;
 import Gestion.GestionAdministrador;
 import Gestion.GestionDeCliente;
 import Gestion.GestionEmpleados;
 import Gestion.GestionReserva;
 import Users.Administrador;
 import Users.RegistroUser;
-import Visualuzacion.LogIn;
 
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;

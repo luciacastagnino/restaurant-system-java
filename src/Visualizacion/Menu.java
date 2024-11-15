@@ -86,7 +86,7 @@ public class Menu {
 
                 switch (op) {
                     case 1:
-                        gestionAdministrador.ingresarAdmin();
+                        gestionAdministrador.ingresarUsuario();
                         break;
                     case 2:
                         try {
@@ -176,13 +176,13 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-                        gestionAdministrador.mostrarDatos(admin);
+                        gestionAdministrador.mostrarDatosUsuario(admin);
                         break;
                     case 2:
-                        admin = gestionAdministrador.modificarAdmin(admin);
+                        admin = gestionAdministrador.modificarUsuario(admin);
                         break;
                     case 3:
-                        gestionAdministrador.darDeBaja(admin);
+                        gestionAdministrador.darDeBajaUsuario(admin);
                         break;
                     case 4:
                         break;

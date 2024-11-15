@@ -18,35 +18,17 @@ import java.util.Objects;
  */
 public class Cliente extends Usuario implements Comparable<Cliente>{
     private TipoCliente tipoCliente = TipoCliente.ESTANDAR;
-    private static int contadorId = 0;
-    private int id;
 
     public Cliente() {
     }
 
     public Cliente(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
-        this.id = contadorId++;
+
     }
 
 
     ///Getters y Setters
-
-    public static int getContadorId() {
-        return contadorId;
-    }
-
-    public static void setContadorId(int contadorId) {
-        Cliente.contadorId = contadorId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public TipoCliente getTipoCliente() {
         return tipoCliente;
@@ -114,19 +96,20 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
 
     //Equals
 
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Cliente cliente = (Cliente) o;
-        return id == cliente.id && tipoCliente == cliente.tipoCliente;
+        return tipoCliente == cliente.tipoCliente;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), tipoCliente, id);
+        return Objects.hash(super.hashCode(), tipoCliente);
     }
+
+    //COMPARE TO
 
     @Override
     public int compareTo(Cliente o) {

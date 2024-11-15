@@ -14,8 +14,9 @@ package Users;
 public abstract class Empleado extends Usuario {
     protected double sueldo;
 
-    public Empleado(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
+    public Empleado(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, double sueldo) {
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+        this.sueldo = sueldo;
     }
 
     public Empleado() {
@@ -33,13 +34,17 @@ public abstract class Empleado extends Usuario {
 
     @Override
     public String toString() {
-        return "Users.Empleado{" + '\'' +
+        return "Empleado{" +
+                "sueldo=" + sueldo +
+                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", email='" + email + '\'' +
                 ", direccion='" + direccion + '\'' +
-                '}';
+                ", email='" + email + '\'' +
+                "} ";
     }
 }

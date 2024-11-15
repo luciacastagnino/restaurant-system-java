@@ -23,8 +23,8 @@ public class EmpleadoMedioTiempo extends Empleado {
 
     }
 
-    public EmpleadoMedioTiempo(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, int horasTrabajadas, double precioXhora) {
-        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+    public EmpleadoMedioTiempo(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, double sueldo, int horasTrabajadas, double precioXhora) {
+        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, sueldo);
         this.horasTrabajadas = horasTrabajadas;
         this.precioXhora = precioXhora;
     }
@@ -52,6 +52,7 @@ public class EmpleadoMedioTiempo extends Empleado {
         JSONObject jsonObject = null;
         try{
             jsonObject = new JSONObject();
+            jsonObject.put("id", e.getId());
             jsonObject.put("username", e.getUsername());
             jsonObject.put("contrasenia", e.getContrasenia());
             jsonObject.put("nombre", e.getNombre());
@@ -80,6 +81,7 @@ public class EmpleadoMedioTiempo extends Empleado {
                     json.has("nombre") && json.has("apellido") && json.has("dni") &&
                     json.has("telefono") && json.has("direccion") && json.has("email") &&
                     json.has("estado") && json.has("horasTrabajadas") && json.has("precioPorHora")){
+                empleadoLeido.setId(json.getInt("id"));
                 empleadoLeido.setUsername(json.getString("username"));
                 empleadoLeido.setContrasenia(json.getString("contrasenia"));
                 empleadoLeido.setNombre(json.getString("nombre"));

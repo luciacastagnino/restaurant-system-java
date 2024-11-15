@@ -158,7 +158,7 @@ public final class RegistroUser{
 
         boolean estado = true;
 
-        EmpleadoTiempoCompleto empleTC = new EmpleadoTiempoCompleto(dni, dni, "", "", dni, "", "", "", estado, 0);
+        EmpleadoTiempoCompleto empleTC = new EmpleadoTiempoCompleto(dni, dni, "", "", dni, "", "", "", true, 0, 0);
 
         return empleTC;
     }
@@ -183,7 +183,7 @@ public final class RegistroUser{
 
         boolean estado = true;
 
-        EmpleadoMedioTiempo empleMT = new EmpleadoMedioTiempo(dni, dni, "", "", dni, "", "", "", estado, 0, 0);
+        EmpleadoMedioTiempo empleMT = new EmpleadoMedioTiempo(dni, dni, "", "", dni, "", "", "", true, 0.0, 0, 0.0);
         return empleMT;
     }
 

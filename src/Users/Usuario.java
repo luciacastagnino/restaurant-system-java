@@ -14,6 +14,8 @@ import java.util.Objects;
  * @version 1
  */
 public abstract class Usuario {
+    protected int idContador = 100;
+    protected int id;
     protected String username;
     protected String contrasenia;
     protected String nombre;
@@ -30,6 +32,7 @@ public abstract class Usuario {
     }
 
     public Usuario(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
+        this.id = idContador++;
         this.username = username;
         this.contrasenia = contrasenia;
         this.nombre = nombre;
@@ -42,6 +45,7 @@ public abstract class Usuario {
     }
 
     public Usuario(String dni) {
+        this.id = idContador++;
         this.username = dni;
         this.contrasenia = dni;
         this.nombre = "";
@@ -53,7 +57,28 @@ public abstract class Usuario {
         this.estado = true;
     }
 
+
     ///Getters y Setters ////////////
+
+    public int getIdContador() {
+        return idContador;
+    }
+
+    public void setIdContador(int idContador) {
+        this.idContador = idContador;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
 
     public String getUsername() {
         return username;

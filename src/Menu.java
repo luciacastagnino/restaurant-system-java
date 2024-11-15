@@ -174,6 +174,7 @@ public class Menu {
                         System.out.println("Cambios realizados.");
                         break;
                     case 3:
+                        gestionAdministrador.darDeBaja(admin);
                         break;
                     case 4:
                         break;

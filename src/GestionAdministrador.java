@@ -277,14 +277,23 @@ public class GestionAdministrador {
         System.out.println("¿Esta seguro de eliminar el usuario? SI o NO.");
         String opcion = scanner.nextLine();
         if (opcion.toLowerCase().equals("si")){
-            System.out.printf("Ingrese su contraseña para eliminar su cuenta:");
-            String contraseña = scanner.nextLine();
-            if (contraseña.equals(a.contrasenia)){
-                a.setEstado(false);
-                System.out.printf("Cuenta eliminada con exito.");
-            }else {
-                System.out.printf("Contraseña incorrecta, intentelo nuevamente.");
+            int intentosContra = 0;
+            while (intentosContra < 3){
+                System.out.printf("Ingrese su contraseña para eliminar su cuenta:");
+                String contraseña = scanner.nextLine();
+                if (contraseña.equals(a.contrasenia)){
+                    a.setEstado(false);
+                    System.out.printf("Cuenta eliminada con exito.");
+                }else {
+                    intentosContra++;
+                    System.out.printf("Contraseña incorrecta, intentelo nuevamente.");
+                }
             }
+            System.out.printf("Se supero el numero maximo de intentos. El usuario no fue dado de baja.");
+        }else if (opcion.toLowerCase("no")){
+            System.out.printf("Operacion cancelada.");
+        }else {
+            System.out.printf("Opcion invalida.");
         }
     }
 

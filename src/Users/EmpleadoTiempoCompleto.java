@@ -78,6 +78,12 @@ public class EmpleadoTiempoCompleto extends Empleado {
 
     //EMPLEADO TO JSON
 
+    /**
+     * toJson es un metodo que permite transformar un objeto EmpleadoTiempoCompleto a un JSONObject, recibe un
+     * EmpleadoTiempoCompleto y retorna un JSONObject.
+     * @param e
+     * @return jsonObject
+     */
     public JSONObject toJson (EmpleadoTiempoCompleto e){
 
         JSONObject jsonObject = null;
@@ -102,6 +108,14 @@ public class EmpleadoTiempoCompleto extends Empleado {
 
     //JSON TO EMPLEADO
 
+    /**
+     * jsonToEmpleadoTC es un metodo que tranforma un JSONObject en un objeto EmpleadoTiempoCompleto
+     * recibe un JSONObject y retorna un EmpleadoTiempoCompleto, lanza un FormatoIncorrectoException
+     * si el formato del JSONObject no tiene los parametros de un EmpleadoTiempoCompleto.
+     * @param json
+     * @return empleadoLeido
+     * @throws FormatoIncorrectoException
+     */
     public EmpleadoTiempoCompleto jsonToEmpleadoTC (JSONObject json) throws FormatoIncorrectoException {
 
         EmpleadoTiempoCompleto empleadoLeido = new EmpleadoTiempoCompleto();

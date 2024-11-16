@@ -3,8 +3,11 @@ package Gestion;
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
 import Restaurante.Plato;
+import Restaurante.Reserva;
 import Restaurante.TipoPlato;
 import Users.Administrador;
+import Users.DatoInvalidoException;
+import Users.Validaciones;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -120,13 +123,197 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     }
 
     @Override
-    public Plato modificarUsuario(Plato plato) {
+    public Plato modificarUsuario (Plato c) {
+
+        platos = cargarArrayConArchivo();
+        boolean salir = false;
+
+        for (Plato plato : platos) {
+            if (c.getId() == plato.getId()) {
+                platos.remove(plato);
+                c=plato;
+                while (!salir) {
+                    System.out.println("\n Que desea modificar?");
+                    System.out.println("1. Nombre.");
+                    System.out.println("2. Descripcion.");
+                    System.out.println("3. Precio.");
+                    System.out.println("4. Tipo de plato.");
+                    System.out.println("5. Salir.");
+                    int op = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (op) {
+                        case 1:
+
+                            String nombre = "";
+                            boolean nombreValido = false;
+
+                            while (!nombreValido) {
+                                System.out.println("Ingrese su nuevo nombre: ");
+                                nombre = scanner.nextLine();
+                                try {
+                                    Validaciones.validarCadenas(nombre);
+                                    c.setNombre(nombre);
+                                    nombreValido = true;
+                                } catch (DatoInvalidoException e) {
+                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                }
+                            }
+
+                            break;
+                        case 2:
+
+                            boolean descripcionValida = false;
+
+                            while (!descripcionValida){
+                                System.out.println("Ingrese la nueva descripcion: ");
+                                String descripcion = scanner.nextLine();
+                                if (descripcion!=null){
+                                    c.setDescripcion(descripcion);
+                                    descripcionValida=true;
+                                }else {
+                                    System.out.println("Hubo un problema, trate de ingresar una descripcion valida.");
+                                }
+                            }
+
+                            break;
+                        case 3:
+
+                            Precio.");
+                            System.out.println("4. Tipo de plato.");
+                            System.out.println("5. Disponibilidad.");
+
+                            boolean precioValido = false;
+                            while (!precioValido){
+                                System.out.println("Ingrese el nuevo precio: ");
+                                double precio = scanner.nextDouble();
+                                scanner.nextLine();
+                                if (precio<=0){
+                                    System.out.println("El precio no puede ser menor o igual a cero.");
+                                }else {
+                                    c.setPrecio(precio);
+                                    precioValido=true;
+                                }
+                            }
+                            break;
+                        case 4:
+
+                            boolean tipoPValido = false;
+
+                            while (!tipoPValido){
+                                System.out.println("Seleccione una opcion: ");
+                                System.out.println("1. Desayuno.");
+                                System.out.println("2. Brunch.");
+                                System.out.println("3. Entradas.");
+                                System.out.println("4. Almuerzo.");
+                                System.out.println("5. Cena.");
+                                System.out.println("6. Postre.");
+                                System.out.println("7. Bebida.");
+                                int opTP = scanner.nextInt();
+                                scanner.nextLine();
+                                switch (opTP){
+                                    case 1:
+                                        c.setTipoPlato(TipoPlato.DESAYUNO);
+                                        tipoPValido = true;
+                                        break;
+                                    case 2:
+                                        c.setTipoPlato(TipoPlato.BRUNCH);
+                                        tipoPValido = true;
+                                        break;
+                                    case 3:
+                                        c.setTipoPlato(TipoPlato.ENTRADAS);
+                                        tipoPValido = true;
+                                        break;
+                                    case 4:
+                                        c.setTipoPlato(TipoPlato.ALMUERZO);
+                                        tipoPValido = true;
+                                        break;
+                                    case 5:
+                                        c.setTipoPlato(TipoPlato.CENA);
+                                        tipoPValido = true;
+                                        break;
+                                    case 6:
+                                        c.setTipoPlato(TipoPlato.POSTRE);
+                                        tipoPValido = true;
+                                        break;
+                                    case 7:
+                                        c.setTipoPlato(TipoPlato.BEBIDA);
+                                        tipoPValido = true;
+                                        break;
+                                    default:
+                                        System.out.println("Opcion invalida.");
+                                        break;
+                                }
+                            }
+
+                            break;
+                        case 5:
+                            System.out.println("Saliendo del menu de modificacion de usuario...");
+                            salir = true;
+                            break;
+                        default:
+                            System.out.println("Opcion invalida.");
+                            break;
+                    }
+                }
+                platos.add(c);
+                cargarArchivoConArreglo(platos);
+                System.out.println("¡Cambios guardados con exito!");
+                return c;
+            }
+        }
         return null;
     }
 
     @Override
-    public void darDeBajaUsuario(Plato plato) {
+    public Plato encontrarUsuario(String descripcion) {
 
+        if (platos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
+        for (Plato p : platos){
+            if (p.getDescripcion().equals(descripcion)){
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public void listarUsuarios(boolean aux) {
+        if (platos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
+        for (Plato p : platos){
+            if (p.isDisponibilidad()==aux){
+                p.mostrarPlato();
+            }
+        }
+    }
+
+    @Override
+    public void darDeBajaUsuario(Plato plato) {
+        platos=cargarArrayConArchivo();
+        for (Plato p : platos){
+            String opcion = null;
+            if (p.equals(plato)){
+                System.out.println("¿Esta seguro de eliminar el plato? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    plato.setDisponibilidad(false);
+                    System.out.println("Plato eliminado con exito.");
+                    cargarArchivoConArreglo(platos);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
     }
 
     @Override

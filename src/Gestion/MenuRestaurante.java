@@ -1,5 +1,6 @@
 package Gestion;
 
+import Archivos.GestionJSON;
 import Restaurante.Plato;
 import Restaurante.TipoPlato;
 
@@ -29,6 +30,7 @@ public class MenuRestaurante {
      */
     public MenuRestaurante () {
         this.platos = new HashSet<>();
+        GestionJSON.crearArchivoJSON("platos.json");
     }
 
     //Get y Set

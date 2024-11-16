@@ -1,5 +1,6 @@
 package Restaurante;
 
+import Gestion.GestionEmpleados;
 import Gestion.GestionReserva;
 import Users.Cliente;
 import Users.Empleado;
@@ -9,10 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Ticket {
 
@@ -21,22 +19,28 @@ public class Ticket {
     private Reserva reserva;
     private Empleado empleado;
     private LocalDateTime horaEmision;
-    private Set<Plato> platos;
+    private List<Plato> platos;
     private double precio;
     private TipoPago tipoPago;
     private double propina;
+    private Cliente cliente;
     private GestionReserva gestionReserva;
+    private GestionEmpleados gestionEmpleados;
+    private Scanner scanner;
 
-    public Ticket(Reserva reserva, Empleado empleado, LocalDateTime horaEmision, double precio, TipoPago tipoPago, double propina) {
-        this.id = contador++;
+    public Ticket (int id, Reserva reserva, Empleado empleado, LocalDateTime horaEmision, List<Plato> platos, Cliente cliente double precio, TipoPago tipoPago, double propina) {
+        this.id = id;
         this.reserva = reserva;
         this.empleado = empleado;
         this.horaEmision = horaEmision;
-        this.platos = new HashSet<>();
+        this.platos = platos;
         this.precio = precio;
         this.tipoPago = tipoPago;
         this.propina = propina;
+        this.cliente = cliente;
         this.gestionReserva = new GestionReserva();
+        this.gestionEmpleados = new GestionEmpleados();
+        this.scanner = new Scanner(System.in);
     }
 
     public Reserva getReserva() {
@@ -80,31 +84,52 @@ public class Ticket {
     }
 
     public Ticket ingresarTicket() {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Complete con los datos:\n");
 
+        Cliente cliente = null;
         Reserva res = null;
+
         boolean resValida = false;
         while (!resValida) {
             System.out.println("Por favor, ingresa ID de la reserva:");
             int id = scanner.nextInt();
-
             res = gestionReserva.encontrarUsuario(id);
-            resValida = true;
+            cliente = res.getCliente();
+            if(cliente != null && res!=null){
+                resValida = true;
+            }else {
+                System.out.println("No se encontro la reserva, intentelo nuevamente.");
+            }
         }
 
-        LocalTime hora = null;
+        Empleado empleado = null;
+        boolean empleadoValido = false;
+        while (!empleadoValido){
+            System.out.println("Ingrese el DNI del empleado: ");
+            String dni = scanner.nextLine();
+            empleado = gestionEmpleados.encontrarUsuario(dni);
+            if (empleado != null){
+                empleadoValido=true;
+            }else {
+                System.out.println("No se encontro el empleado.");
+            }
+        }
+
+
+
+        this.platos = new HashSet<>();
+        this.precio = precio;
+        this.tipoPago = tipoPago;
+        this.propina = propina;
+
+        LocalTime hora = LocalTime.now();
         boolean horaValida = false;
         while (!horaValida) {
-            System.out.println("Ingrese la hora (formato: HH:mm):");
-            String horaInput = scanner.nextLine();
-            DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
-            try {
-                hora = LocalTime.parse(horaInput, formatoHora);
-                horaValida = true;
-            } catch (DateTimeParseException e) {
-                System.out.println("Error: El formato de la hora no es correcto.");
+            if (hora!=null){
+                horaValida=true;
+            }else {
+                System.out.println("Hubo un problema al generar la hora.");
             }
         }
 

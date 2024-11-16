@@ -1,5 +1,15 @@
 package Restaurante;
 
+import Archivos.FormatoIncorrectoException;
+import Users.Cliente;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.management.PlatformLoggingMXBean;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 /**
  * La clase Restaurante.Plato tiene como campos su nombre, descripcion, disponibilidad y precio
  * tiene un constructor con todos los atributos, uno solo con nombre
@@ -17,6 +27,9 @@ public class Plato {
     private double precio;
     private boolean disponibilidad;
     private TipoPlato tipoPlato;
+
+    public Plato() {
+    }
 
     public Plato(String nombre) {
         this.nombre = nombre;
@@ -82,6 +95,57 @@ public class Plato {
 
     public void setTipoPlato(TipoPlato tipoPlato) {
         this.tipoPlato = tipoPlato;
+    }
+
+    //PLATO TO JSON
+
+    public JSONObject toJson (Plato p){
+        JSONObject jsonObject = null;
+            try{
+            jsonObject = new JSONObject();
+            jsonObject.put("nombre", p.getNombre());
+            jsonObject.put("descripcion", p.getDescripcion());
+            jsonObject.put("precio", p.getPrecio());
+            jsonObject.put("disponibilidad", p.isDisponibilidad());
+            jsonObject.put("tipoPlato", p.getTipoPlato());
+        }catch (
+        JSONException ex){
+            ex.printStackTrace();
+        }
+            return jsonObject;
+    }
+
+    //JSON TO PLATO
+
+    /**
+     * jsonToPlato es un metodo que tranforma un JSONObject en un objeto Plato recibe un
+     * JSONObject y retorna un Plato, lanza un FormatoIncorrectoException si el formato del
+     * JSONObject no tiene los parametros de un Plato.
+     * @param json
+     * @return platoLeido
+     * @throws FormatoIncorrectoException
+     */
+
+    public Plato jsonToPlato (JSONObject json) throws FormatoIncorrectoException {
+
+        Plato platoLeido = new Plato();
+        try {
+            if(json.has("nombre") && json.has("descripcion") && json.has("precio") &&
+                    json.has("disponibilidad") && json.has("tipoPlato")){
+                platoLeido.setNombre(json.getString("nombre"));
+                platoLeido.setDescripcion(json.getString("descripcion"));
+                platoLeido.setPrecio(json.getDouble("precio"));
+                platoLeido.setDisponibilidad(json.getBoolean("disponibilidad"));
+                platoLeido.setTipoPlato(json.getEnum(TipoPlato.class, "tipoPlato"));
+            }
+            else{
+                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un plato.");
+            }
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return platoLeido;
     }
 
     ///ToString

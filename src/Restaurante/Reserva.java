@@ -209,9 +209,9 @@ public class Reserva {
         LocalDate dia = null;
         boolean diaValido = false;
         while (!diaValido) {
-            System.out.println("Por favor, ingresa el día (formato: dd/MM):");
+            System.out.println("Por favor, ingresa el día (formato: dd/MM/yyyy):");
             String diaInput = scanner.nextLine();
-            DateTimeFormatter formatoDia = DateTimeFormatter.ofPattern("dd/MM");
+            DateTimeFormatter formatoDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             try {
                 dia = LocalDate.parse(diaInput, formatoDia);
                 diaValido = true;

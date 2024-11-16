@@ -341,13 +341,62 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return null;
     }
 
+    public Reserva encontrarUsuario(String dni, LocalDate dia, LocalTime hs) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getCliente().getDni().equals(dni) && reserva.getDia().equals(dia)
+                    && reserva.getHora().equals(hs)){
+                return reserva;
+            }
+        }
+
+        System.out.println("No se encontro la reserva.");
+        return null;
+    }
+
     @Override
-    public void listarUsuarios(String apellido) {
+    public void listarUsuarios(String dni) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
         for (Reserva reserva : reservasPorCliente.values()){
-            if (reserva.getCliente().getApellido().equals(apellido)){
+            if (reserva.getCliente().getDni().equals(dni)){
+                mostrarDatosUsuario(reserva);
+            }
+        }
+    }
+
+    public void listarUsuarios(LocalDate dia) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getDia().equals(dia)){
+                mostrarDatosUsuario(reserva);
+            }
+        }
+    }
+
+    public void listarUsuarios(LocalTime hora) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getHora().equals(hora)){
+                mostrarDatosUsuario(reserva);
+            }
+        }
+    }
+
+    public void listarUsuarios(LocalDate dia, LocalTime hora) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getHora().equals(hora) && reserva.getDia().equals(dia)){
                 mostrarDatosUsuario(reserva);
             }
         }

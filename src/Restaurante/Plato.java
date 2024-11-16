@@ -124,8 +124,18 @@ public class Plato {
 
         System.out.println("Cargando los datos del plato...");
 
-        System.out.println("Ingrese el nombre del plato: ");
-        String nombre = scanner.nextLine();
+
+        boolean nombreValido = false;
+        while (!nombreValido){
+            System.out.println("Ingrese el nombre del plato: ");
+            String nombre = scanner.nextLine();
+            if (nombre==null){
+                System.out.println("El nombre no puede estar vacio.");
+            }else {
+                nombreValido = true;
+            }
+        }
+
 
     }
 

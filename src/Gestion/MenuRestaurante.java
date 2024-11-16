@@ -55,20 +55,13 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     @Override
     public void ingresarUsuario() {
         System.out.println();
-        Plato aux = aux.
-
-    }
-
-    public void ingresarUsuario(){
-        System.out.println();
-        Administrador aux = registroUser.registroAdmin();
+        Plato aux = aux.cargarPlato();
         agregarYguardar(aux);
-        System.out.println("\nAdministrador/a " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
-
+        System.out.println("Plato agregado con exito.");
     }
 
-    public Set<Administrador> cargarArrayConArchivo(){
-        JSONTokener aux = GestionJSON.leer("administrador.json");
+    public Set<Plato> cargarArrayConArchivo(){
+        JSONTokener aux = GestionJSON.leer("platos.json");
 
         try {
 
@@ -76,32 +69,32 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
-                Administrador administrador = new Administrador();
-                administrador = administrador.jsonToAdmin(aux1);
-                listaAdmins.add(administrador);
+                Plato plato = new Plato();
+                plato = plato.jsonToPlato(aux1);
+                platos.add(plato);
             }
         } catch (JSONException e){
-            System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
+            System.out.println("Ocurrio un error al convertir JSONObject a Plato.");
         }
 
-        return listaAdmins;
+        return platos;
     }
 
-    public void agregarYguardar (Administrador nuevoAdmin){
+    public void agregarYguardar (Plato plato){
         cargarArrayConArchivo();
-        listaAdmins.add(nuevoAdmin);
-        cargarArchivoConArreglo(listaAdmins);
+        platos.add(plato);
+        cargarArchivoConArreglo(platos);
     }
 
-    public void cargarArchivoConArreglo(Set<Administrador> listaAdmins){
+    public void cargarArchivoConArreglo(Set<Plato> listaPlatos){
         JSONArray arreglo = new JSONArray();
         try {
 
-            for (Administrador admin : listaAdmins){
+            for (Plato plato : listaPlatos){
                 try {
-                    JSONObject json = admin.toJson(admin);
+                    JSONObject json = plato.toJson(plato);
                     arreglo.put(json);
-                    GestionJSON.agregarElemento("administrador.json", arreglo);
+                    GestionJSON.agregarElemento("platos.json", arreglo);
                 }
                 catch (FormatoIncorrectoException e){
                     System.out.println(e.getMessage());
@@ -112,8 +105,6 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
     }
 
-
-
     @Override
     public void mostrarDatosUsuario(Plato plato) {
 
@@ -122,11 +113,6 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     @Override
     public Plato modificarUsuario(Plato plato) {
         return null;
-    }
-
-    @Override
-    public void agregarYguardar(Plato plato) {
-
     }
 
     @Override

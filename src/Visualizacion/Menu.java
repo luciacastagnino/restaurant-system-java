@@ -230,7 +230,6 @@ public class Menu {
                         gestionEmpleados.ingresarUsuario();
                         break;
                     case 3:
-                        ///hay que hacer busqueda con id
                         System.out.println("Ingrese el dni del Empleado que quiere dar de baja");
                         String dni = scanner.nextLine();
 
@@ -238,11 +237,99 @@ public class Menu {
                         gestionEmpleados.darDeBajaUsuario(aux);
                         break;
                     case 4:
-                        
+                        gestionEmpleados.listarUsuarios(true);
                         break;
                     case 5:
+                        gestionEmpleados.listarUsuarios(false);
                         break;
                     case 6:
+                        System.out.println("Que desea hacer?");
+                        System.out.println("1. Calcular sueldo de empleado medio tiempo.");
+                        System.out.println("2. Calcular sueldo de empleado tiempo completo.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                System.out.println("Ingresar DNI del empleado:");
+                                String dni1 = scanner.nextLine();
+                                EmpleadoMedioTiempo aux1 = (EmpleadoMedioTiempo) gestionEmpleados.encontrarUsuario(dni1);
+
+                                System.out.println("Ingrese las horas extra del empleado (0 si no hay horas extra):");
+                                int hs = scanner.nextInt();
+
+                                double total = aux1.calcularSueldo(hs);
+
+                                System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar DNI del empleado:");
+                                String dni1 = scanner.nextLine();
+                                EmpleadoTiempoCompleto aux1 = (EmpleadoTiempoCompleto) gestionEmpleados.encontrarUsuario(dni1);
+
+                                System.out.println("Ingrese las horas extra del empleado (0 si no hay horas extra):");
+                                int hs = scanner.nextInt();
+
+                                System.out.println("Ingrese el precio por hora (0 si no hay horas extra):");
+                                double pxh = scanner.nextInt();
+
+                                double total = aux1.calcularSueldo(hs, pxh);
+                                System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 7:
+                                System.out.println("Ingresar DNI del empleado:");
+                                String d = scanner.nextLine();
+
+                                Empleado empleado= gestionEmpleados.encontrarUsuario(d);
+
+                                gestionEmpleados.modificarUsuario(empleado);
+                        break;
+                    case 8:
+                        System.out.println("1. Buscar por DNI.");
+                        System.out.println("2. Buscar por ID.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                System.out.println("Ingresar DNI del empleado:");
+                                String dni1 = scanner.nextLine();
+
+                                Empleado aux1 = gestionEmpleados.encontrarUsuario(dni1);
+
+                                if(aux1 instanceof EmpleadoMedioTiempo){
+                                    System.out.println((EmpleadoMedioTiempo)aux1);
+                                }
+                                else {
+                                    System.out.println((EmpleadoTiempoCompleto)aux1);
+                                }
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar ID del empleado:");
+                                int id = scanner.nextInt();
+
+                                Empleado aux1 = gestionEmpleados.encontrarUsuario(id);
+
+                                if(aux1 instanceof EmpleadoTiempoCompleto){
+                                    System.out.println((EmpleadoTiempoCompleto)aux1);
+                                }
+                                else{
+                                    System.out.println((EmpleadoMedioTiempo)aux1);
+                                }
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 9:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -253,12 +340,11 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 6);
+        } while (op != 9);
 
     }
 
     public void gestorDeClientesAdmin() {
-        ///SE PUEDE USAR PARA EMPLEADOS
         int op = 0;
         do {
             System.out.println();
@@ -284,7 +370,6 @@ public class Menu {
                         gestionDeCliente.ingresarUsuario();
                         break;
                     case 3:
-                        ///hay que hacer busqueda con id
                         System.out.println("Ingrese el dni del Cliente que quiere dar de baja");
                         String dni = scanner.nextLine();
 
@@ -292,10 +377,52 @@ public class Menu {
                         gestionDeCliente.darDeBajaUsuario(aux);
                         break;
                     case 4:
+                        gestionDeCliente.listarUsuarios(true);
                         break;
                     case 5:
+                        gestionDeCliente.listarUsuarios(false);
                         break;
                     case 6:
+
+                        break;
+                    case 7:
+                        System.out.println("Ingresar DNI del cliente:");
+                        String d = scanner.nextLine();
+
+                        Cliente cliente= gestionDeCliente.encontrarUsuario(d);
+
+                        gestionDeCliente.modificarUsuario(cliente);
+                        break;
+                    case 8:
+                        System.out.println("1. Buscar por DNI.");
+                        System.out.println("2. Buscar por ID.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                System.out.println("Ingresar DNI del cliente:");
+                                String dni1 = scanner.nextLine();
+
+                                Cliente aux1 = gestionDeCliente.encontrarUsuario(dni1);
+
+                                System.out.println(aux1);
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar ID del cliente:");
+                                int id = scanner.nextInt();
+
+                                Cliente aux1 = gestionDeCliente.encontrarUsuario(id);
+
+                                System.out.println(aux1);
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 9:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -339,7 +466,7 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-
+                        gestionEmpleados.mostrarDatosUsuario(empleado);
                         break;
                     case 2:
 
@@ -394,7 +521,7 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-
+                        gestionDeCliente.mostrarDatosUsuario(cliente);
                         break;
                     case 2:
 

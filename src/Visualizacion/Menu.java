@@ -283,7 +283,28 @@ public class Menu {
                         }
                         break;
                     case 7:
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
 
+                            if(op1 == 1){
+                                System.out.println("Ingresar DNI del empleado:");
+                                String d = scanner.nextLine();
+
+                                Empleado empleado= gestionEmpleados.encontrarUsuario(d);
+
+                                if(empleado instanceof EmpleadoMedioTiempo){
+                                    gestionEmpleados.modificarEmpleadoMT((EmpleadoMedioTiempo) empleado);
+                                }
+                                else {
+                                    gestionEmpleados.modificarEmpleadoTC((EmpleadoTiempoCompleto)empleado);
+                                }
+                        }
+                        }
+                        catch (RuntimeException e){
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 8:
                         System.out.println("1. Buscar por DNI.");

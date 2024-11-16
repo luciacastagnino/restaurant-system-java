@@ -319,7 +319,6 @@ public class Menu {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void menuInicioSesionEmpleado(Empleado empleado) {

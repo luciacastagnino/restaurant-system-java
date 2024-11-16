@@ -43,73 +43,121 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
     }
 
+    @Override
+    public void mostrarDatosUsuario(Empleado empleado) {
 
-    public Set<Empleado> cargarArrayConArchivo(){
+    }
+
+
+    public Set<Empleado> cargarArrayConArchivo() {
         JSONTokener aux = GestionJSON.leer("empleados.json");
 
         try {
 
             JSONArray arreglo = new JSONArray(aux);
-            for(int i = 0; i < arreglo.length(); i++){
+            for (int i = 0; i < arreglo.length(); i++) {
                 JSONObject aux1 = arreglo.getJSONObject(i);
                 if (aux1.has("aniosAntiguedad")) {
                     EmpleadoTiempoCompleto empleadoTiempoCompleto = new EmpleadoTiempoCompleto();
                     empleadoTiempoCompleto = empleadoTiempoCompleto.jsonToEmpleadoTC(aux1);
                     listaEmpleados.add(empleadoTiempoCompleto);
-                }else if (aux1.has("precioPorHora") && aux1.has("horasTrabajadas")){
+                } else if (aux1.has("precioPorHora") && aux1.has("horasTrabajadas")) {
                     EmpleadoMedioTiempo empleadoMedioTiempo = new EmpleadoMedioTiempo();
                     empleadoMedioTiempo = empleadoMedioTiempo.jsonToEmpleadoMT(aux1);
                     listaEmpleados.add(empleadoMedioTiempo);
-                }else {
+                } else {
                     System.out.println("Ocurrio un error. Por favor, intentelo de nuevo.");
                 }
             }
-        } catch (JSONException e){
+        } catch (JSONException e) {
             System.out.println("Ocurrio un error al convertir JSONObject a Cliente.");
         }
 
         return listaEmpleados;
     }
 
-    public void agregarYguardar (Empleado nuevoEmpleado){
+    public void agregarYguardar(Empleado nuevoEmpleado) {
         cargarArrayConArchivo();
         listaEmpleados.add(nuevoEmpleado);
         cargarArchivoConArreglo(listaEmpleados);
     }
 
-    public void cargarArchivoConArreglo(Set<Empleado> listaEmpleados){
+    @Override
+    public void darDeBajaUsuario(Empleado empleado) {
+
+    }
+
+    @Override
+    public void mostrarColeccion() {
+
+    }
+
+    @Override
+    public Empleado encontrarUsuario(String dni) {
+        if (listaEmpleados.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        return listaEmpleados.stream()
+                .filter(empleado -> empleado.getDni().equals(dni))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public Empleado encontrarUsuario(int id) {
+        if (listaEmpleados.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        return listaEmpleados.stream()
+                .filter(empleado -> empleado.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public void listarUsuarios(String nombre) {
+        if (listaEmpleados.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        listaEmpleados.stream()
+                .filter(empleado -> empleado.getNombre().equals(nombre))
+                .forEach(System.out::println);
+    }
+
+    public void cargarArchivoConArreglo(Set<Empleado> listaEmpleados) {
         JSONArray arreglo = new JSONArray();
         JSONObject json = null;
         try {
-            for (Empleado empleado : listaEmpleados){
+            for (Empleado empleado : listaEmpleados) {
                 try {
-                    if (empleado instanceof EmpleadoTiempoCompleto){
+                    if (empleado instanceof EmpleadoTiempoCompleto) {
                         json = ((EmpleadoTiempoCompleto) empleado).toJson((EmpleadoTiempoCompleto) empleado);
                         arreglo.put(json);
                         GestionJSON.agregarElemento("empleados.json", arreglo);
-                    }else if (empleado instanceof EmpleadoMedioTiempo){
+                    } else if (empleado instanceof EmpleadoMedioTiempo) {
                         json = ((EmpleadoMedioTiempo) empleado).toJson((EmpleadoMedioTiempo) empleado);
                         arreglo.put(json);
                         GestionJSON.agregarElemento("empleados.json", arreglo);
-                    }else {
+                    } else {
                         System.out.println("Error: Tipo de empleado desconocido.");
                     }
-                }
-                catch (FormatoIncorrectoException e){
+                } catch (FormatoIncorrectoException e) {
                     System.out.println(e.getMessage());
                 }
             }
-        } catch (JSONException e){
+        } catch (JSONException e) {
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
     }
 
-    public void mostrarDatosUsuario (Cliente a){
+    public void mostrarDatosUsuario(Cliente a) {
 
         listaDeClientes = cargarArrayConArchivo();
 
-        for (Cliente cliente : listaDeClientes){
-            if (cliente.getId() == a.getId()){
+        for (Cliente cliente : listaDeClientes) {
+            if (cliente.getId() == a.getId()) {
                 System.out.println();
                 System.out.println("--------------------------------------------");
                 System.out.println("PERFIL DE CLIENTE: " + a.getNombre() + " " + a.getApellido());
@@ -137,18 +185,18 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
     @Override
     public Empleado modificarUsuario(Empleado empleado) {
 
-        if (empleado instanceof EmpleadoMedioTiempo){
+        if (empleado instanceof EmpleadoMedioTiempo) {
             modificarEmpleadoMT((EmpleadoMedioTiempo) empleado);
             return empleado;
-        }else if (empleado instanceof EmpleadoTiempoCompleto){
+        } else if (empleado instanceof EmpleadoTiempoCompleto) {
             modificarEmpleadoTC((EmpleadoTiempoCompleto) empleado);
             return empleado;
-        }else {
+        } else {
             throw new IllegalArgumentException("El tipo de empleado no es valido.");
         }
     }
 
-    public EmpleadoMedioTiempo modificarEmpleadoMT (EmpleadoMedioTiempo c){
+    public EmpleadoMedioTiempo modificarEmpleadoMT(EmpleadoMedioTiempo c) {
 
         System.out.println("\n Que desea modificar?");
         System.out.println("1. Username.");
@@ -164,20 +212,20 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         System.out.println("11 Salir.");
         int op = scanner.nextInt();
         scanner.nextLine();
-        switch (op){
+        switch (op) {
             case 1:
 
                 String username = "";
                 boolean usernameValido = false;
 
-                while (!usernameValido){
+                while (!usernameValido) {
                     System.out.println("Ingrese su nuevo username: ");
                     username = scanner.nextLine();
                     try {
                         Validaciones.validarNombreUsuario(username);
                         c.setUsername(username);
                         usernameValido = true;
-                    }catch (DatoInvalidoException e){
+                    } catch (DatoInvalidoException e) {
                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                     }
                 }
@@ -188,14 +236,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 String contrasenia = "";
                 boolean contraseniaValida = false;
 
-                while (!contraseniaValida){
+                while (!contraseniaValida) {
                     System.out.println("Ingrese su nueva contrasenia: ");
                     contrasenia = scanner.nextLine();
                     try {
                         Validaciones.validarContrasenia(contrasenia);
                         c.setContrasenia(contrasenia);
                         contraseniaValida = true;
-                    }catch (DatoInvalidoException e){
+                    } catch (DatoInvalidoException e) {
                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                     }
                 }
@@ -206,14 +254,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 String nombre = "";
                 boolean nombreValido = false;
 
-                while (!nombreValido){
+                while (!nombreValido) {
                     System.out.println("Ingrese su nuevo nombre: ");
                     nombre = scanner.nextLine();
                     try {
                         Validaciones.validarCadenas(nombre);
                         c.setNombre(nombre);
                         nombreValido = true;
-                    }catch (DatoInvalidoException e){
+                    } catch (DatoInvalidoException e) {
                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                     }
                 }
@@ -224,14 +272,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 String apellido = "";
                 boolean apellidoValido = false;
 
-                while (!apellidoValido){
+                while (!apellidoValido) {
                     System.out.println("Ingrese su nuevo apellido: ");
                     apellido = scanner.nextLine();
                     try {
                         Validaciones.validarCadenas(apellido);
                         c.setApellido(apellido);
                         apellidoValido = true;
-                    }catch (DatoInvalidoException e){
+                    } catch (DatoInvalidoException e) {
                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                     }
                 }
@@ -242,14 +290,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 String dni = "";
                 boolean dniValido = false;
 
-                while (!dniValido){
+                while (!dniValido) {
                     System.out.println("Ingrese su nuevo DNI: ");
                     dni = scanner.nextLine();
                     try {
                         Validaciones.validarDNI(dni);
                         c.setDni(dni);
                         dniValido = true;
-                    }catch (DatoInvalidoException e){
+                    } catch (DatoInvalidoException e) {
                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                     }
                 }
@@ -260,14 +308,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 String telefono = "";
                 boolean telefonoValido = false;
 
-                while (!telefonoValido){
+                while (!telefonoValido) {
                     System.out.println("Ingrese su nuevo telefono: ");
                     telefono = scanner.nextLine();
                     try {
                         Validaciones.validarTelefono(telefono);
                         c.setTelefono(telefono);
                         telefonoValido = true;
-                    }catch (DatoInvalidoException e){
+                    } catch (DatoInvalidoException e) {
                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                     }
                 }
@@ -278,14 +326,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 String direccion = "";
                 boolean direccionValido = false;
 
-                while (!direccionValido){
+                while (!direccionValido) {
                     System.out.println("Ingrese su nueva direccion: ");
                     direccion = scanner.nextLine();
                     try {
                         Validaciones.validarDireccion(direccion);
                         c.setDireccion(direccion);
                         direccionValido = true;
-                    }catch (DatoInvalidoException e){
+                    } catch (DatoInvalidoException e) {
                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                     }
                 }
@@ -296,14 +344,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 String email = "";
                 boolean emailValido = false;
 
-                while (!emailValido){
+                while (!emailValido) {
                     System.out.println("Ingrese su nuevo email: ");
                     email = scanner.nextLine();
                     try {
                         Validaciones.validarEmail(email);
                         c.setEmail(email);
                         emailValido = true;
-                    }catch (DatoInvalidoException e){
+                    } catch (DatoInvalidoException e) {
                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                     }
                 }
@@ -313,13 +361,13 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
                 boolean horasTrabajadasValidas = false;
 
-                while (!horasTrabajadasValidas){
+                while (!horasTrabajadasValidas) {
                     System.out.println("Ingrese sus horas trabajadas:");
                     int horasTrabajadas = scanner.nextInt();
                     scanner.nextLine();
-                    if (horasTrabajadas <= 0){
+                    if (horasTrabajadas <= 0) {
                         System.out.println("Las horas trabajadas no pueden ser menores o igual a 0.");
-                    }else {
+                    } else {
                         c.setHorasTrabajadas(horasTrabajadas);
                         horasTrabajadasValidas = true;
                     }
@@ -330,13 +378,13 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
                 boolean precioPorHoraValido = false;
 
-                while (!precioPorHoraValido){
+                while (!precioPorHoraValido) {
                     System.out.println("Ingrese sus horas trabajadas:");
                     double precioPorHora = scanner.nextDouble();
                     scanner.nextLine();
-                    if (precioPorHora <= 0){
+                    if (precioPorHora <= 0) {
                         System.out.println("El precio por hora no puede ser menores o igual a 0.");
-                    }else {
+                    } else {
                         c.setPrecioXhora(precioPorHora);
                         precioPorHoraValido = true;
                     }
@@ -354,7 +402,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         return c;
     }
 
-    ublic Cliente modificarUsuario (Cliente c) {
+    public Cliente modificarUsuario(Cliente c) {
 
         listaDeClientes = cargarArrayConArchivo();
         boolean salir = false;
@@ -362,246 +410,48 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         for (Cliente cliente : listaDeClientes) {
             if (c.getId() == cliente.getId()) {
                 listaDeClientes.remove(cliente);
-                c=cliente;
+                c = cliente;
                 while (!salir) {
 
-    public EmpleadoTiempoCompleto modificarEmpleadoTC (EmpleadoTiempoCompleto c){
+                    public EmpleadoTiempoCompleto modificarEmpleadoTC (EmpleadoTiempoCompleto c){
 
-        System.out.println("\n Que desea modificar?");
-        System.out.println("1. Username.");
-        System.out.println("2. Contraseña.");
-        System.out.println("3. Nombre.");
-        System.out.println("4. Apellido.");
-        System.out.println("5. DNI.");
-        System.out.println("6. Telefono.");
-        System.out.println("7. Direccion.");
-        System.out.println("8. Email.");
-        System.out.println("9. Años de antiguedad.");
-        System.out.println("10 Salir.");
-        int op = scanner.nextInt();
-        scanner.nextLine();
-        switch (op){
-            case 1:
+                        System.out.println("\n Que desea modificar?");
+                        System.out.println("1. Username.");
+                        System.out.println("2. Contraseña.");
+                        System.out.println("3. Nombre.");
+                        System.out.println("4. Apellido.");
+                        System.out.println("5. DNI.");
+                        System.out.println("6. Telefono.");
+                        System.out.println("7. Direccion.");
+                        System.out.println("8. Email.");
+                        System.out.println("9. Años de antiguedad.");
+                        System.out.println("10 Salir.");
+                        int op = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (op) {
+                            case 1:
 
-                String username = "";
-                boolean usernameValido = false;
+                                String username = "";
+                                boolean usernameValido = false;
 
-                while (!usernameValido){
-                    System.out.println("Ingrese su nuevo username: ");
-                    username = scanner.nextLine();
-                    try {
-                        Validaciones.validarNombreUsuario(username);
-                        c.setUsername(username);
-                        usernameValido = true;
-                    }catch (DatoInvalidoException e){
-                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                    }
-                }
-
-                break;
-            case 2:
-
-                String contrasenia = "";
-                boolean contraseniaValida = false;
-
-                while (!contraseniaValida){
-                    System.out.println("Ingrese su nueva contrasenia: ");
-                    contrasenia = scanner.nextLine();
-                    try {
-                        Validaciones.validarContrasenia(contrasenia);
-                        c.setContrasenia(contrasenia);
-                        contraseniaValida = true;
-                    }catch (DatoInvalidoException e){
-                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                    }
-                }
-
-                break;
-            case 3:
-
-                String nombre = "";
-                boolean nombreValido = false;
-
-                while (!nombreValido){
-                    System.out.println("Ingrese su nuevo nombre: ");
-                    nombre = scanner.nextLine();
-                    try {
-                        Validaciones.validarCadenas(nombre);
-                        c.setNombre(nombre);
-                        nombreValido = true;
-                    }catch (DatoInvalidoException e){
-                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                    }
-                }
-
-                break;
-            case 4:
-
-                String apellido = "";
-                boolean apellidoValido = false;
-
-                while (!apellidoValido){
-                    System.out.println("Ingrese su nuevo apellido: ");
-                    apellido = scanner.nextLine();
-                    try {
-                        Validaciones.validarCadenas(apellido);
-                        c.setApellido(apellido);
-                        apellidoValido = true;
-                    }catch (DatoInvalidoException e){
-                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                    }
-                }
-
-                break;
-            case 5:
-
-                String dni = "";
-                boolean dniValido = false;
-
-                while (!dniValido){
-                    System.out.println("Ingrese su nuevo DNI: ");
-                    dni = scanner.nextLine();
-                    try {
-                        Validaciones.validarDNI(dni);
-                        c.setDni(dni);
-                        dniValido = true;
-                    }catch (DatoInvalidoException e){
-                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                    }
-                }
-
-                break;
-            case 6:
-
-                String telefono = "";
-                boolean telefonoValido = false;
-
-                while (!telefonoValido){
-                    System.out.println("Ingrese su nuevo telefono: ");
-                    telefono = scanner.nextLine();
-                    try {
-                        Validaciones.validarTelefono(telefono);
-                        c.setTelefono(telefono);
-                        telefonoValido = true;
-                    }catch (DatoInvalidoException e){
-                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                    }
-                }
-
-                break;
-            case 7:
-
-                String direccion = "";
-                boolean direccionValido = false;
-
-                while (!direccionValido){
-                    System.out.println("Ingrese su nueva direccion: ");
-                    direccion = scanner.nextLine();
-                    try {
-                        Validaciones.validarDireccion(direccion);
-                        c.setDireccion(direccion);
-                        direccionValido = true;
-                    }catch (DatoInvalidoException e){
-                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                    }
-                }
-
-                break;
-            case 8:
-
-                String email = "";
-                boolean emailValido = false;
-
-                while (!emailValido){
-                    System.out.println("Ingrese su nuevo email: ");
-                    email = scanner.nextLine();
-                    try {
-                        Validaciones.validarEmail(email);
-                        c.setEmail(email);
-                        emailValido = true;
-                    }catch (DatoInvalidoException e){
-                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                    }
-                }
-
-                break;
-            case 9:
-
-                boolean añosAntiguedadValidos = false;
-
-                while (!añosAntiguedadValidos){
-                    System.out.println("Ingrese sus años de antiguedad:");
-                    int añosAntiguedad = scanner.nextInt();
-                    scanner.nextLine();
-                    if (añosAntiguedad <= 0){
-                        System.out.println("Los años de antiguedad no pueden ser menores o igual a 0.");
-                    }else {
-                        c.setAniosAntiguedad(añosAntiguedad);
-                        añosAntiguedadValidos = true;
-                    }
-                }
-
-                break;
-            case 10:
-                System.out.println("Saliendo del menu de modificacion de usuario...");
-                break;
-            default:
-                System.out.println("Opcion invalida.");
-                break;
-        }
-
-        return c;
-    }
-
-    public Cliente modificarUsuario (Cliente c) {
-
-        listaDeClientes = cargarArrayConArchivo();
-        boolean salir = false;
-
-        for (Cliente cliente : listaDeClientes) {
-            if (c.getId() == cliente.getId()) {
-                listaDeClientes.remove(cliente);
-                c=cliente;
-                while (!salir) {
-                    System.out.println("\n Que desea modificar?");
-                    System.out.println("1. Username.");
-                    System.out.println("2. Contraseña.");
-                    System.out.println("3. Nombre.");
-                    System.out.println("4. Apellido.");
-                    System.out.println("5. DNI.");
-                    System.out.println("6. Telefono.");
-                    System.out.println("7. Direccion.");
-                    System.out.println("8. Email.");
-                    System.out.println("9. Salir.");
-                    int op = scanner.nextInt();
-                    scanner.nextLine();
-                    switch (op) {
-                        case 1:
-
-                            String username = "";
-                            boolean usernameValido = false;
-
-                            while (!usernameValido) {
-                                System.out.println("Ingrese su nuevo username: ");
-                                username = scanner.nextLine();
-                                try {
-                                    Validaciones.validarNombreUsuario(username);
-                                    c.setUsername(username);
-                                    usernameValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                while (!usernameValido) {
+                                    System.out.println("Ingrese su nuevo username: ");
+                                    username = scanner.nextLine();
+                                    try {
+                                        Validaciones.validarNombreUsuario(username);
+                                        c.setUsername(username);
+                                        usernameValido = true;
+                                    } catch (DatoInvalidoException e) {
+                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    }
                                 }
-                            }
 
-                            break;
-                        case 2:
+                                break;
+                            case 2:
 
-                            String contrasenia = "";
-                            boolean contraseniaValida = false;
+                                String contrasenia = "";
+                                boolean contraseniaValida = false;
 
-                            System.out.println("Ingrese su contraseña actual:");
-                            String contraseñaActual = scanner.nextLine();
-                            if (c.getContrasenia().equals(contraseñaActual)){
                                 while (!contraseniaValida) {
                                     System.out.println("Ingrese su nueva contrasenia: ");
                                     contrasenia = scanner.nextLine();
@@ -613,178 +463,379 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                                         System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                                     }
                                 }
-                            }
 
-                            break;
-                        case 3:
+                                break;
+                            case 3:
 
-                            String nombre = "";
-                            boolean nombreValido = false;
+                                String nombre = "";
+                                boolean nombreValido = false;
 
-                            while (!nombreValido) {
-                                System.out.println("Ingrese su nuevo nombre: ");
-                                nombre = scanner.nextLine();
-                                try {
-                                    Validaciones.validarCadenas(nombre);
-                                    c.setNombre(nombre);
-                                    nombreValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                while (!nombreValido) {
+                                    System.out.println("Ingrese su nuevo nombre: ");
+                                    nombre = scanner.nextLine();
+                                    try {
+                                        Validaciones.validarCadenas(nombre);
+                                        c.setNombre(nombre);
+                                        nombreValido = true;
+                                    } catch (DatoInvalidoException e) {
+                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    }
                                 }
-                            }
 
-                            break;
-                        case 4:
+                                break;
+                            case 4:
 
-                            String apellido = "";
-                            boolean apellidoValido = false;
+                                String apellido = "";
+                                boolean apellidoValido = false;
 
-                            while (!apellidoValido) {
-                                System.out.println("Ingrese su nuevo apellido: ");
-                                apellido = scanner.nextLine();
-                                try {
-                                    Validaciones.validarCadenas(apellido);
-                                    c.setApellido(apellido);
-                                    apellidoValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                while (!apellidoValido) {
+                                    System.out.println("Ingrese su nuevo apellido: ");
+                                    apellido = scanner.nextLine();
+                                    try {
+                                        Validaciones.validarCadenas(apellido);
+                                        c.setApellido(apellido);
+                                        apellidoValido = true;
+                                    } catch (DatoInvalidoException e) {
+                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    }
                                 }
-                            }
 
-                            break;
-                        case 5:
+                                break;
+                            case 5:
 
-                            String dni = "";
-                            boolean dniValido = false;
+                                String dni = "";
+                                boolean dniValido = false;
 
-                            while (!dniValido) {
-                                System.out.println("Ingrese su nuevo DNI: ");
-                                dni = scanner.nextLine();
-                                try {
-                                    Validaciones.validarDNI(dni);
-                                    c.setDni(dni);
-                                    dniValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                while (!dniValido) {
+                                    System.out.println("Ingrese su nuevo DNI: ");
+                                    dni = scanner.nextLine();
+                                    try {
+                                        Validaciones.validarDNI(dni);
+                                        c.setDni(dni);
+                                        dniValido = true;
+                                    } catch (DatoInvalidoException e) {
+                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    }
                                 }
-                            }
 
-                            break;
-                        case 6:
+                                break;
+                            case 6:
 
-                            String telefono = "";
-                            boolean telefonoValido = false;
+                                String telefono = "";
+                                boolean telefonoValido = false;
 
-                            while (!telefonoValido) {
-                                System.out.println("Ingrese su nuevo telefono: ");
-                                telefono = scanner.nextLine();
-                                try {
-                                    Validaciones.validarTelefono(telefono);
-                                    c.setTelefono(telefono);
-                                    telefonoValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                while (!telefonoValido) {
+                                    System.out.println("Ingrese su nuevo telefono: ");
+                                    telefono = scanner.nextLine();
+                                    try {
+                                        Validaciones.validarTelefono(telefono);
+                                        c.setTelefono(telefono);
+                                        telefonoValido = true;
+                                    } catch (DatoInvalidoException e) {
+                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    }
                                 }
-                            }
 
-                            break;
-                        case 7:
+                                break;
+                            case 7:
 
-                            String direccion = "";
-                            boolean direccionValido = false;
+                                String direccion = "";
+                                boolean direccionValido = false;
 
-                            while (!direccionValido) {
-                                System.out.println("Ingrese su nueva direccion: ");
-                                direccion = scanner.nextLine();
-                                try {
-                                    Validaciones.validarDireccion(direccion);
-                                    c.setDireccion(direccion);
-                                    direccionValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                while (!direccionValido) {
+                                    System.out.println("Ingrese su nueva direccion: ");
+                                    direccion = scanner.nextLine();
+                                    try {
+                                        Validaciones.validarDireccion(direccion);
+                                        c.setDireccion(direccion);
+                                        direccionValido = true;
+                                    } catch (DatoInvalidoException e) {
+                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    }
                                 }
-                            }
 
-                            break;
-                        case 8:
+                                break;
+                            case 8:
 
-                            String email = "";
-                            boolean emailValido = false;
+                                String email = "";
+                                boolean emailValido = false;
 
-                            while (!emailValido) {
-                                System.out.println("Ingrese su nuevo email: ");
-                                email = scanner.nextLine();
-                                try {
-                                    Validaciones.validarEmail(email);
-                                    c.setEmail(email);
-                                    emailValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                while (!emailValido) {
+                                    System.out.println("Ingrese su nuevo email: ");
+                                    email = scanner.nextLine();
+                                    try {
+                                        Validaciones.validarEmail(email);
+                                        c.setEmail(email);
+                                        emailValido = true;
+                                    } catch (DatoInvalidoException e) {
+                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    }
                                 }
-                            }
 
-                            break;
-                        case 9:
-                            System.out.println("Saliendo del menu de modificacion de usuario...");
-                            salir = true;
-                            break;
-                        default:
-                            System.out.println("Opcion invalida.");
-                            break;
-                    }
-                }
-                listaDeClientes.add(c);
-                cargarArchivoConArreglo(listaDeClientes);
-                System.out.println("¡Cambios guardados con exito!");
-                return c;
-            }
-        }
-        return null;
-    }
+                                break;
+                            case 9:
 
-    @Override
-    public void darDeBajaUsuario(Empleado a) {
-        listaEmpleados = cargarArrayConArchivo();
+                                boolean añosAntiguedadValidos = false;
 
-        for (Empleado empleado : listaEmpleados){
-            if (a.equals(empleado)){
-                System.out.println("¿Esta seguro de eliminar el usuario? SI o NO.");
-                String opcion = scanner.nextLine();
-                if (opcion.equalsIgnoreCase("si")){
-                    int intentosContra = 0;
-                    while (intentosContra < 3){
-                        System.out.println("Ingrese su contraseña para eliminar su cuenta:");
-                        String contraseña = scanner.nextLine();
-                        if (contraseña.equals(a.getContrasenia())){
-                            a.setEstado(false);
-                            System.out.println("Cuenta eliminada con exito.");
-                            cargarArchivoConArreglo(listaEmpleados);
-                            return;
-                        }else {
-                            intentosContra++;
-                            System.out.println("Contraseña incorrecta, intentelo nuevamente.");
+                                while (!añosAntiguedadValidos) {
+                                    System.out.println("Ingrese sus años de antiguedad:");
+                                    int añosAntiguedad = scanner.nextInt();
+                                    scanner.nextLine();
+                                    if (añosAntiguedad <= 0) {
+                                        System.out.println("Los años de antiguedad no pueden ser menores o igual a 0.");
+                                    } else {
+                                        c.setAniosAntiguedad(añosAntiguedad);
+                                        añosAntiguedadValidos = true;
+                                    }
+                                }
+
+                                break;
+                            case 10:
+                                System.out.println("Saliendo del menu de modificacion de usuario...");
+                                break;
+                            default:
+                                System.out.println("Opcion invalida.");
+                                break;
                         }
+
+                        return c;
                     }
-                    System.out.println("Se supero el numero maximo de intentos. El usuario no fue dado de baja.");
-                }else if (opcion.equalsIgnoreCase("no")){
-                    System.out.println("Operacion cancelada.");
-                    return;
-                }else {
-                    System.out.println("Opcion invalida.");
+
+                    public Cliente modificarUsuario (Cliente c){
+
+                        listaDeClientes = cargarArrayConArchivo();
+                        boolean salir = false;
+
+                        for (Cliente cliente : listaDeClientes) {
+                            if (c.getId() == cliente.getId()) {
+                                listaDeClientes.remove(cliente);
+                                c = cliente;
+                                while (!salir) {
+                                    System.out.println("\n Que desea modificar?");
+                                    System.out.println("1. Username.");
+                                    System.out.println("2. Contraseña.");
+                                    System.out.println("3. Nombre.");
+                                    System.out.println("4. Apellido.");
+                                    System.out.println("5. DNI.");
+                                    System.out.println("6. Telefono.");
+                                    System.out.println("7. Direccion.");
+                                    System.out.println("8. Email.");
+                                    System.out.println("9. Salir.");
+                                    int op = scanner.nextInt();
+                                    scanner.nextLine();
+                                    switch (op) {
+                                        case 1:
+
+                                            String username = "";
+                                            boolean usernameValido = false;
+
+                                            while (!usernameValido) {
+                                                System.out.println("Ingrese su nuevo username: ");
+                                                username = scanner.nextLine();
+                                                try {
+                                                    Validaciones.validarNombreUsuario(username);
+                                                    c.setUsername(username);
+                                                    usernameValido = true;
+                                                } catch (DatoInvalidoException e) {
+                                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                                }
+                                            }
+
+                                            break;
+                                        case 2:
+
+                                            String contrasenia = "";
+                                            boolean contraseniaValida = false;
+
+                                            System.out.println("Ingrese su contraseña actual:");
+                                            String contraseñaActual = scanner.nextLine();
+                                            if (c.getContrasenia().equals(contraseñaActual)) {
+                                                while (!contraseniaValida) {
+                                                    System.out.println("Ingrese su nueva contrasenia: ");
+                                                    contrasenia = scanner.nextLine();
+                                                    try {
+                                                        Validaciones.validarContrasenia(contrasenia);
+                                                        c.setContrasenia(contrasenia);
+                                                        contraseniaValida = true;
+                                                    } catch (DatoInvalidoException e) {
+                                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                                    }
+                                                }
+                                            }
+
+                                            break;
+                                        case 3:
+
+                                            String nombre = "";
+                                            boolean nombreValido = false;
+
+                                            while (!nombreValido) {
+                                                System.out.println("Ingrese su nuevo nombre: ");
+                                                nombre = scanner.nextLine();
+                                                try {
+                                                    Validaciones.validarCadenas(nombre);
+                                                    c.setNombre(nombre);
+                                                    nombreValido = true;
+                                                } catch (DatoInvalidoException e) {
+                                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                                }
+                                            }
+
+                                            break;
+                                        case 4:
+
+                                            String apellido = "";
+                                            boolean apellidoValido = false;
+
+                                            while (!apellidoValido) {
+                                                System.out.println("Ingrese su nuevo apellido: ");
+                                                apellido = scanner.nextLine();
+                                                try {
+                                                    Validaciones.validarCadenas(apellido);
+                                                    c.setApellido(apellido);
+                                                    apellidoValido = true;
+                                                } catch (DatoInvalidoException e) {
+                                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                                }
+                                            }
+
+                                            break;
+                                        case 5:
+
+                                            String dni = "";
+                                            boolean dniValido = false;
+
+                                            while (!dniValido) {
+                                                System.out.println("Ingrese su nuevo DNI: ");
+                                                dni = scanner.nextLine();
+                                                try {
+                                                    Validaciones.validarDNI(dni);
+                                                    c.setDni(dni);
+                                                    dniValido = true;
+                                                } catch (DatoInvalidoException e) {
+                                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                                }
+                                            }
+
+                                            break;
+                                        case 6:
+
+                                            String telefono = "";
+                                            boolean telefonoValido = false;
+
+                                            while (!telefonoValido) {
+                                                System.out.println("Ingrese su nuevo telefono: ");
+                                                telefono = scanner.nextLine();
+                                                try {
+                                                    Validaciones.validarTelefono(telefono);
+                                                    c.setTelefono(telefono);
+                                                    telefonoValido = true;
+                                                } catch (DatoInvalidoException e) {
+                                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                                }
+                                            }
+
+                                            break;
+                                        case 7:
+
+                                            String direccion = "";
+                                            boolean direccionValido = false;
+
+                                            while (!direccionValido) {
+                                                System.out.println("Ingrese su nueva direccion: ");
+                                                direccion = scanner.nextLine();
+                                                try {
+                                                    Validaciones.validarDireccion(direccion);
+                                                    c.setDireccion(direccion);
+                                                    direccionValido = true;
+                                                } catch (DatoInvalidoException e) {
+                                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                                }
+                                            }
+
+                                            break;
+                                        case 8:
+
+                                            String email = "";
+                                            boolean emailValido = false;
+
+                                            while (!emailValido) {
+                                                System.out.println("Ingrese su nuevo email: ");
+                                                email = scanner.nextLine();
+                                                try {
+                                                    Validaciones.validarEmail(email);
+                                                    c.setEmail(email);
+                                                    emailValido = true;
+                                                } catch (DatoInvalidoException e) {
+                                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                                }
+                                            }
+
+                                            break;
+                                        case 9:
+                                            System.out.println("Saliendo del menu de modificacion de usuario...");
+                                            salir = true;
+                                            break;
+                                        default:
+                                            System.out.println("Opcion invalida.");
+                                            break;
+                                    }
+                                }
+                                listaDeClientes.add(c);
+                                cargarArchivoConArreglo(listaDeClientes);
+                                System.out.println("¡Cambios guardados con exito!");
+                                return c;
+                            }
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    public void darDeBajaUsuario (Empleado a){
+                        listaEmpleados = cargarArrayConArchivo();
+
+                        for (Empleado empleado : listaEmpleados) {
+                            if (a.equals(empleado)) {
+                                System.out.println("¿Esta seguro de eliminar el usuario? SI o NO.");
+                                String opcion = scanner.nextLine();
+                                if (opcion.equalsIgnoreCase("si")) {
+                                    int intentosContra = 0;
+                                    while (intentosContra < 3) {
+                                        System.out.println("Ingrese su contraseña para eliminar su cuenta:");
+                                        String contraseña = scanner.nextLine();
+                                        if (contraseña.equals(a.getContrasenia())) {
+                                            a.setEstado(false);
+                                            System.out.println("Cuenta eliminada con exito.");
+                                            cargarArchivoConArreglo(listaEmpleados);
+                                            return;
+                                        } else {
+                                            intentosContra++;
+                                            System.out.println("Contraseña incorrecta, intentelo nuevamente.");
+                                        }
+                                    }
+                                    System.out.println("Se supero el numero maximo de intentos. El usuario no fue dado de baja.");
+                                } else if (opcion.equalsIgnoreCase("no")) {
+                                    System.out.println("Operacion cancelada.");
+                                    return;
+                                } else {
+                                    System.out.println("Opcion invalida.");
+                                }
+                            }
+                        }
+
+                        System.out.println("No se encontro al usuario.");
+                    }
+
+
+                    public void mostrarColeccion () {
+                        if (listaEmpleados.isEmpty()) {
+                            cargarArrayConArchivo();
+                        }
+                        listaEmpleados.forEach(System.out::println);
+                    }
+
                 }
             }
         }
-
-        System.out.println("No se encontro al usuario.");
     }
-
-
-
-    public void mostrarColeccion () {
-        if (listaEmpleados.isEmpty()) {
-            cargarArrayConArchivo();
-        }
-        listaEmpleados.forEach(System.out::println);
-    }
-
 }

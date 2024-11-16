@@ -7,4 +7,8 @@ public interface MetodosBasicosGestion <T> {
     public void agregarYguardar (T t);
     public void darDeBajaUsuario(T t);
     public void mostrarColeccion();
+    public T encontrarUsuario(String dni);
+    public T encontrarUsuario(int id);
+    public void listarUsuarios(String nombre);
+
 }

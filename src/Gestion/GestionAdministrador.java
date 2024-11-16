@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GestionAdministrador implements MetodosBasicosGestion<Administrador> {
 
@@ -341,6 +342,41 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             cargarArrayConArchivo();
         }
         listaAdmins.forEach(System.out::println);
+    }
+
+    @Override
+    public Administrador encontrarUsuario(String dni) {
+        if (listaAdmins.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        return listaAdmins.stream()
+                .filter(admin -> admin.getDni().equals(dni))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public Administrador encontrarUsuario(int id) {
+        if (listaAdmins.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        return listaAdmins.stream()
+                .filter(admin -> admin.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public void listarUsuarios(String nombre) {
+        if (listaAdmins.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+         listaAdmins.stream()
+                 .filter(admin -> admin.getNombre().equals(nombre))
+                 .forEach(System.out::println);
     }
 
 }

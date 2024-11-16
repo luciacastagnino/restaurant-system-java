@@ -341,6 +341,22 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return null;
     }
 
+    public Reserva encontrarUsuario(String dni, LocalDate dia, LocalTime hs) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getCliente().getDni().equals(dni) && reserva.getDia().equals(dia)
+                    && reserva.getHora().equals(hs)){
+                return reserva;
+            }
+        }
+
+        System.out.println("No se encontro la reserva.");
+        return null;
+    }
+
     @Override
     public void listarUsuarios(String dni) {
         if (reservasPorCliente.isEmpty()) {

@@ -505,7 +505,7 @@ public class Menu {
 
                                 System.out.println("Ingrese el dia:");
                                 String aux1 = scanner.nextLine();
-                                LocalDate dia = LocalDate.parse(aux);
+                                LocalDate dia = LocalDate.parse(aux1);
 
                                 gestionReserva.listarUsuarios(dia, hs);
                             }
@@ -535,10 +535,45 @@ public class Menu {
                         gestionReserva.darDeBajaUsuario(aux);
                         break;
                     case 4:
-                        gestionDeCliente.listarUsuarios(true);
+                        System.out.println("Ingrese el ID de la reserva a dar de baja");
+                        int id1 = scanner.nextInt();
+
+                        Reserva aux1 = gestionReserva.encontrarUsuario(id1);
+                        gestionReserva.modificarUsuario(aux1);
                         break;
                     case 5:
-                        gestionDeCliente.listarUsuarios(false);
+                        System.out.println("1. Buscar Reserva por ID.");
+                        System.out.println("2. Buscar Reserva por fecha y cliente.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                System.out.println("Ingresar ID de la Reserva:");
+                                int id2 = scanner.nextInt();
+                                Reserva aux2 = gestionReserva.encontrarUsuario(id2);
+
+                                System.out.println(aux2);
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar DNI del Cliente:");
+                                String dni1 = scanner.nextLine();
+
+                                System.out.println("Ingrese la hora:");
+                                String auxiliar = scanner.nextLine();
+                                LocalTime hs = LocalTime.parse(auxiliar);
+
+                                System.out.println("Ingrese el dia:");
+                                String auxiliar1 = scanner.nextLine();
+                                LocalDate dia = LocalDate.parse(auxiliar1);
+
+                                Reserva reserva = gestionReserva.encontrarUsuario(dni1, dia, hs);
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 6:
                         System.out.println("Cerrando sesion...");

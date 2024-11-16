@@ -238,11 +238,58 @@ public class Menu {
                         gestionEmpleados.darDeBajaUsuario(aux);
                         break;
                     case 4:
-                        
+                        gestionEmpleados.listarUsuarios(true);
                         break;
                     case 5:
+                        gestionEmpleados.listarUsuarios(false);
                         break;
                     case 6:
+                        System.out.println("Que desea hacer?");
+                        System.out.println("1. Calcular sueldo de empleado medio tiempo.");
+                        System.out.println("2. Calcular sueldo de empleado tiempo completo.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                System.out.println("Ingresar DNI del empleado:");
+                                String dni1 = scanner.nextLine();
+                                EmpleadoMedioTiempo aux1 = (EmpleadoMedioTiempo) gestionEmpleados.encontrarUsuario(dni1);
+
+                                System.out.println("Ingrese las horas extra del empleado (0 si no hay horas extra):");
+                                int hs = scanner.nextInt();
+
+                                double total = aux1.calcularSueldo(hs);
+
+                                System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar DNI del empleado:");
+                                String dni1 = scanner.nextLine();
+                                EmpleadoTiempoCompleto aux1 = (EmpleadoTiempoCompleto) gestionEmpleados.encontrarUsuario(dni1);
+
+                                System.out.println("Ingrese las horas extra del empleado (0 si no hay horas extra):");
+                                int hs = scanner.nextInt();
+
+                                System.out.println("Ingrese el precio por hora (0 si no hay horas extra):");
+                                double pxh = scanner.nextInt();
+
+                                double total = aux1.calcularSueldo(hs, pxh);
+                                System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 7:
+
+                        break;
+                    case 8:
+
+                        break;
+                    case 9:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:

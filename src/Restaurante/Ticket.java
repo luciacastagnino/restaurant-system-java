@@ -25,6 +25,7 @@ public class Ticket {
     private double precio;
     private TipoPago tipoPago;
     private double propina;
+    private GestionReserva gestionReserva;
 
     public Ticket(Reserva reserva, Empleado empleado, LocalDateTime horaEmision, double precio, TipoPago tipoPago, double propina) {
         this.id = contador++;
@@ -35,6 +36,7 @@ public class Ticket {
         this.precio = precio;
         this.tipoPago = tipoPago;
         this.propina = propina;
+        this.gestionReserva = new GestionReserva();
     }
 
     public Reserva getReserva() {
@@ -77,7 +79,7 @@ public class Ticket {
         this.propina = propina;
     }
 
-    public Ticket ingresarTicket(){
+    public Ticket ingresarTicket() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Complete con los datos:\n");
@@ -88,7 +90,7 @@ public class Ticket {
             System.out.println("Por favor, ingresa ID de la reserva:");
             int id = scanner.nextInt();
 
-            res = GestionReserva.encontrarUsuario(id);
+            res = gestionReserva.encontrarUsuario(id);
             resValida = true;
         }
 
@@ -141,6 +143,7 @@ public class Ticket {
                 default:
                     System.out.println("Opción incorrecta, ingrese una opción válida.");
             }
+        }
     }
 
     public void mostrarTicket (Ticket t){

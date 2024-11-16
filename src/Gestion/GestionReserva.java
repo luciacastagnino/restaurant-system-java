@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -318,7 +319,10 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
-        reservasPorCliente.forEach(System.out::println);
+
+        for (Reserva r : reservasPorCliente.values()){
+            mostrarDatosUsuario(r);
+        }
     }
 
     @Override
@@ -431,7 +435,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
      * @param cliente el cliente cuya cantidad de reservas se desea obtener.
      * @return la cantidad de reservas del cliente.
      */
-    /*
+
     public int obtenerCantidadDeReservas(Cliente cliente) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
@@ -448,5 +452,4 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return i;
     }
 
-    */
 }

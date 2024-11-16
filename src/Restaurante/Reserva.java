@@ -282,17 +282,18 @@ public class Reserva {
 
     //ToString
 
+
     @Override
     public String toString() {
-        return "Restaurante.Reserva{" +
-                "Nro de reserva=" + id +
-                ", Fecha de realizacion=" + momento +
+        return "Reserva{" +
+                "id=" + id +
+                ", momento=" + momento +
                 ", dia=" + dia +
                 ", hora=" + hora +
                 ", cliente=" + cliente +
                 ", mesa=" + mesa +
                 ", cantPersonas=" + cantPersonas +
+                ", estado=" + estado +
                 '}';
     }
-
 }

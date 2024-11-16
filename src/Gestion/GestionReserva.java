@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -149,15 +150,12 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 c=reserva;
                 while (!salir) {
                     System.out.println("\n Que desea modificar?");
-                    System.out.println("1. Username.");
-                    System.out.println("2. Contraseña.");
-                    System.out.println("3. Nombre.");
-                    System.out.println("4. Apellido.");
-                    System.out.println("5. DNI.");
-                    System.out.println("6. Telefono.");
-                    System.out.println("7. Direccion.");
-                    System.out.println("8. Email.");
-                    System.out.println("9. Salir.");
+                    System.out.println("1. Dia de reserva.");
+                    System.out.println("2. Hora de reserva.");
+                    System.out.println("3. Cliente.");
+                    System.out.println("4. Mesa.");
+                    System.out.println("5. Cantidad de personas.");
+                    System.out.println("6. Salir.");
                     int op = scanner.nextInt();
                     scanner.nextLine();
                     switch (op) {

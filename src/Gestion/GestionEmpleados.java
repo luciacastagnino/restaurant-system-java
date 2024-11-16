@@ -654,6 +654,17 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
     }
 
     @Override
+    public void listarUsuarios(boolean aux) {
+        if (listaEmpleados.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        listaEmpleados.stream()
+                .filter(empleado -> empleado.getEstado() == aux)
+                .forEach(System.out::println);
+    }
+
+    @Override
     public void darDeBajaUsuario (Empleado a){
         listaEmpleados = cargarArrayConArchivo();
         for (Empleado empleado : listaEmpleados) {

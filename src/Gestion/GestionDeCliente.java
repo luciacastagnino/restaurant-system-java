@@ -370,5 +370,16 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
                 .filter(cliente -> cliente.getNombre().equals(nombre))
                 .forEach(System.out::println);
     }
+
+    @Override
+    public void listarUsuarios(boolean aux) {
+        if (listaDeClientes.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        listaDeClientes.stream()
+                .filter(cliente -> cliente.getEstado() == aux)
+                .forEach(System.out::println);
+    }
 }
 

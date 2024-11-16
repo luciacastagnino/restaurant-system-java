@@ -238,6 +238,7 @@ public class Menu {
                         gestionEmpleados.darDeBajaUsuario(aux);
                         break;
                     case 4:
+                        
                         break;
                     case 5:
                         break;

@@ -10,5 +10,6 @@ public interface MetodosBasicosGestion <T> {
     public T encontrarUsuario(String dni);
     public T encontrarUsuario(int id);
     public void listarUsuarios(String nombre);
+    public void listarUsuarios(boolean aux);
 
 }

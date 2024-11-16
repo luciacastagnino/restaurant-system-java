@@ -31,7 +31,7 @@ public class Menu {
         this.gestionReserva = new GestionReserva();
     }
 
-    public void MenuPrincipal(){
+    public void MenuPrincipal() {
 
         System.out.println();
         System.out.println("Bienvenido a GastroLab");
@@ -42,22 +42,22 @@ public class Menu {
         String opcion = scanner.nextLine();
         boolean valido = false;
 
-        while (!valido){
-            switch (opcion.toLowerCase()){
+        while (!valido) {
+            switch (opcion.toLowerCase()) {
                 case "admin":
-                    valido=true;
+                    valido = true;
                     menuAdmin();
                     break;
                 case "1":
-                    valido=true;
+                    valido = true;
                     menuEmpleado();
                     break;
                 case "2":
-                    valido=true;
+                    valido = true;
                     menuCliente();
                     break;
                 case "3":
-                    valido=true;
+                    valido = true;
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
@@ -119,7 +119,7 @@ public class Menu {
         } while (op != 3);
     }
 
-    public void menuInicioSesionAdmin (Administrador admin){
+    public void menuInicioSesionAdmin(Administrador admin) {
         int op = 0;
         do {
             System.out.println();
@@ -159,10 +159,10 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        }while (op!=6);
+        } while (op != 6);
     }
 
-    public void cuentaAdmin (Administrador admin){
+    public void cuentaAdmin(Administrador admin) {
         int op = 0;
         do {
             System.out.println();
@@ -200,11 +200,11 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        }while (op!=6);
+        } while (op != 6);
 
     }
 
-    public void gestorDeEmpleadosAdmin (){
+    public void gestorDeEmpleadosAdmin() {
         int op = 0;
         do {
             System.out.println();
@@ -252,11 +252,11 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        }while (op!=6);
+        } while (op != 6);
 
     }
 
-    public void gestorDeClientesAdmin (){
+    public void gestorDeClientesAdmin() {
         ///SE PUEDE USAR PARA EMPLEADOS
         int op = 0;
         do {
@@ -305,11 +305,11 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        }while (op!=9);
+        } while (op != 9);
 
     }
 
-    public void menuEmpleado(){
+    public void menuEmpleado() {
         System.out.println("-----------------------------------------");
         System.out.println("   M E N U  D E  E M P L E A D O   ");
         System.out.println("-----------------------------------------");
@@ -319,10 +319,9 @@ public class Menu {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
     }
 
-    public void menuInicioSesionEmpleado (Empleado empleado){
+    public void menuInicioSesionEmpleado(Empleado empleado) {
         int op = 0;
         do {
             System.out.println();
@@ -362,10 +361,10 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        }while (op!=6);
+        } while (op != 6);
     }
 
-    public void menuCliente(){
+    public void menuCliente() {
         System.out.println("-----------------------------------------");
         System.out.println("     M E N U  D E  C L I E N T E S     ");
         System.out.println("-----------------------------------------");
@@ -378,7 +377,7 @@ public class Menu {
 
     }
 
-    public void menuInicioSesionCliente (Cliente cliente){
+    public void menuInicioSesionCliente(Cliente cliente) {
         int op = 0;
         do {
             System.out.println();
@@ -417,6 +416,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        }while (op!=6);
+        } while (op != 6);
 
+    }
 }

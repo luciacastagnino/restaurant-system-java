@@ -256,6 +256,17 @@ public class Plato {
         return platoLeido;
     }
 
+    public void mostrarPlato (){
+
+        System.out.println("ID: " + id);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Precio: $" + precio);
+        System.out.println("Tipo de plato: " + tipoPlato);
+        System.out.println("Disponibilidad: " + isDisponibilidad());
+
+    }
+
     ///ToString
 
     @Override

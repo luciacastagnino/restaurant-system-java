@@ -113,12 +113,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
         for (Plato p : platos){
             if (p.equals(plato)){
-                System.out.println("ID: " + p.getId());
-                System.out.println("Nombre: " + p.getNombre());
-                System.out.println("Descripcion: " + p.getDescripcion());
-                System.out.println("Precio: $" + p.getPrecio());
-                System.out.println("Tipo de plato: " + p.getTipoPlato());
-                System.out.println("Disponibilidad: " + p.isDisponibilidad());
+                p.mostrarPlato();
             }
         }
 
@@ -161,7 +156,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
         for (Plato p : platos){
             if (p.getNombre().contains(nombre)){
-                //mostrarPlatos
+                p.mostrarPlato();
             }
         }
 

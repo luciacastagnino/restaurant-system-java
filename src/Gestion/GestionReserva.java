@@ -68,7 +68,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return true;
     }
 
-    public Map<Integer, Cliente> cargarArrayConArchivo(){
+    public Map<Integer, Reserva> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("reservas.json");
 
         try {
@@ -76,32 +76,31 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             JSONArray arreglo = new JSONArray(aux);
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
-                Cliente cliente = new Cliente();
-                cliente = cliente.jsonToCliente(aux1);
-                listaDeClientes.add(cliente);
+                Reserva reserva = new Reserva();
+                reserva = reserva.jsonToReserva(aux1);
+                reservasPorCliente.put(reserva.getId(), reserva);
             }
         } catch (JSONException e){
-            System.out.println("Ocurrio un error al convertir JSONObject a Cliente.");
+            System.out.println("Ocurrio un error al convertir JSONObject a Reserva.");
         }
 
-        return listaDeClientes;
+        return reservasPorCliente;
     }
 
-    public void agregarYguardar (Cliente nuevoCliente){
+    public void agregarYguardar (Reserva reserva){
         cargarArrayConArchivo();
-        listaDeClientes.add(nuevoCliente);
-        cargarArchivoConArreglo(listaDeClientes);
+        reservasPorCliente.put(reserva.getId(), reserva);
+        cargarArchivoConArreglo(reservasPorCliente);
     }
 
-    public void cargarArchivoConArreglo(List<Cliente> listaDeClientes){
+    public void cargarArchivoConArreglo(Map<Integer, Reserva> listadeReservas){
         JSONArray arreglo = new JSONArray();
         try {
-
-            for (Cliente cliente : listaDeClientes){
+            for (Reserva reserva : listadeReservas.values()){
                 try {
-                    JSONObject json = cliente.toJson(cliente);
+                    JSONObject json = reserva.toJson(reserva);
                     arreglo.put(json);
-                    GestionJSON.agregarElemento("clientes.json", arreglo);
+                    GestionJSON.agregarElemento("reservas.json", arreglo);
                 }
                 catch (FormatoIncorrectoException e){
                     System.out.println(e.getMessage());
@@ -111,13 +110,6 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
     }
-
-    public void agregarYguardar (Reserva nuevaReserva){
-        //cargarMapConArchivo();
-        //reservasPorCliente.put(nuevaReserva);
-       // cargarArchivoConMap(reservasPorCliente);
-    }
-
 
     @Override
     public void mostrarDatosUsuario(Reserva reserva) {

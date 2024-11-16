@@ -2,6 +2,8 @@ package Restaurante;
 
 import Archivos.FormatoIncorrectoException;
 import Users.Cliente;
+import Users.DatoInvalidoException;
+import Users.Validaciones;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -125,6 +127,7 @@ public class Plato {
         System.out.println("Cargando los datos del plato...");
 
 
+        Plato plato = null;
         boolean nombreValido = false;
         while (!nombreValido){
             System.out.println("Ingrese el nombre del plato: ");
@@ -132,9 +135,38 @@ public class Plato {
             if (nombre==null){
                 System.out.println("El nombre no puede estar vacio.");
             }else {
+                try {
+                    Validaciones.validarCadenas(nombre);
+                    plato.setNombre(nombre);
+                }
+                catch (DatoInvalidoException e){
+                    System.out.println(e.getMessage());
+                }
                 nombreValido = true;
             }
         }
+
+        String desc = null;
+        boolean descValida = false;
+        while (!descValida) {
+            System.out.println("Ingrese la descripcion del Plato:");
+            desc = scanner.nextLine();
+            try {
+                Validaciones.validarCadenas(desc);
+                plato.setDescripcion(desc);
+                descValida = true;
+
+            } catch (DatoInvalidoException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        double precio = 0;
+
+        System.out.println("Ingrese el Precio del plato:");
+        precio = scanner.nextDouble();
+
+        plato.setPrecio(precio);
 
 
     }

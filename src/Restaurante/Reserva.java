@@ -206,7 +206,6 @@ public class Reserva {
 
         System.out.println("Complete con los datos:\n");
 
-        // Validación del día
         LocalDate dia = null;
         boolean diaValido = false;
         while (!diaValido) {
@@ -221,7 +220,6 @@ public class Reserva {
             }
         }
 
-        // Validación de la hora
         LocalTime hora = null;
         boolean horaValida = false;
         while (!horaValida) {
@@ -236,7 +234,6 @@ public class Reserva {
             }
         }
 
-        // Selección o creación del cliente
         Cliente cliente = null;
         boolean valido = false;
         while (!valido) {
@@ -245,7 +242,7 @@ public class Reserva {
             System.out.println("1. Cliente existente.");
             System.out.println("2. Crear nuevo cliente.");
             int op = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer
+            scanner.nextLine();
 
             switch (op) {
                 case 1:
@@ -259,12 +256,12 @@ public class Reserva {
                     }
                     break;
                 case 2:
-                    gestionDeCliente.ingresarUsuario();  // Llamar al método para crear un cliente
+                    gestionDeCliente.ingresarUsuario();
                     System.out.println("Ingrese el DNI del cliente recién ingresado: ");
                     String dni2 = scanner.nextLine();
-                    cliente = gestionDeCliente.encontrarUsuario(dni2); // Buscar al cliente creado
+                    cliente = gestionDeCliente.encontrarUsuario(dni2);
                     if (cliente != null) {
-                        valido = true; // El cliente se encuentra correctamente
+                        valido = true;
                     } else {
                         System.out.println("No se encontró el cliente.");
                     }
@@ -274,14 +271,12 @@ public class Reserva {
             }
         }
 
-        // Ingresar mesa y cantidad de personas para la reserva
         System.out.println("Ingrese la mesa:");
         int mesa = scanner.nextInt();
 
         System.out.println("Ingrese la cantidad de personas:");
         int cantPersonas = scanner.nextInt();
-
-        // Crear y devolver la reserva
+        
         return new Reserva(dia, hora, cliente, mesa, cantPersonas);
     }
 

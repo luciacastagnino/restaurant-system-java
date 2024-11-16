@@ -4,9 +4,7 @@ import Gestion.GestionAdministrador;
 import Gestion.GestionDeCliente;
 import Gestion.GestionEmpleados;
 import Gestion.GestionReserva;
-import Users.Administrador;
-import Users.Empleado;
-import Users.RegistroUser;
+import Users.*;
 
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
@@ -232,7 +230,11 @@ public class Menu {
                         gestionEmpleados.ingresarUsuario();
                         break;
                     case 3:
-                        ///encontrar user
+                        ///hay que hacer busqueda con id
+                        System.out.println("Ingrese el dni del Empleado que quiere dar de baja");
+                        String dni = scanner.nextLine();
+
+                        EmpleadoMedioTiempo aux = (EmpleadoMedioTiempo) gestionEmpleados.encontrarUsuario(dni);
                         gestionEmpleados.darDeBajaUsuario(aux);
                         break;
                     case 4:
@@ -281,7 +283,11 @@ public class Menu {
                         gestionDeCliente.ingresarUsuario();
                         break;
                     case 3:
-                        ///encontrar user
+                        ///hay que hacer busqueda con id
+                        System.out.println("Ingrese el dni del Cliente que quiere dar de baja");
+                        String dni = scanner.nextLine();
+
+                        Cliente aux = gestionDeCliente.encontrarUsuario(dni);
                         gestionDeCliente.darDeBajaUsuario(aux);
                         break;
                     case 4:

@@ -386,7 +386,7 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-
+                        gestionEmpleados.mostrarDatosUsuario(empleado);
                         break;
                     case 2:
 
@@ -441,7 +441,7 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-
+                        gestionDeCliente.mostrarDatosUsuario(cliente);
                         break;
                     case 2:
 

@@ -13,10 +13,7 @@ import org.json.JSONTokener;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * La clase Gestion.GestionReserva maneja las reservas realizadas por los clientes.
@@ -46,7 +43,8 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         System.out.println();
         boolean valido = false;
         while (!valido){
-            Reserva aux = aux.ingresarReserva();
+            Reserva aux = null;
+            aux.ingresarReserva();
             if (verificarDisponibilidad(aux.getMesa(), aux.getDia(), aux.getHora())){
                 agregarYguardar(aux);
                 System.out.println("\nReserva " + aux.getId() + "de " + aux.getCliente().getNombre() + " " + aux.getCliente().getApellido() + " agregado con exito!");
@@ -209,7 +207,19 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
      * @return la cantidad de reservas del cliente.
      */
     public int obtenerCantidadDeReservas(Cliente cliente) {
-        return reservasPorCliente.getOrDefault(cliente, 0);
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        int i = 0;
+        Iterator it = reservasPorCliente.entrySet().iterator();
+
+        while (it.hasNext()){
+            Map.Entry<Integer, Reserva> map = (Map.Entry<Integer, Reserva>) it.next();
+            if(map.getValue().getCliente().equals(cliente)){
+                i++;
+            }
+        }
+        return i;
     }
 
     /**

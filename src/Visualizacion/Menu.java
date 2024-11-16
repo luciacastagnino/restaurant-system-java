@@ -146,6 +146,7 @@ public class Menu {
                     case 4:
                         break;
                     case 5:
+
                         break;
                     case 6:
                         System.out.println("Cerrando sesion...");
@@ -185,10 +186,6 @@ public class Menu {
                         gestionAdministrador.darDeBajaUsuario(admin);
                         break;
                     case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:

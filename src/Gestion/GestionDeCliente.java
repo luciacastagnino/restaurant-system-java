@@ -14,12 +14,14 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
     private List<Cliente> listaDeClientes ;
     private RegistroUser registroUser;
     private Scanner scanner;
+    private GestionReserva gestionReserva;
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
         GestionJSON.crearArchivoJSON("clientes.json");
         this.registroUser = new RegistroUser();
         this.scanner = new Scanner(System.in);
+        this.gestionReserva = new GestionReserva();
     }
 
     public void ingresarUsuario(){
@@ -380,6 +382,27 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
         listaDeClientes.stream()
                 .filter(cliente -> cliente.getEstado() == aux)
                 .forEach(System.out::println);
+    }
+
+    public void tipoDeCliente(){
+        if (listaDeClientes.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        for(int i = 0; i < listaDeClientes.size(); i++){
+            Cliente aux = listaDeClientes.get(i);
+            int contador = gestionReserva.obtenerCantidadDeReservas(aux);
+
+            if(contador < 5){
+                aux.setTipoCliente(TipoCliente.ESTANDAR);
+            }
+            else if (contador < 15) {
+                aux.setTipoCliente(TipoCliente.PREMIUM);
+            }
+            else {
+                aux.setTipoCliente(TipoCliente.VIP);
+            }
+        }
     }
 }
 

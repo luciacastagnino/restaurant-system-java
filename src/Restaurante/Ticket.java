@@ -94,7 +94,7 @@ public class Ticket {
             resValida = true;
         }
 
-        Empleado hora = null;
+        LocalTime hora = null;
         boolean horaValida = false;
         while (!horaValida) {
             System.out.println("Ingrese la hora (formato: HH:mm):");

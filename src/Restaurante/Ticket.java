@@ -159,7 +159,7 @@ public class Ticket {
         }
         System.out.println("**************************************");
         System.out.println("▌│█║▌║▌║║▌║▌║█│▌║▌║▌║█│▌");
-        System.out.println("*** GRACIAS POR SSU VISITA ***");
+        System.out.println("*** GRACIAS POR SU VISITA ***");
         System.out.println("--------------------------------------");
 
     }

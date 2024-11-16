@@ -121,7 +121,7 @@ public class Ticket {
 
         /// hacer funcion para cargar los platos elegidos.
         menuRestaurante.listarPlatosTicket();
-        
+
 
 
         this.precio = precio;

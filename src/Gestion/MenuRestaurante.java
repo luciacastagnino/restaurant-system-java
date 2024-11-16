@@ -107,6 +107,15 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
     @Override
     public void mostrarDatosUsuario(Plato plato) {
+        if (platos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
+        for (Plato p : platos){
+            if (p.equals(plato)){
+                System.out.println();
+            }
+        }
 
     }
 
@@ -123,20 +132,38 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     @Override
     public void mostrarColeccion() {
 
-    }
+        if (platos.isEmpty()){
+            cargarArrayConArchivo();
+        }
 
-    @Override
-    public Plato encontrarUsuario(String dni) {
-        return null;
+        for (Plato p : platos){
+            p.
+        }
     }
 
     @Override
     public Plato encontrarUsuario(int id) {
+        if (platos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
+        for (Plato p : platos){
+            if (p.getId() == id){
+                return p;
+            }
+        }
         return null;
     }
 
     @Override
     public void listarUsuarios(String nombre) {
+        if (platos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
+        for (Plato p : platos){
+
+        }
 
     }
 

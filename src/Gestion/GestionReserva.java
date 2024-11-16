@@ -12,6 +12,7 @@ import org.json.JSONTokener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -35,11 +36,13 @@ import java.util.Scanner;
 public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     private Map<Integer, Reserva> reservasPorCliente;
     private Scanner scanner;
+    private GestionDeCliente gestionDeCliente;
 
     public GestionReserva() {
         this.reservasPorCliente = new HashMap<>();
         GestionJSON.crearArchivoJSON("reservas.json");
         this.scanner=new Scanner(System.in);
+        this.gestionDeCliente=new GestionDeCliente();
     }
 
     @Override
@@ -146,10 +149,9 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         reservasPorCliente = cargarArrayConArchivo();
         boolean salir = false;
 
-        for (Reserva reserva : reservasPorCliente.values()) {
-            if (c.getId() == reserva.getId()) {
-                reservasPorCliente.remove(reserva);
-                c=reserva;
+            if (reservasPorCliente.containsKey(c.getId())) {
+                Reserva reserva = reservasPorCliente.get(c.getId());
+
                 while (!salir) {
                     System.out.println("\n Que desea modificar?");
                     System.out.println("1. Dia de reserva.");
@@ -162,154 +164,109 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                     scanner.nextLine();
                     switch (op) {
                         case 1:
-
-                            String username = "";
-                            boolean usernameValido = false;
-
-                            while (!usernameValido) {
-                                System.out.println("Ingrese su nuevo username: ");
-                                username = scanner.nextLine();
+                            LocalDate dia = null;
+                            boolean diaValido = false;
+                            while (!diaValido) {
+                                System.out.println("Por favor, ingresa el día (formato: dd/MM):");
+                                String diaInput = scanner.nextLine();
+                                DateTimeFormatter formatoDia = DateTimeFormatter.ofPattern("dd/MM");
                                 try {
-                                    Validaciones.validarNombreUsuario(username);
-                                    c.setUsername(username);
-                                    usernameValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                    dia = LocalDate.parse(diaInput, formatoDia);
+                                    c.setDia(dia);
+                                    diaValido = true;
+                                } catch (DateTimeParseException e) {
+                                    System.out.println("Error: El formato del día no es correcto.");
                                 }
                             }
 
                             break;
                         case 2:
 
-                            String contrasenia = "";
-                            boolean contraseniaValida = false;
-
-                            System.out.println("Ingrese su contraseña actual:");
-                            String contraseñaActual = scanner.nextLine();
-                            if (c.getContrasenia().equals(contraseñaActual)){
-                                while (!contraseniaValida) {
-                                    System.out.println("Ingrese su nueva contrasenia: ");
-                                    contrasenia = scanner.nextLine();
-                                    try {
-                                        Validaciones.validarContrasenia(contrasenia);
-                                        c.setContrasenia(contrasenia);
-                                        contraseniaValida = true;
-                                    } catch (DatoInvalidoException e) {
-                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                    }
+                            LocalTime hora = null;
+                            boolean horaValida = false;
+                            while (!horaValida) {
+                                System.out.println("Ingrese la hora (formato: HH:mm):");
+                                String horaInput = scanner.nextLine();
+                                DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+                                try {
+                                    hora = LocalTime.parse(horaInput, formatoHora);
+                                    c.setHora(hora);
+                                    horaValida = true;
+                                } catch (DateTimeParseException e) {
+                                    System.out.println("Error: El formato de la hora no es correcto.");
                                 }
                             }
 
                             break;
                         case 3:
 
-                            String nombre = "";
-                            boolean nombreValido = false;
+                            Cliente cliente = null;
+                            boolean valido = false;
+                            while (!valido) {
+                                System.out.println();
+                                System.out.println("¿Qué tipo de cliente desea ingresar?");
+                                System.out.println("1. Cliente existente.");
+                                System.out.println("2. Crear nuevo cliente.");
+                                int op = scanner.nextInt();
+                                scanner.nextLine();
 
-                            while (!nombreValido) {
-                                System.out.println("Ingrese su nuevo nombre: ");
-                                nombre = scanner.nextLine();
-                                try {
-                                    Validaciones.validarCadenas(nombre);
-                                    c.setNombre(nombre);
-                                    nombreValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                                switch (op) {
+                                    case 1:
+                                        System.out.println("Ingrese el DNI del cliente: ");
+                                        String dni = scanner.nextLine();
+                                        cliente = gestionDeCliente.encontrarUsuario(dni);
+                                        if (cliente != null) {
+                                            c.setCliente(cliente);
+                                            valido = true;
+                                        } else {
+                                            System.out.println("No se encontró el cliente.");
+                                        }
+                                        break;
+                                    case 2:
+                                        gestionDeCliente.ingresarUsuario();
+                                        System.out.println("Ingrese el DNI del cliente recién ingresado: ");
+                                        String dni2 = scanner.nextLine();
+                                        cliente = gestionDeCliente.encontrarUsuario(dni2);
+                                        if (cliente != null) {
+                                            c.setCliente(cliente);
+                                            valido = true;
+                                        } else {
+                                            System.out.println("No se encontró el cliente.");
+                                        }
+                                        break;
+                                    default:
+                                        System.out.println("Opción incorrecta, ingrese una opción válida.");
                                 }
                             }
 
                             break;
                         case 4:
-
-                            String apellido = "";
-                            boolean apellidoValido = false;
-
-                            while (!apellidoValido) {
-                                System.out.println("Ingrese su nuevo apellido: ");
-                                apellido = scanner.nextLine();
-                                try {
-                                    Validaciones.validarCadenas(apellido);
-                                    c.setApellido(apellido);
-                                    apellidoValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                            boolean estado = false;
+                            while (!estado){
+                                System.out.println("Ingrese la mesa:");
+                                int mesa = scanner.nextInt();
+                                estado = verificarDisponibilidad(mesa, c.getDia(), c.getHora());
+                                if (!estado){
+                                    System.out.println("La mesa no esta disponible, ingrese otra.");
+                                }else {
+                                    c.setMesa(mesa);
+                                    estado=true;
                                 }
                             }
-
                             break;
                         case 5:
-
-                            String dni = "";
-                            boolean dniValido = false;
-
-                            while (!dniValido) {
-                                System.out.println("Ingrese su nuevo DNI: ");
-                                dni = scanner.nextLine();
-                                try {
-                                    Validaciones.validarDNI(dni);
-                                    c.setDni(dni);
-                                    dniValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                            boolean cantPersonasValido = false;
+                            while (!cantPersonasValido){
+                                System.out.println("Ingrese la cantidad de personas:");
+                                int cantPersonas = scanner.nextInt();
+                                if (cantPersonas<=0){
+                                    System.out.println("La cantidad de personas no puede ser 0");
+                                }else {
+                                     c
                                 }
                             }
-
                             break;
                         case 6:
-
-                            String telefono = "";
-                            boolean telefonoValido = false;
-
-                            while (!telefonoValido) {
-                                System.out.println("Ingrese su nuevo telefono: ");
-                                telefono = scanner.nextLine();
-                                try {
-                                    Validaciones.validarTelefono(telefono);
-                                    c.setTelefono(telefono);
-                                    telefonoValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
-
-                            break;
-                        case 7:
-
-                            String direccion = "";
-                            boolean direccionValido = false;
-
-                            while (!direccionValido) {
-                                System.out.println("Ingrese su nueva direccion: ");
-                                direccion = scanner.nextLine();
-                                try {
-                                    Validaciones.validarDireccion(direccion);
-                                    c.setDireccion(direccion);
-                                    direccionValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
-
-                            break;
-                        case 8:
-
-                            String email = "";
-                            boolean emailValido = false;
-
-                            while (!emailValido) {
-                                System.out.println("Ingrese su nuevo email: ");
-                                email = scanner.nextLine();
-                                try {
-                                    Validaciones.validarEmail(email);
-                                    c.setEmail(email);
-                                    emailValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
-
-                            break;
-                        case 9:
                             System.out.println("Saliendo del menu de modificacion de usuario...");
                             salir = true;
                             break;
@@ -318,11 +275,13 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                             break;
                     }
                 }
-                listaDeClientes.add(c);
-                cargarArchivoConArreglo(listaDeClientes);
+
+                reservasPorCliente.put(reserva.getId(), reserva);
+                cargarArchivoConArreglo(reservasPorCliente);
                 System.out.println("¡Cambios guardados con exito!");
-                return c;
-            }
+                return reserva;
+            }else {
+                System.out.println("No se encontro la reserva.");
         }
         return null;
     }

@@ -10,7 +10,7 @@ import org.json.JSONObject;
  * Hereda de la clase abstracta Empleado
  * Tiene un constructor con todos los atributos y otro null
  * Metodos: getters y setters, toString
- * Otros metodos: toJson, jsonToEmpleadoMT, calcularSueldo, calcularHorasExtra, toStringArchivo
+ * Otros metodos: toJson, jsonToEmpleadoMT, calcularSueldo, calcularHorasExtra
  *
  * @author Brenda
  * @since 2024
@@ -138,29 +138,6 @@ public class EmpleadoMedioTiempo extends Empleado {
      */
     public double calcularHorasExtra (double horasExtra){
         return horasExtra * Math.pow(precioXhora, 2);
-    }
-
-    /**
-     * toStringArchivo, es un metodo para guardar informacion como texto en un archivo JSON
-     * @return informacion del EmpleadoMedioTiempo
-     */
-    public String toStringArchivo() {
-        return "EmpleadoMedioTiempo{" +
-                "idContador=" + idContador +
-                ", id=" + id +
-                ", username='" + username + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", dni='" + dni + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", email='" + email + '\'' +
-                ", estado=" + estado +
-                ", horasTrabajadas=" + horasTrabajadas +
-                ", precioXhora=" + precioXhora +
-                ", sueldo=" + sueldo +
-                '}';
     }
 
     @Override

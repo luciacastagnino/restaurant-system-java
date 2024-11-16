@@ -610,7 +610,6 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         return null;
     }
 
-
     @Override
     public Empleado encontrarUsuario(String dni) {
         if (listaEmpleados.isEmpty()) {
@@ -653,11 +652,6 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 .filter(empleado -> empleado.getNombre().equals(nombre))
                 .forEach(System.out::println);
     }
-
-
-
-    /// ///////////////////////////////////////
-
 
     @Override
     public void darDeBajaUsuario (Empleado a){

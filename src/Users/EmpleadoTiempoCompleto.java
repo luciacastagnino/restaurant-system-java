@@ -55,27 +55,6 @@ public class EmpleadoTiempoCompleto extends Empleado {
                 '}';
     }
 
-    /**
-     * toStringArchivo, es un metodo para guardar informacion como texto en un archivo JSON
-     * @return informacion del EmpleadoTiempoCompleto
-     */
-    public String toStringArchivo() {
-        return "EmpleadoTiempoCompleto{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", dni='" + dni + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", email='" + email + '\'' +
-                ", estado=" + estado +
-                ", aniosAntiguedad=" + aniosAntiguedad +
-                ", sueldo=" + sueldo +
-                '}';
-    }
-
     //EMPLEADO TO JSON
 
     /**

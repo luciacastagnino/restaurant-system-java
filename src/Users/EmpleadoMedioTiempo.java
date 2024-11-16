@@ -8,8 +8,8 @@ import org.json.JSONObject;
  * La clase Users.EmpleadoMedioTiempo tiene como campos su nombre, apellido, dni, telefono,
  * direccion, email y horas trabajadas
  * tiene un constructor con todos los atributos
- * metodos: getters y setters, ToString
- * otros metodos:
+ * metodos: getters y setters, toString
+ * otros metodos: toJson, jsonToEmpleadoMT,
  *
  * @author Brenda
  * @since 2024
@@ -47,6 +47,12 @@ public class EmpleadoMedioTiempo extends Empleado {
         this.horasTrabajadas = horasTrabajadas;
     }
 
+    /**
+     * toJson es un metodo que permite transformar un objeto EmpleadoMedioTiempo a un JSONObject, recibe un
+     * EmpleadoMedioTiempo y retorna un JSONObject.
+     * @param e
+     * @return jsonObject
+     */
     public JSONObject toJson (EmpleadoMedioTiempo e){
 
         JSONObject jsonObject = null;
@@ -73,6 +79,14 @@ public class EmpleadoMedioTiempo extends Empleado {
 
     //JSON TO EMPLEADO
 
+    /**
+     * jsonToEmpleadoMT es un metodo que tranforma un JSONObject en un objeto EmpleadoMedioTiempo
+     * recibe un JSONObject y retorna un EmpleadoMedioTiempo, lanza un FormatoIncorrectoException
+     * si el formato del JSONObject no tiene los parametros de un EmpleadoMedioTiempo.
+     * @param json
+     * @return
+     * @throws FormatoIncorrectoException
+     */
     public EmpleadoMedioTiempo jsonToEmpleadoMT (JSONObject json) throws FormatoIncorrectoException {
 
         EmpleadoMedioTiempo empleadoLeido = new EmpleadoMedioTiempo();

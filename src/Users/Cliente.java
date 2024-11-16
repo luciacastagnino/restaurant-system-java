@@ -7,14 +7,15 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 /**
- * La clase Users.Cliente tiene como campos su nombre, apellido, dni, telefono, direccion e email
- * tiene un constructor con todos los atributos
- * metodos: getters y setters, ToString
- * otros metodos:
+ * La clase Users.Cliente tiene como campos su nombre, apellido, dni, telefono, direccion, email y tipoCliente
+ * Tiene un constructor con todos los atributos
+ * Hereda de la clase abstracta Usuario e implementa la interfaz Comparable
+ * Metodos: getters, setters, toString, equals, hashcode y compareTo
+ * Otros metodos: toJson, jsonToCliente
  *
  * @author Brenda
  * @since 2024
- * @version 1
+ * @version 2
  */
 public class Cliente extends Usuario implements Comparable<Cliente>{
     private TipoCliente tipoCliente = TipoCliente.ESTANDAR;
@@ -40,6 +41,12 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
 
     // CLIENTE TO JSON
 
+    /**
+     * toJson es un metodo que permite transformar un objeto Cliente a un JSONObject, recibe un
+     * Cliente y retorna un JSONObject.
+     * @param e
+     * @return jsonObject
+     */
     public JSONObject toJson (Cliente e){
 
         JSONObject jsonObject = null;
@@ -64,6 +71,14 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
 
     //CLIENTE TO JSON
 
+    /**
+     * jsonToCliente es un metodo que tranforma un JSONObject en un objeto Cliente recibe un
+     * JSONObject y retorna un Cliente, lanza un FormatoIncorrectoException si el formato del
+     * JSONObject no tiene los parametros de un Cliente.
+     * @param json
+     * @return
+     * @throws FormatoIncorrectoException
+     */
     public Cliente jsonToCliente (JSONObject json) throws FormatoIncorrectoException {
 
         Cliente clienteLeido = new Cliente();

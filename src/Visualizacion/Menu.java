@@ -1,9 +1,6 @@
 package Visualizacion;
 
-import Gestion.GestionAdministrador;
-import Gestion.GestionDeCliente;
-import Gestion.GestionEmpleados;
-import Gestion.GestionReserva;
+import Gestion.*;
 import Users.*;
 
 import java.io.FileNotFoundException;
@@ -19,6 +16,7 @@ public class Menu {
     private final GestionDeCliente gestionDeCliente;
     private final GestionEmpleados gestionEmpleados;
     private final GestionReserva gestionReserva;
+    private final MenuRestaurante menuRestaurante;
 
 
     public Menu() {
@@ -29,6 +27,7 @@ public class Menu {
         this.gestionDeCliente = new GestionDeCliente();
         this.gestionEmpleados = new GestionEmpleados();
         this.gestionReserva = new GestionReserva();
+        this.menuRestaurante = new MenuRestaurante();
     }
 
     public void MenuPrincipal() {
@@ -357,7 +356,8 @@ public class Menu {
             System.out.println("6. Mostrar Tikets de Cliente.");
             System.out.println("7. Modificar Cliente.");
             System.out.println("8. Buscar Cliente.");
-            System.out.println("9.. Salir.");
+            System.out.println("9. Mostrar reservas.");
+            System.out.println("10. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -383,7 +383,7 @@ public class Menu {
                         gestionDeCliente.listarUsuarios(false);
                         break;
                     case 6:
-
+                        //tickets
                         break;
                     case 7:
                         System.out.println("Ingresar DNI del cliente:");
@@ -423,6 +423,9 @@ public class Menu {
                         }
                         break;
                     case 9:
+                        //reservas
+                        break;
+                    case 10:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -455,11 +458,10 @@ public class Menu {
             System.out.println();
             System.out.println("¿Que desea hacer?");
             System.out.println("1. Mi cuenta.");
-            System.out.println("2. ");
-            System.out.println("3. Gestion clientes.");
-            System.out.println("4. Gestion reservas.");
-            System.out.println("5. Gestion menu/platos.");
-            System.out.println("6. Salir.");
+            System.out.println("2. Gestion clientes.");
+            System.out.println("3. Gestion reservas.");
+            System.out.println("4. Gestion menu/platos.");
+            System.out.println("5. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -511,8 +513,8 @@ public class Menu {
             System.out.println();
             System.out.println("¿Que desea hacer?");
             System.out.println("1. Mi cuenta.");
-            System.out.println("2. Gestion tickets");
-            System.out.println("3. Gestion reservas.");
+            System.out.println("2. Ver tickets");
+            System.out.println("3. Ver reservas.");
             System.out.println("4. Ver menu.");
             System.out.println("5. Salir.");
             try {
@@ -527,13 +529,54 @@ public class Menu {
 
                         break;
                     case 3:
-                        gestorDeClientesAdmin();
+
                         break;
                     case 4:
+                        System.out.println("Seleccione una opcion:");
+                        System.out.println("1. Menu Completo.");
+                        System.out.println("2. Bebidas");
+                        System.out.println("3. Desayuno y Merienda.");
+                        System.out.println("4. Brunch.");
+                        System.out.println("5. Entradas.");
+                        System.out.println("6. Almuerzo.");
+                        System.out.println("7. Cena.");
+                        System.out.println("8. Postre.");
+
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                menuRestaurante.mostrarMenuCompleto();
+                            }
+                            else if (op1 == 2) {
+                                menuRestaurante.mostrarBebida();
+                            }
+                            else if (op1 == 3){
+                                menuRestaurante.mostrarDesayunoMerienda();
+                            }
+                            else if (op1 == 4){
+                                menuRestaurante.mostrarBrunch();
+                            }
+                            else if (op1 == 5) {
+                                menuRestaurante.mostrarEntradas();
+                            }
+                            else if (op1 == 6) {
+                                menuRestaurante.mostrarAlmuerzo();
+                            }
+                            else if (op1 == 7) {
+                                menuRestaurante.mostrarCena();
+                            }
+                            else if (op1 == 8) {
+                                menuRestaurante.mostrarPostre();
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 5:
-                        break;
-                    case 6:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -544,7 +587,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 6);
+        } while (op != 5);
 
     }
 }

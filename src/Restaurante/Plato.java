@@ -9,6 +9,7 @@ import java.lang.management.PlatformLoggingMXBean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Scanner;
 
 /**
  * La clase Restaurante.Plato tiene como campos su nombre, descripcion, disponibilidad y precio
@@ -22,16 +23,20 @@ import java.time.LocalTime;
  * @version 2
  */
 public class Plato {
+    private static int contadorId = 100;
+    private int id;
     private String nombre;
     private String descripcion;
     private double precio;
     private boolean disponibilidad;
     private TipoPlato tipoPlato;
+    private Scanner scanner = new Scanner(System.in);
 
     public Plato() {
     }
 
     public Plato(String nombre) {
+        this.id=contadorId++;
         this.nombre = nombre;
         this.descripcion = null;
         this.precio = 0;
@@ -40,6 +45,7 @@ public class Plato {
     }
 
     public Plato(String nombre, String descripcion) {
+        this.id=contadorId++;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = 0;
@@ -48,6 +54,7 @@ public class Plato {
     }
 
     public Plato(String nombre, String descripcion, double precio, TipoPlato tipoPlato) {
+        this.id=contadorId++;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -56,6 +63,22 @@ public class Plato {
     }
 
     ///Getters y Setters
+
+    public static int getContadorId() {
+        return contadorId;
+    }
+
+    public static void setContadorId(int contadorId) {
+        Plato.contadorId = contadorId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -97,12 +120,22 @@ public class Plato {
         this.tipoPlato = tipoPlato;
     }
 
+    public Plato cargarPlato () {
+
+        System.out.println("Cargando los datos del plato...");
+
+        System.out.println("Ingrese el nombre del plato: ");
+        String nombre = scanner.nextLine();
+
+    }
+
     //PLATO TO JSON
 
     public JSONObject toJson (Plato p){
         JSONObject jsonObject = null;
             try{
             jsonObject = new JSONObject();
+            jsonObject.put("id", p.getId());
             jsonObject.put("nombre", p.getNombre());
             jsonObject.put("descripcion", p.getDescripcion());
             jsonObject.put("precio", p.getPrecio());
@@ -130,8 +163,9 @@ public class Plato {
 
         Plato platoLeido = new Plato();
         try {
-            if(json.has("nombre") && json.has("descripcion") && json.has("precio") &&
-                    json.has("disponibilidad") && json.has("tipoPlato")){
+            if(json.has("id") &&json.has("nombre") && json.has("descripcion") &&
+                    json.has("precio") && json.has("disponibilidad") && json.has("tipoPlato")){
+                platoLeido.setId(json.getInt("id"));
                 platoLeido.setNombre(json.getString("nombre"));
                 platoLeido.setDescripcion(json.getString("descripcion"));
                 platoLeido.setPrecio(json.getDouble("precio"));

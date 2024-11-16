@@ -116,59 +116,18 @@ public class Ticket {
             }
         }
 
+        /// hacer funcion para cargar los platos elegidos.
 
-
-        this.platos = new HashSet<>();
         this.precio = precio;
         this.tipoPago = tipoPago;
         this.propina = propina;
 
-        LocalTime hora = LocalTime.now();
-        boolean horaValida = false;
-        while (!horaValida) {
-            if (hora!=null){
-                horaValida=true;
-            }else {
-                System.out.println("Hubo un problema al generar la hora.");
-            }
+        double precio = 0;
+        boolean precioValido=false;
+        while (!precioValido){
+            System.out.println("Ingrese el precio total: ");
         }
 
-        Cliente cliente = null;
-        boolean valido = false;
-        while (!valido) {
-            System.out.println();
-            System.out.println("¿Qué tipo de cliente desea ingresar?");
-            System.out.println("1. Cliente existente.");
-            System.out.println("2. Crear nuevo cliente.");
-            int op = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (op) {
-                case 1:
-                    System.out.println("Ingrese el DNI del cliente: ");
-                    String dni = scanner.nextLine();
-                    cliente = gestionDeCliente.encontrarUsuario(dni);
-                    if (cliente != null) {
-                        valido = true;
-                    } else {
-                        System.out.println("No se encontró el cliente.");
-                    }
-                    break;
-                case 2:
-                    gestionDeCliente.ingresarUsuario();
-                    System.out.println("Ingrese el DNI del cliente recién ingresado: ");
-                    String dni2 = scanner.nextLine();
-                    cliente = gestionDeCliente.encontrarUsuario(dni2);
-                    if (cliente != null) {
-                        valido = true;
-                    } else {
-                        System.out.println("No se encontró el cliente.");
-                    }
-                    break;
-                default:
-                    System.out.println("Opción incorrecta, ingrese una opción válida.");
-            }
-        }
     }
 
     public void mostrarTicket (Ticket t){

@@ -1,10 +1,17 @@
 package Gestion;
 
+import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
 import Restaurante.Plato;
 import Restaurante.TipoPlato;
+import Users.Administrador;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -19,9 +26,10 @@ import java.util.Set;
  * @since 2024
  * @version 1
  */
-public class MenuRestaurante {
+public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
     private Set<Plato> platos;
+    private Scanner scanner;
 
     /**
      * Constructor de la clase Gestion.MenuRestaurante.
@@ -31,6 +39,7 @@ public class MenuRestaurante {
     public MenuRestaurante () {
         this.platos = new HashSet<>();
         GestionJSON.crearArchivoJSON("platos.json");
+        this.scanner=new Scanner(System.in);
     }
 
     //Get y Set
@@ -41,6 +50,113 @@ public class MenuRestaurante {
 
     public void setPlatos(Set<Plato> platos) {
         this.platos = platos;
+    }
+
+    @Override
+    public void ingresarUsuario() {
+        System.out.println();
+        Plato aux = aux.
+
+    }
+
+    public void ingresarUsuario(){
+        System.out.println();
+        Administrador aux = registroUser.registroAdmin();
+        agregarYguardar(aux);
+        System.out.println("\nAdministrador/a " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
+
+    }
+
+    public Set<Administrador> cargarArrayConArchivo(){
+        JSONTokener aux = GestionJSON.leer("administrador.json");
+
+        try {
+
+            JSONArray arreglo = new JSONArray(aux);
+
+            for(int i = 0; i < arreglo.length(); i++){
+                JSONObject aux1 = arreglo.getJSONObject(i);
+                Administrador administrador = new Administrador();
+                administrador = administrador.jsonToAdmin(aux1);
+                listaAdmins.add(administrador);
+            }
+        } catch (JSONException e){
+            System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
+        }
+
+        return listaAdmins;
+    }
+
+    public void agregarYguardar (Administrador nuevoAdmin){
+        cargarArrayConArchivo();
+        listaAdmins.add(nuevoAdmin);
+        cargarArchivoConArreglo(listaAdmins);
+    }
+
+    public void cargarArchivoConArreglo(Set<Administrador> listaAdmins){
+        JSONArray arreglo = new JSONArray();
+        try {
+
+            for (Administrador admin : listaAdmins){
+                try {
+                    JSONObject json = admin.toJson(admin);
+                    arreglo.put(json);
+                    GestionJSON.agregarElemento("administrador.json", arreglo);
+                }
+                catch (FormatoIncorrectoException e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        } catch (JSONException e){
+            System.out.println("Hubo un problema al cargar el archivo con array.");
+        }
+    }
+
+
+
+    @Override
+    public void mostrarDatosUsuario(Plato plato) {
+
+    }
+
+    @Override
+    public Plato modificarUsuario(Plato plato) {
+        return null;
+    }
+
+    @Override
+    public void agregarYguardar(Plato plato) {
+
+    }
+
+    @Override
+    public void darDeBajaUsuario(Plato plato) {
+
+    }
+
+    @Override
+    public void mostrarColeccion() {
+
+    }
+
+    @Override
+    public Plato encontrarUsuario(String dni) {
+        return null;
+    }
+
+    @Override
+    public Plato encontrarUsuario(int id) {
+        return null;
+    }
+
+    @Override
+    public void listarUsuarios(String nombre) {
+
+    }
+
+    @Override
+    public void listarUsuarios(boolean aux) {
+
     }
 
     /**

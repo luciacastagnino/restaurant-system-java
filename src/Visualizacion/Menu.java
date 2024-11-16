@@ -314,11 +314,55 @@ public class Menu {
         System.out.println("   M E N U  D E  E M P L E A D O   ");
         System.out.println("-----------------------------------------");
         try {
-            logIn.inicioSesionEmpleado("empleados.json");
+            Empleado empleado = logIn.inicioSesionEmpleado("empleados.json");
+            menuInicioSesionEmpleado(empleado);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void menuInicioSesionEmpleado (Empleado empleado){
+        int op = 0;
+        do {
+            System.out.println();
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Mi cuenta.");
+            System.out.println("2. ");
+            System.out.println("3. Gestion clientes.");
+            System.out.println("4. Gestion reservas.");
+            System.out.println("5. Gestion menu/platos.");
+            System.out.println("6. Salir.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+                        gestorDeClientesAdmin();
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        }while (op!=6);
     }
 
     public void menuCliente(){
@@ -332,5 +376,46 @@ public class Menu {
         }
 
     }
+
+    public void menuInicioSesionCliente (Cliente cliente){
+        int op = 0;
+        do {
+            System.out.println();
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Mi cuenta.");
+            System.out.println("2. Gestion tickets");
+            System.out.println("3. Gestion reservas.");
+            System.out.println("4. Ver menu.");
+            System.out.println("5. Salir.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+                        gestorDeClientesAdmin();
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        }while (op!=6);
 
 }

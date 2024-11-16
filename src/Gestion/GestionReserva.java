@@ -1,12 +1,22 @@
 package Gestion;
 
+import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
 import Restaurante.Reserva;
 import Users.Cliente;
+import Users.RegistroUser;
 import Users.TipoCliente;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * La clase Gestion.GestionReserva maneja las reservas realizadas por los clientes.
@@ -21,24 +31,132 @@ import java.util.Map;
  * @version 1
  */
 
-public class GestionReserva {
-    private Map<Cliente, Integer> reservasPorCliente;
+public class GestionReserva implements MetodosBasicosGestion<Reserva>{
+    private Map<Integer, Reserva> reservasPorCliente;
+    private Scanner scanner;
 
     public GestionReserva() {
         this.reservasPorCliente = new HashMap<>();
         GestionJSON.crearArchivoJSON("reservas.json");
+        this.scanner=new Scanner(System.in);
     }
 
-    public void crearReserva(){
-       // Restaurante.Reserva reserva = Restaurante.Reserva.ingresarReserva();
-       // agregarYguardar(reserva);
-       // System.out.println("\nReserva " + reserva.getId() + " del Users.Cliente " + reserva.getCliente().getNombre() + " agregado con exito!");
+    @Override
+    public void ingresarUsuario() {
+        System.out.println();
+        boolean valido = false;
+        while (!valido){
+            Reserva aux = aux.ingresarReserva();
+            if (verificarDisponibilidad(aux.getMesa(), aux.getDia(), aux.getHora())){
+                agregarYguardar(aux);
+                System.out.println("\nReserva " + aux.getId() + "de " + aux.getCliente().getNombre() + " " + aux.getCliente().getApellido() + " agregado con exito!");
+                valido=true;
+            }else {
+                System.out.println("Hubo un problema, la mesa seleccionada ya esta ocupada.");
+            }
+        }
+    }
+
+    public boolean verificarDisponibilidad(int mesa, LocalDate dia, LocalTime hora) {
+        for (Reserva reserva : reservasPorCliente.values()) {
+            if (reserva.getMesa() == mesa &&
+                    reserva.getDia().equals(dia) &&
+                    reserva.getHora().equals(hora)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Map<Integer, Cliente> cargarArrayConArchivo(){
+        JSONTokener aux = GestionJSON.leer("reservas.json");
+
+        try {
+
+            JSONArray arreglo = new JSONArray(aux);
+            for(int i = 0; i < arreglo.length(); i++){
+                JSONObject aux1 = arreglo.getJSONObject(i);
+                Cliente cliente = new Cliente();
+                cliente = cliente.jsonToCliente(aux1);
+                listaDeClientes.add(cliente);
+            }
+        } catch (JSONException e){
+            System.out.println("Ocurrio un error al convertir JSONObject a Cliente.");
+        }
+
+        return listaDeClientes;
+    }
+
+    public void agregarYguardar (Cliente nuevoCliente){
+        cargarArrayConArchivo();
+        listaDeClientes.add(nuevoCliente);
+        cargarArchivoConArreglo(listaDeClientes);
+    }
+
+    public void cargarArchivoConArreglo(List<Cliente> listaDeClientes){
+        JSONArray arreglo = new JSONArray();
+        try {
+
+            for (Cliente cliente : listaDeClientes){
+                try {
+                    JSONObject json = cliente.toJson(cliente);
+                    arreglo.put(json);
+                    GestionJSON.agregarElemento("clientes.json", arreglo);
+                }
+                catch (FormatoIncorrectoException e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        } catch (JSONException e){
+            System.out.println("Hubo un problema al cargar el archivo con array.");
+        }
     }
 
     public void agregarYguardar (Reserva nuevaReserva){
         //cargarMapConArchivo();
         //reservasPorCliente.put(nuevaReserva);
        // cargarArchivoConMap(reservasPorCliente);
+    }
+
+
+    @Override
+    public void mostrarDatosUsuario(Reserva reserva) {
+
+    }
+
+    @Override
+    public Reserva modificarUsuario(Reserva reserva) {
+        return null;
+    }
+
+    @Override
+    public void darDeBajaUsuario(Reserva reserva) {
+
+    }
+
+    @Override
+    public void mostrarColeccion() {
+
+    }
+
+    @Override
+    public Reserva encontrarUsuario(String dni) {
+        return null;
+    }
+
+    @Override
+    public Reserva encontrarUsuario(int id) {
+        return null;
+    }
+
+    @Override
+    public void listarUsuarios(String nombre) {
+
+    }
+
+    @Override
+    public void listarUsuarios(boolean aux) {
+
     }
 
     /**

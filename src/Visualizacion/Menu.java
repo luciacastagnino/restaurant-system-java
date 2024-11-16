@@ -283,23 +283,12 @@ public class Menu {
                         }
                         break;
                     case 7:
-                        try {
-                            System.out.printf("Selecciona una opcion: ");
-                            int op1 = scanner.nextInt();
-                            scanner.nextLine();
-
-                            if(op1 == 1){
                                 System.out.println("Ingresar DNI del empleado:");
                                 String d = scanner.nextLine();
 
                                 Empleado empleado= gestionEmpleados.encontrarUsuario(d);
 
                                 gestionEmpleados.modificarUsuario(empleado);
-                        }
-                        }
-                        catch (RuntimeException e){
-                            System.out.println(e.getMessage());
-                        }
                         break;
                     case 8:
                         System.out.println("1. Buscar por DNI.");
@@ -356,7 +345,6 @@ public class Menu {
     }
 
     public void gestorDeClientesAdmin() {
-        ///SE PUEDE USAR PARA EMPLEADOS
         int op = 0;
         do {
             System.out.println();
@@ -382,7 +370,6 @@ public class Menu {
                         gestionDeCliente.ingresarUsuario();
                         break;
                     case 3:
-                        ///hay que hacer busqueda con id
                         System.out.println("Ingrese el dni del Cliente que quiere dar de baja");
                         String dni = scanner.nextLine();
 
@@ -390,17 +377,50 @@ public class Menu {
                         gestionDeCliente.darDeBajaUsuario(aux);
                         break;
                     case 4:
+                        gestionDeCliente.listarUsuarios(true);
                         break;
                     case 5:
+                        gestionDeCliente.listarUsuarios(false);
                         break;
                     case 6:
 
                         break;
                     case 7:
+                        System.out.println("Ingresar DNI del cliente:");
+                        String d = scanner.nextLine();
 
+                        Cliente cliente= gestionDeCliente.encontrarUsuario(d);
+
+                        gestionDeCliente.modificarUsuario(cliente);
                         break;
                     case 8:
+                        System.out.println("1. Buscar por DNI.");
+                        System.out.println("2. Buscar por ID.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
 
+                            if(op1 == 1){
+                                System.out.println("Ingresar DNI del cliente:");
+                                String dni1 = scanner.nextLine();
+
+                                Cliente aux1 = gestionDeCliente.encontrarUsuario(dni1);
+
+                                System.out.println(aux1);
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar ID del cliente:");
+                                int id = scanner.nextInt();
+
+                                Cliente aux1 = gestionDeCliente.encontrarUsuario(id);
+
+                                System.out.println(aux1);
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 9:
                         System.out.println("Cerrando sesion...");

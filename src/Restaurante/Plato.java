@@ -125,9 +125,7 @@ public class Plato {
     public Plato cargarPlato () {
 
         System.out.println("Cargando los datos del plato...");
-
-
-        Plato plato = null;
+        
         boolean nombreValido = false;
         while (!nombreValido){
             System.out.println("Ingrese el nombre del plato: ");
@@ -137,12 +135,11 @@ public class Plato {
             }else {
                 try {
                     Validaciones.validarCadenas(nombre);
-                    plato.setNombre(nombre);
+                    nombreValido = true;
                 }
                 catch (DatoInvalidoException e){
                     System.out.println(e.getMessage());
                 }
-                nombreValido = true;
             }
         }
 
@@ -151,24 +148,59 @@ public class Plato {
         while (!descValida) {
             System.out.println("Ingrese la descripcion del Plato:");
             desc = scanner.nextLine();
+            
             try {
                 Validaciones.validarCadenas(desc);
-                plato.setDescripcion(desc);
                 descValida = true;
 
             } catch (DatoInvalidoException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        double precio = 0;
+        
 
         System.out.println("Ingrese el Precio del plato:");
-        precio = scanner.nextDouble();
+        double precio = scanner.nextDouble();
 
-        plato.setPrecio(precio);
+        if(precio == 0){
+            System.out.println("El precio no puede ser 0");
+        }
 
-
+        System.out.println("Ingrese el tipo de plato:");
+        System.out.println("1. DESAYUNO");
+        System.out.println("2. BRUNCH");
+        System.out.println("3. ALMUERZO");
+        System.out.println("4. CENA");
+        System.out.println("5. POSTRE");
+        System.out.println("6. BEBIDA");
+        System.out.println("7. ENTRADAS");
+        
+        int op = scanner.nextInt();
+        TipoPlato aux = null;
+        
+        if(op == 1){
+            aux = TipoPlato.DESAYUNO;
+        }
+        else if (op == 2){
+            aux = TipoPlato.BRUNCH;
+        } 
+        else if (op == 3) {
+            aux = TipoPlato.ALMUERZO;
+        } 
+        else if (op == 4) {
+            aux = TipoPlato.CENA;
+        } 
+        else if (op == 5) {
+            aux = TipoPlato.POSTRE;
+        }
+        else if (op == 6) {
+            aux = TipoPlato.BEBIDA;
+        }
+        else if (op == 7) {
+            aux = TipoPlato.ENTRADAS;
+        }
+        
+        return new Plato(nombre, desc, precio, aux);
     }
 
     //PLATO TO JSON

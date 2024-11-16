@@ -76,7 +76,7 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
      * JSONObject y retorna un Cliente, lanza un FormatoIncorrectoException si el formato del
      * JSONObject no tiene los parametros de un Cliente.
      * @param json
-     * @return
+     * @return clienteLeido
      * @throws FormatoIncorrectoException
      */
     public Cliente jsonToCliente (JSONObject json) throws FormatoIncorrectoException {

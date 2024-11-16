@@ -38,7 +38,7 @@ public class EmpleadoTiempoCompleto extends Empleado {
     }
 
     ///ToString
-    
+
     @Override
     public String toString() {
         return "EmpleadoTiempoCompleto{" +

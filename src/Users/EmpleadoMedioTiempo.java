@@ -8,7 +8,7 @@ import org.json.JSONObject;
  * La clase Users.EmpleadoMedioTiempo tiene como campos su nombre de usuario, contrasenia, nombre,
  * apellido, dni, telefono, direccion, email, estado, sueldo, horas trabajadas y precioXhora.
  * Hereda de la clase abstracta Empleado
- * Tiene un constructor con todos los atributos
+ * Tiene un constructor con todos los atributos y otro null
  * Metodos: getters y setters, toString
  * Otros metodos: toJson, jsonToEmpleadoMT, calcularSueldo, calcularHorasExtra, toStringArchivo
  *
@@ -85,7 +85,7 @@ public class EmpleadoMedioTiempo extends Empleado {
      * recibe un JSONObject y retorna un EmpleadoMedioTiempo, lanza un FormatoIncorrectoException
      * si el formato del JSONObject no tiene los parametros de un EmpleadoMedioTiempo.
      * @param json
-     * @return
+     * @return empleadoLeido
      * @throws FormatoIncorrectoException
      */
     public EmpleadoMedioTiempo jsonToEmpleadoMT (JSONObject json) throws FormatoIncorrectoException {

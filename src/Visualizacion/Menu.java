@@ -294,12 +294,7 @@ public class Menu {
 
                                 Empleado empleado= gestionEmpleados.encontrarUsuario(d);
 
-                                if(empleado instanceof EmpleadoMedioTiempo){
-                                    gestionEmpleados.modificarEmpleadoMT((EmpleadoMedioTiempo) empleado);
-                                }
-                                else {
-                                    gestionEmpleados.modificarEmpleadoTC((EmpleadoTiempoCompleto)empleado);
-                                }
+                                gestionEmpleados.modificarUsuario(empleado);
                         }
                         }
                         catch (RuntimeException e){

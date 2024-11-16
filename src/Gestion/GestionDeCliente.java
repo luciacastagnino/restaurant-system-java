@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
 
-    private List<Cliente> listaDeClientes;
+    private List<Cliente> listaDeClientes ;
     private RegistroUser registroUser;
     private Scanner scanner;
 

@@ -30,7 +30,8 @@ public class Ticket {
     private MenuRestaurante menuRestaurante;
     private Scanner scanner;
 
-    public Ticket (int id, Reserva reserva, Empleado empleado, LocalDateTime horaEmision, List<Plato> platos, Cliente cliente double precio, TipoPago tipoPago, double propina) {
+    public Ticket (int id, Reserva reserva, Empleado empleado, LocalDateTime horaEmision, List<Plato> platos,
+                   Cliente cliente, double precio, TipoPago tipoPago, double propina) {
         this.id = id;
         this.reserva = reserva;
         this.empleado = empleado;
@@ -159,7 +160,7 @@ public class Ticket {
         }
         System.out.println("**************************************");
         System.out.println("▌│█║▌║▌║║▌║▌║█│▌║▌║▌║█│▌");
-        System.out.println("*** GRACIAS POR SSU VISITA ***");
+        System.out.println("*** GRACIAS POR SU VISITA ***");
         System.out.println("--------------------------------------");
 
     }

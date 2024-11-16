@@ -5,10 +5,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * La clase Users.Empleado tiene como campos su nombre, apellido, dni, telefono, direccion e email
- * tiene un constructor con todos los atributos
- * metodos: getters y setters
- * otros metodos:
+ * La clase Users.Empleado tiene como campos su nombre de usuario, contrasenia, nombre,
+ * apellido, dni, telefono, direccion, email, estado, sueldo y aniosAtiguedad
+ * Tiene un constructor con todos los atributos
+ * Hereda de la clase abstracta Empleado
+ * Metodos: getters, setters, toString.
+ * Otros metodos: toJson, JsonToEmpleadoTC, calcularSueldo
  *
  * @author Brenda
  * @since 2024
@@ -36,18 +38,40 @@ public class EmpleadoTiempoCompleto extends Empleado {
     }
 
     ///ToString
-
-
+    
     @Override
     public String toString() {
-        return "Users.EmpleadoTiempoCompleto{" +
-                "aniosAntiguedad=" + aniosAntiguedad +
+        return "EmpleadoTiempoCompleto{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", email='" + email + '\'' +
                 ", direccion='" + direccion + '\'' +
+                ", email='" + email + '\'' +
+                ", aniosAntiguedad=" + aniosAntiguedad +
+                ", sueldo=" + sueldo +
+                '}';
+    }
+
+    /**
+     * toStringArchivo, es un metodo para guardar informacion como texto en un archivo JSON
+     * @return informacion del EmpleadoTiempoCompleto
+     */
+    public String toStringArchivo() {
+        return "EmpleadoTiempoCompleto{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", email='" + email + '\'' +
+                ", estado=" + estado +
+                ", aniosAntiguedad=" + aniosAntiguedad +
                 ", sueldo=" + sueldo +
                 '}';
     }

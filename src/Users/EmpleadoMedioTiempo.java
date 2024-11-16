@@ -5,8 +5,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * La clase Users.EmpleadoMedioTiempo tiene como campos su nombre, apellido, dni, telefono,
- * direccion, email, horas trabajadas y precioXhora.
+ * La clase Users.EmpleadoMedioTiempo tiene como campos su nombre de usuario, contrasenia, nombre,
+ * apellido, dni, telefono, direccion, email, estado, sueldo, horas trabajadas y precioXhora.
  * Hereda de la clase abstracta Empleado
  * Tiene un constructor con todos los atributos
  * Metodos: getters y setters, toString

@@ -1,10 +1,17 @@
 package Restaurante;
 
+import Gestion.GestionReserva;
+import Users.Cliente;
 import Users.Empleado;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Ticket {
@@ -68,6 +75,72 @@ public class Ticket {
 
     public void setPropina(double propina) {
         this.propina = propina;
+    }
+
+    public Ticket ingresarTicket(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Complete con los datos:\n");
+
+        Reserva res = null;
+        boolean resValida = false;
+        while (!resValida) {
+            System.out.println("Por favor, ingresa ID de la reserva:");
+            int id = scanner.nextInt();
+
+            res = GestionReserva.encontrarUsuario(id);
+            resValida = true;
+        }
+
+        Empleado hora = null;
+        boolean horaValida = false;
+        while (!horaValida) {
+            System.out.println("Ingrese la hora (formato: HH:mm):");
+            String horaInput = scanner.nextLine();
+            DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+            try {
+                hora = LocalTime.parse(horaInput, formatoHora);
+                horaValida = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Error: El formato de la hora no es correcto.");
+            }
+        }
+
+        Cliente cliente = null;
+        boolean valido = false;
+        while (!valido) {
+            System.out.println();
+            System.out.println("¿Qué tipo de cliente desea ingresar?");
+            System.out.println("1. Cliente existente.");
+            System.out.println("2. Crear nuevo cliente.");
+            int op = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (op) {
+                case 1:
+                    System.out.println("Ingrese el DNI del cliente: ");
+                    String dni = scanner.nextLine();
+                    cliente = gestionDeCliente.encontrarUsuario(dni);
+                    if (cliente != null) {
+                        valido = true;
+                    } else {
+                        System.out.println("No se encontró el cliente.");
+                    }
+                    break;
+                case 2:
+                    gestionDeCliente.ingresarUsuario();
+                    System.out.println("Ingrese el DNI del cliente recién ingresado: ");
+                    String dni2 = scanner.nextLine();
+                    cliente = gestionDeCliente.encontrarUsuario(dni2);
+                    if (cliente != null) {
+                        valido = true;
+                    } else {
+                        System.out.println("No se encontró el cliente.");
+                    }
+                    break;
+                default:
+                    System.out.println("Opción incorrecta, ingrese una opción válida.");
+            }
     }
 
     public void mostrarTicket (Ticket t){

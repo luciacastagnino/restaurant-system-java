@@ -145,6 +145,16 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
     }
 
+    public void listarPlatosTicket (){
+        if (platos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
+        for (Plato p : platos){
+            System.out.println("ID: " + p.getId() + " / Plato: " + p.getNombre());
+        }
+    }
+
     /**
      * Muestra los platos de la categoría desayuno/merienda que están disponibles.
      * Solo se muestran los platos cuya disponibilidad es verdadera.

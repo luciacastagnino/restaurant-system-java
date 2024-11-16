@@ -2,6 +2,7 @@ package Restaurante;
 
 import Gestion.GestionEmpleados;
 import Gestion.GestionReserva;
+import Gestion.MenuRestaurante;
 import Users.Cliente;
 import Users.Empleado;
 
@@ -26,6 +27,7 @@ public class Ticket {
     private Cliente cliente;
     private GestionReserva gestionReserva;
     private GestionEmpleados gestionEmpleados;
+    private MenuRestaurante menuRestaurante;
     private Scanner scanner;
 
     public Ticket (int id, Reserva reserva, Empleado empleado, LocalDateTime horaEmision, List<Plato> platos, Cliente cliente double precio, TipoPago tipoPago, double propina) {
@@ -40,6 +42,7 @@ public class Ticket {
         this.cliente = cliente;
         this.gestionReserva = new GestionReserva();
         this.gestionEmpleados = new GestionEmpleados();
+        this.menuRestaurante = new MenuRestaurante();
         this.scanner = new Scanner(System.in);
     }
 
@@ -117,6 +120,9 @@ public class Ticket {
         }
 
         /// hacer funcion para cargar los platos elegidos.
+        menuRestaurante.listarPlatosTicket();
+        
+
 
         this.precio = precio;
         this.tipoPago = tipoPago;

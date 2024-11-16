@@ -207,10 +207,10 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                                 System.out.println("¿Qué tipo de cliente desea ingresar?");
                                 System.out.println("1. Cliente existente.");
                                 System.out.println("2. Crear nuevo cliente.");
-                                int op = scanner.nextInt();
+                                int opcion = scanner.nextInt();
                                 scanner.nextLine();
 
-                                switch (op) {
+                                switch (opcion) {
                                     case 1:
                                         System.out.println("Ingrese el DNI del cliente: ");
                                         String dni = scanner.nextLine();
@@ -262,7 +262,8 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                                 if (cantPersonas<=0){
                                     System.out.println("La cantidad de personas no puede ser 0");
                                 }else {
-                                     c
+                                     c.setCantPersonas(cantPersonas);
+                                     cantPersonasValido=true;
                                 }
                             }
                             break;
@@ -312,31 +313,72 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         System.out.println("No se encontro la reserva.");
     }
 
-
     @Override
     public void mostrarColeccion() {
-
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        reservasPorCliente.forEach(System.out::println);
     }
 
     @Override
     public Reserva encontrarUsuario(String dni) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getCliente().getDni().equals(dni)){
+                return reserva;
+            }
+        }
+
+        System.out.println("No se encontro la reserva.");
         return null;
     }
 
     @Override
-    public Reserva encontrarUsuario(int id) {
-        return null;
-    }
-
-    @Override
-    public void listarUsuarios(String nombre) {
-
+    public void listarUsuarios(String apellido) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getCliente().getApellido().equals(apellido)){
+                mostrarDatosUsuario(reserva);
+            }
+        }
     }
 
     @Override
     public void listarUsuarios(boolean aux) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
 
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.isEstado() == aux){
+                mostrarDatosUsuario(reserva);
+            }
+        }
     }
+
+    @Override
+    public Reserva encontrarUsuario(int id) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getId() == id){
+                return reserva;
+            }
+        }
+
+        System.out.println("No se encontro la reserva.");
+        return null;
+    }
+
+    /// NO SE SI LO DE ABAJO FUNCIONA, ME TIRA ERROR
 
     /**
      * Agrega una reserva al registro y actualiza la cantidad de reservas del cliente.
@@ -344,6 +386,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
      *
      * @param reserva la reserva que se va a agregar.
      */
+    /*
     public void agregarReserva(Reserva reserva) {
         Cliente cliente = reserva.getCliente();
 
@@ -353,15 +396,15 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
         // Actualizar el tipo de cliente basado en la cantidad de reservas
         actualizarTipoCliente(cliente, cantidadReservas);
-    }
-
+    }*/
+/*
     /**
      * Actualiza el tipo de cliente según la cantidad de reservas realizadas.
      *
      * @param cliente el cliente cuya categoría se desea actualizar.
      * @param cantidadReservas la cantidad actual de reservas realizadas por el cliente.
      */
-    private void actualizarTipoCliente(Cliente cliente, int cantidadReservas) {
+    /*private void actualizarTipoCliente(Cliente cliente, int cantidadReservas) {
         if (cantidadReservas >= 10) {
             cliente.setTipoCliente(TipoCliente.VIP);
         } else if (cantidadReservas >= 5) {
@@ -371,13 +414,14 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
     }
 
+*/
     /**
      * Obtiene el tipo de cliente según la cantidad de reservas realizadas.
      *
      * @param cliente el cliente cuya categoría se desea determinar.
      * @return el tipo de cliente basado en el número de reservas.
      */
-    public TipoCliente obtenerTipoCliente(Cliente cliente) {
+   /* public TipoCliente obtenerTipoCliente(Cliente cliente) {
         return cliente.getTipoCliente();  // Ya está actualizado al agregar la reserva
     }
 
@@ -387,6 +431,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
      * @param cliente el cliente cuya cantidad de reservas se desea obtener.
      * @return la cantidad de reservas del cliente.
      */
+    /*
     public int obtenerCantidadDeReservas(Cliente cliente) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
@@ -403,12 +448,5 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return i;
     }
 
-    /**
-     * Devuelve un mapa de todos los clientes con su cantidad de reservas.
-     *
-     * @return un mapa donde las claves son los clientes y los valores son sus cantidades de reservas.
-     */
-    public Map<Cliente, Integer> obtenerReservasPorCliente() {
-        return new HashMap<>(reservasPorCliente);
-    }
+    */
 }

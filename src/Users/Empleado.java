@@ -1,5 +1,7 @@
 package Users;
 
+import java.util.Objects;
+
 /**
  * La clase Users.Empleado es abstracta y tiene como campos su nombre, apellido, dni,
  * telefono, direccion, email, sueldo y horas extra
@@ -47,4 +49,19 @@ public abstract class Empleado extends Usuario {
                 ", email='" + email + '\'' +
                 "} ";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Empleado empleado)) return false;
+        if (!super.equals(o)) return false;
+        return Double.compare(sueldo, empleado.sueldo) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), sueldo);
+    }
+
+
 }

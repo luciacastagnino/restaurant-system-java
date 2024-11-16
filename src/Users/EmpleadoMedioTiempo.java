@@ -6,14 +6,15 @@ import org.json.JSONObject;
 
 /**
  * La clase Users.EmpleadoMedioTiempo tiene como campos su nombre, apellido, dni, telefono,
- * direccion, email y horas trabajadas
- * tiene un constructor con todos los atributos
- * metodos: getters y setters, toString
- * otros metodos: toJson, jsonToEmpleadoMT,
+ * direccion, email, horas trabajadas y precioXhora.
+ * Hereda de la clase abstracta Empleado
+ * Tiene un constructor con todos los atributos
+ * Metodos: getters y setters, toString
+ * Otros metodos: toJson, jsonToEmpleadoMT, calcularSueldo, calcularHorasExtra, toStringArchivo
  *
  * @author Brenda
  * @since 2024
- * @version 1
+ * @version 2
  */
 public class EmpleadoMedioTiempo extends Empleado {
     private int horasTrabajadas;
@@ -139,5 +140,43 @@ public class EmpleadoMedioTiempo extends Empleado {
         return horasExtra * Math.pow(precioXhora, 2);
     }
 
+    /**
+     * toStringArchivo, es un metodo para guardar informacion como texto en un archivo JSON
+     * @return informacion del EmpleadoMedioTiempo
+     */
+    public String toStringArchivo() {
+        return "EmpleadoMedioTiempo{" +
+                "idContador=" + idContador +
+                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", email='" + email + '\'' +
+                ", estado=" + estado +
+                ", horasTrabajadas=" + horasTrabajadas +
+                ", precioXhora=" + precioXhora +
+                ", sueldo=" + sueldo +
+                '}';
+    }
+
+    @Override
+    public String toString() {
+        return "EmpleadoMedioTiempo{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", email='" + email + '\'' +
+                ", horasTrabajadas=" + horasTrabajadas +
+                ", precioXhora=" + precioXhora +
+                '}';
+    }
 }
 

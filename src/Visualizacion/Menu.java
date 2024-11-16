@@ -216,8 +216,8 @@ public class Menu {
             System.out.println("5. Mostrar Empleados Inactivos.");
             System.out.println("6. Calcular Sueldo.");
             System.out.println("7. Modificar Empleado.");
-            System.out.println("7. Buscar Empleado.");
-            System.out.println(". Salir.");
+            System.out.println("8. Buscar Empleado.");
+            System.out.println("9. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -270,7 +270,7 @@ public class Menu {
             System.out.println("6. Mostrar Tikets de Cliente.");
             System.out.println("7. Modificar Cliente.");
             System.out.println("8. Buscar Cliente.");
-            System.out.println(". Salir.");
+            System.out.println("9.. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();

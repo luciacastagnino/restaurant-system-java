@@ -370,7 +370,8 @@ public class Menu {
         System.out.println("     M E N U  D E  C L I E N T E S     ");
         System.out.println("-----------------------------------------");
         try {
-            logIn.inicioSesionCliente("clientes.json");
+            Cliente cliente = logIn.inicioSesionCliente("clientes.json");
+            menuInicioSesionCliente(cliente);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

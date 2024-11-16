@@ -230,7 +230,6 @@ public class Menu {
                         gestionEmpleados.ingresarUsuario();
                         break;
                     case 3:
-                        ///hay que hacer busqueda con id
                         System.out.println("Ingrese el dni del Empleado que quiere dar de baja");
                         String dni = scanner.nextLine();
 
@@ -287,7 +286,43 @@ public class Menu {
 
                         break;
                     case 8:
+                        System.out.println("1. Buscar por DNI.");
+                        System.out.println("2. Buscar por ID.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
 
+                            if(op1 == 1){
+                                System.out.println("Ingresar DNI del empleado:");
+                                String dni1 = scanner.nextLine();
+
+                                Empleado aux1 = gestionEmpleados.encontrarUsuario(dni1);
+
+                                if(aux1 instanceof EmpleadoMedioTiempo){
+                                    System.out.println((EmpleadoMedioTiempo)aux1);
+                                }
+                                else {
+                                    System.out.println((EmpleadoTiempoCompleto)aux1);
+                                }
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar ID del empleado:");
+                                int id = scanner.nextInt();
+
+                                Empleado aux1 = gestionEmpleados.encontrarUsuario(id);
+
+                                if(aux1 instanceof EmpleadoTiempoCompleto){
+                                    System.out.println((EmpleadoTiempoCompleto)aux1);
+                                }
+                                else{
+                                    System.out.println((EmpleadoMedioTiempo)aux1);
+                                }
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 9:
                         System.out.println("Cerrando sesion...");
@@ -300,7 +335,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 6);
+        } while (op != 9);
 
     }
 
@@ -343,6 +378,15 @@ public class Menu {
                     case 5:
                         break;
                     case 6:
+
+                        break;
+                    case 7:
+
+                        break;
+                    case 8:
+
+                        break;
+                    case 9:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:

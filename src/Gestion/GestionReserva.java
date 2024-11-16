@@ -342,12 +342,45 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     }
 
     @Override
-    public void listarUsuarios(String apellido) {
+    public void listarUsuarios(String dni) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
         for (Reserva reserva : reservasPorCliente.values()){
-            if (reserva.getCliente().getApellido().equals(apellido)){
+            if (reserva.getCliente().getDni().equals(dni)){
+                mostrarDatosUsuario(reserva);
+            }
+        }
+    }
+
+    public void listarUsuarios(LocalDate dia) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getDia().equals(dia)){
+                mostrarDatosUsuario(reserva);
+            }
+        }
+    }
+
+    public void listarUsuarios(LocalTime hora) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getHora().equals(hora)){
+                mostrarDatosUsuario(reserva);
+            }
+        }
+    }
+
+    public void listarUsuarios(LocalDate dia, LocalTime hora) {
+        if (reservasPorCliente.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Reserva reserva : reservasPorCliente.values()){
+            if (reserva.getHora().equals(hora) && reserva.getDia().equals(dia)){
                 mostrarDatosUsuario(reserva);
             }
         }

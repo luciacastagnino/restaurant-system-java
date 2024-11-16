@@ -1,9 +1,12 @@
 package Visualizacion;
 
 import Gestion.*;
+import Restaurante.Reserva;
 import Users.*;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -420,7 +423,10 @@ public class Menu {
                         }
                         break;
                     case 9:
-                        //reservas
+                        System.out.println("Ingrese el DNI del Cliente para ver sus reservas:");
+                        String dni1 = scanner.nextLine();
+
+                        gestionReserva.listarUsuarios(dni1);
                         break;
                     case 10:
                         System.out.println("Cerrando sesion...");
@@ -435,6 +441,117 @@ public class Menu {
             }
         } while (op != 9);
 
+    }
+
+    public void gestorDeReservasAdmin(){
+        int op = 0;
+        do {
+            System.out.println();
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Mostrar Reservas.");
+            System.out.println("2. Ingresar Reserva.");
+            System.out.println("3. Dar de baja Reserva.");
+            System.out.println("4. Modificar Reserva.");
+            System.out.println("5. Buscar Reserva.");
+            System.out.println("6. Salir.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+                        System.out.println("Seleccione una opcion:");
+                        System.out.println("1. Todas las reservas.");
+                        System.out.println("2. Reservas Activas");
+                        System.out.println("3. Reservas inactivas.");
+                        System.out.println("4. Reservas por Dia.");
+                        System.out.println("5. Reservas por Hora.");
+                        System.out.println("6. Reservas por dia y hora.");
+                        System.out.println("7. Reservas por Cliente.");
+                        System.out.println("8. Salir");
+
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                gestionReserva.mostrarColeccion();
+                            }
+                            else if (op1 == 2) {
+                                gestionReserva.listarUsuarios(true);
+                            }
+                            else if (op1 == 3){
+                                gestionReserva.listarUsuarios(false);
+                            }
+                            else if (op1 == 4){
+                                System.out.println("Ingrese el dia:");
+                                String aux = scanner.nextLine();
+                                LocalDate dia = LocalDate.parse(aux);
+
+                                gestionReserva.listarUsuarios(dia);
+                            }
+                            else if (op1 == 5) {
+                                System.out.println("Ingrese la hora:");
+                                String aux = scanner.nextLine();
+                                LocalTime hs = LocalTime.parse(aux);
+
+                                gestionReserva.listarUsuarios(hs);
+                            }
+                            else if (op1 == 6) {
+                                System.out.println("Ingrese la hora:");
+                                String aux = scanner.nextLine();
+                                LocalTime hs = LocalTime.parse(aux);
+
+                                System.out.println("Ingrese el dia:");
+                                String aux1 = scanner.nextLine();
+                                LocalDate dia = LocalDate.parse(aux);
+
+                                gestionReserva.listarUsuarios(dia, hs);
+                            }
+                            else if (op1 == 7) {
+                                System.out.println("Ingrese el DNI del Cliente:");
+                                String aux = scanner.nextLine();
+
+                               gestionReserva.listarUsuarios(aux);
+                            }
+                            else {
+                                System.out.println("Saliendo...");
+                                break;
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 2:
+                        gestionReserva.ingresarUsuario();
+                        break;
+                    case 3:
+                        System.out.println("Ingrese el ID de la reserva a dar de baja");
+                        int id = scanner.nextInt();
+
+                        Reserva aux = gestionReserva.encontrarUsuario(id);
+                        gestionReserva.darDeBajaUsuario(aux);
+                        break;
+                    case 4:
+                        gestionDeCliente.listarUsuarios(true);
+                        break;
+                    case 5:
+                        gestionDeCliente.listarUsuarios(false);
+                        break;
+                    case 6:
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        } while (op != 9);
     }
 
     public void menuEmpleado() {
@@ -520,13 +637,15 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
+                        System.out.println("MI PERFIL:");
                         gestionDeCliente.mostrarDatosUsuario(cliente);
                         break;
                     case 2:
 
                         break;
                     case 3:
-
+                        System.out.println("LISTA DE RESERVAS:");
+                        gestionReserva.listarUsuarios(cliente.getDni());
                         break;
                     case 4:
                         System.out.println("Seleccione una opcion:");
@@ -538,6 +657,7 @@ public class Menu {
                         System.out.println("6. Almuerzo.");
                         System.out.println("7. Cena.");
                         System.out.println("8. Postre.");
+                        System.out.println("9. Salir");
 
                         try {
                             System.out.printf("Selecciona una opcion: ");
@@ -567,6 +687,10 @@ public class Menu {
                             }
                             else if (op1 == 8) {
                                 menuRestaurante.mostrarPostre();
+                            }
+                            else {
+                                System.out.println("Saliendo...");
+                                break;
                             }
                         }
                         catch (RuntimeException e) {

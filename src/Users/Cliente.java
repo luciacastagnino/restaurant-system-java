@@ -11,7 +11,7 @@ import java.util.Objects;
  * Tiene un constructor con todos los atributos
  * Hereda de la clase abstracta Usuario e implementa la interfaz Comparable
  * Metodos: getters, setters, toString, equals, hashcode y compareTo
- * Otros metodos: toJson, jsonToCliente
+ * Otros metodos: toJson, jsonToCliente, toStringArchivo
  *
  * @author Brenda
  * @since 2024
@@ -148,8 +148,25 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
     @Override
     public String toString() {
         return "Cliente{" +
-                "tipoCliente=" + tipoCliente +
                 ", id=" + id +
+                ", username='" + username + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", email='" + email + '\'' +
+                ", tipoCliente=" + tipoCliente +
+                '}';
+    }
+
+    /**
+     * toStringArchivo, es un metodo para guardar informacion como texto en un archivo JSON
+     * @return informacion del Cliente
+     */
+    public String toStringArchivo() {
+        return "Cliente{" +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", contrasenia='" + contrasenia + '\'' +
                 ", nombre='" + nombre + '\'' +
@@ -158,6 +175,8 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
                 ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", email='" + email + '\'' +
-                "} ";
+                ", estado=" + estado +
+                ", tipoCliente=" + tipoCliente +
+                '}';
     }
 }

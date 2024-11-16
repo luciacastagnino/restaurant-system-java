@@ -276,7 +276,7 @@ public class Reserva {
 
         System.out.println("Ingrese la cantidad de personas:");
         int cantPersonas = scanner.nextInt();
-        
+
         return new Reserva(dia, hora, cliente, mesa, cantPersonas);
     }
 

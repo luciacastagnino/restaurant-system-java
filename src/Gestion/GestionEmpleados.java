@@ -27,8 +27,8 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         System.out.println("1. Users.Empleado tiempo completo.");
         System.out.println("2. Users.Empleado medio tiempo.");
 
-        int tipoEmpleado = scan.nextInt();
-        scan.nextLine();
+        int tipoEmpleado = scanner.nextInt();
+        scanner.nextLine();
         if (tipoEmpleado == 1) {
             EmpleadoTiempoCompleto aux = registroUser.registroEmpleadoTC();
             agregarYguardar(aux);
@@ -70,7 +70,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 }
             }
         } catch (JSONException e) {
-            System.out.println("Ocurrio un error al convertir JSONObject a Cliente.");
+            System.out.println("Ocurrio un error al convertir JSONObject a Empleado.");
         }
 
         return listaEmpleados;
@@ -166,13 +166,13 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
     public void mostrarDatosUsuario(Cliente a) {
 
-        listaDeClientes = cargarArrayConArchivo();
+        listaEmpleados = cargarArrayConArchivo();
 
-        for (Cliente cliente : listaDeClientes) {
-            if (cliente.getId() == a.getId()) {
+        for (Empleado empleado : listaEmpleados) {
+            if (empleado.getId() == a.getId()) {
                 System.out.println();
                 System.out.println("--------------------------------------------");
-                System.out.println("PERFIL DE CLIENTE: " + a.getNombre() + " " + a.getApellido());
+                System.out.println("PERFIL DE EMPLEADO: " + a.getNombre() + " " + a.getApellido());
                 System.out.println("--------------------------------------------");
 
                 System.out.println("ID: " + a.getId());
@@ -414,14 +414,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         return c;
     }
 
-    public Cliente modificarUsuario(Cliente c) {
+    public Empleado modificarUsuario(Empleado c) {
 
-        listaDeClientes = cargarArrayConArchivo();
+        listaEmpleados = cargarArrayConArchivo();
         boolean salir = false;
 
-        for (Cliente cliente : listaDeClientes) {
+        for (Empleado cliente : listaEmpleados) {
             if (c.getId() == cliente.getId()) {
-                listaDeClientes.remove(cliente);
+                listaEmpleados.remove(cliente);
                 c = cliente;
                 while (!salir) {
 
@@ -613,14 +613,14 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                         return c;
                     }
 
-                    public Cliente modificarUsuario (Cliente c){
+                    public Empleado modificarUsuario(Empleado c){
 
-                        listaDeClientes = cargarArrayConArchivo();
+                        listaEmpleados = cargarArrayConArchivo();
                         boolean salir = false;
 
-                        for (Cliente cliente : listaDeClientes) {
+                        for (Empleado cliente : listaEmpleados) {
                             if (c.getId() == cliente.getId()) {
-                                listaDeClientes.remove(cliente);
+                                listaEmpleados.remove(cliente);
                                 c = cliente;
                                 while (!salir) {
                                     System.out.println("\n Que desea modificar?");
@@ -793,8 +793,8 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                                             break;
                                     }
                                 }
-                                listaDeClientes.add(c);
-                                cargarArchivoConArreglo(listaDeClientes);
+                                listaEmpleados.add(c);
+                                cargarArchivoConArreglo(listaEmpleados);
                                 System.out.println("¡Cambios guardados con exito!");
                                 return c;
                             }

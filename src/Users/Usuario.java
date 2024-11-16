@@ -3,15 +3,14 @@ package Users;
 import java.util.Objects;
 
 /**
- * La clase Persona es abstracta y tiene como campos su nombre, apellido, dni, telefono,
- * direccion e email
- * tiene un constructor con todos los atributos
- * metodos: getters y setters
- * otros metodos:
+ * La clase Users.Usuario es abstracta y tiene como campos su id, nombre de usuario, contrasenia, nombre,
+ * apellido, dni, telefono, direccion, email y estado.
+ * Tiene un constructor con todos los atributos, otro null y otro por defecto
+ * metodos: getters y setters, toString, equals, hashcode
  *
  * @author Brenda
  * @since 2024
- * @version 1
+ * @version 2
  */
 public abstract class Usuario {
     protected int idContador = 100;

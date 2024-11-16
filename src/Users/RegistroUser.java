@@ -3,7 +3,15 @@ package Users;
 import Users.Administrador;
 
 import java.util.Scanner;
-
+/**
+ * La clase Users.RegistroUser tiene como atributo un Scanner para utilizar en los metodos
+ * Tiene un constructor que inicializa el Scanner
+ * Metodos: registroAdmin, registroEmpleadoMT, registroEmpleadoTC, registroCliente
+ *
+ * @author Brenda
+ * @since 2024
+ * @version 2
+ */
 public final class RegistroUser{
 
     private Scanner scanner;
@@ -14,6 +22,11 @@ public final class RegistroUser{
 
     // REGISTRO DE USUARIO ADMIN
 
+    /**
+     * registroAdmin es un metodo que pide al usuario que ingrese sus datos para crear un nuevo
+     * administrador.
+     * @return nuevo Administrador
+     */
     public Administrador registroAdmin (){
 
         System.out.println("Complete con sus datos:\n");
@@ -138,6 +151,11 @@ public final class RegistroUser{
         return admin;
     }
 
+    /**
+     * registroEmpleadoTC es un metodo que pide al usuario que ingrese sus datos para crear un nuevo
+     * EmpleadoTiempoCompleto.
+     * @return nuevo EmpleadoTiempoCompleto
+     */
     public EmpleadoTiempoCompleto registroEmpleadoTC (){
 
         System.out.println("Complete con sus datos:\n");
@@ -163,6 +181,11 @@ public final class RegistroUser{
         return empleTC;
     }
 
+    /**
+     * registroEmpleadoMT es un metodo que pide al usuario que ingrese sus datos para crear un nuevo
+     * EmpleadoMedioTiempo.
+     * @return nuevo EmpleadoMedioTiempo
+     */
     public EmpleadoMedioTiempo registroEmpleadoMT (){
 
         System.out.println("Complete con sus datos:\n");
@@ -187,6 +210,11 @@ public final class RegistroUser{
         return empleMT;
     }
 
+    /**
+     * registroCliente es un metodo que pide al usuario que ingrese sus datos para crear un nuevo
+     * Cliente.
+     * @return nuevo Cliente
+     */
     public Cliente registroCliente (){
 
         System.out.println("Complete con sus datos:\n");

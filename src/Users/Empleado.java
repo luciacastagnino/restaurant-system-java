@@ -24,7 +24,6 @@ public abstract class Empleado extends Usuario {
     public Empleado() {
     }
 
-
     ///Getters y Setters
     public double getSueldo() {
         return sueldo;

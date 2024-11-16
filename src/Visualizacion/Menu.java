@@ -147,6 +147,7 @@ public class Menu {
                         gestorDeClientesAdmin();
                         break;
                     case 4:
+                        gestorDeReservasAdmin();
                         break;
                     case 5:
 
@@ -626,6 +627,7 @@ public class Menu {
                         gestorDeClientesAdmin();
                         break;
                     case 4:
+                        gestorDeReservasAdmin();
                         break;
                     case 5:
                         break;

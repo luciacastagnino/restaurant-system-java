@@ -231,8 +231,9 @@ public class Ticket {
             System.out.println("Por favor, ingresa ID de la reserva:");
             int id = scanner.nextInt();
             res = gestionReserva.encontrarUsuario(id);
+            gestionReserva.darDeBajaUsuario(res);
             Cliente cliente = res.getCliente();
-            if(cliente != null && res!=null){
+            if(cliente != null && res != null){
                 resValida = true;
             }else {
                 System.out.println("No se encontro la reserva, intentelo nuevamente.");
@@ -305,6 +306,8 @@ public class Ticket {
 
 
         }
+
+        horaEmision = LocalDateTime.now();
 
         Ticket ticket = new Ticket(res, empleado, horaEmision, platos, cliente, precio, tipoPago);
         return ticket;

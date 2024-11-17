@@ -2,19 +2,18 @@ package Gestion;
 
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
+import Restaurante.Plato;
 import Restaurante.Reserva;
 import Restaurante.Ticket;
-import Users.Administrador;
-import Users.RegistroUser;
+import Restaurante.TipoPago;
+import Users.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class GestionTickets implements MetodosBasicosGestion <Ticket>{
 
@@ -93,10 +92,152 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
     }
 
     @Override
-    public Ticket modificarUsuario(Ticket ticket) {
+    public Ticket modificarUsuario (Ticket t) {
+
+        ticketSet = cargarArrayConArchivo();
+        boolean salir = false;
+
+        for (Ticket ticket : ticketSet) {
+            if (t.getId() == ticket.getId()) {
+                ticketSet.remove(ticket);
+                t=ticket;
+                while (!salir) {
+                    System.out.println("\n Que desea modificar?");
+                    System.out.println("1. Reserva.");
+                    System.out.println("2. Empleado.");
+                    System.out.println("3. Hora emision.");
+                    System.out.println("4. Platos.");
+                    System.out.println("5. Tipo pago.");
+                    System.out.println("6. Salir.");
+                    int op = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (op) {
+                        case 1:
+
+                            GestionReserva gestionReserva = new GestionReserva();
+                            Reserva res = null;
+                            Cliente cliente = null;
+                            boolean resValida = false;
+                            while (!resValida) {
+                                System.out.println("Por favor, ingresa ID de la reserva:");
+                                int id = scanner.nextInt();
+                                res = gestionReserva.encontrarUsuario(id);
+                                cliente=res.getCliente();
+                                gestionReserva.darDeBajaUsuario(res);
+                                if(res != null && cliente!=null){
+                                    t.setReserva(res);
+                                    t.setCliente(cliente);
+                                    resValida = true;
+                                }else {
+                                    System.out.println("No se encontro la reserva, intentelo nuevamente.");
+                                }
+                            }
+
+                            break;
+                        case 2:
+
+                            Empleado empleado = null;
+                            GestionEmpleados gestionEmpleados = new GestionEmpleados();
+                            boolean empleadoValido = false;
+                            while (!empleadoValido){
+                                System.out.println("Ingrese el DNI del empleado: ");
+                                String dni = scanner.nextLine();
+                                empleado = gestionEmpleados.encontrarUsuario(dni);
+                                if (empleado != null){
+                                    empleadoValido=true;
+                                    t.setEmpleado(empleado);
+                                }else {
+                                    System.out.println("No se encontro el empleado.");
+                                }
+                            }
+
+                            break;
+                        case 3:
+
+                            LocalDateTime horaNow = LocalDateTime.now();
+                            t.setHoraEmision(horaNow);
+
+                            break;
+                        case 4:
+
+                            List<Plato>platos = new ArrayList<>();
+                            double precio = 0;
+                            boolean salir2 = false;
+                            while (!salir2) {
+                                System.out.println("1. Agregar plato.");
+                                System.out.println("2. Salir.");
+                                int opcion = scanner.nextInt();
+                                scanner.nextLine();
+                                if (opcion == 1) {
+                                    MenuRestaurante menuRestaurante = new MenuRestaurante();
+                                    menuRestaurante.listarPlatosTicket();
+                                    System.out.println("Ingrese el ID del plato:");
+                                    int id = scanner.nextInt();
+                                    scanner.nextLine();
+                                    Plato plato = menuRestaurante.encontrarUsuario(id);
+                                    platos.add(plato);
+                                } else if (opcion == 2) {
+                                    System.out.println("Platos cargados con exito.");
+                                    t.setPlatos(platos);
+                                    for (Plato p : platos) {
+                                        precio += p.getPrecio();
+                                    }
+                                    if (precio != 0) {
+                                        salir2 = true;
+                                        t.setPrecio(precio);
+                                    } else {
+                                        System.out.println("Ocurrio un problema, intentelo de nuevo.");
+                                    }
+                                }
+                            }
+                            break;
+                        case 5:
+
+                            TipoPago tipoPago = null;
+                            boolean tipoPagoValido = false;
+                            while (!tipoPagoValido){
+                                System.out.println("Seleccione el tipo de pago: ");
+                                System.out.println("1. Efectivo.");
+                                System.out.println("2. Debito.");
+                                System.out.println("3. Credito");
+                                int opTipoPago = scanner.nextInt();
+                                scanner.nextLine();
+                                if (opTipoPago==1){
+                                    tipoPago = TipoPago.EFECTIVO;
+                                    t.setTipoPago(tipoPago);
+                                    tipoPagoValido = true;
+                                } else if (opTipoPago==2) {
+                                    tipoPago = TipoPago.DEBITO;
+                                    t.setTipoPago(tipoPago);
+                                    tipoPagoValido=true;
+                                }else if (opTipoPago==3){
+                                    tipoPago = TipoPago.CREDITO;
+                                    t.setTipoPago(tipoPago);
+                                    tipoPagoValido=true;
+                                }else {
+                                    System.out.println("Opcion invalida.");
+                                }
+                            }
+                            break;
+                        case 6:
+                            System.out.println("Saliendo del menu de modificacion de usuario...");
+                            salir = true;
+                            break;
+                        default:
+                            System.out.println("Opcion invalida.");
+                            break;
+                    }
+                }
+                ticketSet.add(t);
+                cargarArchivoConArreglo(ticketSet);
+                System.out.println("¡Cambios guardados con exito!");
+                return t;
+            }
+        }
         return null;
     }
 
+    //no se usa, ya q no se dan de baja los tickets
     @Override
     public void darDeBajaUsuario(Ticket ticket) {
 
@@ -124,7 +265,6 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
                 return t;
             }
         }
-
         return null;
     }
 
@@ -149,7 +289,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         }
         for (Ticket ticket : ticketSet){
             if (ticket.getCliente().getDni().equals(dni)){
-                mostrarDatosUsuario(ticket);
+                ticket.mostrarTicket(ticket);
             }
         }
     }
@@ -161,7 +301,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         }
         for (Ticket ticket : ticketSet){
             if (ticket.getReserva().getEstado() == aux){
-                mostrarDatosUsuario(ticket);
+                ticket.mostrarTicket(ticket);
             }
         }
     }

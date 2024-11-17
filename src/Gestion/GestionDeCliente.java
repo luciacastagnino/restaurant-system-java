@@ -14,14 +14,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
     private List<Cliente> listaDeClientes ;
     private RegistroUser registroUser;
     private Scanner scanner;
-    private GestionReserva gestionReserva;
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
         GestionJSON.crearArchivoJSON("clientes.json");
         this.registroUser = new RegistroUser();
         this.scanner = new Scanner(System.in);
-        this.gestionReserva = new GestionReserva();
     }
 
     public void ingresarUsuario(){
@@ -391,6 +389,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
 
         for(int i = 0; i < listaDeClientes.size(); i++){
             Cliente aux = listaDeClientes.get(i);
+            GestionReserva gestionReserva = new GestionReserva();
             int contador = gestionReserva.obtenerCantidadDeReservas(aux);
 
             if(contador < 5){

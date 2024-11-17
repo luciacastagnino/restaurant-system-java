@@ -14,10 +14,9 @@ import java.util.Scanner;
  */
 public final class RegistroUser{
 
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);
 
     public RegistroUser() {
-        this.scanner = new Scanner(System.in);
     }
 
     // REGISTRO DE USUARIO ADMIN

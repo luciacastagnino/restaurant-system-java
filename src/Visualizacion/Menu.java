@@ -952,7 +952,6 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-                        System.out.println("MI PERFIL:");
                         gestionDeCliente.mostrarDatosUsuario(cliente);
                         break;
                     case 2:

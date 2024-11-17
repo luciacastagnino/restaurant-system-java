@@ -225,7 +225,8 @@ public class Menu {
             System.out.println("6. Calcular Sueldo.");
             System.out.println("7. Modificar Empleado.");
             System.out.println("8. Buscar Empleado.");
-            System.out.println("9. Salir.");
+            System.out.println("9. Dar de alta empleado.");
+            System.out.println("10. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -241,7 +242,7 @@ public class Menu {
                         System.out.println("Ingrese el dni del Empleado que quiere dar de baja");
                         String dni = scanner.nextLine();
 
-                        EmpleadoMedioTiempo aux = (EmpleadoMedioTiempo) gestionEmpleados.encontrarUsuario(dni);
+                        Empleado aux = gestionEmpleados.encontrarUsuario(dni);
                         gestionEmpleados.darDeBajaUsuarioAdmin(aux);
                         break;
                     case 4:
@@ -338,6 +339,13 @@ public class Menu {
                         }
                         break;
                     case 9:
+                        System.out.println("Ingrese el dni del Empleado que quiere dar de alta");
+                        String dni1 = scanner.nextLine();
+
+                        Empleado aux1 = gestionEmpleados.encontrarUsuario(dni1);
+                        gestionEmpleados.darDeAltaUsuario(aux1);
+                        break;
+                    case 10:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -366,7 +374,8 @@ public class Menu {
             System.out.println("7. Modificar Cliente.");
             System.out.println("8. Buscar Cliente.");
             System.out.println("9. Mostrar reservas.");
-            System.out.println("10. Salir.");
+            System.out.println("10. Dar de alta Cliente.");
+            System.out.println("11. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -392,7 +401,10 @@ public class Menu {
                         gestionDeCliente.listarUsuarios(false);
                         break;
                     case 6:
-                        //tickets
+                        System.out.println("Ingrese el dni del Cliente:");
+                        String dni1 = scanner.nextLine();
+
+                        gestionTickets.listarUsuarios(dni1);
                         break;
                     case 7:
                         System.out.println("Ingresar DNI del cliente:");
@@ -412,9 +424,9 @@ public class Menu {
 
                             if(op1 == 1){
                                 System.out.println("Ingresar DNI del cliente:");
-                                String dni1 = scanner.nextLine();
+                                String dni2 = scanner.nextLine();
 
-                                Cliente aux1 = gestionDeCliente.encontrarUsuario(dni1);
+                                Cliente aux1 = gestionDeCliente.encontrarUsuario(dni2);
 
                                 System.out.println(aux1);
                             }
@@ -433,11 +445,18 @@ public class Menu {
                         break;
                     case 9:
                         System.out.println("Ingrese el DNI del Cliente para ver sus reservas:");
-                        String dni1 = scanner.nextLine();
+                        String dni3 = scanner.nextLine();
 
-                        gestionReserva.listarUsuarios(dni1);
+                        gestionReserva.listarUsuarios(dni3);
                         break;
                     case 10:
+                        System.out.println("Ingrese el dni del Cliente que quiere dar de alta");
+                        String dni4 = scanner.nextLine();
+
+                        Cliente aux4 = gestionDeCliente.encontrarUsuario(dni4);
+                        gestionDeCliente.darDeAltaUsuario(aux4);
+                        break;
+                    case 11:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -448,7 +467,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 9);
+        } while (op != 11);
 
     }
 
@@ -462,7 +481,8 @@ public class Menu {
             System.out.println("3. Dar de baja Reserva.");
             System.out.println("4. Modificar Reserva.");
             System.out.println("5. Buscar Reserva.");
-            System.out.println("6. Salir.");
+            System.out.println("6. Dar de alta Reserva.");
+            System.out.println("7. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -586,6 +606,13 @@ public class Menu {
                         }
                         break;
                     case 6:
+                        System.out.println("Ingrese el ID de la reserva a dar de alta:");
+                        int id2 = scanner.nextInt();
+
+                        Reserva aux2 = gestionReserva.encontrarUsuario(id2);
+                        gestionReserva.darDeAltaUsuario(aux2);
+                        break;
+                    case 7:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -596,7 +623,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 9);
+        } while (op != 7);
     }
 
     public void gestorDeMenuAdmin(){
@@ -728,7 +755,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 9);
+        } while (op != 7);
     }
 
     public void gestorDeTiketsAdmin(){
@@ -738,10 +765,9 @@ public class Menu {
             System.out.println("¿Que desea hacer?");
             System.out.println("1. Mostrar Tickets.");
             System.out.println("2. Ingresar Ticket.");
-            System.out.println("3. Dar de baja Ticket.");
-            System.out.println("4. Modificar Ticket.");
-            System.out.println("5. Buscar Ticket.");
-            System.out.println("6. Salir.");
+            System.out.println("3. Modificar Ticket.");
+            System.out.println("4. Buscar Ticket.");
+            System.out.println("5. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -788,20 +814,13 @@ public class Menu {
                         gestionTickets.ingresarUsuario();
                         break;
                     case 3:
-                        System.out.println("Ingrese el ID del Ticket a dar de baja");
-                        int id = scanner.nextInt();
-
-                        Ticket aux = gestionTickets.encontrarUsuario(id);
-                        gestionTickets.darDeBajaUsuario(aux);
-                        break;
-                    case 4:
                         System.out.println("Ingrese el ID del Ticket a modificar");
                         int id1 = scanner.nextInt();
 
                         Ticket aux1 = gestionTickets.encontrarUsuario(id1);
                         gestionTickets.modificarUsuario(aux1);
                         break;
-                    case 5:
+                    case 4:
                         System.out.println("1. Buscar Ticket por ID.");
                         System.out.println("2. Buscar Ticket por cliente.");
                         try {
@@ -828,7 +847,7 @@ public class Menu {
                             System.out.println(e.getMessage());
                         }
                         break;
-                    case 6:
+                    case 5:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -839,7 +858,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 9);
+        } while (op != 5);
     }
 
     public void menuEmpleado() {

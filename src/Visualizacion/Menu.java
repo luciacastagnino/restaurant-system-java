@@ -162,7 +162,7 @@ public class Menu {
                         break;
                     case 7:
                         System.out.println("Cerrando sesion...");
-                        break;
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;
@@ -199,7 +199,7 @@ public class Menu {
                         break;
                     case 4:
                         System.out.println("Cerrando sesion...");
-                        break;
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;
@@ -209,7 +209,6 @@ public class Menu {
                 scanner.nextLine();
             }
         } while (op != 6);
-
     }
 
     public void gestorDeEmpleadosAdmin() {
@@ -346,8 +345,8 @@ public class Menu {
                         gestionEmpleados.darDeAltaUsuario(aux1);
                         break;
                     case 10:
-                        System.out.println("Cerrando sesion...");
-                        break;
+                        System.out.println("Saliendo...");
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;
@@ -457,8 +456,8 @@ public class Menu {
                         gestionDeCliente.darDeAltaUsuario(aux4);
                         break;
                     case 11:
-                        System.out.println("Cerrando sesion...");
-                        break;
+                        System.out.println("Saliendo...");
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;
@@ -546,7 +545,7 @@ public class Menu {
                             }
                             else {
                                 System.out.println("Saliendo...");
-                                break;
+                                return;
                             }
                         }
                         catch (RuntimeException e) {
@@ -613,8 +612,8 @@ public class Menu {
                         gestionReserva.darDeAltaUsuario(aux2);
                         break;
                     case 7:
-                        System.out.println("Cerrando sesion...");
-                        break;
+                        System.out.println("Saliendo...");
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;
@@ -745,8 +744,8 @@ public class Menu {
                         menuRestaurante.darDeAltaUsuario(aux2);
                         break;
                     case 7:
-                        System.out.println("Cerrando sesion...");
-                        break;
+                        System.out.println("Saliendo...");
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;
@@ -848,8 +847,8 @@ public class Menu {
                         }
                         break;
                     case 5:
-                        System.out.println("Cerrando sesion...");
-                        break;
+                        System.out.println("Saliendo...");
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;
@@ -910,7 +909,7 @@ public class Menu {
                         break;
                     case 7:
                         System.out.println("Cerrando sesion...");
-                        break;
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;
@@ -1016,7 +1015,7 @@ public class Menu {
                         break;
                     case 6:
                         System.out.println("Cerrando sesion...");
-                        break;
+                        return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
                         break;

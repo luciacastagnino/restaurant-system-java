@@ -16,7 +16,7 @@ import org.json.JSONObject;
  * @since 2024
  * @version 2
  */
-public class EmpleadoMedioTiempo extends Empleado {
+public class EmpleadoMedioTiempo extends Empleado implements Comparable {
     private int horasTrabajadas;
     private double precioXhora;
 
@@ -154,6 +154,11 @@ public class EmpleadoMedioTiempo extends Empleado {
                 ", horasTrabajadas=" + horasTrabajadas +
                 ", precioXhora=" + precioXhora +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.nombre.compareTo(((EmpleadoMedioTiempo) o).getNombre());
     }
 }
 

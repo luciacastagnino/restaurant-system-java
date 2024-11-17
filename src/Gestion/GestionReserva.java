@@ -409,7 +409,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
 
         for (Reserva reserva : reservasPorCliente.values()){
-            if (reserva.isEstado() == aux){
+            if (reserva.getEstado() == aux){
                 mostrarDatosUsuario(reserva);
             }
         }

@@ -218,6 +218,36 @@ public final class RegistroUser{
 
         System.out.println("Complete con sus datos:\n");
 
+        String nombre = "";
+        boolean nombreValido = false;
+
+        while (!nombreValido){
+            System.out.println("Nombre: ");
+            nombre = scanner.nextLine();
+
+            try {
+                Validaciones.validarCadenas(nombre);
+                nombreValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        String apellido = "";
+        boolean apellidoValido = false;
+
+        while (!apellidoValido){
+            System.out.println("Apellido: ");
+            apellido = scanner.nextLine();
+
+            try {
+                Validaciones.validarCadenas(apellido);
+                apellidoValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
         String dni = "";
         boolean dniValido = false;
         while (!dniValido){
@@ -232,33 +262,49 @@ public final class RegistroUser{
             }
         }
 
-        boolean estado = true;
-
-        boolean tipoClienteValido = false;
-
-        Cliente cliente = null;
-        while (!tipoClienteValido){
-
-            System.out.println("\nTipo de cliente: ");
-            System.out.println("1. Estandar.");
-            System.out.println("2. Premium.");
-            System.out.println("3. VIP.");
-            int tipoCliente = scanner.nextInt();
-            scanner.nextLine();
-
-            if (tipoCliente==1){
-                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado);
-                tipoClienteValido = true;
-            }else if (tipoCliente == 2){
-                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado);
-                tipoClienteValido = true;
-            }else if (tipoCliente == 3){
-                cliente = new Cliente(dni, dni, "", "", dni, "", "", "", estado);
-                tipoClienteValido = true;
-            }else {
-                System.out.println("Opcion invalida. Por favor, ingrese 1, 2 o 3.");
+        String telefono = "";
+        boolean telefonoValido = false;
+        while (!telefonoValido) {
+            System.out.println("Telefono: ");
+            telefono = scanner.nextLine();
+            try {
+                Validaciones.validarTelefono(telefono);
+                telefonoValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
             }
         }
+
+        String direccion = "";
+        boolean direccionValida = false;
+        while (!direccionValida){
+            System.out.println("Direccion: ");
+            direccion = scanner.nextLine();
+            try {
+                Validaciones.validarDireccion(direccion);
+                direccionValida = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+
+        String email = "";
+        boolean emailValido = false;
+        while(!emailValido){
+            System.out.println("Email: ");
+            email = scanner.nextLine();
+            try {
+                Validaciones.validarEmail(email);
+                emailValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        Cliente cliente = null;
+
+        cliente = new Cliente(nombre, apellido, dni, telefono, direccion, email);
 
         return cliente;
     }

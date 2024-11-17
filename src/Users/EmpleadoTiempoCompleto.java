@@ -23,8 +23,8 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
 
     }
 
-    public EmpleadoTiempoCompleto(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, double sueldo, int aniosAntiguedad) {
-        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, sueldo);
+    public EmpleadoTiempoCompleto(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo, int aniosAntiguedad) {
+        super(nombre, apellido, dni, telefono, direccion, email, sueldo);
         this.aniosAntiguedad = aniosAntiguedad;
     }
 

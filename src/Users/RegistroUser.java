@@ -142,10 +142,7 @@ public final class RegistroUser{
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
             }
         }
-
-        boolean estado = true;
-
-        Administrador admin = new Administrador(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+        Administrador admin = new Administrador(username, contrasenia, nombre, apellido, dni, telefono, direccion, email);
 
         return admin;
     }
@@ -159,6 +156,36 @@ public final class RegistroUser{
 
         System.out.println("Complete con sus datos:\n");
 
+        String nombre = "";
+        boolean nombreValido = false;
+
+        while (!nombreValido){
+            System.out.println("Nombre: ");
+            nombre = scanner.nextLine();
+
+            try {
+                Validaciones.validarCadenas(nombre);
+                nombreValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        String apellido = "";
+        boolean apellidoValido = false;
+
+        while (!apellidoValido){
+            System.out.println("Apellido: ");
+            apellido = scanner.nextLine();
+
+            try {
+                Validaciones.validarCadenas(apellido);
+                apellidoValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
         String dni = "";
         boolean dniValido = false;
         while (!dniValido){
@@ -173,9 +200,56 @@ public final class RegistroUser{
             }
         }
 
-        boolean estado = true;
+        String telefono = "";
+        boolean telefonoValido = false;
+        while (!telefonoValido) {
+            System.out.println("Telefono: ");
+            telefono = scanner.nextLine();
+            try {
+                Validaciones.validarTelefono(telefono);
+                telefonoValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
 
-        EmpleadoTiempoCompleto empleTC = new EmpleadoTiempoCompleto(dni, dni, "", "", dni, "", "", "", true, 0, 0);
+        String direccion = "";
+        boolean direccionValida = false;
+        while (!direccionValida){
+            System.out.println("Direccion: ");
+            direccion = scanner.nextLine();
+            try {
+                Validaciones.validarDireccion(direccion);
+                direccionValida = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+
+        String email = "";
+        boolean emailValido = false;
+        while(!emailValido){
+            System.out.println("Email: ");
+            email = scanner.nextLine();
+            try {
+                Validaciones.validarEmail(email);
+                emailValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        double sueldo = 0;
+        System.out.println("Sueldo: ");
+        sueldo = scanner.nextDouble();
+
+        int aniosAntguedad = 0;
+        System.out.println("Anios de antiguedad: ");
+        aniosAntguedad = scanner.nextInt();
+
+
+        EmpleadoTiempoCompleto empleTC = new EmpleadoTiempoCompleto(nombre, apellido, dni, telefono, direccion, email, sueldo, aniosAntguedad);
 
         return empleTC;
     }
@@ -189,6 +263,36 @@ public final class RegistroUser{
 
         System.out.println("Complete con sus datos:\n");
 
+        String nombre = "";
+        boolean nombreValido = false;
+
+        while (!nombreValido){
+            System.out.println("Nombre: ");
+            nombre = scanner.nextLine();
+
+            try {
+                Validaciones.validarCadenas(nombre);
+                nombreValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        String apellido = "";
+        boolean apellidoValido = false;
+
+        while (!apellidoValido){
+            System.out.println("Apellido: ");
+            apellido = scanner.nextLine();
+
+            try {
+                Validaciones.validarCadenas(apellido);
+                apellidoValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
         String dni = "";
         boolean dniValido = false;
         while (!dniValido){
@@ -203,9 +307,56 @@ public final class RegistroUser{
             }
         }
 
-        boolean estado = true;
+        String telefono = "";
+        boolean telefonoValido = false;
+        while (!telefonoValido) {
+            System.out.println("Telefono: ");
+            telefono = scanner.nextLine();
+            try {
+                Validaciones.validarTelefono(telefono);
+                telefonoValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
 
-        EmpleadoMedioTiempo empleMT = new EmpleadoMedioTiempo(dni, dni, "", "", dni, "", "", "", true, 0.0, 0, 0.0);
+        String direccion = "";
+        boolean direccionValida = false;
+        while (!direccionValida){
+            System.out.println("Direccion: ");
+            direccion = scanner.nextLine();
+            try {
+                Validaciones.validarDireccion(direccion);
+                direccionValida = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+
+        String email = "";
+        boolean emailValido = false;
+        while(!emailValido){
+            System.out.println("Email: ");
+            email = scanner.nextLine();
+            try {
+                Validaciones.validarEmail(email);
+                emailValido = true;
+            }catch (DatoInvalidoException e){
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        int horasTrabajadas = 0;
+        System.out.println("Horas Tranajadas:");
+        horasTrabajadas = scanner.nextInt();
+
+        double precioXhora = 0;
+        System.out.println("Horas Tranajadas:");
+        precioXhora = scanner.nextDouble();
+
+
+        EmpleadoMedioTiempo empleMT = new EmpleadoMedioTiempo(nombre, apellido, dni, telefono, direccion, email, 0.00, horasTrabajadas, precioXhora);
         return empleMT;
     }
 

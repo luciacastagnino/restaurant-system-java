@@ -24,8 +24,8 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable {
 
     }
 
-    public EmpleadoMedioTiempo(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, double sueldo, int horasTrabajadas, double precioXhora) {
-        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado, sueldo);
+    public EmpleadoMedioTiempo(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo, int horasTrabajadas, double precioXhora) {
+        super(nombre, apellido, dni, telefono, direccion, email, sueldo);
         this.horasTrabajadas = horasTrabajadas;
         this.precioXhora = precioXhora;
     }

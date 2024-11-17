@@ -26,8 +26,8 @@ public class Administrador extends Usuario implements Comparable<Administrador>{
     public Administrador() {
     }
 
-    public Administrador(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
-        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+    public Administrador(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email) {
+        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email);
         this.id = contadorId++;
     }
 

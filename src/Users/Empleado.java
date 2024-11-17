@@ -16,8 +16,8 @@ import java.util.Objects;
 public abstract class Empleado extends Usuario {
     protected double sueldo;
 
-    public Empleado(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado, double sueldo) {
-        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+    public Empleado(String nombre, String apellido, String dni, String telefono, String direccion, String email, double sueldo) {
+        super(nombre, apellido, dni, telefono, direccion, email);
         this.sueldo = sueldo;
     }
 

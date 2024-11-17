@@ -365,12 +365,12 @@ public class Ticket {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return id == ticket.id && Double.compare(precio, ticket.precio) == 0 && Double.compare(propina, ticket.propina) == 0 && Objects.equals(reserva, ticket.reserva) && Objects.equals(empleado, ticket.empleado) && Objects.equals(horaEmision, ticket.horaEmision) && Objects.equals(platos, ticket.platos) && tipoPago == ticket.tipoPago;
+        return id == ticket.id && Double.compare(precio, ticket.precio) == 0 && Objects.equals(reserva, ticket.reserva) && Objects.equals(empleado, ticket.empleado) && Objects.equals(horaEmision, ticket.horaEmision) && Objects.equals(platos, ticket.platos) && tipoPago == ticket.tipoPago && Objects.equals(cliente, ticket.cliente);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, reserva, empleado, horaEmision, platos, precio, tipoPago, propina);
+        return Objects.hash(id, reserva, empleado, horaEmision, platos, precio, tipoPago, cliente);
     }
 
     @Override

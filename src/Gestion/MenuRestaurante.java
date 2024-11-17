@@ -58,7 +58,8 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     @Override
     public void ingresarUsuario() {
         System.out.println();
-        Plato aux = aux.cargarPlato();
+        Plato aux = new Plato();
+        aux.cargarPlato();
         agregarYguardar(aux);
         System.out.println("Plato agregado con exito.");
     }
@@ -177,10 +178,6 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
                             break;
                         case 3:
-
-                            Precio.");
-                            System.out.println("4. Tipo de plato.");
-                            System.out.println("5. Disponibilidad.");
 
                             boolean precioValido = false;
                             while (!precioValido){
@@ -353,11 +350,9 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         if (platos.isEmpty()){
             cargarArrayConArchivo();
         }
-        System.out.println(-----------------------------------);
         for (Plato p : platos){
             System.out.println("ID: " + p.getId() + " / Plato: " + p.getNombre());
         }
-        System.out.println(-----------------------------------);
     }
 
     /**

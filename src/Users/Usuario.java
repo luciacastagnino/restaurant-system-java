@@ -30,7 +30,7 @@ public abstract class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
+    public Usuario(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email) {
         this.id = idContador++;
         this.username = username;
         this.contrasenia = contrasenia;
@@ -40,19 +40,19 @@ public abstract class Usuario {
         this.telefono = telefono;
         this.direccion = direccion;
         this.email = email;
-        this.estado = estado;
+        this.estado = true;
     }
 
-    public Usuario(String dni) {
+    public Usuario(String nombre, String apellido, String dni, String telefono, String direccion, String email) {
         this.id = idContador++;
         this.username = dni;
         this.contrasenia = dni;
-        this.nombre = "";
-        this.apellido = "";
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.dni = dni;
-        this.telefono = "";
-        this.direccion = "";
-        this.email = "";
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.email = email;
         this.estado = true;
     }
 

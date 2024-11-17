@@ -353,10 +353,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         if (platos.isEmpty()){
             cargarArrayConArchivo();
         }
-
+        System.out.println(-----------------------------------);
         for (Plato p : platos){
             System.out.println("ID: " + p.getId() + " / Plato: " + p.getNombre());
         }
+        System.out.println(-----------------------------------);
     }
 
     /**

@@ -11,6 +11,7 @@ import java.lang.management.PlatformLoggingMXBean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -265,6 +266,18 @@ public class Plato {
         System.out.println("Tipo de plato: " + tipoPlato);
         System.out.println("Disponibilidad: " + isDisponibilidad());
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Plato plato = (Plato) o;
+        return id == plato.id && Double.compare(precio, plato.precio) == 0 && disponibilidad == plato.disponibilidad && Objects.equals(nombre, plato.nombre) && Objects.equals(descripcion, plato.descripcion) && tipoPlato == plato.tipoPlato && Objects.equals(scanner, plato.scanner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, descripcion, precio, disponibilidad, tipoPlato, scanner);
     }
 
     ///ToString

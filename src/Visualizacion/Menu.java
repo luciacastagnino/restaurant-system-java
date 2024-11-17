@@ -1,6 +1,7 @@
 package Visualizacion;
 
 import Gestion.*;
+import Restaurante.Plato;
 import Restaurante.Reserva;
 import Restaurante.Ticket;
 import Users.*;
@@ -134,7 +135,8 @@ public class Menu {
             System.out.println("3. Gestion clientes.");
             System.out.println("4. Gestion reservas.");
             System.out.println("5. Gestion menu/platos.");
-            System.out.println("6. Salir.");
+            System.out.println("6. Gestion Tickets.");
+            System.out.println("7. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -153,9 +155,12 @@ public class Menu {
                         gestorDeReservasAdmin();
                         break;
                     case 5:
-
+                        gestorDeMenuAdmin();
                         break;
                     case 6:
+                        gestorDeTiketsAdmin();
+                        break;
+                    case 7:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -594,6 +599,130 @@ public class Menu {
         } while (op != 9);
     }
 
+    public void gestorDeMenuAdmin(){
+        int op = 0;
+        do {
+            System.out.println();
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Mostrar menu.");
+            System.out.println("2. Ingresar Plato.");
+            System.out.println("3. Dar de baja Plato.");
+            System.out.println("4. Modificar Plato.");
+            System.out.println("5. Buscar Plato.");
+            System.out.println("6. Salir.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+                        System.out.println("Seleccione una opcion:");
+                        System.out.println("1. Menu Completo.");
+                        System.out.println("2. Bebidas");
+                        System.out.println("3. Desayuno y Merienda.");
+                        System.out.println("4. Brunch.");
+                        System.out.println("5. Entradas.");
+                        System.out.println("6. Almuerzo.");
+                        System.out.println("7. Cena.");
+                        System.out.println("8. Postre.");
+                        System.out.println("9. Salir");
+
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                menuRestaurante.mostrarColeccion();
+                            }
+                            else if (op1 == 2) {
+                                menuRestaurante.mostrarBebida();
+                            }
+                            else if (op1 == 3){
+                                menuRestaurante.mostrarDesayunoMerienda();
+                            }
+                            else if (op1 == 4){
+                                menuRestaurante.mostrarBrunch();
+                            }
+                            else if (op1 == 5) {
+                                menuRestaurante.mostrarEntradas();
+                            }
+                            else if (op1 == 6) {
+                                menuRestaurante.mostrarAlmuerzo();
+                            }
+                            else if (op1 == 7) {
+                                menuRestaurante.mostrarCena();
+                            }
+                            else if (op1 == 8) {
+                                menuRestaurante.mostrarPostre();
+                            }
+                            else {
+                                System.out.println("Saliendo...");
+                                break;
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 2:
+                        menuRestaurante.ingresarUsuario();
+                        break;
+                    case 3:
+                        System.out.println("Ingrese el ID del Plato a dar de baja:");
+                        int id = scanner.nextInt();
+
+                        Plato aux = menuRestaurante.encontrarUsuario(id);
+                        menuRestaurante.darDeBajaUsuario(aux);
+                        break;
+                    case 4:
+                        System.out.println("Ingrese el ID del Plato a modificar:");
+                        int id1 = scanner.nextInt();
+
+                        Plato aux1 = menuRestaurante.encontrarUsuario(id1);
+                        menuRestaurante.modificarUsuario(aux1);
+                        break;
+                    case 5:
+                        System.out.println("1. Buscar Plato por ID.");
+                        System.out.println("2. Buscar Plato por nombre.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                System.out.println("Ingresar ID del Plato:");
+                                int id2 = scanner.nextInt();
+                                Plato aux2 = menuRestaurante.encontrarUsuario(id2);
+
+                                System.out.println(aux2);
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar nombre del Plato:");
+                                String nombre = scanner.nextLine();
+
+                                Plato plato = menuRestaurante.encontrarUsuario(nombre);
+                                System.out.println(plato);
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 6:
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        } while (op != 9);
+    }
+
     public void gestorDeTiketsAdmin(){
         int op = 0;
         do {
@@ -658,7 +787,7 @@ public class Menu {
                         gestionTickets.darDeBajaUsuario(aux);
                         break;
                     case 4:
-                        System.out.println("Ingrese el ID de la reserva a modificar");
+                        System.out.println("Ingrese el ID del Ticket a modificar");
                         int id1 = scanner.nextInt();
 
                         Ticket aux1 = gestionTickets.encontrarUsuario(id1);
@@ -743,6 +872,7 @@ public class Menu {
                         gestorDeReservasAdmin();
                         break;
                     case 4:
+                        gestorDeMenuAdmin();
                         break;
                     case 5:
                         gestorDeTiketsAdmin();

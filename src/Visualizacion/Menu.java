@@ -311,13 +311,7 @@ public class Menu {
                                 String dni1 = scanner.nextLine();
 
                                 Empleado aux1 = gestionEmpleados.encontrarUsuario(dni1);
-
-                                if(aux1 instanceof EmpleadoMedioTiempo){
-                                    System.out.println((EmpleadoMedioTiempo)aux1);
-                                }
-                                else {
-                                    System.out.println((EmpleadoTiempoCompleto)aux1);
-                                }
+                                gestionEmpleados.mostrarDatosUsuario(aux1);
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar ID del empleado:");
@@ -325,12 +319,7 @@ public class Menu {
 
                                 Empleado aux1 = gestionEmpleados.encontrarUsuario(id);
 
-                                if(aux1 instanceof EmpleadoTiempoCompleto){
-                                    System.out.println((EmpleadoTiempoCompleto)aux1);
-                                }
-                                else{
-                                    System.out.println((EmpleadoMedioTiempo)aux1);
-                                }
+                                gestionEmpleados.mostrarDatosUsuario(aux1);
                             }
                         }
                         catch (RuntimeException e) {
@@ -426,16 +415,14 @@ public class Menu {
                                 String dni2 = scanner.nextLine();
 
                                 Cliente aux1 = gestionDeCliente.encontrarUsuario(dni2);
-
-                                System.out.println(aux1);
+                                gestionDeCliente.mostrarDatosUsuario(aux1);
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar ID del cliente:");
                                 int id = scanner.nextInt();
 
                                 Cliente aux1 = gestionDeCliente.encontrarUsuario(id);
-
-                                System.out.println(aux1);
+                                gestionDeCliente.mostrarDatosUsuario(aux1);
                             }
                         }
                         catch (RuntimeException e) {
@@ -581,8 +568,7 @@ public class Menu {
                                 System.out.println("Ingresar ID de la Reserva:");
                                 int id2 = scanner.nextInt();
                                 Reserva aux2 = gestionReserva.encontrarUsuario(id2);
-
-                                System.out.println(aux2);
+                                gestionReserva.mostrarDatosUsuario(aux2);
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar DNI del Cliente:");
@@ -597,7 +583,7 @@ public class Menu {
                                 LocalDate dia = LocalDate.parse(auxiliar1);
 
                                 Reserva reserva = gestionReserva.encontrarUsuario(dni1, dia, hs);
-                                System.out.println(reserva);
+                                gestionReserva.mostrarDatosUsuario(reserva);
                             }
                         }
                         catch (RuntimeException e) {
@@ -721,15 +707,14 @@ public class Menu {
                                 System.out.println("Ingresar ID del Plato:");
                                 int id2 = scanner.nextInt();
                                 Plato aux2 = menuRestaurante.encontrarUsuario(id2);
-
-                                System.out.println(aux2);
+                                menuRestaurante.mostrarDatosUsuario(aux2);
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar nombre del Plato:");
                                 String nombre = scanner.nextLine();
 
                                 Plato plato = menuRestaurante.encontrarUsuario(nombre);
-                                System.out.println(plato);
+                                menuRestaurante.mostrarDatosUsuario(plato);
                             }
                         }
                         catch (RuntimeException e) {

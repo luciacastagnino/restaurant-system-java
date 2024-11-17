@@ -118,7 +118,7 @@ public class Reserva {
         this.cantPersonas = cantPersonas;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -154,7 +154,7 @@ public class Reserva {
             jsonObject.put("cliente", e.getCliente().toJson(e.cliente));
             jsonObject.put("mesa", e.getMesa());
             jsonObject.put("cantPersonas", e.getCantPersonas());
-            jsonObject.put("estado", e.isEstado());
+            jsonObject.put("estado", e.getEstado());
         }catch (JSONException ex){
             ex.printStackTrace();
         }

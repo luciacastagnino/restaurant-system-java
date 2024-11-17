@@ -2,6 +2,7 @@ package Gestion;
 
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
+import Restaurante.Reserva;
 import Restaurante.Ticket;
 import Users.Administrador;
 import Users.RegistroUser;
@@ -142,12 +143,26 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
     }
 
     @Override
-    public void listarUsuarios(String nombre) {
-
+    public void listarUsuarios(String dni) {
+        if (ticketSet.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Ticket ticket : ticketSet){
+            if (ticket.getCliente().getDni().equals(dni)){
+                mostrarDatosUsuario(ticket);
+            }
+        }
     }
 
     @Override
     public void listarUsuarios(boolean aux) {
-
+        if (ticketSet.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        for (Ticket ticket : ticketSet){
+            if (ticket.getReserva().getEstado() == aux){
+                mostrarDatosUsuario(ticket);
+            }
+        }
     }
 }

@@ -242,7 +242,7 @@ public class Menu {
                         String dni = scanner.nextLine();
 
                         EmpleadoMedioTiempo aux = (EmpleadoMedioTiempo) gestionEmpleados.encontrarUsuario(dni);
-                        gestionEmpleados.darDeBajaUsuario(aux);
+                        gestionEmpleados.darDeBajaUsuarioAdmin(aux);
                         break;
                     case 4:
                         gestionEmpleados.listarUsuarios(true);
@@ -383,7 +383,7 @@ public class Menu {
                         String dni = scanner.nextLine();
 
                         Cliente aux = gestionDeCliente.encontrarUsuario(dni);
-                        gestionDeCliente.darDeBajaUsuario(aux);
+                        gestionDeCliente.darDeBajaUsuarioAdmin(aux);
                         break;
                     case 4:
                         gestionDeCliente.listarUsuarios(true);
@@ -609,7 +609,8 @@ public class Menu {
             System.out.println("3. Dar de baja Plato.");
             System.out.println("4. Modificar Plato.");
             System.out.println("5. Buscar Plato.");
-            System.out.println("6. Salir.");
+            System.out.println("6. Dar de alta Plato.");
+            System.out.println("7. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -710,6 +711,13 @@ public class Menu {
                         }
                         break;
                     case 6:
+                        System.out.println("Ingrese el ID del Plato a dar de alta:");
+                        int id2 = scanner.nextInt();
+
+                        Plato aux2 = menuRestaurante.encontrarUsuario(id2);
+                        menuRestaurante.darDeAltaUsuario(aux2);
+                        break;
+                    case 7:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -856,7 +864,8 @@ public class Menu {
             System.out.println("3. Gestion reservas.");
             System.out.println("4. Gestion menu/platos.");
             System.out.println("5. Gestion Tickets.");
-            System.out.println("6. Salir.");
+            System.out.println("6. Eliminar Cuenta.");
+            System.out.println("7. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -878,6 +887,9 @@ public class Menu {
                         gestorDeTiketsAdmin();
                         break;
                     case 6:
+                        gestionEmpleados.darDeBajaUsuario(empleado);
+                        break;
+                    case 7:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:
@@ -913,7 +925,8 @@ public class Menu {
             System.out.println("2. Ver tickets");
             System.out.println("3. Ver reservas.");
             System.out.println("4. Ver menu.");
-            System.out.println("5. Salir.");
+            System.out.println("5. Eliminar Cuenta.");
+            System.out.println("6. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -981,6 +994,9 @@ public class Menu {
                         }
                         break;
                     case 5:
+                        gestionDeCliente.darDeBajaUsuario(cliente);
+                        break;
+                    case 6:
                         System.out.println("Cerrando sesion...");
                         break;
                     default:

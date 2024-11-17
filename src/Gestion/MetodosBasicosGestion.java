@@ -11,5 +11,6 @@ public interface MetodosBasicosGestion <T> {
     public T encontrarUsuario(int id);
     public void listarUsuarios(String nombre);
     public void listarUsuarios(boolean aux);
+    public void darDeAltaUsuario(T t);
 
 }

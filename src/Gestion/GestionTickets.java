@@ -305,4 +305,9 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
             }
         }
     }
+
+    @Override
+    public void darDeAltaUsuario(Ticket ticket) {
+
+    }
 }

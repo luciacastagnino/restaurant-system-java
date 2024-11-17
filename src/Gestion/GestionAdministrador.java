@@ -314,7 +314,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
                         System.out.printf("Ingrese su contraseña para eliminar su cuenta:");
                         String contraseña = scanner.nextLine();
                         if (contraseña.equals(a.getContrasenia())){
-                            a.setEstado(false);
+                            a.setEstado(true);
                             System.out.printf("Cuenta eliminada con exito.");
                             cargarArchivoConArreglo(listaAdmins);
                             return;
@@ -388,6 +388,42 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
         listaAdmins.stream()
                 .filter(admin -> admin.getEstado() == aux)
                 .forEach(System.out::println);
+    }
+
+    @Override
+    public void darDeAltaUsuario(Administrador a) {
+            listaAdmins = cargarArrayConArchivo();
+
+            for (Administrador admin : listaAdmins){
+                if (a.equals(admin)){
+                    System.out.println("¿Esta seguro de dar de alta el usuario? SI o NO.");
+                    String opcion = scanner.nextLine();
+                    if (opcion.toLowerCase().equals("si")){
+                        int intentosContra = 0;
+                        while (intentosContra < 3){
+                            System.out.printf("Ingrese su contraseña dar de alta su cuenta:");
+                            String contraseña = scanner.nextLine();
+                            if (contraseña.equals(a.getContrasenia())){
+                                a.setEstado(true);
+                                System.out.printf("Cuenta agregada con exito.");
+                                cargarArchivoConArreglo(listaAdmins);
+                                return;
+                            }else {
+                                intentosContra++;
+                                System.out.printf("Contraseña incorrecta, intentelo nuevamente.");
+                            }
+                        }
+                        System.out.printf("Se supero el numero maximo de intentos. El usuario no fue dado de alta.");
+                    }else if (opcion.toLowerCase().equals("no")){
+                        System.out.printf("Operacion cancelada.");
+                        return;
+                    }else {
+                        System.out.printf("Opcion invalida.");
+                    }
+                }
+            }
+
+            System.out.println("No se encontro al usuario.");
     }
 
 }

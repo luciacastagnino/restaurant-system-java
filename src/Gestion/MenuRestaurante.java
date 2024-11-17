@@ -291,6 +291,29 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     }
 
     @Override
+    public void darDeAltaUsuario(Plato plato) {
+        platos=cargarArrayConArchivo();
+        for (Plato p : platos){
+            String opcion = null;
+            if (p.equals(plato)){
+                System.out.println("¿Esta seguro de dar de alta el plato? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    plato.setDisponibilidad(true);
+                    System.out.println("Plato agregado con exito.");
+                    cargarArchivoConArreglo(platos);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
+    }
+
+    @Override
     public void darDeBajaUsuario(Plato plato) {
         platos=cargarArrayConArchivo();
         for (Plato p : platos){

@@ -665,6 +665,56 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
     }
 
     @Override
+    public void darDeAltaUsuario(Empleado a) {
+        listaEmpleados = cargarArrayConArchivo();
+
+        for (Empleado empleado : listaEmpleados) {
+            String opcion = null;
+            if (a.equals(empleado)) {
+                System.out.println("¿Esta seguro de dar de alta al Empleado? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    a.setEstado(true);
+                    System.out.println("Empleado agregado con exito.");
+                    cargarArchivoConArreglo(listaEmpleados);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
+        System.out.println("No se encontro al Empleado.");
+    }
+
+    public void darDeBajaUsuarioAdmin(Empleado a) {
+        listaEmpleados = cargarArrayConArchivo();
+
+        for (Empleado empleado : listaEmpleados) {
+            String opcion = null;
+            if (a.equals(empleado)) {
+                System.out.println("¿Esta seguro de eliminar al Empleado? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    a.setEstado(false);
+                    System.out.println("Empleado eliminado con exito.");
+                    cargarArchivoConArreglo(listaEmpleados);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
+
+        System.out.println("No se encontro al Empleado.");
+    }
+
+    @Override
     public void darDeBajaUsuario (Empleado a){
         listaEmpleados = cargarArrayConArchivo();
         for (Empleado empleado : listaEmpleados) {

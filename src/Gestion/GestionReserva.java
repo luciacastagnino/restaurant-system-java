@@ -416,6 +416,32 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     }
 
     @Override
+    public void darDeAltaUsuario(Reserva a) {
+        reservasPorCliente = cargarArrayConArchivo();
+
+        for (Reserva reserva : reservasPorCliente.values()) {
+            String opcion = null;
+            if (a.equals(reserva)) {
+                System.out.println("¿Esta seguro de dar de alta la reserva? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    a.setEstado(true);
+                    System.out.println("Reserva agregada con exito.");
+                    cargarArchivoConArreglo(reservasPorCliente);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
+
+        System.out.println("No se encontro la reserva.");
+    }
+
+    @Override
     public Reserva encontrarUsuario(int id) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();

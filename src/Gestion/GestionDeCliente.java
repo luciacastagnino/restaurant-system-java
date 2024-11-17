@@ -4,6 +4,7 @@ import java.util.*;
 
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
+import Restaurante.Reserva;
 import Users.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -380,6 +381,57 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
         listaDeClientes.stream()
                 .filter(cliente -> cliente.getEstado() == aux)
                 .forEach(System.out::println);
+    }
+
+    @Override
+    public void darDeAltaUsuario(Cliente a) {
+        listaDeClientes = cargarArrayConArchivo();
+
+        for (Cliente cliente : listaDeClientes) {
+            String opcion = null;
+            if (a.equals(cliente)) {
+                System.out.println("¿Esta seguro de dar de alta al Cliente? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    a.setEstado(true);
+                    System.out.println("Cliente agregado con exito.");
+                    cargarArchivoConArreglo(listaDeClientes);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
+
+        System.out.println("No se encontro al Cliente.");
+    }
+
+    public void darDeBajaUsuarioAdmin(Cliente a) {
+        listaDeClientes = cargarArrayConArchivo();
+
+        for (Cliente cliente : listaDeClientes) {
+            String opcion = null;
+            if (a.equals(cliente)) {
+                System.out.println("¿Esta seguro de eliminar al Cliente? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    a.setEstado(false);
+                    System.out.println("Cliente eliminado con exito.");
+                    cargarArchivoConArreglo(listaDeClientes);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
+
+        System.out.println("No se encontro al Cliente.");
     }
 
     public void tipoDeCliente(){

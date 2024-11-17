@@ -335,7 +335,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
         if (listaDeClientes.isEmpty()) {
             cargarArrayConArchivo();
         }
-        listaDeClientes.forEach(System.out::println);
+        listaDeClientes.forEach(cliente -> mostrarDatosUsuario(cliente));
     }
 
     @Override
@@ -369,7 +369,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
         }
         listaDeClientes.stream()
                 .filter(cliente -> cliente.getNombre().equals(nombre))
-                .forEach(System.out::println);
+                .forEach(cliente -> mostrarDatosUsuario(cliente));
     }
 
     @Override
@@ -380,7 +380,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
 
         listaDeClientes.stream()
                 .filter(cliente -> cliente.getEstado() == aux)
-                .forEach(System.out::println);
+                .forEach(cliente -> mostrarDatosUsuario(cliente));
     }
 
     @Override

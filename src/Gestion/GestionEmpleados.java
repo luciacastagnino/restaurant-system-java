@@ -650,7 +650,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         }
         listaEmpleados.stream()
                 .filter(empleado -> empleado.getNombre().equals(nombre))
-                .forEach(System.out::println);
+                .forEach(empleado -> mostrarDatosUsuario(empleado));
     }
 
     @Override
@@ -661,7 +661,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
         listaEmpleados.stream()
                 .filter(empleado -> empleado.getEstado() == aux)
-                .forEach(System.out::println);
+                .forEach(empleado -> mostrarDatosUsuario(empleado));
     }
 
     @Override
@@ -753,6 +753,6 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         if (listaEmpleados.isEmpty()) {
             cargarArrayConArchivo();
         }
-        listaEmpleados.forEach(System.out::println);
+        listaEmpleados.forEach(empleado -> mostrarDatosUsuario(empleado));
     }
 }

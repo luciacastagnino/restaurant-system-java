@@ -341,7 +341,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
         if (listaAdmins.isEmpty()) {
             cargarArrayConArchivo();
         }
-        listaAdmins.forEach(System.out::println);
+        listaAdmins.forEach(admin -> mostrarDatosUsuario(admin));
     }
 
     @Override
@@ -376,7 +376,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
 
          listaAdmins.stream()
                  .filter(admin -> admin.getNombre().equals(nombre))
-                 .forEach(System.out::println);
+                 .forEach(admin -> mostrarDatosUsuario(admin));
     }
 
     @Override
@@ -387,7 +387,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
 
         listaAdmins.stream()
                 .filter(admin -> admin.getEstado() == aux)
-                .forEach(System.out::println);
+                .forEach(admin -> mostrarDatosUsuario(admin));
     }
 
     @Override

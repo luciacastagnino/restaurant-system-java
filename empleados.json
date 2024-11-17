@@ -1,3 +1,13 @@
-[
-
-]
+[{
+                "estado": true,
+                "aniosAntiguedad": 5,
+                "apellido": "probando",
+                "direccion": "brown 123",
+                "contrasenia": "12345678",
+                "id": 100,
+                "telefono": "2231456789",
+                "nombre": "probando",
+                "dni": "12345678",
+                "email": "probando@gmail",
+                "username": "12345678"
+}]

@@ -23,8 +23,8 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, String dni, String telefono, String direccion, String email, boolean estado) {
-        super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email, estado);
+    public Cliente(String nombre, String apellido, String dni, String telefono, String direccion, String email) {
+        super(nombre, apellido, dni, telefono, direccion, email);
 
     }
 

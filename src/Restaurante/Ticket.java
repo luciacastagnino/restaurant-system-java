@@ -150,7 +150,7 @@ public class Ticket {
             JSONArray platosArray = new JSONArray();
             for (Plato p : platos){
                 JSONObject platoJson = p.toJson(p);
-                platosArray.put(p);
+                platosArray.put(platoJson);
             }
             jsonObject.put("platos", platosArray);
             jsonObject.put("precio", t.getPrecio());

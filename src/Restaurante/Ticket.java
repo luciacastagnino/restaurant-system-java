@@ -15,6 +15,27 @@ import org.json.JSONObject;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * La clase Restaurante.Ticket representa un comprobante generado tras una reserva en el restaurante.
+ *
+ * Permite gestionar la emisión y registro de tickets, incluyendo la conversión de objetos Ticket
+ * a formato JSON y viceversa, así como la interacción con reservas, empleados y platos del menú del restaurante.
+ *
+ * Incluye un constructor vacio y uno con paramentros, métodos de entrada/salida de datos, y funcionalidades para la gestión
+ * de pagos, impresión de recibos y cálculo de precios con interés para pagos con tarjeta.
+ *
+ * Sobrescribe los métodos `equals()`, `hashCode()` y `toString()` para comparaciones y representación textual.
+ *
+ * Interactúa con la gestión de reservas, empleados y el menú del restaurante para facilitar la administración
+ * de tickets en el sistema.
+ *
+ * @author Melina
+ * @since 2024
+ * @version 1
+ */
+
+
+
 public class Ticket {
 
     private static Random random = new Random();
@@ -336,10 +357,27 @@ public class Ticket {
         return cant;
     }
 
+    /**
+     * calcularInteres calcula el interés adicional aplicable a un precio total en caso
+     * de que el método de pago sea con tarjeta de crédito. El interés se calcula como
+     * el 20% del precio total.
+     *
+     * @param precioTotal el precio total de los productos consumidos.
+     * @return el monto correspondiente al interés calculado.
+     */
     public double calcularInteres (double precioTotal){
         return precioTotal*0.2;
     }
 
+
+    /**
+     * calcularPrecioInteres calcula el precio total con el interés incluido. Utiliza
+     * el método calcularInteres para determinar el monto del interés y lo suma al
+     * precio total original.
+     *
+     * @param precioTotal el precio total de los productos consumidos.
+     * @return el precio total incluyendo el interés calculado.
+     */
     public double calcularPrecioInteres(double precioTotal){
 
         double interes = calcularInteres(precioTotal);

@@ -858,6 +858,7 @@ public class Menu {
 
                 if (empleado != null) {
                     menuInicioSesionEmpleado(empleado);
+                    System.out.println("\nBienvenido/a " + empleado.getNombre() + " " + empleado.getApellido());
                     empleadoLogIn = true;
                 }
                 else {

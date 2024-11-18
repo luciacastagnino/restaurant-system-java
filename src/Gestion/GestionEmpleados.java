@@ -619,6 +619,15 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         return listaEmpleados.stream()
                 .filter(empleado -> empleado.getDni().equals(dni))
                 .findFirst()
+                .map(empleado ->{
+                    if(empleado instanceof EmpleadoMedioTiempo){
+                        return (EmpleadoMedioTiempo) empleado;
+                    }
+                    else if (empleado instanceof EmpleadoTiempoCompleto) {
+                        return (EmpleadoTiempoCompleto) empleado;
+                    }
+                    return null;
+                })
                 .orElse(null);
     }
 

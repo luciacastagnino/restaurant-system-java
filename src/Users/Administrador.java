@@ -20,33 +20,11 @@ import java.util.Objects;
  */
 public class Administrador extends Usuario implements Comparable<Administrador>{
 
-    private static int contadorId = 0;
-    private int id;
-
     public Administrador() {
     }
 
     public Administrador(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email) {
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email);
-        this.id = contadorId++;
-    }
-
-    public static int getContadorId() {
-        return contadorId;
-    }
-
-    public static void setContadorId(int contadorId) {
-        Administrador.contadorId = contadorId;
-    }
-
-    // es necesario el SET para cuando se pasa el JSON a Admin
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 
     //ADMIN TO JSON

@@ -12,12 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.file.FileAlreadyExistsException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class Ticket {
@@ -30,7 +25,7 @@ public class Ticket {
     private List<Plato> platos;
     private double precio;
     private TipoPago tipoPago;
-    private Cliente cliente;
+    private int cliente;
     private GestionReserva gestionReserva;
     private GestionEmpleados gestionEmpleados;
     private MenuRestaurante menuRestaurante;
@@ -40,7 +35,7 @@ public class Ticket {
     }
 
     public Ticket (Reserva reserva, Empleado empleado, LocalDateTime horaEmision, List<Plato> platos,
-                   Cliente cliente, double precio, TipoPago tipoPago) {
+                   int cliente, double precio, TipoPago tipoPago) {
         this.id = id;
         this.reserva = reserva;
         this.empleado = empleado;
@@ -87,11 +82,11 @@ public class Ticket {
         this.tipoPago = tipoPago;
     }
 
-    public Cliente getCliente() {
+    public int getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(int cliente) {
         this.cliente = cliente;
     }
 
@@ -155,9 +150,7 @@ public class Ticket {
             jsonObject.put("platos", platosArray);
             jsonObject.put("precio", t.getPrecio());
             jsonObject.put("tipoPago", t.getTipoPago());
-            Cliente cliente = t.getCliente();
-            JSONObject clienteJSON = cliente.toJson(cliente);
-            jsonObject.put("cliente", clienteJSON);
+            jsonObject.put("cliente", t.getCliente());
         }catch (
                 JSONException ex){
             ex.printStackTrace();
@@ -207,9 +200,7 @@ public class Ticket {
                 ticketLeido.setPlatos(platos);
                 ticketLeido.setPrecio(json.getDouble("precio"));
                 ticketLeido.setTipoPago((TipoPago) json.get("tipoPago"));
-                JSONObject clienteJson = json.getJSONObject("cliente");
-                Cliente cliente = new Cliente().jsonToCliente(clienteJson);
-                ticketLeido.setCliente(cliente);
+                ticketLeido.setCliente(json.getInt("cliente"));
             }
             else{
                 throw new FormatoIncorrectoException("El formato de JSON no corresponde a un ticket.");
@@ -232,8 +223,8 @@ public class Ticket {
             int id = scanner.nextInt();
             res = gestionReserva.encontrarUsuario(id);
             gestionReserva.darDeBajaUsuario(res);
-            Cliente cliente = res.getCliente();
-            if(cliente != null && res != null){
+            int cliente = res.getCliente();
+            if(cliente != 0 && res != null){
                 resValida = true;
             }else {
                 System.out.println("No se encontro la reserva, intentelo nuevamente.");

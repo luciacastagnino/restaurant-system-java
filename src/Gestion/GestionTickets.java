@@ -19,11 +19,13 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
 
     private Set<Ticket> ticketSet;
     private Scanner scanner;
+    private final GestionDeCliente gestionDeCliente;
 
     public GestionTickets() {
         this.ticketSet = new HashSet<>();
         this.scanner = new Scanner(System.in);
         GestionJSON.crearArchivoJSON("tickets.json");
+        this.gestionDeCliente = new GestionDeCliente();
     }
 
     public void ingresarUsuario(){
@@ -116,7 +118,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
 
                             GestionReserva gestionReserva = new GestionReserva();
                             Reserva res = null;
-                            Cliente cliente = null;
+                            int cliente = 0;
                             boolean resValida = false;
                             while (!resValida) {
                                 System.out.println("Por favor, ingresa ID de la reserva:");
@@ -124,7 +126,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
                                 res = gestionReserva.encontrarUsuario(id);
                                 //cliente=res.getCliente();
                                 gestionReserva.darDeBajaUsuario(res);
-                                if(res != null && cliente!=null){
+                                if(res != null && cliente!=0){
                                     t.setReserva(res);
                                     t.setCliente(cliente);
                                     resValida = true;
@@ -261,7 +263,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         }
 
         for (Ticket t : ticketSet){
-            if (t.getCliente().getDni().equals(dni)){
+            if (gestionDeCliente.encontrarUsuario(t.getCliente()).getDni().equals(dni)){
                 return t;
             }
         }
@@ -288,7 +290,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
             cargarArrayConArchivo();
         }
         for (Ticket ticket : ticketSet){
-            if (ticket.getCliente().getDni().equals(dni)){
+            if (gestionDeCliente.encontrarUsuario(ticket.getCliente()).getDni().equals(dni)){
                 ticket.mostrarTicket(ticket);
             }
         }

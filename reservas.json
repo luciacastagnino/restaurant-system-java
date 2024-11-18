@@ -1,0 +1,22 @@
+[
+                {
+                                "cliente": 0,
+                                "estado": true,
+                                "mesa": 5,
+                                "hora": "12:30",
+                                "id": 1,
+                                "cantPersonas": 2,
+                                "dia": "2024-12-12",
+                                "momento": "2024-11-18T11:55:10.414260300"
+                },
+                {
+                                "cliente": 101,
+                                "estado": true,
+                                "mesa": 3,
+                                "hora": "13:50",
+                                "id": 2,
+                                "cantPersonas": 2,
+                                "dia": "2024-10-23",
+                                "momento": "2024-11-18T11:56:10.716056900"
+                }
+]

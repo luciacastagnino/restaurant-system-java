@@ -57,7 +57,8 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             aux = registroUser.ingresarReserva();
             if (verificarDisponibilidad(aux.getMesa(), aux.getDia(), aux.getHora())){
                 agregarYguardar(aux);
-              //  System.out.println("\nReserva " + aux.getId() + "de " + aux.getCliente().getNombre() + " " + aux.getCliente().getApellido() + " agregado con exito!");
+                Cliente cliente = gestionDeCliente.encontrarUsuario(aux.getCliente());
+                System.out.println("\nReserva " + aux.getId() + "de " + cliente.getNombre() + " " + cliente.getApellido() + " agregado con exito!");
                 valido=true;
             }else {
                 System.out.println("Hubo un problema, la mesa seleccionada ya esta ocupada.");
@@ -135,7 +136,8 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 System.out.println("Generado el: " + a.getMomento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
                 System.out.println("Fecha de reserva: " + a.getDia().format(diaFormatter));
                 System.out.println("Hora de reserva: " + a.getHora().format(horaFormatter));
-                //System.out.println("Cliente: " + a.getCliente().getNombre() + " " + a.getCliente().getApellido());
+                Cliente cliente = gestionDeCliente.encontrarUsuario(a.getCliente());
+                System.out.println("Cliente: " + cliente.getNombre() + " " + cliente.getApellido());
                 System.out.println("Mesa: " + a.getMesa());
                 System.out.println("Cantidad de personas: " + a.getCantPersonas());
                 System.out.println("--------------------------------------------");
@@ -219,7 +221,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                                         String dni = scanner.nextLine();
                                         cliente = gestionDeCliente.encontrarUsuario(dni);
                                         if (cliente != null) {
-                                          //  c.setCliente(cliente);
+                                            c.setCliente(cliente.getId());
                                             valido = true;
                                         } else {
                                             System.out.println("No se encontró el cliente.");
@@ -231,7 +233,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                                         String dni2 = scanner.nextLine();
                                         cliente = gestionDeCliente.encontrarUsuario(dni2);
                                         if (cliente != null) {
-                                            //c.setCliente(cliente);
+                                            c.setCliente(cliente.getId());
                                             valido = true;
                                         } else {
                                             System.out.println("No se encontró el cliente.");
@@ -329,46 +331,47 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
     @Override
     public Reserva encontrarUsuario(String dni) {
-        /*if (reservasPorCliente.isEmpty()) {
+        if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
 
+        Cliente cliente = null;
         for (Reserva reserva : reservasPorCliente.values()){
-            if (reserva.getCliente().getDni().equals(dni)){
+            if (gestionDeCliente.encontrarUsuario(reserva.getCliente()).getDni().equals(dni)){
                 return reserva;
             }
         }
 
-        System.out.println("No se encontro la reserva.");*/
+        System.out.println("No se encontro la reserva.");
         return null;
     }
 
     public Reserva encontrarUsuario(String dni, LocalDate dia, LocalTime hs) {
-        /*if (reservasPorCliente.isEmpty()) {
+        if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
 
         for (Reserva reserva : reservasPorCliente.values()){
-            if (reserva.getCliente().getDni().equals(dni) && reserva.getDia().equals(dia)
+            if (gestionDeCliente.encontrarUsuario(reserva.getCliente()).getDni().equals(dni) && reserva.getDia().equals(dia)
                     && reserva.getHora().equals(hs)){
                 return reserva;
             }
         }
 
-        System.out.println("No se encontro la reserva.");*/
+        System.out.println("No se encontro la reserva.");
         return null;
     }
 
     @Override
     public void listarUsuarios(String dni) {
-        /*if (reservasPorCliente.isEmpty()) {
+        if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
         for (Reserva reserva : reservasPorCliente.values()){
-            if (reserva.getCliente().getDni().equals(dni)){
+            if (gestionDeCliente.encontrarUsuario(reserva.getCliente()).getDni().equals(dni)){
                 mostrarDatosUsuario(reserva);
             }
-        }*/
+        }
     }
 
     public void listarUsuarios(LocalDate dia) {
@@ -518,14 +521,14 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             cargarArrayConArchivo();
         }
         int i = 0;
-        /*Iterator it = reservasPorCliente.entrySet().iterator();
+        Iterator it = reservasPorCliente.entrySet().iterator();
 
         while (it.hasNext()){
             Map.Entry<Integer, Reserva> map = (Map.Entry<Integer, Reserva>) it.next();
-            if(map.getValue().getCliente().equals(cliente)){
+            if(gestionDeCliente.encontrarUsuario(map.getValue().getCliente()).equals(cliente)){
                 i++;
             }
-        }*/
+        }
         return i;
     }
 

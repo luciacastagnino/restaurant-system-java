@@ -11,6 +11,7 @@ import java.lang.management.PlatformLoggingMXBean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -56,7 +57,7 @@ public class Plato {
         this.tipoPlato = null;
     }
 
-    public Plato(String nombre, String descripcion, double precio, TipoPlato tipoPlato) {
+    public Plato(String nombre, String descripcion, double precio, boolean disponibilidad, TipoPlato tipoPlato) {
         this.id=contadorId++;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -158,69 +159,84 @@ public class Plato {
                 System.out.println(e.getMessage());
             }
         }
-        
 
-        System.out.println("Ingrese el Precio del plato:");
-        double precio = scanner.nextDouble();
 
-        if(precio == 0){
-            System.out.println("El precio no puede ser 0.");
+        double precio = 0;
+        boolean precioValido = false;
+        while (!precioValido) {
+            System.out.println("Ingrese el precio del plato:");
+            if (scanner.hasNextDouble()) {
+                precio = scanner.nextDouble();
+                scanner.nextLine();
+                if (precio > 0) {
+                    precioValido = true;
+                } else {
+                    System.out.println("El precio debe ser mayor a 0.");
+                }
+            } else {
+                System.out.println("Por favor, ingrese un número válido.");
+                scanner.nextLine();
+            }
         }
 
-        System.out.println("Ingrese el tipo de plato:");
-        System.out.println("1. DESAYUNO");
-        System.out.println("2. BRUNCH");
-        System.out.println("3. ALMUERZO");
-        System.out.println("4. CENA");
-        System.out.println("5. POSTRE");
-        System.out.println("6. BEBIDA");
-        System.out.println("7. ENTRADAS");
-        
-        int op = scanner.nextInt();
         TipoPlato aux = null;
-        
-        if(op == 1){
-            aux = TipoPlato.DESAYUNO;
+        boolean tipoValido = false;
+
+        while (!tipoValido) {
+            System.out.println("Ingrese el tipo de plato:");
+            System.out.println("1. DESAYUNO");
+            System.out.println("2. BRUNCH");
+            System.out.println("3. ALMUERZO");
+            System.out.println("4. CENA");
+            System.out.println("5. POSTRE");
+            System.out.println("6. BEBIDA");
+            System.out.println("7. ENTRADAS");
+
+            try {
+                int op = scanner.nextInt();
+                switch (op) {
+                    case 1 -> aux = TipoPlato.DESAYUNO;
+                    case 2 -> aux = TipoPlato.BRUNCH;
+                    case 3 -> aux = TipoPlato.ALMUERZO;
+                    case 4 -> aux = TipoPlato.CENA;
+                    case 5 -> aux = TipoPlato.POSTRE;
+                    case 6 -> aux = TipoPlato.BEBIDA;
+                    case 7 -> aux = TipoPlato.ENTRADAS;
+                    default -> {
+                        System.out.println("Opción inválida. Intente nuevamente.");
+                        continue;
+                    }
+                }
+                tipoValido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, ingrese un número.");
+                scanner.nextLine(); // Limpia el flujo de entrada
+            }
         }
-        else if (op == 2){
-            aux = TipoPlato.BRUNCH;
-        } 
-        else if (op == 3) {
-            aux = TipoPlato.ALMUERZO;
-        } 
-        else if (op == 4) {
-            aux = TipoPlato.CENA;
-        } 
-        else if (op == 5) {
-            aux = TipoPlato.POSTRE;
+
+        if (aux == null) {
+            throw new IllegalStateException("El tipo de plato no puede ser null.");
         }
-        else if (op == 6) {
-            aux = TipoPlato.BEBIDA;
-        }
-        else if (op == 7) {
-            aux = TipoPlato.ENTRADAS;
-        }
-        
-        return new Plato(nombre, desc, precio, aux);
+
+        Plato plato = new Plato(nombre, desc, precio, true, aux);
+        return plato;
     }
 
     //PLATO TO JSON
 
-    public JSONObject toJson (Plato p){
-        JSONObject jsonObject = null;
-            try{
-            jsonObject = new JSONObject();
+    public JSONObject toJson(Plato p) {
+        JSONObject jsonObject = new JSONObject();
+        try {
             jsonObject.put("id", p.getId());
             jsonObject.put("nombre", p.getNombre());
             jsonObject.put("descripcion", p.getDescripcion());
             jsonObject.put("precio", p.getPrecio());
             jsonObject.put("disponibilidad", p.isDisponibilidad());
-            jsonObject.put("tipoPlato", p.getTipoPlato());
-        }catch (
-        JSONException ex){
+            jsonObject.put("tipoPlato", p.getTipoPlato() != null ? p.getTipoPlato().toString() : JSONObject.NULL);
+        } catch (JSONException ex) {
             ex.printStackTrace();
         }
-            return jsonObject;
+        return jsonObject;
     }
 
     //JSON TO PLATO
@@ -234,25 +250,28 @@ public class Plato {
      * @throws FormatoIncorrectoException
      */
 
-    public Plato jsonToPlato (JSONObject json) throws FormatoIncorrectoException {
-
+    public Plato jsonToPlato(JSONObject json) throws FormatoIncorrectoException {
         Plato platoLeido = new Plato();
         try {
-            if(json.has("id") &&json.has("nombre") && json.has("descripcion") &&
-                    json.has("precio") && json.has("disponibilidad") && json.has("tipoPlato")){
+            if (json.has("id") && json.has("nombre") && json.has("descripcion") &&
+                    json.has("precio") && json.has("disponibilidad") && json.has("tipoPlato")) {
+
                 platoLeido.setId(json.getInt("id"));
                 platoLeido.setNombre(json.getString("nombre"));
                 platoLeido.setDescripcion(json.getString("descripcion"));
                 platoLeido.setPrecio(json.getDouble("precio"));
                 platoLeido.setDisponibilidad(json.getBoolean("disponibilidad"));
-                platoLeido.setTipoPlato(json.getEnum(TipoPlato.class, "tipoPlato"));
+                String tipoPlatoString = json.getString("tipoPlato");
+                try {
+                    platoLeido.setTipoPlato(TipoPlato.valueOf(tipoPlatoString.toUpperCase()));
+                } catch (IllegalArgumentException e) {
+                    throw new FormatoIncorrectoException("El valor de 'tipoPlato' no es válido: " + tipoPlatoString);
+                }
+            } else {
+                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un plato. Falta uno o más campos.");
             }
-            else{
-                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un plato.");
-            }
-
-        }catch (JSONException e){
-            e.printStackTrace();
+        } catch (JSONException e) {
+            System.err.println("Error al procesar el JSON: " + e.getMessage());
         }
         return platoLeido;
     }

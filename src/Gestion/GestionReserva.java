@@ -38,12 +38,14 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     private Map<Integer, Reserva> reservasPorCliente;
     private Scanner scanner;
     private GestionDeCliente gestionDeCliente;
+    private RegistroUser registroUser;
 
     public GestionReserva() {
         this.reservasPorCliente = new HashMap<>();
         GestionJSON.crearArchivoJSON("reservas.json");
         this.scanner=new Scanner(System.in);
         this.gestionDeCliente=new GestionDeCliente();
+        this.registroUser = new RegistroUser();
     }
 
     @Override
@@ -52,7 +54,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         boolean valido = false;
         while (!valido){
             Reserva aux = null;
-            aux.ingresarReserva();
+            aux = registroUser.ingresarReserva();
             if (verificarDisponibilidad(aux.getMesa(), aux.getDia(), aux.getHora())){
                 agregarYguardar(aux);
                 System.out.println("\nReserva " + aux.getId() + "de " + aux.getCliente().getNombre() + " " + aux.getCliente().getApellido() + " agregado con exito!");

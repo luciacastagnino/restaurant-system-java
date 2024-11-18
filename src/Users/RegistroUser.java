@@ -1,7 +1,13 @@
 package Users;
 
+import Gestion.GestionDeCliente;
+import Restaurante.Reserva;
 import Users.Administrador;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 /**
  * La clase Users.RegistroUser tiene como atributo un Scanner para utilizar en los metodos
@@ -15,6 +21,7 @@ import java.util.Scanner;
 public final class RegistroUser{
 
     private Scanner scanner = new Scanner(System.in);
+    private GestionDeCliente gestionDeCliente = new GestionDeCliente();
 
     public RegistroUser() {
     }
@@ -263,8 +270,8 @@ public final class RegistroUser{
 
         System.out.println("Complete con sus datos:\n");
 
-        String nombre = "";
-        boolean nombreValido = false;
+        String nombre="";
+        boolean nombreValido=false;
 
         while (!nombreValido){
             System.out.println("Nombre: ");
@@ -458,6 +465,85 @@ public final class RegistroUser{
         cliente = new Cliente(nombre, apellido, dni, telefono, direccion, email);
 
         return cliente;
+    }
+
+    public Reserva ingresarReserva() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Complete con los datos:\n");
+
+        LocalDate dia = null;
+        boolean diaValido = false;
+        while (!diaValido) {
+            System.out.println("Por favor, ingresa el día (formato: dd/MM/yyyy):");
+            String diaInput = scanner.nextLine();
+            DateTimeFormatter formatoDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            try {
+                dia = LocalDate.parse(diaInput, formatoDia);
+                diaValido = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Error: El formato del día no es correcto.");
+            }
+        }
+
+        LocalTime hora = null;
+        boolean horaValida = false;
+        while (!horaValida) {
+            System.out.println("Ingrese la hora (formato: HH:mm):");
+            String horaInput = scanner.nextLine();
+            DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+            try {
+                hora = LocalTime.parse(horaInput, formatoHora);
+                horaValida = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Error: El formato de la hora no es correcto.");
+            }
+        }
+
+        Cliente cliente = null;
+        boolean valido = false;
+        while (!valido) {
+            System.out.println();
+            System.out.println("¿Qué tipo de cliente desea ingresar?");
+            System.out.println("1. Cliente existente.");
+            System.out.println("2. Crear nuevo cliente.");
+            int op = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (op) {
+                case 1:
+                    System.out.println("Ingrese el DNI del cliente: ");
+                    String dni = scanner.nextLine();
+                    cliente = gestionDeCliente.encontrarUsuario(dni);
+                    if (cliente != null) {
+                        valido = true;
+                    } else {
+                        System.out.println("No se encontró el cliente.");
+                    }
+                    break;
+                case 2:
+                    gestionDeCliente.ingresarUsuario();
+                    System.out.println("Ingrese el DNI del cliente recién ingresado: ");
+                    String dni2 = scanner.nextLine();
+                    cliente = gestionDeCliente.encontrarUsuario(dni2);
+                    if (cliente != null) {
+                        valido = true;
+                    } else {
+                        System.out.println("No se encontró el cliente.");
+                    }
+                    break;
+                default:
+                    System.out.println("Opción incorrecta, ingrese una opción válida.");
+            }
+        }
+
+        System.out.println("Ingrese la mesa:");
+        int mesa = scanner.nextInt();
+
+        System.out.println("Ingrese la cantidad de personas:");
+        int cantPersonas = scanner.nextInt();
+
+        return new Reserva(dia, hora, cliente, mesa, cantPersonas);
     }
     
 }

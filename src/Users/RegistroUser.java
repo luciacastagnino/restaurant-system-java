@@ -500,7 +500,8 @@ public final class RegistroUser{
             }
         }
 
-        Cliente cliente = null;
+        int cliente = 0;
+        Cliente aux = null;
         boolean valido = false;
         while (!valido) {
             System.out.println();
@@ -514,8 +515,9 @@ public final class RegistroUser{
                 case 1:
                     System.out.println("Ingrese el DNI del cliente: ");
                     String dni = scanner.nextLine();
-                    cliente = gestionDeCliente.encontrarUsuario(dni);
-                    if (cliente != null) {
+                    aux = gestionDeCliente.encontrarUsuario(dni);
+                    if (aux != null) {
+                        cliente = aux.getId();
                         valido = true;
                     } else {
                         System.out.println("No se encontró el cliente.");
@@ -525,8 +527,9 @@ public final class RegistroUser{
                     gestionDeCliente.ingresarUsuario();
                     System.out.println("Ingrese el DNI del cliente recién ingresado: ");
                     String dni2 = scanner.nextLine();
-                    cliente = gestionDeCliente.encontrarUsuario(dni2);
-                    if (cliente != null) {
+                    aux = gestionDeCliente.encontrarUsuario(dni2);
+                    if (aux != null) {
+                        cliente = aux.getId();
                         valido = true;
                     } else {
                         System.out.println("No se encontró el cliente.");

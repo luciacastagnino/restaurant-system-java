@@ -4,7 +4,6 @@ import java.util.*;
 
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
-import Restaurante.Reserva;
 import Users.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,12 +11,12 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
-    private List<Cliente> listaDeClientes;
+    private Set<Cliente> listaDeClientes;
     private RegistroUser registroUser;
     private Scanner scanner;
 
     public GestionDeCliente() {
-        this.listaDeClientes = new ArrayList<Cliente>();
+        this.listaDeClientes = new TreeSet<>();
         this.registroUser = new RegistroUser();
         GestionJSON.crearArchivoJSON("clientes.json");
         this.scanner = new Scanner(System.in);
@@ -30,7 +29,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         System.out.println("\nCliente " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
     }
 
-    public List<Cliente> cargarArrayConArchivo() {
+    public Set<Cliente> cargarArrayConArchivo() {
         JSONTokener aux = GestionJSON.leer("clientes.json");
 
         try {
@@ -53,10 +52,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
     public void agregarYguardar(Cliente nuevoCliente) {
         cargarArrayConArchivo();
         listaDeClientes.add(nuevoCliente);
+        GuardarTipoDeCliente(); //no se si funciona
         cargarArchivoConArreglo(listaDeClientes);
     }
 
-    public void cargarArchivoConArreglo(List<Cliente> listaDeClientes) {
+    public void cargarArchivoConArreglo(Set<Cliente> listaDeClientes) {
         JSONArray arreglo = new JSONArray();
         try {
 
@@ -481,24 +481,23 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         System.out.println("No se encontro al Cliente.");
     }
 
-    public void tipoDeCliente(){
+    public void GuardarTipoDeCliente(){
         if (listaDeClientes.isEmpty()) {
             cargarArrayConArchivo();
         }
 
-        for(int i = 0; i < listaDeClientes.size(); i++){
-            Cliente aux = listaDeClientes.get(i);
+        for(Cliente cliente : listaDeClientes){
             GestionReserva gestionReserva = new GestionReserva();
-            int contador = gestionReserva.obtenerCantidadDeReservas(aux);
+            int contador = gestionReserva.obtenerCantidadDeReservas(cliente);
 
             if(contador < 5){
-                aux.setTipoCliente(TipoCliente.ESTANDAR);
+                cliente.setTipoCliente(TipoCliente.ESTANDAR);
             }
             else if (contador < 15) {
-                aux.setTipoCliente(TipoCliente.PREMIUM);
+                cliente.setTipoCliente(TipoCliente.PREMIUM);
             }
             else {
-                aux.setTipoCliente(TipoCliente.VIP);
+                cliente.setTipoCliente(TipoCliente.VIP);
             }
         }
     }

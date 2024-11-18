@@ -9,6 +9,26 @@ import org.json.JSONTokener;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * La clase Visualizacion.LogIn permite gestionar el inicio de sesión de diferentes tipos de usuarios
+ * del sistema (administradores, empleados y clientes).
+ *
+ * - Tiene como campos un scanner para la lectura de entradas del usuario.
+ *
+ * - Posee un constructor vacío que inicializa el scanner.
+ *
+ * - Incluye como métodos principales los inicios de sesion del cliente, empleado y administrador.
+ *
+ *  - Valida las credenciales del usuario ingresadas con las almacenadas en los archivos JSON correspondientes.
+ *  - Permite reintentar el inicio de sesión en caso de error o salir del proceso según la elección del usuario.
+ *  - Interactúa con las clases `GestionJSON` y las entidades de usuario (`Administrador`, `Cliente`, `Empleado`).
+ *
+ * @author Melina
+ * @since 2024
+ * @version 1
+ */
+
+
 public class LogIn {
 
     private Scanner scanner;

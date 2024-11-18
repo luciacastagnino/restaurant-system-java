@@ -1,13 +1,28 @@
-[{
-                "estado": true,
-                "aniosAntiguedad": 5,
-                "apellido": "probando",
-                "direccion": "brown 123",
-                "contrasenia": "12345678",
-                "id": 100,
-                "telefono": "2231456789",
-                "nombre": "probando",
-                "dni": "12345678",
-                "email": "probando@gmail",
-                "username": "12345678"
-}]
+[
+                {
+                                "estado": true,
+                                "aniosAntiguedad": 2,
+                                "apellido": "Suarez",
+                                "direccion": "Carasa 5609",
+                                "contrasenia": "46564545",
+                                "id": 100,
+                                "telefono": "2236199551",
+                                "nombre": "Carlos",
+                                "dni": "46564545",
+                                "email": "carlossuarez@gmail.com",
+                                "username": "46564545"
+                },
+                {
+                                "estado": true,
+                                "aniosAntiguedad": 5,
+                                "apellido": "probando",
+                                "direccion": "brown 123",
+                                "contrasenia": "12345678",
+                                "id": 100,
+                                "telefono": "2231456789",
+                                "nombre": "probando",
+                                "dni": "12345678",
+                                "email": "probando@gmail",
+                                "username": "12345678"
+                }
+]

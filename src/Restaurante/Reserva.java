@@ -184,7 +184,6 @@ public class Reserva {
                 reservaLeida.setDia(LocalDate.parse(json.getString("dia")));
                 reservaLeida.setHora(LocalTime.parse(json.getString("hora")));
                 reservaLeida.setCliente(json.getInt("cliente"));
-                reservaLeida.setCliente(cliente);
                 reservaLeida.setMesa(json.getInt("mesa"));
                 reservaLeida.setCantPersonas(json.getInt("cantPersonas"));
                 reservaLeida.setEstado(json.getBoolean("estado"));
@@ -193,8 +192,12 @@ public class Reserva {
                 throw new FormatoIncorrectoException("El formato de JSON no corresponde a un Users.Cliente");
             }
 
-        }catch (JSONException e){
-            e.printStackTrace();
+        }catch (JSONException e) {
+        e.printStackTrace();
+        throw new FormatoIncorrectoException("Error al parsear el JSON: " + e.getMessage());
+        } catch (DateTimeParseException e) {
+        e.printStackTrace();
+        throw new FormatoIncorrectoException("Error en el formato de fecha: " + e.getMessage());
         }
         return reservaLeida;
     }

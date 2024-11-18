@@ -6,6 +6,7 @@ import Restaurante.Plato;
 import Restaurante.Reserva;
 import Restaurante.TipoPlato;
 import Users.Administrador;
+import Users.Cliente;
 import Users.DatoInvalidoException;
 import Users.Validaciones;
 import org.json.JSONArray;
@@ -13,9 +14,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.*;
 
 /**
  * La clase Gestion.MenuRestaurante gestiona el menú de un restaurante, permitiendo mostrar los platos disponibles
@@ -31,7 +34,7 @@ import java.util.Set;
  */
 public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
-    private Set<Plato> platos;
+    private Map<Integer, Plato> listaPlatos;
     private Scanner scanner;
 
     /**
@@ -40,61 +43,47 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public MenuRestaurante () {
-        this.platos = new HashSet<>();
+        this.listaPlatos = new HashMap<>();
         GestionJSON.crearArchivoJSON("platos.json");
         this.scanner=new Scanner(System.in);
     }
 
     //Get y Set
 
-    public Set<Plato> getPlatos() {
-        return platos;
-    }
-
-    public void setPlatos(Set<Plato> platos) {
-        this.platos = platos;
-    }
-
-    @Override
-    public void ingresarUsuario() {
-        System.out.println();
+    public void ingresarUsuario(){
         Plato aux = new Plato();
-        aux.cargarPlato();
+        aux = aux.cargarPlato();
         agregarYguardar(aux);
-        System.out.println("Plato agregado con exito.");
     }
 
-    public Set<Plato> cargarArrayConArchivo(){
+    public Map<Integer, Plato> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("platos.json");
 
         try {
-
             JSONArray arreglo = new JSONArray(aux);
-
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
                 Plato plato = new Plato();
                 plato = plato.jsonToPlato(aux1);
-                platos.add(plato);
+                listaPlatos.put(plato.getId(), plato);
             }
         } catch (JSONException e){
             System.out.println("Ocurrio un error al convertir JSONObject a Plato.");
         }
 
-        return platos;
+        return listaPlatos;
     }
 
     public void agregarYguardar (Plato plato){
         cargarArrayConArchivo();
-        platos.add(plato);
-        cargarArchivoConArreglo(platos);
+        listaPlatos.put(plato.getId(), plato);
+        cargarArchivoConArreglo(listaPlatos);
     }
 
-    public void cargarArchivoConArreglo(Set<Plato> listaPlatos){
+    public void cargarArchivoConArreglo(Map<Integer, Plato> listaPlatos){
         JSONArray arreglo = new JSONArray();
         try {
-
-            for (Plato plato : listaPlatos){
+            for (Plato plato : listaPlatos.values()){
                 try {
                     JSONObject json = plato.toJson(plato);
                     arreglo.put(json);
@@ -111,11 +100,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
     @Override
     public void mostrarDatosUsuario(Plato plato) {
-        if (platos.isEmpty()){
+        if (listaPlatos.isEmpty()){
             cargarArrayConArchivo();
         }
 
-        for (Plato p : platos){
+        for (Plato p : listaPlatos.values()){
             if (p.equals(plato)){
                 p.mostrarPlato();
             }
@@ -126,149 +115,177 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     @Override
     public Plato modificarUsuario (Plato c) {
 
-        platos = cargarArrayConArchivo();
+        listaPlatos = cargarArrayConArchivo();
         boolean salir = false;
 
-        for (Plato plato : platos) {
-            if (c.getId() == plato.getId()) {
-                platos.remove(plato);
-                c=plato;
-                while (!salir) {
-                    System.out.println("\n Que desea modificar?");
-                    System.out.println("1. Nombre.");
-                    System.out.println("2. Descripcion.");
-                    System.out.println("3. Precio.");
-                    System.out.println("4. Tipo de plato.");
-                    System.out.println("5. Salir.");
-                    int op = scanner.nextInt();
-                    scanner.nextLine();
-                    switch (op) {
-                        case 1:
+        if (listaPlatos.containsKey(c.getId())) {
+            Plato plato = listaPlatos.get(c.getId());
 
-                            String nombre = "";
-                            boolean nombreValido = false;
+            while (!salir) {
+                System.out.println("\n Que desea modificar?");
+                System.out.println("1. Nombre.");
+                System.out.println("2. Descripcion.");
+                System.out.println("3. Precio.");
+                System.out.println("4. Tipo de plato.");
+                System.out.println("5. Salir.");
+                int op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
 
-                            while (!nombreValido) {
-                                System.out.println("Ingrese su nuevo nombre: ");
-                                nombre = scanner.nextLine();
-                                try {
-                                    Validaciones.validarCadenas(nombre);
-                                    c.setNombre(nombre);
-                                    nombreValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
+                        String nombre = "";
+                        boolean nombreValido = false;
+
+                        while (!nombreValido) {
+                            System.out.println("Ingrese su nuevo nombre: ");
+                            nombre = scanner.nextLine();
+                            try {
+                                Validaciones.validarCadenas(nombre);
+                                c.setNombre(nombre);
+                                nombreValido = true;
+                            } catch (DatoInvalidoException e) {
+                                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                             }
+                        }
 
-                            break;
-                        case 2:
+                        break;
+                    case 2:
 
-                            boolean descripcionValida = false;
+                        boolean descripcionValida = false;
 
-                            while (!descripcionValida){
-                                System.out.println("Ingrese la nueva descripcion: ");
-                                String descripcion = scanner.nextLine();
-                                if (descripcion!=null){
-                                    c.setDescripcion(descripcion);
-                                    descripcionValida=true;
-                                }else {
-                                    System.out.println("Hubo un problema, trate de ingresar una descripcion valida.");
-                                }
+                        while (!descripcionValida){
+                            System.out.println("Ingrese la nueva descripcion: ");
+                            String descripcion = scanner.nextLine();
+                            if (descripcion!=null){
+                                c.setDescripcion(descripcion);
+                                descripcionValida=true;
+                            }else {
+                                System.out.println("Hubo un problema, trate de ingresar una descripcion valida.");
                             }
+                        }
 
-                            break;
-                        case 3:
+                        break;
+                    case 3:
 
-                            boolean precioValido = false;
-                            while (!precioValido){
-                                System.out.println("Ingrese el nuevo precio: ");
-                                double precio = scanner.nextDouble();
-                                scanner.nextLine();
-                                if (precio<=0){
-                                    System.out.println("El precio no puede ser menor o igual a cero.");
-                                }else {
-                                    c.setPrecio(precio);
-                                    precioValido=true;
-                                }
+                        boolean precioValido = false;
+                        while (!precioValido){
+                            System.out.println("Ingrese el nuevo precio: ");
+                            double precio = scanner.nextDouble();
+                            scanner.nextLine();
+                            if (precio<=0){
+                                System.out.println("El precio no puede ser menor o igual a cero.");
+                            }else {
+                                c.setPrecio(precio);
+                                precioValido=true;
                             }
-                            break;
-                        case 4:
+                        }
 
-                            boolean tipoPValido = false;
+                        break;
+                    case 4:
 
-                            while (!tipoPValido){
-                                System.out.println("Seleccione una opcion: ");
-                                System.out.println("1. Desayuno.");
-                                System.out.println("2. Brunch.");
-                                System.out.println("3. Entradas.");
-                                System.out.println("4. Almuerzo.");
-                                System.out.println("5. Cena.");
-                                System.out.println("6. Postre.");
-                                System.out.println("7. Bebida.");
-                                int opTP = scanner.nextInt();
-                                scanner.nextLine();
-                                switch (opTP){
-                                    case 1:
-                                        c.setTipoPlato(TipoPlato.DESAYUNO);
-                                        tipoPValido = true;
-                                        break;
-                                    case 2:
-                                        c.setTipoPlato(TipoPlato.BRUNCH);
-                                        tipoPValido = true;
-                                        break;
-                                    case 3:
-                                        c.setTipoPlato(TipoPlato.ENTRADAS);
-                                        tipoPValido = true;
-                                        break;
-                                    case 4:
-                                        c.setTipoPlato(TipoPlato.ALMUERZO);
-                                        tipoPValido = true;
-                                        break;
-                                    case 5:
-                                        c.setTipoPlato(TipoPlato.CENA);
-                                        tipoPValido = true;
-                                        break;
-                                    case 6:
-                                        c.setTipoPlato(TipoPlato.POSTRE);
-                                        tipoPValido = true;
-                                        break;
-                                    case 7:
-                                        c.setTipoPlato(TipoPlato.BEBIDA);
-                                        tipoPValido = true;
-                                        break;
-                                    default:
-                                        System.out.println("Opcion invalida.");
-                                        break;
-                                }
+                        boolean tipoPValido = false;
+
+                        while (!tipoPValido){
+                            System.out.println("Seleccione una opcion: ");
+                            System.out.println("1. Desayuno.");
+                            System.out.println("2. Brunch.");
+                            System.out.println("3. Entradas.");
+                            System.out.println("4. Almuerzo.");
+                            System.out.println("5. Cena.");
+                            System.out.println("6. Postre.");
+                            System.out.println("7. Bebida.");
+                            int opTP = scanner.nextInt();
+                            scanner.nextLine();
+                            switch (opTP){
+                                case 1:
+                                    c.setTipoPlato(TipoPlato.DESAYUNO);
+                                    tipoPValido = true;
+                                    break;
+                                case 2:
+                                    c.setTipoPlato(TipoPlato.BRUNCH);
+                                    tipoPValido = true;
+                                    break;
+                                case 3:
+                                    c.setTipoPlato(TipoPlato.ENTRADAS);
+                                    tipoPValido = true;
+                                    break;
+                                case 4:
+                                    c.setTipoPlato(TipoPlato.ALMUERZO);
+                                    tipoPValido = true;
+                                    break;
+                                case 5:
+                                    c.setTipoPlato(TipoPlato.CENA);
+                                    tipoPValido = true;
+                                    break;
+                                case 6:
+                                    c.setTipoPlato(TipoPlato.POSTRE);
+                                    tipoPValido = true;
+                                    break;
+                                case 7:
+                                    c.setTipoPlato(TipoPlato.BEBIDA);
+                                    tipoPValido = true;
+                                    break;
+                                default:
+                                    System.out.println("Opcion invalida.");
+                                    break;
                             }
+                        }
 
-                            break;
-                        case 5:
-                            System.out.println("Saliendo del menu de modificacion de usuario...");
-                            salir = true;
-                            break;
-                        default:
-                            System.out.println("Opcion invalida.");
-                            break;
-                    }
+                        break;
+                    case 5:
+                        System.out.println("Saliendo del menu de modificacion de plato...");
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Opcion invalida.");
+                        break;
                 }
-                platos.add(c);
-                cargarArchivoConArreglo(platos);
-                System.out.println("¡Cambios guardados con exito!");
-                return c;
             }
+
+            listaPlatos.put(c.getId(), c);
+            cargarArchivoConArreglo(listaPlatos);
+            System.out.println("¡Cambios guardados con exito!");
+            return c;
+        }else {
+            System.out.println("No se encontro la reserva.");
         }
         return null;
     }
 
     @Override
+    public void darDeBajaUsuario(Plato a) {
+        listaPlatos = cargarArrayConArchivo();
+
+        for (Plato plato : listaPlatos.values()) {
+            String opcion = null;
+            if (a.equals(plato)) {
+                System.out.println("¿Esta seguro de eliminar el plato? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    a.setDisponibilidad(false);
+                    System.out.println("Plato eliminado con exito.");
+                    cargarArchivoConArreglo(listaPlatos);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
+
+        System.out.println("No se encontro el plato.");
+    }
+
+    @Override
     public Plato encontrarUsuario(String descripcion) {
 
-        if (platos.isEmpty()){
+        if (listaPlatos.isEmpty()){
             cargarArrayConArchivo();
         }
 
-        for (Plato p : platos){
+        for (Plato p : listaPlatos.values()){
             if (p.getDescripcion().equals(descripcion)){
                 return p;
             }
@@ -279,11 +296,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
     @Override
     public void listarUsuarios(boolean aux) {
-        if (platos.isEmpty()){
+        if (listaPlatos.isEmpty()){
             cargarArrayConArchivo();
         }
 
-        for (Plato p : platos){
+        for (Plato p : listaPlatos.values()){
             if (p.isDisponibilidad()==aux){
                 p.mostrarPlato();
             }
@@ -291,17 +308,17 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     }
 
     @Override
-    public void darDeAltaUsuario(Plato plato) {
-        platos=cargarArrayConArchivo();
-        for (Plato p : platos){
+    public void darDeAltaUsuario(Plato a) {
+
+        for (Plato plato : listaPlatos.values()) {
             String opcion = null;
-            if (p.equals(plato)){
+            if (a.equals(plato)) {
                 System.out.println("¿Esta seguro de dar de alta el plato? SI o NO.");
                 opcion = scanner.nextLine();
                 if (opcion.equalsIgnoreCase("si")){
-                    plato.setDisponibilidad(true);
-                    System.out.println("Plato agregado con exito.");
-                    cargarArchivoConArreglo(platos);
+                    a.setDisponibilidad(true);
+                    System.out.println("Plato dado de alta con exito.");
+                    cargarArchivoConArreglo(listaPlatos);
                     return;
                 }else if (opcion.equalsIgnoreCase("no")) {
                     System.out.println("Operacion cancelada.");
@@ -311,30 +328,10 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
                 }
             }
         }
+
+        System.out.println("No se encontro el plato.");
     }
 
-    @Override
-    public void darDeBajaUsuario(Plato plato) {
-        platos=cargarArrayConArchivo();
-        for (Plato p : platos){
-            String opcion = null;
-            if (p.equals(plato)){
-                System.out.println("¿Esta seguro de eliminar el plato? SI o NO.");
-                opcion = scanner.nextLine();
-                if (opcion.equalsIgnoreCase("si")){
-                    plato.setDisponibilidad(false);
-                    System.out.println("Plato eliminado con exito.");
-                    cargarArchivoConArreglo(platos);
-                    return;
-                }else if (opcion.equalsIgnoreCase("no")) {
-                    System.out.println("Operacion cancelada.");
-                    return;
-                } else {
-                    System.out.println("Opcion invalida.");
-                }
-            }
-        }
-    }
 
     @Override
     public void mostrarColeccion() {
@@ -343,11 +340,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
     @Override
     public Plato encontrarUsuario(int id) {
-        if (platos.isEmpty()){
+        if (listaPlatos.isEmpty()){
             cargarArrayConArchivo();
         }
 
-        for (Plato p : platos){
+        for (Plato p : listaPlatos.values()){
             if (p.getId() == id){
                 return p;
             }
@@ -357,11 +354,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
     @Override
     public void listarUsuarios(String nombre) {
-        if (platos.isEmpty()){
+        if (listaPlatos.isEmpty()){
             cargarArrayConArchivo();
         }
 
-        for (Plato p : platos){
+        for (Plato p : listaPlatos.values()){
             if (p.getNombre().contains(nombre)){
                 p.mostrarPlato();
             }
@@ -370,10 +367,10 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     }
 
     public void listarPlatosTicket (){
-        if (platos.isEmpty()){
+        if (listaPlatos.isEmpty()){
             cargarArrayConArchivo();
         }
-        for (Plato p : platos){
+        for (Plato p : listaPlatos.values()){
             System.out.println("ID: " + p.getId() + " / Plato: " + p.getNombre());
         }
     }
@@ -384,7 +381,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarDesayunoMerienda () {
-        for (Plato p : platos) {
+        for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.DESAYUNO) && p.isDisponibilidad()) {
                 System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
             }
@@ -397,7 +394,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarBrunch () {
-        for (Plato p : platos) {
+        for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.BRUNCH) && p.isDisponibilidad()) {
                 System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
             }
@@ -410,7 +407,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarEntradas () {
-        for (Plato p : platos) {
+        for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.ENTRADAS) && p.isDisponibilidad()) {
                 System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
             }
@@ -423,7 +420,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarAlmuerzo () {
-        for (Plato p : platos) {
+        for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.ALMUERZO) && p.isDisponibilidad()) {
                 System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
             }
@@ -436,7 +433,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarCena () {
-        for (Plato p : platos) {
+        for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.CENA) && p.isDisponibilidad()) {
                 System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
             }
@@ -449,7 +446,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarPostre () {
-        for (Plato p : platos) {
+        for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.POSTRE) && p.isDisponibilidad()) {
                 System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
             }
@@ -462,7 +459,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarBebida () {
-        for (Plato p : platos) {
+        for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.BEBIDA) && p.isDisponibilidad()) {
                 System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
             }

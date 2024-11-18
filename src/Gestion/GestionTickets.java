@@ -15,15 +15,17 @@ import org.json.JSONTokener;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class GestionTickets implements MetodosBasicosGestion <Ticket>{
+public class GestionTickets{
 
-    private Set<Ticket> ticketSet;
+    private List<Ticket> ticketSet;
     private Scanner scanner;
+    private final GestionDeCliente gestionDeCliente;
 
     public GestionTickets() {
-        this.ticketSet = new HashSet<>();
+        this.ticketSet = new ArrayList<>();
         this.scanner = new Scanner(System.in);
         GestionJSON.crearArchivoJSON("tickets.json");
+        this.gestionDeCliente = new GestionDeCliente();
     }
 
     public void ingresarUsuario(){
@@ -35,7 +37,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
 
     }
 
-    public Set<Ticket> cargarArrayConArchivo(){
+    public List<Ticket> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("tickets.json");
 
         try {
@@ -59,7 +61,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         cargarArchivoConArreglo(ticketSet);
     }
 
-    public void cargarArchivoConArreglo(Set<Ticket> ticketSet){
+    public void cargarArchivoConArreglo(List<Ticket> ticketSet){
         JSONArray arreglo = new JSONArray();
         try {
 
@@ -78,7 +80,6 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         }
     }
 
-    @Override
     public void mostrarDatosUsuario(Ticket ticket) {
         if (ticketSet.isEmpty()){
             cargarArrayConArchivo();
@@ -91,7 +92,6 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         }
     }
 
-    @Override
     public Ticket modificarUsuario (Ticket t) {
 
         ticketSet = cargarArrayConArchivo();
@@ -116,15 +116,15 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
 
                             GestionReserva gestionReserva = new GestionReserva();
                             Reserva res = null;
-                            Cliente cliente = null;
+                            int cliente = 0;
                             boolean resValida = false;
                             while (!resValida) {
                                 System.out.println("Por favor, ingresa ID de la reserva:");
                                 int id = scanner.nextInt();
                                 res = gestionReserva.encontrarUsuario(id);
-                                cliente=res.getCliente();
+                                //cliente=res.getCliente();
                                 gestionReserva.darDeBajaUsuario(res);
-                                if(res != null && cliente!=null){
+                                if(res != null && cliente!=0){
                                     t.setReserva(res);
                                     t.setCliente(cliente);
                                     resValida = true;
@@ -237,13 +237,6 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         return null;
     }
 
-    //no se usa, ya q no se dan de baja los tickets
-    @Override
-    public void darDeBajaUsuario(Ticket ticket) {
-
-    }
-
-    @Override
     public void mostrarColeccion() {
         if (ticketSet.isEmpty()){
             cargarArrayConArchivo();
@@ -254,21 +247,19 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         }
     }
 
-    @Override
     public Ticket encontrarUsuario(String dni) {
         if (ticketSet.isEmpty()){
             cargarArrayConArchivo();
         }
 
         for (Ticket t : ticketSet){
-            if (t.getCliente().getDni().equals(dni)){
+            if (gestionDeCliente.encontrarUsuario(t.getCliente()).getDni().equals(dni)){
                 return t;
             }
         }
         return null;
     }
 
-    @Override
     public Ticket encontrarUsuario(int id) {
         if (ticketSet.isEmpty()){
             cargarArrayConArchivo();
@@ -282,19 +273,17 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
         return null;
     }
 
-    @Override
     public void listarUsuarios(String dni) {
         if (ticketSet.isEmpty()) {
             cargarArrayConArchivo();
         }
         for (Ticket ticket : ticketSet){
-            if (ticket.getCliente().getDni().equals(dni)){
+            if (gestionDeCliente.encontrarUsuario(ticket.getCliente()).getDni().equals(dni)){
                 ticket.mostrarTicket(ticket);
             }
         }
     }
 
-    @Override
     public void listarUsuarios(boolean aux) {
         if (ticketSet.isEmpty()) {
             cargarArrayConArchivo();
@@ -304,10 +293,5 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
                 ticket.mostrarTicket(ticket);
             }
         }
-    }
-
-    @Override
-    public void darDeAltaUsuario(Ticket ticket) {
-
     }
 }

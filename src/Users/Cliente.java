@@ -101,7 +101,7 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
                 clienteLeido.setTipoCliente(json.getEnum(TipoCliente.class, "tipoCliente"));
             }
             else{
-                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un Users.Cliente");
+                throw new FormatoIncorrectoException("El formato de JSON no corresponde a un cliente");
             }
 
         }catch (JSONException e){

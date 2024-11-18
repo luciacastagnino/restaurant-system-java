@@ -849,10 +849,20 @@ public class Menu {
         System.out.println("-----------------------------------------");
         System.out.println("   M E N U  D E  E M P L E A D O   ");
         System.out.println("-----------------------------------------");
+
+        boolean empleadoLogIn = false;
         try {
-            Empleado empleado = logIn.inicioSesionEmpleado("empleados.json");
-            if(!empleado.equals(null)){
-                menuInicioSesionEmpleado(empleado);
+            Empleado empleado = null;
+            while (!empleadoLogIn) {
+                empleado = logIn.inicioSesionEmpleado("empleados.json");
+
+                if (empleado != null) {
+                    menuInicioSesionEmpleado(empleado);
+                    empleadoLogIn = true;
+                }
+                else {
+                    System.out.println("Ingrese un usuario valido.");
+                }
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -912,9 +922,20 @@ public class Menu {
         System.out.println("-----------------------------------------");
         System.out.println("     M E N U  D E  C L I E N T E S     ");
         System.out.println("-----------------------------------------");
+        boolean clienteValido = false;
+        Cliente cliente = null;
+
         try {
-            Cliente cliente = logIn.inicioSesionCliente("clientes.json");
-            menuInicioSesionCliente(cliente);
+            cliente = logIn.inicioSesionCliente("clientes.json");
+            while (!clienteValido){
+                if(!cliente.equals(null)){
+                    menuInicioSesionCliente(cliente);
+                    clienteValido = true;
+                }
+                else {
+                    System.out.println("Ingrese un usuario correcto.");
+                }
+            }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

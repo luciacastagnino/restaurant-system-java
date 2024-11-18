@@ -20,11 +20,12 @@ import java.util.Scanner;
 
 /**
  * La clase Gestion.GestionReserva maneja las reservas realizadas por los clientes.
- * Permite agregar reservas, actualizar el tipo de cliente en función de la cantidad
- * de reservas, obtener el tipo de cliente y la cantidad de reservas realizadas por cada cliente.
  *
- * Los métodos principales de esta clase incluyen la adición de reservas, el seguimiento de la cantidad
- * de reservas por cliente y la actualización del tipo de cliente (ESTANDAR, PREMIUM, VIP).
+ * - Tiene como campos una List de reservas (`reservasPorCliente`), un objeto `registroUser` para gestionar el registro de nuevos administradores,
+ * un `scanner` para la lectura de entradas del usuario, y un objeto `GestionDeCliente` para manejar los clientes.
+ * - tiene un constructor vacio.
+ * - incluye metodos para agregar reservas, actualizar el tipo de cliente en función de la cantidad
+ * de reservas, obtener el tipo de cliente y la cantidad de reservas realizadas por cada cliente.
  *
  * @author Melina
  * @since 2024

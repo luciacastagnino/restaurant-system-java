@@ -14,6 +14,20 @@ import org.json.JSONTokener;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * La clase Gestion.GestionAdministrador gestiona un conjunto de usuarios administradores.
+ *
+ * - Tiene como campos un Set de administradores (`listaAdmins`), un objeto `registroUser` para gestionar el registro de nuevos administradores,
+ * y un `scanner` para la lectura de entradas del usuario.
+ * - tiene un constructor vacío
+ * - métodos: agregar, modificar, eliminar, buscar y listar administradores
+ * - interactúa con un archivo JSON para persistencia
+ *
+ * @author Melina
+ * @since 2024
+ * @version 2
+ */
+
 public class GestionAdministrador implements MetodosBasicosGestion<Administrador> {
 
     private Set<Administrador> listaAdmins;

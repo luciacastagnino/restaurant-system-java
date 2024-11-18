@@ -12,5 +12,4 @@ public interface MetodosBasicosGestion <T> {
     public void listarUsuarios(String nombre);
     public void listarUsuarios(boolean aux);
     public void darDeAltaUsuario(T t);
-
 }

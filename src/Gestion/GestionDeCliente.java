@@ -198,6 +198,61 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         return dni;
     }
 
+    public String modificarTelefono (){
+
+        String telefono = "";
+        boolean telefonoValido = false;
+
+        while (!telefonoValido) {
+            System.out.println("Ingrese su nuevo telefono: ");
+            telefono = scanner.nextLine();
+            try {
+                Validaciones.validarTelefono(telefono);
+                telefonoValido = true;
+            } catch (DatoInvalidoException e) {
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+        return telefono;
+    }
+
+    public String modificarDireccion (){
+
+        String direccion = "";
+        boolean direccionValido = false;
+
+        while (!direccionValido) {
+            System.out.println("Ingrese su nueva direccion: ");
+            direccion = scanner.nextLine();
+            try {
+                Validaciones.validarDireccion(direccion);
+                direccionValido = true;
+            } catch (DatoInvalidoException e) {
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+        return direccion;
+    }
+
+    public String modificarEmail (){
+        String email = "";
+        boolean emailValido = false;
+
+        while (!emailValido) {
+            System.out.println("Ingrese su nuevo email: ");
+            email = scanner.nextLine();
+            try {
+                Validaciones.validarEmail(email);
+                c.setEmail(email);
+                emailValido = true;
+            } catch (DatoInvalidoException e) {
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        return email;
+    }
+
     public Cliente modificarUsuario (Cliente c) {
 
         listaDeClientes = cargarArrayConArchivo();
@@ -253,56 +308,20 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
                             break;
                         case 6:
 
-                            String telefono = "";
-                            boolean telefonoValido = false;
-
-                            while (!telefonoValido) {
-                                System.out.println("Ingrese su nuevo telefono: ");
-                                telefono = scanner.nextLine();
-                                try {
-                                    Validaciones.validarTelefono(telefono);
-                                    c.setTelefono(telefono);
-                                    telefonoValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
+                            String telefono = modificarTelefono();
+                            c.setTelefono(telefono);
 
                             break;
                         case 7:
 
-                            String direccion = "";
-                            boolean direccionValido = false;
-
-                            while (!direccionValido) {
-                                System.out.println("Ingrese su nueva direccion: ");
-                                direccion = scanner.nextLine();
-                                try {
-                                    Validaciones.validarDireccion(direccion);
-                                    c.setDireccion(direccion);
-                                    direccionValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
+                            String direccion = modificarDireccion();
+                            c.setDireccion(direccion);
 
                             break;
                         case 8:
 
-                            String email = "";
-                            boolean emailValido = false;
-
-                            while (!emailValido) {
-                                System.out.println("Ingrese su nuevo email: ");
-                                email = scanner.nextLine();
-                                try {
-                                    Validaciones.validarEmail(email);
-                                    c.setEmail(email);
-                                    emailValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
+                            String email = modificarEmail();
+                            c.setEmail(email);
 
                             break;
                         case 9:

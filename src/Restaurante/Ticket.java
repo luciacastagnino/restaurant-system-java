@@ -232,7 +232,7 @@ public class Ticket {
             int id = scanner.nextInt();
             res = gestionReserva.encontrarUsuario(id);
             gestionReserva.darDeBajaUsuario(res);
-            Cliente cliente = res.getCliente();
+            //Cliente cliente = res.getCliente();
             if(cliente != null && res != null){
                 resValida = true;
             }else {

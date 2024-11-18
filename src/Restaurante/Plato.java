@@ -254,19 +254,14 @@ public class Plato {
         Plato platoLeido = new Plato();
         try {
             if (json.has("id") && json.has("nombre") && json.has("descripcion") &&
-                    json.has("precio") && json.has("disponibilidad") && json.has("tipoPlato")) {
+            json.has("precio") && json.has("disponibilidad") && json.has("tipoPlato")) {
 
                 platoLeido.setId(json.getInt("id"));
                 platoLeido.setNombre(json.getString("nombre"));
                 platoLeido.setDescripcion(json.getString("descripcion"));
                 platoLeido.setPrecio(json.getDouble("precio"));
                 platoLeido.setDisponibilidad(json.getBoolean("disponibilidad"));
-                String tipoPlatoString = json.getString("tipoPlato");
-                try {
-                    platoLeido.setTipoPlato(TipoPlato.valueOf(tipoPlatoString.toUpperCase()));
-                } catch (IllegalArgumentException e) {
-                    throw new FormatoIncorrectoException("El valor de 'tipoPlato' no es válido: " + tipoPlatoString);
-                }
+                platoLeido.setTipoPlato(json.getEnum(TipoPlato.class, "tipoPlato"));
             } else {
                 throw new FormatoIncorrectoException("El formato de JSON no corresponde a un plato. Falta uno o más campos.");
             }

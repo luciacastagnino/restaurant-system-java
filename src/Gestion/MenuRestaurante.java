@@ -70,7 +70,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
         System.out.println("Plato agregado con exito.");
     }
-
+/*
     public Set<Plato> cargarArrayConArchivo() {
         JSONTokener aux = GestionJSON.leer("platos.json");
 
@@ -92,11 +92,10 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
 
         return platos;
-    }
-    /*
+    }*/
+
     public Set<Plato> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("platos.json");
-
         try {
 
             JSONArray arreglo = new JSONArray(aux);
@@ -111,17 +110,16 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
 
         return platos;
-    }*/
+    }
 
     public void agregarYguardar (Plato plato){
         cargarArrayConArchivo();
         platos.add(plato);
         cargarArchivoConArreglo(platos);
     }
-
+/*
     public void cargarArchivoConArreglo(Set<Plato> listaPlatos) {
         JSONArray arreglo = new JSONArray();
-
         try {
             for (Plato plato : listaPlatos) {
                 try {
@@ -135,9 +133,9 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         } catch (JSONException e) {
             System.out.println("Hubo un problema al guardar el archivo JSON.");
         }
-    }
+    }*/
 
-    /*public void cargarArchivoConArreglo(Set<Plato> listaPlatos){
+    public void cargarArchivoConArreglo(Set<Plato> listaPlatos){
         JSONArray arreglo = new JSONArray();
         try {
             for (Plato plato : listaPlatos){
@@ -153,7 +151,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         } catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
-    }*/
+    }
 
     @Override
     public void mostrarDatosUsuario(Plato plato) {

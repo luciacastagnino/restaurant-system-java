@@ -122,7 +122,7 @@ public class GestionTickets implements MetodosBasicosGestion <Ticket>{
                                 System.out.println("Por favor, ingresa ID de la reserva:");
                                 int id = scanner.nextInt();
                                 res = gestionReserva.encontrarUsuario(id);
-                                cliente=res.getCliente();
+                                //cliente=res.getCliente();
                                 gestionReserva.darDeBajaUsuario(res);
                                 if(res != null && cliente!=null){
                                     t.setReserva(res);

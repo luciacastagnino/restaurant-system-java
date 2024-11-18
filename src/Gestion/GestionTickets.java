@@ -37,7 +37,7 @@ public class GestionTickets{
 
     }
 
-    public Set<Ticket> cargarArrayConArchivo(){
+    public List<Ticket> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("tickets.json");
 
         try {
@@ -61,7 +61,7 @@ public class GestionTickets{
         cargarArchivoConArreglo(ticketSet);
     }
 
-    public void cargarArchivoConArreglo(Set<Ticket> ticketSet){
+    public void cargarArchivoConArreglo(List<Ticket> ticketSet){
         JSONArray arreglo = new JSONArray();
         try {
 

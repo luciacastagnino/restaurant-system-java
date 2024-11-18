@@ -243,7 +243,6 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
             email = scanner.nextLine();
             try {
                 Validaciones.validarEmail(email);
-                c.setEmail(email);
                 emailValido = true;
             } catch (DatoInvalidoException e) {
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");

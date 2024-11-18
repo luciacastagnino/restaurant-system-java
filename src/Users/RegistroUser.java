@@ -21,7 +21,6 @@ import java.util.Scanner;
 public final class RegistroUser{
 
     private Scanner scanner = new Scanner(System.in);
-    private GestionDeCliente gestionDeCliente = new GestionDeCliente();
 
     public RegistroUser() {
     }
@@ -469,6 +468,7 @@ public final class RegistroUser{
 
     public Reserva ingresarReserva() {
         Scanner scanner = new Scanner(System.in);
+        GestionDeCliente gestionDeCliente = new GestionDeCliente();
 
         System.out.println("Complete con los datos:\n");
 

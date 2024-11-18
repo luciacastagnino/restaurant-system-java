@@ -1,6 +1,7 @@
 package Users;
 
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * La clase Users.Usuario es abstracta y tiene como campos su id, nombre de usuario, contrasenia, nombre,
@@ -13,7 +14,6 @@ import java.util.Objects;
  * @version 2
  */
 public abstract class Usuario {
-    protected int idContador = 100;
     protected int id;
     protected String username;
     protected String contrasenia;
@@ -24,6 +24,7 @@ public abstract class Usuario {
     protected String direccion;
     protected String email;
     protected boolean estado;
+    protected Random random=new Random();
 
     /// Constructor ////////////
 
@@ -31,7 +32,7 @@ public abstract class Usuario {
     }
 
     public Usuario(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email) {
-        this.id = idContador++;
+        this.id = random.nextInt(1000000)+100;
         this.username = username;
         this.contrasenia = contrasenia;
         this.nombre = nombre;
@@ -44,7 +45,7 @@ public abstract class Usuario {
     }
 
     public Usuario(String nombre, String apellido, String dni, String telefono, String direccion, String email) {
-        this.id = idContador++;
+        this.id = random.nextInt(1000000)+100;
         this.username = dni;
         this.contrasenia = dni;
         this.nombre = nombre;
@@ -58,14 +59,6 @@ public abstract class Usuario {
 
 
     ///Getters y Setters ////////////
-
-    public int getIdContador() {
-        return idContador;
-    }
-
-    public void setIdContador(int idContador) {
-        this.idContador = idContador;
-    }
 
     public int getId() {
         return id;

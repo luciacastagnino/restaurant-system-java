@@ -23,6 +23,7 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
     public Cliente() {
     }
 
+
     public Cliente(String nombre, String apellido, String dni, String telefono, String direccion, String email) {
         super(nombre, apellido, dni, telefono, direccion, email);
         this.tipoCliente = TipoCliente.ESTANDAR;

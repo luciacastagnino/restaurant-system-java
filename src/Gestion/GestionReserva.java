@@ -52,7 +52,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         System.out.println();
         boolean valido = false;
         while (!valido){
-            Reserva aux = null;
+            Reserva aux = new Reserva();
             aux = registroUser.ingresarReserva();
             if (verificarDisponibilidad(aux.getMesa(), aux.getDia(), aux.getHora())){
                 agregarYguardar(aux);
@@ -77,6 +77,9 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     }
 
     public List<Reserva> cargarArrayConArchivo(){
+
+        reservasPorCliente.clear();
+
         JSONTokener aux = GestionJSON.leer("reservas.json");
 
         try {
@@ -84,35 +87,47 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
                 Reserva reserva = new Reserva();
-                reserva = reserva.jsonToReserva(aux1);
-                reservasPorCliente.add(reserva);
+                try{
+                    reserva = reserva.jsonToReserva(aux1);
+                    if (reserva!=null){
+                        reservasPorCliente.add(reserva);
+                    }
+                }catch (FormatoIncorrectoException e){
+                    System.out.println("Ocurrio un error al convertir JSON a Reserva.");
+                }
             }
         } catch (JSONException e){
             System.out.println("Ocurrio un error al convertir JSONObject a Reserva.");
         }
-
         return reservasPorCliente;
     }
 
     public void agregarYguardar (Reserva reserva){
         cargarArrayConArchivo();
-        reservasPorCliente.add(reserva);
-        cargarArchivoConArreglo(reservasPorCliente);
+        if (!reservasPorCliente.contains(reserva)) {
+            reservasPorCliente.add(reserva);
+            cargarArchivoConArreglo(reservasPorCliente);
+        } else {
+            System.out.println("La reserva ya existe.");
+        }
     }
 
     public void cargarArchivoConArreglo(List<Reserva>listaReservas){
         JSONArray arreglo = new JSONArray();
         try {
             for (Reserva reserva : listaReservas){
-                try {
-                    JSONObject json = reserva.toJson(reserva);
-                    arreglo.put(json);
-                    GestionJSON.agregarElemento("reservas.json", arreglo);
+                if (reserva!=null){
+                    try {
+                        JSONObject json = reserva.toJson(reserva);
+                        arreglo.put(json);
+                    }
+                    catch (FormatoIncorrectoException e){
+                        System.out.println(e.getMessage());
+                    }
                 }
-                catch (FormatoIncorrectoException e){
-                    System.out.println(e.getMessage());
-                }
+
             }
+            GestionJSON.agregarElemento("reservas.json", arreglo);
         } catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
@@ -120,6 +135,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
     @Override
     public void mostrarDatosUsuario(Reserva a) {
+
+        if (a==null){
+            System.out.println("Error: La reserva es nula.");
+        }
+
         reservasPorCliente = cargarArrayConArchivo();
         DateTimeFormatter diaFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -133,7 +153,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 System.out.println("Fecha de reserva: " + a.getDia().format(diaFormatter));
                 System.out.println("Hora de reserva: " + a.getHora().format(horaFormatter));
                 Cliente cliente = gestionDeCliente.encontrarUsuario(a.getCliente());
-                System.out.println("Cliente: " + cliente.getNombre() + " " + cliente.getApellido());
+                if (cliente != null) {
+                    System.out.println("Cliente: " + cliente.getNombre() + " " + cliente.getApellido());
+                } else {
+                    System.out.println("Error: Cliente no encontrado.");
+                }
                 System.out.println("Mesa: " + a.getMesa());
                 System.out.println("Cantidad de personas: " + a.getCantPersonas());
                 System.out.println("--------------------------------------------");
@@ -311,13 +335,25 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
     @Override
     public void mostrarColeccion() {
+
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
 
-        for (Reserva r : reservasPorCliente){
-            mostrarDatosUsuario(r);
+        for (Reserva reserva : reservasPorCliente) {
+            if (reserva != null) {
+                mostrarDatosUsuario(reserva);
+            } else {
+                System.out.println("Error: Se encontró una reserva nula.");
+            }
         }
+
+        /*
+        System.out.println("Contenido de la colección:");
+        for (Reserva reserva : reservasPorCliente) {
+            System.out.println(reserva);
+        }*/
+
     }
 
     @Override

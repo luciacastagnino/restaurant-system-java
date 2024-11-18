@@ -143,19 +143,6 @@
                                 "username": "mperez"
                 },
                 {
-                                "tipoCliente": "VIP",
-                                "estado": true,
-                                "apellido": "López",
-                                "direccion": "Catamarca 909",
-                                "contrasenia": "lopez909",
-                                "id": 112,
-                                "telefono": "2233332244",
-                                "nombre": "Juan",
-                                "dni": "11224433",
-                                "email": "juan.lopez@gmail.com",
-                                "username": "jlopez"
-                },
-                {
                                 "tipoCliente": "ESTANDAR",
                                 "estado": true,
                                 "apellido": "Guzmán",

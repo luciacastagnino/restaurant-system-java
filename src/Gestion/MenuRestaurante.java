@@ -56,48 +56,15 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         this.platos = platos;
     }
 
-    @Override
-    public void ingresarUsuario() {
-        System.out.println();
-        boolean valido = false;
-        while (!valido){
-            Plato aux = new Plato();
-            aux.cargarPlato();
-            agregarYguardar(aux);
-            valido=true;
-
-        }
-
-        System.out.println("Plato agregado con exito.");
+    public void ingresarUsuario(){
+        Plato aux = new Plato();
+        aux = aux.cargarPlato();
+        agregarYguardar(aux);
     }
-/*
-    public Set<Plato> cargarArrayConArchivo() {
-        JSONTokener aux = GestionJSON.leer("platos.json");
-
-        try {
-            if (aux == null) {
-                System.out.println("El archivo está vacío o no existe.");
-                return platos;
-            }
-
-            JSONArray arreglo = new JSONArray(aux);
-            for (int i = 0; i < arreglo.length(); i++) {
-                JSONObject aux1 = arreglo.getJSONObject(i);
-                Plato plato = new Plato();
-                plato = plato.jsonToPlato(aux1);
-                platos.add(plato);
-            }
-        } catch (JSONException e) {
-            System.out.println("Ocurrió un error al procesar el archivo JSON: " + e.getMessage());
-        }
-
-        return platos;
-    }*/
 
     public Set<Plato> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("platos.json");
         try {
-
             JSONArray arreglo = new JSONArray(aux);
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
@@ -106,41 +73,25 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
                 platos.add(plato);
             }
         } catch (JSONException e){
-            System.out.println("Ocurrio un error al convertir JSONObject a Plato.");
+            System.out.println("Ocurrio un error al convertir JSONObject a Administrador.");
         }
-
+        System.out.println("cargar array 6");
         return platos;
     }
 
-    public void agregarYguardar (Plato plato){
+    public void agregarYguardar (Plato nuevoPlato){
         cargarArrayConArchivo();
-        platos.add(plato);
+        platos.add(nuevoPlato);
         cargarArchivoConArreglo(platos);
     }
-/*
-    public void cargarArchivoConArreglo(Set<Plato> listaPlatos) {
-        JSONArray arreglo = new JSONArray();
-        try {
-            for (Plato plato : listaPlatos) {
-                try {
-                    JSONObject json = plato.toJson(plato); // Convierte Plato a JSON
-                    arreglo.put(json);
-                } catch (FormatoIncorrectoException e) {
-                    System.out.println("Error al convertir Plato a JSON: " + e.getMessage());
-                }
-            }
-            GestionJSON.agregarElemento("platos.json", arreglo);
-        } catch (JSONException e) {
-            System.out.println("Hubo un problema al guardar el archivo JSON.");
-        }
-    }*/
 
     public void cargarArchivoConArreglo(Set<Plato> listaPlatos){
         JSONArray arreglo = new JSONArray();
         try {
-            for (Plato plato : listaPlatos){
+            for (Plato p : platos){
                 try {
-                    JSONObject json = plato.toJson(plato);
+                    p.mostrarPlato();
+                    JSONObject json = p.toJson(p);
                     arreglo.put(json);
                     GestionJSON.agregarElemento("platos.json", arreglo);
                 }

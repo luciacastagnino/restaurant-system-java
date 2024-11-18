@@ -2,6 +2,7 @@ package Gestion;
 
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
+import Restaurante.Plato;
 import Restaurante.Reserva;
 import Users.*;
 import org.json.JSONArray;
@@ -58,7 +59,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 System.out.println("\nReserva " + aux.getId() + "de " + cliente.getNombre() + " " + cliente.getApellido() + " agregado con exito!");
                 valido=true;
             }else {
-                System.out.println("Hubo un problema, la mesa seleccionada ya esta ocupada.");
+                System.out.println("Hubo un problema, la mesa seleccionada ya esta ocupada. Cargue nuevamente la reserva.");
             }
         }
     }
@@ -76,9 +77,9 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
     public List<Reserva> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("reservas.json");
+
         try {
             JSONArray arreglo = new JSONArray(aux);
-
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
                 Reserva reserva = new Reserva();
@@ -93,24 +94,24 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     }
 
     public void agregarYguardar (Reserva reserva){
-        reservasPorCliente = cargarArrayConArchivo();
+        cargarArrayConArchivo();
         reservasPorCliente.add(reserva);
         cargarArchivoConArreglo(reservasPorCliente);
     }
 
-    public void cargarArchivoConArreglo(List<Reserva> listadeReservas){
+    public void cargarArchivoConArreglo(List<Reserva>listaReservas){
         JSONArray arreglo = new JSONArray();
         try {
-            for (Reserva reserva : listadeReservas){
+            for (Reserva reserva : listaReservas){
                 try {
                     JSONObject json = reserva.toJson(reserva);
                     arreglo.put(json);
+                    GestionJSON.agregarElemento("reservas.json", arreglo);
                 }
                 catch (FormatoIncorrectoException e){
                     System.out.println(e.getMessage());
                 }
             }
-            GestionJSON.agregarElemento("reservas.json", arreglo);
         } catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }

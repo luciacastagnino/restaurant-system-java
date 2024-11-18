@@ -475,7 +475,7 @@ public final class RegistroUser{
         LocalDate dia = null;
         boolean diaValido = false;
         while (!diaValido) {
-            System.out.println("Por favor, ingresa el día (formato: dd/MM/yyyy):");
+            System.out.println("Por favor, ingresa el día (dd/mm/yyyy):");
             String diaInput = scanner.nextLine();
             DateTimeFormatter formatoDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             try {
@@ -489,7 +489,7 @@ public final class RegistroUser{
         LocalTime hora = null;
         boolean horaValida = false;
         while (!horaValida) {
-            System.out.println("Ingrese la hora (formato: HH:mm):");
+            System.out.println("Ingrese la hora de la reserva (HH:mm):");
             String horaInput = scanner.nextLine();
             DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
             try {
@@ -501,7 +501,7 @@ public final class RegistroUser{
         }
 
         int cliente = 0;
-        Cliente aux = null;
+        Cliente aux = new Cliente();
         boolean valido = false;
         while (!valido) {
             System.out.println();

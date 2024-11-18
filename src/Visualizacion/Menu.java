@@ -851,7 +851,9 @@ public class Menu {
         System.out.println("-----------------------------------------");
         try {
             Empleado empleado = logIn.inicioSesionEmpleado("empleados.json");
-            menuInicioSesionEmpleado(empleado);
+            if(!empleado.equals(null)){
+                menuInicioSesionEmpleado(empleado);
+            }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

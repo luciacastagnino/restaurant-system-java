@@ -32,7 +32,7 @@ public abstract class Usuario {
     }
 
     public Usuario(String username, String contrasenia, String nombre, String apellido, String dni, String telefono, String direccion, String email) {
-        this.id = random.nextInt(1000000)+100;
+        this.id = random.nextInt(10000000)+100;
         this.username = username;
         this.contrasenia = contrasenia;
         this.nombre = nombre;
@@ -56,7 +56,6 @@ public abstract class Usuario {
         this.email = email;
         this.estado = true;
     }
-
 
     ///Getters y Setters ////////////
 

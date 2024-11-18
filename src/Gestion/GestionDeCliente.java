@@ -18,8 +18,8 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
     public GestionDeCliente() {
         this.listaDeClientes = new ArrayList<Cliente>();
-        GestionJSON.crearArchivoJSON("clientes.json");
         this.registroUser = new RegistroUser();
+        GestionJSON.crearArchivoJSON("clientes.json");
         this.scanner = new Scanner(System.in);
     }
 

@@ -164,7 +164,7 @@ public class Plato {
         double precio = scanner.nextDouble();
 
         if(precio == 0){
-            System.out.println("El precio no puede ser 0");
+            System.out.println("El precio no puede ser 0.");
         }
 
         System.out.println("Ingrese el tipo de plato:");

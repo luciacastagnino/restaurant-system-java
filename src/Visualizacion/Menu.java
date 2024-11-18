@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private Scanner scanner;
+    private final Scanner scanner;
     private final RegistroUser registroUser;
     private final LogIn logIn;
     private final GestionAdministrador gestionAdministrador;

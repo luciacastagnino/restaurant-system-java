@@ -924,7 +924,9 @@ public class Menu {
         System.out.println("-----------------------------------------");
         try {
             Cliente cliente = logIn.inicioSesionCliente("clientes.json");
-            menuInicioSesionCliente(cliente);
+            if(!cliente.equals(null)){
+                menuInicioSesionCliente(cliente);
+            }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

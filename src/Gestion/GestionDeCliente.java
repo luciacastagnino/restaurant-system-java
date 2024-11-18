@@ -181,6 +181,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
     }
 
     public String modificarDni(){
+
         String dni = "";
         boolean dniValido = false;
 
@@ -189,7 +190,6 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
             dni = scanner.nextLine();
             try {
                 Validaciones.validarDNI(dni);
-                c.setDni(dni);
                 dniValido = true;
             } catch (DatoInvalidoException e) {
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
@@ -247,7 +247,8 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
                             break;
                         case 5:
 
-
+                            String dni = modificarDni();
+                            c.setDni(dni);
 
                             break;
                         case 6:

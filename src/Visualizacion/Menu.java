@@ -817,15 +817,14 @@ public class Menu {
                                 System.out.println("Ingresar ID del Ticket:");
                                 int id2 = scanner.nextInt();
                                 Ticket aux2 = gestionTickets.encontrarUsuario(id2);
-
-                                System.out.println(aux2);
+                                gestionTickets.mostrarDatosUsuario(aux2);
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar DNI del Cliente:");
                                 String dni1 = scanner.nextLine();
 
                                 Ticket ticket = gestionTickets.encontrarUsuario(dni1);
-                                System.out.println(ticket);
+                                gestionTickets.mostrarDatosUsuario(ticket);
                             }
                         }
                         catch (RuntimeException e) {

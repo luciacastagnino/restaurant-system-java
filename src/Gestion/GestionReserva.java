@@ -9,14 +9,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.FileOutputStream;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -35,13 +32,13 @@ import java.util.Scanner;
  */
 
 public class GestionReserva implements MetodosBasicosGestion<Reserva>{
-    private Map<Integer, Reserva> reservasPorCliente;
+    private List<Reserva> reservasPorCliente;
     private Scanner scanner;
     private GestionDeCliente gestionDeCliente;
     private RegistroUser registroUser;
 
     public GestionReserva() {
-        this.reservasPorCliente = new HashMap<>();
+        this.reservasPorCliente = new ArrayList<Reserva>();
         GestionJSON.crearArchivoJSON("reservas.json");
         this.scanner=new Scanner(System.in);
         this.gestionDeCliente=new GestionDeCliente();
@@ -67,7 +64,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     }
 
     public boolean verificarDisponibilidad(int mesa, LocalDate dia, LocalTime hora) {
-        for (Reserva reserva : reservasPorCliente.values()) {
+        for (Reserva reserva : reservasPorCliente) {
             if (reserva.getMesa() == mesa &&
                     reserva.getDia().equals(dia) &&
                     reserva.getHora().equals(hora)) {
@@ -77,7 +74,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return true;
     }
 
-    public Map<Integer, Reserva> cargarArrayConArchivo(){
+    public List<Reserva> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("reservas.json");
 
         try {
@@ -87,7 +84,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 JSONObject aux1 = arreglo.getJSONObject(i);
                 Reserva reserva = new Reserva();
                 reserva = reserva.jsonToReserva(aux1);
-                reservasPorCliente.put(reserva.getId(), reserva);
+                reservasPorCliente.add(reserva);
             }
         } catch (JSONException e){
             System.out.println("Ocurrio un error al convertir JSONObject a Reserva.");
@@ -98,14 +95,14 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
     public void agregarYguardar (Reserva reserva){
         cargarArrayConArchivo();
-        reservasPorCliente.put(reserva.getId(), reserva);
+        reservasPorCliente.add(reserva);
         cargarArchivoConArreglo(reservasPorCliente);
     }
 
-    public void cargarArchivoConArreglo(Map<Integer, Reserva> listadeReservas){
+    public void cargarArchivoConArreglo(List<Reserva> listadeReservas){
         JSONArray arreglo = new JSONArray();
         try {
-            for (Reserva reserva : listadeReservas.values()){
+            for (Reserva reserva : listadeReservas){
                 try {
                     JSONObject json = reserva.toJson(reserva);
                     arreglo.put(json);
@@ -126,7 +123,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         DateTimeFormatter diaFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        for (Reserva r: reservasPorCliente.values()){
+        for (Reserva r: reservasPorCliente){
             if (r.getId() == a.getId()){
                 System.out.println();
                 System.out.println("--------------------------------------------");
@@ -154,7 +151,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         reservasPorCliente = cargarArrayConArchivo();
         boolean salir = false;
 
-            if (reservasPorCliente.containsKey(c.getId())) {
+            if (reservasPorCliente.contains(c.getId())) {
                 Reserva reserva = reservasPorCliente.get(c.getId());
 
                 while (!salir) {
@@ -282,7 +279,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                     }
                 }
 
-                reservasPorCliente.put(reserva.getId(), reserva);
+                reservasPorCliente.add(reserva);
                 cargarArchivoConArreglo(reservasPorCliente);
                 System.out.println("¡Cambios guardados con exito!");
                 return reserva;
@@ -296,7 +293,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     public void darDeBajaUsuario(Reserva a) {
         reservasPorCliente = cargarArrayConArchivo();
 
-        for (Reserva reserva : reservasPorCliente.values()) {
+        for (Reserva reserva : reservasPorCliente) {
             String opcion = null;
             if (a.equals(reserva)) {
                 System.out.println("¿Esta seguro de eliminar la reserva? SI o NO.");
@@ -324,7 +321,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             cargarArrayConArchivo();
         }
 
-        for (Reserva r : reservasPorCliente.values()){
+        for (Reserva r : reservasPorCliente){
             mostrarDatosUsuario(r);
         }
     }
@@ -336,7 +333,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
 
         Cliente cliente = null;
-        for (Reserva reserva : reservasPorCliente.values()){
+        for (Reserva reserva : reservasPorCliente){
             if (gestionDeCliente.encontrarUsuario(reserva.getCliente()).getDni().equals(dni)){
                 return reserva;
             }
@@ -351,7 +348,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             cargarArrayConArchivo();
         }
 
-        for (Reserva reserva : reservasPorCliente.values()){
+        for (Reserva reserva : reservasPorCliente){
             if (gestionDeCliente.encontrarUsuario(reserva.getCliente()).getDni().equals(dni) && reserva.getDia().equals(dia)
                     && reserva.getHora().equals(hs)){
                 return reserva;
@@ -367,7 +364,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
-        for (Reserva reserva : reservasPorCliente.values()){
+        for (Reserva reserva : reservasPorCliente){
             if (gestionDeCliente.encontrarUsuario(reserva.getCliente()).getDni().equals(dni)){
                 mostrarDatosUsuario(reserva);
             }
@@ -378,7 +375,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
-        for (Reserva reserva : reservasPorCliente.values()){
+        for (Reserva reserva : reservasPorCliente){
             if (reserva.getDia().equals(dia)){
                 mostrarDatosUsuario(reserva);
             }
@@ -389,7 +386,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
-        for (Reserva reserva : reservasPorCliente.values()){
+        for (Reserva reserva : reservasPorCliente){
             if (reserva.getHora().equals(hora)){
                 mostrarDatosUsuario(reserva);
             }
@@ -400,7 +397,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
-        for (Reserva reserva : reservasPorCliente.values()){
+        for (Reserva reserva : reservasPorCliente){
             if (reserva.getHora().equals(hora) && reserva.getDia().equals(dia)){
                 mostrarDatosUsuario(reserva);
             }
@@ -413,7 +410,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             cargarArrayConArchivo();
         }
 
-        for (Reserva reserva : reservasPorCliente.values()){
+        for (Reserva reserva : reservasPorCliente){
             if (reserva.getEstado() == aux){
                 mostrarDatosUsuario(reserva);
             }
@@ -424,7 +421,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     public void darDeAltaUsuario(Reserva a) {
         reservasPorCliente = cargarArrayConArchivo();
 
-        for (Reserva reserva : reservasPorCliente.values()) {
+        for (Reserva reserva : reservasPorCliente) {
             String opcion = null;
             if (a.equals(reserva)) {
                 System.out.println("¿Esta seguro de dar de alta la reserva? SI o NO.");
@@ -452,7 +449,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             cargarArrayConArchivo();
         }
 
-        for (Reserva reserva : reservasPorCliente.values()){
+        for (Reserva reserva : reservasPorCliente){
             if (reserva.getId() == id){
                 return reserva;
             }
@@ -521,14 +518,12 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             cargarArrayConArchivo();
         }
         int i = 0;
-        Iterator it = reservasPorCliente.entrySet().iterator();
-
-        while (it.hasNext()){
-            Map.Entry<Integer, Reserva> map = (Map.Entry<Integer, Reserva>) it.next();
-            if(gestionDeCliente.encontrarUsuario(map.getValue().getCliente()).equals(cliente)){
+        for(Reserva r : reservasPorCliente){
+            if(gestionDeCliente.encontrarUsuario(r.getCliente()).equals(cliente)){
                 i++;
             }
         }
+
         return i;
     }
 

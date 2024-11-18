@@ -76,10 +76,9 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
     public List<Reserva> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("reservas.json");
-
         try {
-
             JSONArray arreglo = new JSONArray(aux);
+
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject aux1 = arreglo.getJSONObject(i);
                 Reserva reserva = new Reserva();
@@ -94,7 +93,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     }
 
     public void agregarYguardar (Reserva reserva){
-        cargarArrayConArchivo();
+        reservasPorCliente = cargarArrayConArchivo();
         reservasPorCliente.add(reserva);
         cargarArchivoConArreglo(reservasPorCliente);
     }
@@ -106,12 +105,12 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 try {
                     JSONObject json = reserva.toJson(reserva);
                     arreglo.put(json);
-                    GestionJSON.agregarElemento("reservas.json", arreglo);
                 }
                 catch (FormatoIncorrectoException e){
                     System.out.println(e.getMessage());
                 }
             }
+            GestionJSON.agregarElemento("reservas.json", arreglo);
         } catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
@@ -123,8 +122,6 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         DateTimeFormatter diaFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        for (Reserva r: reservasPorCliente){
-            if (r.getId() == a.getId()){
                 System.out.println();
                 System.out.println("--------------------------------------------");
                 System.out.println("RESERVA N°:" + a.getId());
@@ -139,12 +136,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 System.out.println("Cantidad de personas: " + a.getCantPersonas());
                 System.out.println("--------------------------------------------");
 
-                return;
-            }
         }
-
-        System.out.printf("No se encontro al usuario.");
-    }
 
     public Reserva modificarUsuario (Reserva c) {
 

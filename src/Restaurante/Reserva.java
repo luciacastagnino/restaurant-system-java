@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -26,7 +27,7 @@ import java.util.Scanner;
  */
 
 public class Reserva {
-    private static int contador = 0;
+    private final Random random = new Random();
     private int id;
     private LocalDateTime momento;
     private LocalDate dia;
@@ -41,7 +42,7 @@ public class Reserva {
     }
 
     public Reserva(LocalDate dia, LocalTime hora, int idCliente, int mesa, int cantPersonas) {
-        this.id = ++contador;
+        this.id = random.nextInt(1000000)+100;;
         this.momento = LocalDateTime.now();
         this.dia = dia;
         this.hora = hora;
@@ -53,14 +54,6 @@ public class Reserva {
     }
 
     ///Getters y Setters
-
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int contador) {
-        Reserva.contador = contador;
-    }
 
     public int getId() {
         return id;

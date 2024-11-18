@@ -17,7 +17,7 @@ import java.util.*;
 
 public class Ticket {
 
-    private static int contador = 100000;
+    private static Random random = new Random();
     private int id;
     private Reserva reserva;
     private Empleado empleado;
@@ -36,7 +36,7 @@ public class Ticket {
 
     public Ticket (Reserva reserva, Empleado empleado, LocalDateTime horaEmision, List<Plato> platos,
                    int cliente, double precio, TipoPago tipoPago) {
-        this.id = id;
+        this.id = random.nextInt(1000000)+100;
         this.reserva = reserva;
         this.empleado = empleado;
         this.horaEmision = horaEmision;
@@ -48,14 +48,6 @@ public class Ticket {
         this.gestionEmpleados = new GestionEmpleados();
         this.menuRestaurante = new MenuRestaurante();
         this.scanner = new Scanner(System.in);
-    }
-
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int contador) {
-        Ticket.contador = contador;
     }
 
     public int getId() {
@@ -189,7 +181,7 @@ public class Ticket {
                     empleado = new EmpleadoMedioTiempo().jsonToEmpleadoMT(empleadoJson);
                 }
                 ticketLeido.setEmpleado(empleado);
-                ticketLeido.setHoraEmision((LocalDateTime) json.get("hora"));
+                ticketLeido.setHoraEmision(LocalDateTime.parse(json.getString("hora")));
                 JSONArray platosArray = json.getJSONArray("platos");
                 List<Plato> platos = new ArrayList<>();
                 for (int i = 0; i < platosArray.length(); i++) {
@@ -199,7 +191,7 @@ public class Ticket {
                 }
                 ticketLeido.setPlatos(platos);
                 ticketLeido.setPrecio(json.getDouble("precio"));
-                ticketLeido.setTipoPago((TipoPago) json.get("tipoPago"));
+                ticketLeido.setTipoPago(TipoPago.valueOf(json.getString("tipoPago")));
                 ticketLeido.setCliente(json.getInt("cliente"));
             }
             else{

@@ -13,7 +13,7 @@ import java.util.Objects;
  * @version 2
  */
 public abstract class Usuario {
-    protected int idContador = 100;
+    protected static int idContador = 100;
     protected int id;
     protected String username;
     protected String contrasenia;

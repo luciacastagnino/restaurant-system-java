@@ -25,9 +25,10 @@ import java.util.*;
  * organizados por categorías como desayuno, brunch, entradas, almuerzo, cena, postre y bebidas.
  * Además, maneja la disponibilidad de los platos y sus precios.
  *
+ * Tiene como campos un Map de Platos (`listaPlatos`) y  un objeto `scanner` para la lectura de entradas del usuario.
  * Los métodos de esta clase incluyen la visualización de las diferentes categorías de platos del menú
  * y la opción de mostrar todo el menú completo con sus respectivas categorías.
- *
+ * Incluye métodos para agregar, modificar, dar de baja, buscar y listar platos.
  * @author Melina
  * @since 2024
  * @version 1

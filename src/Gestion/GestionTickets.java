@@ -15,6 +15,23 @@ import org.json.JSONTokener;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * La clase Gestion.GestionTickets gestiona un conjunto de tickets de la aplicación.
+ *
+ * - Tiene como campos una List de Tickets (`ticketSet`), un objeto `scanner` para la lectura de entradas del usuario
+ *   y un objeto `GestionDeCliente` para manejar información de los clientes relacionados con los tickets.
+ * - Tiene un constructor vacío.
+ * - Interactúa con un archivo JSON para guardar y cargar datos.
+ * - Incluye métodos para agregar, modificar, buscar y listar tickets.
+ * - Permite modificar atributos de un ticket como la reserva, el empleado, la hora de emisión, los platos y el tipo de pago.
+ *
+ * @author Melina
+ * @since 2024
+ * @version 1
+ */
+
+
+
 public class GestionTickets{
 
     private List<Ticket> ticketSet;

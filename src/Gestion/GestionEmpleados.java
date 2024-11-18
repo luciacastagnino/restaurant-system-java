@@ -10,6 +10,22 @@ import org.json.JSONTokener;
 
 import java.util.*;
 
+/**
+ * La clase Gestion.GestionEmpleados gestiona un conjunto de empleados de la aplicación.
+ *
+ *  - Tiene como campos un Set de Empleados (`listaEmpleados`), un objeto `registroUser` para gestionar el registro de nuevos empleados,
+ *  y un `scanner` para la lectura de entradas del usuario.
+ *  - tiene un constructor vacío
+ * - Incluye métodos para agregar, modificar, buscar y listar empleados.
+ * - Interactúa con un archivo JSON para guardar y cargar datos.
+ * - Permite modificar atributos de un empleado y gestionar su estado (activo/inactivo).
+ * - Diferencia entre empleados de medio tiempo y tiempo completo.
+ *
+ * @author Melina
+ * @since 2024
+ * @version 1
+ */
+
 public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
     private Set<Empleado> listaEmpleados;
     private RegistroUser registroUser;

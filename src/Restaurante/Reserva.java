@@ -19,7 +19,7 @@ import java.util.Scanner;
  * hora de reserva, cliente, mesa y cantidad de personas
  * tiene un constructor con todos los atributos
  * metodos: getters y setters, ToString
- * otros metodos:
+ * otros metodos: convertir la reserva a formato JSON y viceversa
  *
  * @author Brenda
  * @since 2024

@@ -9,6 +9,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+/**
+ * La clase Gestion.GestionDeCliente gestiona un conjunto de clientes.
+ *
+ * - Tiene como campos un Set de Clientes (`listaDeClientes`), un objeto `registroUser` para gestionar el registro de nuevos clientes,
+ * y un `scanner` para la lectura de entradas del usuario.
+ * - tiene un constructor vacío
+ * - incluye métodos para agregar, modificar, eliminar, buscar y listar clientes
+ * - interactúa con un archivo JSON para guardar y cargar datos
+ * - permite modificar atributos de un cliente y gestionar su estado (alta/baja)
+ * - ajusta el tipo de cliente según la cantidad de reservas realizadas
+ *
+ * @author Melina
+ * @since 2024
+ * @version 1
+ */
+
 public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
     private Set<Cliente> listaDeClientes;

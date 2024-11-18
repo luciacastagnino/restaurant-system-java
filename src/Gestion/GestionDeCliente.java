@@ -10,9 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
+public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
-    private List<Cliente> listaDeClientes ;
+    private List<Cliente> listaDeClientes;
     private RegistroUser registroUser;
     private Scanner scanner;
 
@@ -23,64 +23,63 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
         this.scanner = new Scanner(System.in);
     }
 
-    public void ingresarUsuario(){
+    public void ingresarUsuario() {
         System.out.println();
         Cliente aux = registroUser.registroCliente();
         agregarYguardar(aux);
         System.out.println("\nCliente " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
     }
 
-    public List<Cliente> cargarArrayConArchivo(){
+    public List<Cliente> cargarArrayConArchivo() {
         JSONTokener aux = GestionJSON.leer("clientes.json");
 
         try {
 
             JSONArray arreglo = new JSONArray(aux);
 
-            for(int i = 0; i < arreglo.length(); i++){
+            for (int i = 0; i < arreglo.length(); i++) {
                 JSONObject aux1 = arreglo.getJSONObject(i);
                 Cliente cliente = new Cliente();
                 cliente = cliente.jsonToCliente(aux1);
                 listaDeClientes.add(cliente);
             }
-        } catch (JSONException e){
+        } catch (JSONException e) {
             System.out.println("Ocurrio un error al convertir JSONObject a Cliente.");
         }
 
         return listaDeClientes;
     }
 
-    public void agregarYguardar (Cliente nuevoCliente){
+    public void agregarYguardar(Cliente nuevoCliente) {
         cargarArrayConArchivo();
         listaDeClientes.add(nuevoCliente);
         cargarArchivoConArreglo(listaDeClientes);
     }
 
-    public void cargarArchivoConArreglo(List<Cliente> listaDeClientes){
+    public void cargarArchivoConArreglo(List<Cliente> listaDeClientes) {
         JSONArray arreglo = new JSONArray();
         try {
 
-            for (Cliente cliente : listaDeClientes){
+            for (Cliente cliente : listaDeClientes) {
                 try {
                     JSONObject json = cliente.toJson(cliente);
                     arreglo.put(json);
                     GestionJSON.agregarElemento("clientes.json", arreglo);
-                }
-                catch (FormatoIncorrectoException e){
+                } catch (FormatoIncorrectoException e) {
                     System.out.println(e.getMessage());
                 }
             }
-        } catch (JSONException e){
+        } catch (JSONException e) {
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
     }
 
-    public void mostrarDatosUsuario (Cliente a){
+    public void mostrarDatosUsuario(Cliente a) {
 
         listaDeClientes = cargarArrayConArchivo();
 
-        for (Cliente cliente : listaDeClientes){
-            if (cliente.getId() == a.getId()){
+        for (Cliente cliente : listaDeClientes) {
+            if (cliente.getId() == a.getId()) {
                 System.out.println();
                 System.out.println("--------------------------------------------");
                 System.out.println("PERFIL DE CLIENTE: " + a.getNombre() + " " + a.getApellido());
@@ -103,6 +102,100 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
 
         System.out.printf("No se encontro al usuario.");
 
+    }
+
+    public String modificarUsername() {
+        String username = "";
+        boolean usernameValido = false;
+
+        while (!usernameValido) {
+            System.out.println("Ingrese su nuevo username: ");
+            username = scanner.nextLine();
+            try {
+                Validaciones.validarNombreUsuario(username);
+                usernameValido = true;
+            } catch (DatoInvalidoException e) {
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+
+        return username;
+    }
+
+    public String modificarContraseña(Cliente c) {
+
+        String contrasenia = "";
+        boolean contraseniaValida = false;
+
+        System.out.println("Ingrese su contraseña actual:");
+        String contraseñaActual = scanner.nextLine();
+        if (c.getContrasenia().equals(contraseñaActual)) {
+            while (!contraseniaValida) {
+                System.out.println("Ingrese su nueva contrasenia: ");
+                contrasenia = scanner.nextLine();
+                try {
+                    Validaciones.validarContrasenia(contrasenia);
+                    contraseniaValida = true;
+                } catch (DatoInvalidoException e) {
+                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+                }
+            }
+        }
+
+        return contrasenia;
+    }
+
+    public String modificarNombre() {
+        String nombre = "";
+        boolean nombreValido = false;
+
+        while (!nombreValido) {
+            System.out.println("Ingrese su nuevo nombre: ");
+            nombre = scanner.nextLine();
+            try {
+                Validaciones.validarCadenas(nombre);
+                nombreValido = true;
+            } catch (DatoInvalidoException e) {
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+        return nombre;
+    }
+
+    public String modificarApellido() {
+
+        String apellido = "";
+        boolean apellidoValido = false;
+
+        while (!apellidoValido) {
+            System.out.println("Ingrese su nuevo apellido: ");
+            apellido = scanner.nextLine();
+            try {
+                Validaciones.validarCadenas(apellido);
+                apellidoValido = true;
+            } catch (DatoInvalidoException e) {
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+        return apellido;
+    }
+
+    public String modificarDni(){
+
+        String dni = "";
+        boolean dniValido = false;
+
+        while (!dniValido) {
+            System.out.println("Ingrese su nuevo DNI: ");
+            dni = scanner.nextLine();
+            try {
+                Validaciones.validarDNI(dni);
+                dniValido = true;
+            } catch (DatoInvalidoException e) {
+                System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
+            }
+        }
+        return dni;
     }
 
     public Cliente modificarUsuario (Cliente c) {
@@ -130,96 +223,32 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente>{
                     switch (op) {
                         case 1:
 
-                            String username = "";
-                            boolean usernameValido = false;
-
-                            while (!usernameValido) {
-                                System.out.println("Ingrese su nuevo username: ");
-                                username = scanner.nextLine();
-                                try {
-                                    Validaciones.validarNombreUsuario(username);
-                                    c.setUsername(username);
-                                    usernameValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
+                            String username = modificarUsername();
+                            c.setUsername(username);
 
                             break;
                         case 2:
 
-                            String contrasenia = "";
-                            boolean contraseniaValida = false;
-
-                            System.out.println("Ingrese su contraseña actual:");
-                            String contraseñaActual = scanner.nextLine();
-                            if (c.getContrasenia().equals(contraseñaActual)){
-                                while (!contraseniaValida) {
-                                    System.out.println("Ingrese su nueva contrasenia: ");
-                                    contrasenia = scanner.nextLine();
-                                    try {
-                                        Validaciones.validarContrasenia(contrasenia);
-                                        c.setContrasenia(contrasenia);
-                                        contraseniaValida = true;
-                                    } catch (DatoInvalidoException e) {
-                                        System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                    }
-                                }
-                            }
+                            String contrasenia = modificarContraseña(c);
+                            c.setContrasenia(contrasenia);
 
                             break;
                         case 3:
 
-                            String nombre = "";
-                            boolean nombreValido = false;
-
-                            while (!nombreValido) {
-                                System.out.println("Ingrese su nuevo nombre: ");
-                                nombre = scanner.nextLine();
-                                try {
-                                    Validaciones.validarCadenas(nombre);
-                                    c.setNombre(nombre);
-                                    nombreValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
+                            String nombre = modificarNombre();
+                            c.setNombre(nombre);
 
                             break;
                         case 4:
 
-                            String apellido = "";
-                            boolean apellidoValido = false;
-
-                            while (!apellidoValido) {
-                                System.out.println("Ingrese su nuevo apellido: ");
-                                apellido = scanner.nextLine();
-                                try {
-                                    Validaciones.validarCadenas(apellido);
-                                    c.setApellido(apellido);
-                                    apellidoValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
+                            String apellido = modificarApellido();
+                            c.setApellido(apellido);
 
                             break;
                         case 5:
 
-                            String dni = "";
-                            boolean dniValido = false;
-
-                            while (!dniValido) {
-                                System.out.println("Ingrese su nuevo DNI: ");
-                                dni = scanner.nextLine();
-                                try {
-                                    Validaciones.validarDNI(dni);
-                                    c.setDni(dni);
-                                    dniValido = true;
-                                } catch (DatoInvalidoException e) {
-                                    System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
-                                }
-                            }
+                            String dni = modificarDni();
+                            c.setDni(dni);
 
                             break;
                         case 6:

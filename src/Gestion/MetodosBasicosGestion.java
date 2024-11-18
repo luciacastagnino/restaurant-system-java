@@ -1,5 +1,13 @@
 package Gestion;
 
+/**
+ * Interfaz que define los métodos básicos de todas las clases de gestion.
+ * Las clases que implementen esta interfaz deben proporcionar la implementación de estos métodos
+ * para gestionar de manera adecuada.
+ *
+ * @param <T> El tipo de objeto que representa segun la gestion utilizada.
+ */
+
 public interface MetodosBasicosGestion <T> {
     public void ingresarUsuario();
     public void mostrarDatosUsuario(T t);

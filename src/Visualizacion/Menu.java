@@ -571,8 +571,6 @@ public class Menu {
                         scanner.nextLine();
 
                         Reserva aux = gestionReserva.encontrarUsuario(id);
-                        System.out.println("Mostrando reserva:");
-                        System.out.println(aux);
                         gestionReserva.darDeBajaUsuario(aux);
 
                         break;

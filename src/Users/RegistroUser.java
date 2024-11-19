@@ -354,15 +354,35 @@ public final class RegistroUser{
         }
 
         int horasTrabajadas = 0;
-        System.out.println("Horas Tranajadas:");
-        horasTrabajadas = scanner.nextInt();
+        boolean horasValidas = false;
+        while (!horasValidas){
+            System.out.println("Horas trabajadas:");
+            horasTrabajadas = scanner.nextInt();
+            scanner.nextLine();
+            if (horasTrabajadas>=0){
+                horasValidas=true;
+            }else {
+                System.out.println("Las horas trabajadas no pueden ser menor o igual a 0.");
+            }
+        }
+
 
         double precioXhora = 0;
-        System.out.println("Horas Tranajadas:");
-        precioXhora = scanner.nextDouble();
+        boolean pxhValido = false;
+        while (!pxhValido){
+            System.out.println("Precio por hora:");
+            precioXhora = scanner.nextDouble();
+            scanner.nextLine();
+            if (precioXhora>=0){
+                pxhValido=true;
+            }else {
+                System.out.println("Las horas trabajadas no pueden ser menor o igual a 0-");
+            }
+        }
 
+        double sueldo = horasTrabajadas*precioXhora;
 
-        EmpleadoMedioTiempo empleMT = new EmpleadoMedioTiempo(nombre, apellido, dni, telefono, direccion, email, 0.00, horasTrabajadas, precioXhora);
+        EmpleadoMedioTiempo empleMT = new EmpleadoMedioTiempo(nombre, apellido, dni, telefono, direccion, email, sueldo, horasTrabajadas, precioXhora);
         return empleMT;
     }
 

@@ -16,7 +16,7 @@ import org.json.JSONObject;
  * @since 2024
  * @version 2
  */
-public class EmpleadoMedioTiempo extends Empleado implements Comparable {
+public class EmpleadoMedioTiempo extends Empleado implements Comparable{
     private int horasTrabajadas;
     private double precioXhora;
 
@@ -163,7 +163,16 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        return this.nombre.compareTo(((EmpleadoMedioTiempo) o).getNombre());
+        if (o instanceof EmpleadoMedioTiempo) {
+            EmpleadoMedioTiempo otroEmpleado = (EmpleadoMedioTiempo) o;
+            return this.dni.compareTo(otroEmpleado.getDni());
+        } else if (o instanceof EmpleadoTiempoCompleto) {
+            EmpleadoTiempoCompleto otroEmpleado = (EmpleadoTiempoCompleto) o;
+            return this.dni.compareTo(otroEmpleado.getDni());
+        } else {
+            throw new ClassCastException("Tipo de empleado no reconocido");
+        }
     }
+
 }
 

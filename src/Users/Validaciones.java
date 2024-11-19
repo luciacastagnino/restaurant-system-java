@@ -84,7 +84,7 @@ public class Validaciones {
         }
 
         int dniValidacion = Integer.parseInt(dni);
-        if (dniValidacion < 1000000 || dniValidacion > 99000000) {
+        if (dniValidacion < 10000000 || dniValidacion > 99000000) {
             throw new DatoInvalidoException("DNI inválido: debe estar entre 1.000.000 y 99.999.999.");
         }
     }

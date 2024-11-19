@@ -141,6 +141,14 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return this.nombre.compareTo(((EmpleadoTiempoCompleto) o).getNombre());
+        if (o instanceof EmpleadoMedioTiempo) {
+            EmpleadoMedioTiempo otroEmpleado = (EmpleadoMedioTiempo) o;
+            return this.dni.compareTo(otroEmpleado.getDni());
+        } else if (o instanceof EmpleadoTiempoCompleto) {
+            EmpleadoTiempoCompleto otroEmpleado = (EmpleadoTiempoCompleto) o;
+            return this.dni.compareTo(otroEmpleado.getDni());
+        } else {
+            throw new ClassCastException("Tipo de empleado no reconocido");
+        }
     }
 }

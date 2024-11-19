@@ -388,17 +388,15 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             cargarArrayConArchivo();
         }
 
-         long encontrados = listaAdmins.stream()
+         /*long encontrados = listaAdmins.stream()
                  .filter(admin -> admin.getApellido().equals(apellido))
                  .peek(admin -> mostrarDatosUsuario(admin))
                  .forEach(admin -> mostrarDatosUsuario(admin))
-                 .count();
+                 //.count();
 
         if (encontrados==0){
             System.out.println("No se encontraron administradores con el apellido.");
-        }
-
-
+        }*/
     }
 
     @Override

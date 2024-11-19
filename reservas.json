@@ -91,7 +91,7 @@
                 },
                 {
                                 "cliente": 121,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 3,
                                 "hora": "17:00",
                                 "id": 618373,
@@ -121,7 +121,7 @@
                 },
                 {
                                 "cliente": 104,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 1,
                                 "hora": "19:00",
                                 "id": 842135,

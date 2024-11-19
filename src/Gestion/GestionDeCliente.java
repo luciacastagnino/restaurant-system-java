@@ -69,7 +69,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
     public void agregarYguardar(Cliente nuevoCliente) {
         cargarArrayConArchivo();
         listaDeClientes.add(nuevoCliente);
-        GuardarTipoDeCliente(); //no se si funciona
+        listaDeClientes = GuardarTipoDeCliente(); //no se si funciona
         cargarArchivoConArreglo(listaDeClientes);
     }
 
@@ -104,7 +104,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
                 System.out.println("ID: " + a.getId());
                 System.out.println("Username: " + a.getUsername());
-                System.out.println("Contraseña: " + a.getContrasenia());
+                System.out.println("Contraseña: ************");
                 System.out.println("Nombre: " + a.getNombre());
                 System.out.println("Apellido: " + a.getApellido());
                 System.out.println("DNI: " + a.getDni());
@@ -350,6 +350,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
                     }
                 }
                 listaDeClientes.add(c);
+                listaDeClientes = GuardarTipoDeCliente();
                 cargarArchivoConArreglo(listaDeClientes);
                 System.out.println("¡Cambios guardados con exito!");
                 return c;
@@ -498,7 +499,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         System.out.println("No se encontro al Cliente.");
     }
 
-    public void GuardarTipoDeCliente(){
+    public Set<Cliente> GuardarTipoDeCliente(){
         if (listaDeClientes.isEmpty()) {
             cargarArrayConArchivo();
         }
@@ -507,16 +508,17 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
             GestionReserva gestionReserva = new GestionReserva();
             int contador = gestionReserva.obtenerCantidadDeReservas(cliente);
 
-            if(contador < 5){
+            if(contador < 2){
                 cliente.setTipoCliente(TipoCliente.ESTANDAR);
             }
-            else if (contador < 15) {
+            else if (contador < 3) {
                 cliente.setTipoCliente(TipoCliente.PREMIUM);
             }
-            else {
+            else if(contador < 5){
                 cliente.setTipoCliente(TipoCliente.VIP);
             }
         }
+        return listaDeClientes;
     }
 }
 

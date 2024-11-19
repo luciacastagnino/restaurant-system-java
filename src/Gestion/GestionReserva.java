@@ -2,6 +2,7 @@ package Gestion;
 
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
+import Restaurante.MesaYaReservadaException;
 import Restaurante.Plato;
 import Restaurante.Reserva;
 import Users.*;
@@ -48,7 +49,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     }
 
     @Override
-    public void ingresarUsuario() {
+    public void ingresarUsuario() throws MesaYaReservadaException {
         System.out.println();
         boolean valido = false;
         while (!valido){
@@ -60,12 +61,16 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 System.out.println("\nReserva " + aux.getId() + " de " + cliente.getNombre() + " " + cliente.getApellido() + " agregada con exito!");
                 valido=true;
             }else {
-                System.out.println("Hubo un problema, la mesa seleccionada ya esta ocupada. Cargue nuevamente la reserva.");
+                throw new MesaYaReservadaException("Hubo un problema, la mesa seleccionada ya esta ocupada. Cargue nuevamente la reserva.");
             }
         }
     }
 
     public boolean verificarDisponibilidad(int mesa, LocalDate dia, LocalTime hora) {
+        if(reservasPorCliente.isEmpty()){
+            cargarArrayConArchivo();
+
+        }
         for (Reserva reserva : reservasPorCliente) {
             if (reserva.getMesa() == mesa &&
                     reserva.getDia().equals(dia) &&

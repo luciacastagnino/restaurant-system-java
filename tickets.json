@@ -96,5 +96,234 @@
                                                                 "disponible": true
                                                 }
                                 ]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 17700,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "sueldo": 480000,
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-19T18:00:12.012263",
+                                "tipoPago": "EFECTIVO",
+                                "id": 451660,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 554207,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-11-20",
+                                                "momento": "2024-11-18T19:24:25.618987100"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "tabla de quesos y fiambres",
+                                                                "precio": 10500,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 118,
+                                                                "nombre": "Tabla de quesos",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "vino tinto malbec",
+                                                                "precio": 7200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 116,
+                                                                "nombre": "Vino tinto",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 13100,
+                                "empleado": {
+                                                "estado": true,
+                                                "direccion": "Garay 5600",
+                                                "sueldo": 37500,
+                                                "precioPorHora": 1500,
+                                                "nombre": "Carlos",
+                                                "apellido": "Garcia",
+                                                "horasTrabajadas": 25,
+                                                "contrasenia": "24678575",
+                                                "id": 819015,
+                                                "telefono": "2234486571",
+                                                "dni": "24678575",
+                                                "email": "carlitosgarcia@gmail.com",
+                                                "username": "24678575"
+                                },
+                                "hora": "2024-11-19T18:00:56.143447",
+                                "tipoPago": "CREDITO",
+                                "id": 593911,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 10,
+                                                "hora": "21:00",
+                                                "id": 469795,
+                                                "cantPersonas": 6,
+                                                "dia": "2024-12-24",
+                                                "momento": "2024-11-18T19:24:47.910298400"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "mousse de chocolate",
+                                                                "precio": 4300,
+                                                                "tipoPlato": "POSTRE",
+                                                                "id": 114,
+                                                                "nombre": "Mousse de chocolate",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "fideos",
+                                                                "precio": 6600,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 100,
+                                                                "nombre": "Fideos con tuco",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 15000,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "sueldo": 750000,
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-19T18:03:53.198465",
+                                "tipoPago": "DEBITO",
+                                "id": 15649,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 72561,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-05-17",
+                                                "momento": "2024-11-18T22:43:58.868720"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "omelette de espinaca y queso",
+                                                                "precio": 3900,
+                                                                "tipoPlato": "BRUNCH",
+                                                                "id": 121,
+                                                                "nombre": "Omelette",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "waffles con frutas y miel",
+                                                                "precio": 5000,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 119,
+                                                                "nombre": "Waffles dulces",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "jugo de naranja natural",
+                                                                "precio": 1500,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 106,
+                                                                "nombre": "Jugo de naranja",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "panqueques con dulce de leche",
+                                                                "precio": 4600,
+                                                                "tipoPlato": "POSTRE",
+                                                                "id": 120,
+                                                                "nombre": "Panqueques",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 10800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 4,
+                                                "apellido": "Perez",
+                                                "direccion": "Calle Falsa 123",
+                                                "sueldo": 650000,
+                                                "contrasenia": "abc12345",
+                                                "id": 102,
+                                                "telefono": "1122334455",
+                                                "nombre": "Juan",
+                                                "dni": "34567890",
+                                                "email": "juan.perez@gmail.com",
+                                                "username": "jperez"
+                                },
+                                "hora": "2024-11-19T18:04:56.435556",
+                                "tipoPago": "DEBITO",
+                                "id": 816890,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 1,
+                                                "hora": "12:00",
+                                                "id": 172748,
+                                                "cantPersonas": 3,
+                                                "dia": "2026-04-15",
+                                                "momento": "2024-11-18T23:18:18.140619"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "vino tinto malbec",
+                                                                "precio": 7200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 116,
+                                                                "nombre": "Vino tinto",
+                                                                "disponible": true
+                                                }
+                                ]
                 }
 ]

@@ -1,7 +1,7 @@
 [
                 {
                                 "cliente": 103,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 5,
                                 "hora": "20:00",
                                 "id": 554207,
@@ -11,7 +11,7 @@
                 },
                 {
                                 "cliente": 103,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 10,
                                 "hora": "21:00",
                                 "id": 469795,
@@ -21,7 +21,7 @@
                 },
                 {
                                 "cliente": 102,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 5,
                                 "hora": "20:00",
                                 "id": 72561,
@@ -41,7 +41,7 @@
                 },
                 {
                                 "cliente": 102,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 1,
                                 "hora": "12:00",
                                 "id": 172748,

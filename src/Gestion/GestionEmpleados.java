@@ -132,7 +132,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
                 System.out.println("ID: " + a.getId());
                 System.out.println("Username: " + a.getUsername());
-                System.out.println("Contraseña: " + a.getContrasenia());
+                System.out.println("Contraseña: **********");
                 System.out.println("Nombre: " + a.getNombre());
                 System.out.println("Apellido: " + a.getApellido());
                 System.out.println("DNI: " + a.getDni());

@@ -1,12 +1,14 @@
 package Visualizacion;
 
 import Gestion.*;
+import Restaurante.MesaYaReservadaException;
 import Restaurante.Plato;
 import Restaurante.Reserva;
 import Restaurante.Ticket;
 import Users.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.InputMismatchException;
@@ -297,7 +299,7 @@ public class Menu {
                                 int hs = scanner.nextInt();
 
                                 System.out.println("Ingrese el precio por hora (0 si no hay horas extra):");
-                                double pxh = scanner.nextInt();
+                                double pxh = scanner.nextDouble();
 
                                 double total = aux1.calcularSueldo(hs, pxh);
                                 System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
@@ -557,7 +559,11 @@ public class Menu {
                         }
                         break;
                     case 2:
-                        gestionReserva.ingresarUsuario();
+                        try {
+                            gestionReserva.ingresarUsuario();
+                        } catch (MesaYaReservadaException e) {
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 3:
                         System.out.println("Ingrese el ID de la reserva a dar de baja:");

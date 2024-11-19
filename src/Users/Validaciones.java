@@ -40,20 +40,6 @@ public class Validaciones {
         if (username.contains(" ")){
             throw new DatoInvalidoException("El username no puede contener espacios.");
         }
-
-        //FALTA AGREGAR VALIDACION PARA QUE NO SE REPITAN LOS USUARIOS :)))
-
-        /*cargarArray();
-
-        boolean encontrado = false;
-
-        encontrado = nombresDeUsuario.stream()
-                .filter(user -> user.equals(username))
-                .count() > 0;
-
-        if(encontrado){
-            throw new DatoInvalidoException("El nombre de usuario ya esta en uso.");
-        }*/
     }
 
     /**
@@ -167,6 +153,12 @@ public class Validaciones {
         }
     }
 
+    /**
+     * existeDni es un metodo que verifica que el DNI de ningun usuario se repita, recibe dos Strings.
+     * @param dni
+     * @param tipoUsuario
+     * @return si el DNI existe o no
+     */
     public static boolean existeDni (String dni, String tipoUsuario){
 
         boolean existe = false;
@@ -200,6 +192,12 @@ public class Validaciones {
         return existe;
     }
 
+    /**
+     * existeUser verifica que los nombres de usuario no se repitan, recibe un String.
+     *
+     * @param username
+     * @return si el username existe o no
+     */
     public static boolean existeUser (String username){
         GestionAdministrador gestionAdministrador = new GestionAdministrador();
         GestionEmpleados gestionEmpleados = new GestionEmpleados();

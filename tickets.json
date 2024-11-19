@@ -2406,5 +2406,43 @@
                                                                 "disponible": true
                                                 }
                                 ]
+                },
+                {
+                                "cliente": 116,
+                                "precio": 8500,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-19T11:45:06.131194",
+                                "tipoPago": "EFECTIVO",
+                                "id": 736371,
+                                "reserva": {
+                                                "cliente": 116,
+                                                "estado": true,
+                                                "mesa": 6,
+                                                "hora": "13:00",
+                                                "id": 380952,
+                                                "cantPersonas": 1,
+                                                "dia": "2025-03-05",
+                                                "momento": "2024-11-19T11:34:51.605871"
+                                },
+                                "platos": [{
+                                                "descripcion": "risotto de hongos",
+                                                "precio": 8500,
+                                                "tipoPlato": "ALMUERZO",
+                                                "id": 122,
+                                                "nombre": "Risotto",
+                                                "disponible": true
+                                }]
                 }
 ]

@@ -562,9 +562,13 @@ public class Menu {
                     case 3:
                         System.out.println("Ingrese el ID de la reserva a dar de baja:");
                         int id = scanner.nextInt();
+                        scanner.nextLine();
 
                         Reserva aux = gestionReserva.encontrarUsuario(id);
+                        System.out.println("Mostrando reserva:");
+                        System.out.println(aux);
                         gestionReserva.darDeBajaUsuario(aux);
+
                         break;
                     case 4:
                         System.out.println("Ingrese el ID de la reserva a modificar:");

@@ -306,19 +306,41 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     @Override
     public void darDeBajaUsuario(Reserva a) {
         reservasPorCliente = cargarArrayConArchivo();
-        Reserva reservaA = new Reserva();
+
+        String opcion = "";
+        System.out.println("entre a dar de baja:");
 
         for (Reserva reserva : reservasPorCliente) {
-            String opcion = null;
-            if (a.equals(reserva)) {
-                reservaA=a;
-                reservasPorCliente.remove(reserva);
+            if (a.getId() == reserva.getId()) {
                 System.out.println("¿Esta seguro de eliminar la reserva? SI o NO.");
                 opcion = scanner.nextLine();
-                if (opcion.equalsIgnoreCase("si")){
-                    reservaA.setEstado(true);
-                    reservasPorCliente.add(reservaA);
+                if (opcion.equalsIgnoreCase("si")) {
+                    a.setEstado(false);
                     System.out.println("Reserva eliminada con exito.");
+                    cargarArchivoConArreglo(reservasPorCliente);
+                    return;
+                } else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
+                }
+            }
+        }
+    }
+
+    @Override
+    public void darDeAltaUsuario(Reserva a) {
+        reservasPorCliente = cargarArrayConArchivo();
+
+        for (Reserva reserva : reservasPorCliente) {
+            String opcion = "";
+            if (a.equals(reserva)) {
+                System.out.println("¿Esta seguro de dar de alta la reserva? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    a.setEstado(true);
+                    System.out.println("Reserva agregada con exito.");
                     cargarArchivoConArreglo(reservasPorCliente);
                     return;
                 }else if (opcion.equalsIgnoreCase("no")) {
@@ -330,7 +352,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             }
         }
 
-        cargarArchivoConArreglo(reservasPorCliente);
+        System.out.println("No se encontro la reserva.");
     }
 
     @Override
@@ -438,32 +460,6 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 mostrarDatosUsuario(reserva);
             }
         }
-    }
-
-    @Override
-    public void darDeAltaUsuario(Reserva a) {
-        reservasPorCliente = cargarArrayConArchivo();
-
-        for (Reserva reserva : reservasPorCliente) {
-            String opcion = null;
-            if (a.equals(reserva)) {
-                System.out.println("¿Esta seguro de dar de alta la reserva? SI o NO.");
-                opcion = scanner.nextLine();
-                if (opcion.equalsIgnoreCase("si")){
-                    a.setEstado(true);
-                    System.out.println("Reserva agregada con exito.");
-                    cargarArchivoConArreglo(reservasPorCliente);
-                    return;
-                }else if (opcion.equalsIgnoreCase("no")) {
-                    System.out.println("Operacion cancelada.");
-                    return;
-                } else {
-                    System.out.println("Opcion invalida.");
-                }
-            }
-        }
-
-        System.out.println("No se encontro la reserva.");
     }
 
     @Override

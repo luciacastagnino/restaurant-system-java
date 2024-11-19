@@ -38,66 +38,6 @@ public final class RegistroUser{
      * @return nuevo Administrador
      */
 
-    public boolean existeDni (String dni, String tipoUsuario){
-
-        boolean existe = false;
-        GestionAdministrador gestionAdministrador = new GestionAdministrador();
-        GestionEmpleados gestionEmpleados = new GestionEmpleados();
-        GestionDeCliente gestionDeCliente = new GestionDeCliente();
-
-        if (tipoUsuario.equalsIgnoreCase("administrador")){
-            Set <Administrador> listaAdmins = gestionAdministrador.cargarArrayConArchivo();
-            for (Administrador administrador : listaAdmins){
-                if (administrador.getDni().equals(dni)){
-                    existe=true;
-                }
-            }
-        }else if (tipoUsuario.equalsIgnoreCase("empleado")){
-            Set<Empleado>listaEmpleado = gestionEmpleados.cargarArrayConArchivo();
-            for (Empleado empleado : listaEmpleado){
-                if (empleado.getDni().equals(dni)){
-                    existe=true;
-                }
-            }
-        }else if (tipoUsuario.equalsIgnoreCase("cliente")){
-            Set<Cliente>listaClientes = gestionDeCliente.cargarArrayConArchivo();
-            for (Cliente cliente : listaClientes){
-                if (cliente.getDni().equals(dni)){
-                    existe=true;
-                }
-            }
-        }
-
-        return existe;
-    }
-
-    public boolean existeUser (String username){
-        GestionAdministrador gestionAdministrador = new GestionAdministrador();
-        GestionEmpleados gestionEmpleados = new GestionEmpleados();
-        GestionDeCliente gestionDeCliente = new GestionDeCliente();
-
-        boolean existe=false;
-
-        Set<Administrador> setAdmin = new HashSet<>();
-        Set<Cliente> clienteSet = new HashSet<>();
-        Set<Empleado> empleadoSet = new HashSet<>();
-        setAdmin = gestionAdministrador.cargarArrayConArchivo();
-        clienteSet = gestionDeCliente.cargarArrayConArchivo();
-        empleadoSet = gestionEmpleados.cargarArrayConArchivo();
-
-        Set<String> nombreUsuario = new HashSet<>();
-        setAdmin.forEach(administrador -> nombreUsuario.add(administrador.getUsername()));
-        clienteSet.forEach(cliente -> nombreUsuario.add(cliente.getUsername()));
-        empleadoSet.forEach(empleado -> nombreUsuario.add(empleado.getUsername()));
-
-        for (String nombre : nombreUsuario){
-            if (nombre.equals(username)){
-                existe=true;
-            }
-        }
-        return existe;
-    }
-
     public Administrador registroAdmin (){
 
         System.out.println("Complete con sus datos:\n");
@@ -110,7 +50,7 @@ public final class RegistroUser{
             username = scanner.nextLine();
             try {
                 Validaciones.validarNombreUsuario(username);
-                if (!existeUser(username)){
+                if (!Validaciones.existeUser(username)){
                     usernameValido=true;
                 }else {
                     System.out.println("El username ya existe en el sistema, ingrese otro.");
@@ -173,7 +113,7 @@ public final class RegistroUser{
 
             try {
                 Validaciones.validarDNI(dni);
-                if (!existeDni(dni, "administrador")){
+                if (!Validaciones.existeDni(dni, "administrador")){
                     dniValido = true;
                 }else {
                     System.out.println("El DNI ya existe en el sistema.");
@@ -274,7 +214,7 @@ public final class RegistroUser{
 
             try {
                 Validaciones.validarDNI(dni);
-                if (!existeDni(dni, "empleado")){
+                if (!Validaciones.existeDni(dni, "empleado")){
                     dniValido = true;
                 }else {
                     System.out.println("El DNI ya existe en el sistema.");
@@ -385,7 +325,7 @@ public final class RegistroUser{
 
             try {
                 Validaciones.validarDNI(dni);
-                if (!existeDni(dni, "administrador")){
+                if (!Validaciones.existeDni(dni, "administrador")){
                     dniValido = true;
                 }else {
                     System.out.println("El DNI ya existe en el sistema.");
@@ -515,7 +455,7 @@ public final class RegistroUser{
 
             try {
                 Validaciones.validarDNI(dni);
-                if (!existeDni(dni, "cliente")){
+                if (!Validaciones.existeDni(dni, "cliente")){
                     dniValido = true;
                 }else {
                     System.out.println("El DNI ya existe en el sistema.");

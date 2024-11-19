@@ -1,10 +1,22 @@
 [
                 {
                                 "estado": true,
+                                "apellido": "Fernandez",
+                                "direccion": "Alberti 1521",
+                                "contrasenia": "Probando2.",
+                                "id": 1365541,
+                                "telefono": "2236928798",
+                                "nombre": "Brenda",
+                                "dni": "11223344",
+                                "email": "brendaFernandez@gmail.com",
+                                "username": "BrendaF"
+                },
+                {
+                                "estado": true,
                                 "apellido": "Di Meglio",
                                 "direccion": "Paso 1587",
                                 "contrasenia": "Probando2.",
-                                "id": 0,
+                                "id": 1254710,
                                 "telefono": "2235308219",
                                 "nombre": "Melina",
                                 "dni": "43456966",
@@ -13,14 +25,14 @@
                 },
                 {
                                 "estado": true,
-                                "apellido": "Fernandez",
+                                "apellido": "Castagnino",
                                 "direccion": "Carasa 5609",
-                                "contrasenia": "Probando2.",
-                                "id": 1,
+                                "contrasenia": "TpProgra2_",
+                                "id": 1101327,
                                 "telefono": "2236199551",
-                                "nombre": "Brenda",
+                                "nombre": "Lucia",
                                 "dni": "46564543",
-                                "email": "luciacastagninoo@gmail.com",
-                                "username": "BrendaF"
+                                "email": "luciacastagnino@gmail.com",
+                                "username": "LuciaC"
                 }
 ]

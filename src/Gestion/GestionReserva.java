@@ -99,6 +99,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         } catch (JSONException e){
             System.out.println("Ocurrio un error al convertir JSONObject a Reserva.");
         }
+
         return reservasPorCliente;
     }
 
@@ -136,11 +137,6 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     @Override
     public void mostrarDatosUsuario(Reserva a) {
 
-        if (a==null){
-            System.out.println("Error: La reserva es nula.");
-        }
-
-        reservasPorCliente = cargarArrayConArchivo();
         DateTimeFormatter diaFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -310,14 +306,18 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
     @Override
     public void darDeBajaUsuario(Reserva a) {
         reservasPorCliente = cargarArrayConArchivo();
+        Reserva reservaA = new Reserva();
 
         for (Reserva reserva : reservasPorCliente) {
             String opcion = null;
             if (a.equals(reserva)) {
+                reservaA=a;
+                reservasPorCliente.remove(reserva);
                 System.out.println("¿Esta seguro de eliminar la reserva? SI o NO.");
                 opcion = scanner.nextLine();
                 if (opcion.equalsIgnoreCase("si")){
-                    a.setEstado(false);
+                    reservaA.setEstado(true);
+                    reservasPorCliente.add(reservaA);
                     System.out.println("Reserva eliminada con exito.");
                     cargarArchivoConArreglo(reservasPorCliente);
                     return;
@@ -330,7 +330,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             }
         }
 
-        System.out.println("No se encontro la reserva.");
+        cargarArchivoConArreglo(reservasPorCliente);
     }
 
     @Override
@@ -347,13 +347,6 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 System.out.println("Error: Se encontró una reserva nula.");
             }
         }
-
-        /*
-        System.out.println("Contenido de la colección:");
-        for (Reserva reserva : reservasPorCliente) {
-            System.out.println(reserva);
-        }*/
-
     }
 
     @Override
@@ -373,7 +366,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return null;
     }
 
-    public Reserva encontrarUsuario(String dni, LocalDate dia, LocalTime hs) {
+    public Reserva encontrarUsuarioMuchos(String dni, LocalDate dia, LocalTime hs) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
@@ -480,12 +473,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
 
         for (Reserva reserva : reservasPorCliente){
-            if (reserva.getId() == id){
+            if (reserva != null && reserva.getId() == id){
                 return reserva;
             }
         }
 
-        System.out.println("No se encontro la reserva.");
         return null;
     }
 

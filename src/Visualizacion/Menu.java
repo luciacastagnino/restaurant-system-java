@@ -583,7 +583,7 @@ public class Menu {
                                 String auxiliar1 = scanner.nextLine();
                                 LocalDate dia = LocalDate.parse(auxiliar1);
 
-                                Reserva reserva = gestionReserva.encontrarUsuario(dni1, dia, hs);
+                                Reserva reserva = gestionReserva.encontrarUsuarioMuchos(dni1, dia, hs);
                                 gestionReserva.mostrarDatosUsuario(reserva);
                             }
                         }

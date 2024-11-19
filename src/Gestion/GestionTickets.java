@@ -48,10 +48,9 @@ public class GestionTickets{
     public void ingresarUsuario(){
         System.out.println();
         Ticket aux = new Ticket();
-        aux.ingresarTicket();
+        aux=aux.ingresarTicket();
         agregarYguardar(aux);
         System.out.println("\nTicket cargado con exito!");
-
     }
 
     public List<Ticket> cargarArrayConArchivo(){
@@ -75,6 +74,8 @@ public class GestionTickets{
     public void agregarYguardar (Ticket ticket){
         cargarArrayConArchivo();
         ticketSet.add(ticket);
+        System.out.println("MOSTRANDO COLECCION DE TICKET: ");
+        System.out.println(ticketSet);
         cargarArchivoConArreglo(ticketSet);
     }
 
@@ -86,7 +87,6 @@ public class GestionTickets{
                 try {
                     JSONObject json = t.toJson(t);
                     arreglo.put(json);
-                    GestionJSON.agregarElemento("tickets.json", arreglo);
                 }
                 catch (FormatoIncorrectoException e){
                     System.out.println(e.getMessage());
@@ -95,6 +95,9 @@ public class GestionTickets{
         } catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
+
+        GestionJSON.agregarElemento("tickets.json", arreglo);
+
     }
 
     public void mostrarDatosUsuario(Ticket ticket) {

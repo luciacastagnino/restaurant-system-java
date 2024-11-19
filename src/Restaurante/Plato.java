@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.InputMismatchException;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -28,7 +29,7 @@ import java.util.Scanner;
  * @version 2
  */
 public class Plato {
-    private static int contadorId = 100;
+    private Random random = new Random();
     private int id;
     private String nombre;
     private String descripcion;
@@ -42,22 +43,12 @@ public class Plato {
 
 
     public Plato(String nombre, String descripcion, double precio, boolean disponibilidad, TipoPlato tipoPlato) {
-        this.id = contadorId++;
+        this.id = random.nextInt(10000000)+100;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.disponibilidad = disponibilidad;
         this.tipoPlato = tipoPlato;
-    }
-
-    ///Getters y Setters
-
-    public static int getContadorId() {
-        return contadorId;
-    }
-
-    public static void setContadorId(int contadorId) {
-        Plato.contadorId = contadorId;
     }
 
     public int getId() {

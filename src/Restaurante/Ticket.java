@@ -53,6 +53,12 @@ public class Ticket {
     private Scanner scanner;
 
     public Ticket() {
+        this.id = random.nextInt(1000000)+100;
+        this.gestionReserva = new GestionReserva();
+        this.gestionEmpleados=new GestionEmpleados();
+        this.scanner = new Scanner(System.in);
+        this.menuRestaurante=new MenuRestaurante();
+        this.platos=new ArrayList<>();
     }
 
     public Ticket (Reserva reserva, Empleado empleado, LocalDateTime horaEmision, List<Plato> platos,
@@ -61,14 +67,14 @@ public class Ticket {
         this.reserva = reserva;
         this.empleado = empleado;
         this.horaEmision = horaEmision;
-        this.platos = platos;
+        this.platos = platos != null ? platos : new ArrayList<>();
         this.precio = precio;
         this.tipoPago = tipoPago;
         this.cliente = cliente;
         this.gestionReserva = new GestionReserva();
         this.gestionEmpleados = new GestionEmpleados();
         this.menuRestaurante = new MenuRestaurante();
-        this.scanner = new Scanner(System.in);
+        this.scanner=new Scanner(System.in);
     }
 
     public int getId() {
@@ -135,15 +141,165 @@ public class Ticket {
         this.precio = precio;
     }
 
+
+    public Ticket ingresarTicket() {
+
+        Ticket ticket = null;
+        System.out.println("Complete con los datos:\n");
+
+        Reserva res = new Reserva();
+        int cliente = 0;
+        boolean resValida = false;
+        while (!resValida) {
+            System.out.println("Por favor, ingresa ID de la reserva:");
+            int id = scanner.nextInt();
+            scanner.nextLine();
+            res = gestionReserva.encontrarUsuario(id);
+            if (res!=null){
+                System.out.println("Reserva encontrada.");
+                gestionReserva.darDeBajaUsuario(res);
+                cliente = res.getCliente();
+                if (cliente!=0){
+                    resValida = true;
+                }
+            }else {
+                System.out.println("No se encontro la reserva, intentelo nuevamente.");
+            }
+        }
+
+        Empleado empleado = null;
+        boolean empleadoValido = false;
+        while (!empleadoValido){
+            System.out.println("Ingrese el DNI del empleado: ");
+            String dni = scanner.nextLine();
+            empleado = gestionEmpleados.encontrarUsuario(dni);
+            if (empleado != null){
+                empleadoValido=true;
+            }else {
+                System.out.println("No se encontro el empleado.");
+            }
+        }
+
+        platos = new ArrayList<>();
+        boolean salir = false;
+        while (!salir){
+            System.out.println("1. Agregar plato.");
+            System.out.println("2. Salir.");
+            int opcion = scanner.nextInt();
+            scanner.nextLine();
+            switch (opcion){
+                case 1:
+                    menuRestaurante.listarPlatosTicket();
+                    System.out.println("Ingrese el ID del plato:");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    Plato plato = menuRestaurante.encontrarUsuario(id);
+                    platos.add(plato);
+                    break;
+                case 2:
+                    System.out.println("Platos cargados con exito.");
+                    salir=true;
+                    break;
+            }
+        }
+
+        for (Plato p : platos){
+            precio += p.getPrecio();
+        }
+
+        TipoPago tipoPago = null;
+        boolean tipoPagoValido = false;
+        while (!tipoPagoValido){
+            System.out.println("Seleccione el tipo de pago: ");
+            System.out.println("1. Efectivo.");
+            System.out.println("2. Debito.");
+            System.out.println("3. Credito");
+            int opTipoPago = scanner.nextInt();
+            scanner.nextLine();
+            switch (opTipoPago){
+                case 1:
+                    tipoPago = TipoPago.EFECTIVO;
+                    tipoPagoValido=true;
+                    break;
+                case 2:
+                    tipoPago = TipoPago.DEBITO;
+                    tipoPagoValido=true;
+                    break;
+                case 3:
+                    tipoPago = TipoPago.CREDITO;
+                    tipoPagoValido=true;
+                    break;
+                default:
+                    System.out.println("Opcion invalida.");
+                    break;
+            }
+        }
+
+        horaEmision = LocalDateTime.now();
+
+        ticket = new Ticket(res, empleado, horaEmision, platos, cliente, precio, tipoPago);
+        return ticket;
+    }
+
+
     //TICKET TO JSON
+/*
+    public JSONObject toJson(Ticket t) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id", t.getId() != 0 ? t.getId() : JSONObject.NULL);
+
+            if (t.getReserva() != null) {
+                System.out.println("MOSTRANDO RESERVA ANTES DE TOJSON");
+                System.out.println(t.getReserva());
+                jsonObject.put("reserva", t.getReserva().toJson(t.getReserva()));
+            } else {
+                jsonObject.put("reserva", JSONObject.NULL);
+            }
+
+            if (t.getEmpleado() != null) {
+                JSONObject empleadoJSON = new JSONObject();
+                Empleado empleado = t.getEmpleado();
+                if (empleado instanceof EmpleadoTiempoCompleto) {
+                    empleadoJSON = ((EmpleadoTiempoCompleto) empleado).toJson((EmpleadoTiempoCompleto) empleado);
+                } else if (empleado instanceof EmpleadoMedioTiempo) {
+                    empleadoJSON = ((EmpleadoMedioTiempo) empleado).toJson((EmpleadoMedioTiempo) empleado);
+                }
+                jsonObject.put("empleado", empleadoJSON);
+            } else {
+                jsonObject.put("empleado", JSONObject.NULL);
+            }
+
+            JSONArray platosArray = new JSONArray();
+            for (Plato p : t.getPlatos()) {
+                platosArray.put(p.toJson(p));
+            }
+            jsonObject.put("platos", platosArray);
+
+            jsonObject.put("hora", t.getHoraEmision() != null ? t.getHoraEmision().toString() : JSONObject.NULL);
+            jsonObject.put("precio", t.getPrecio());
+            jsonObject.put("tipoPago", t.getTipoPago() != null ? t.getTipoPago().toString() : JSONObject.NULL);
+            jsonObject.put("cliente", t.getCliente() != 0 ? t.getCliente() : JSONObject.NULL);
+
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+        return jsonObject;
+    }*/
+
 
     public JSONObject toJson (Ticket t){
         JSONObject jsonObject = null;
+        System.out.println("MOSTRANDO TICKET");
+        System.out.println(t);
         try{
             jsonObject = new JSONObject();
             jsonObject.put("id", t.getId());
-            JSONObject reserva = t.getReserva().toJson(t.getReserva());
-            jsonObject.put("reserva", reserva);
+            Reserva reserva = t.getReserva();
+            System.out.println("MOSTRANDO RESERVA ANTES DE TOJSON");
+            System.out.println(reserva);
+            JSONObject reservaObj = t.getReserva().toJson(reserva);
+            jsonObject.put("reserva", reservaObj);
             Empleado empleado = t.getEmpleado();
             if (empleado!=null){
                 JSONObject empleadoJSON = new JSONObject();
@@ -192,7 +348,8 @@ public class Ticket {
 
                 ticketLeido.setId(json.getInt("id"));
                 JSONObject reservaJson = json.getJSONObject("reserva");
-                Reserva reserva = new Reserva().jsonToReserva(reservaJson);
+                Reserva reserva = new Reserva();
+                reserva=reserva.jsonToReserva(reservaJson);
                 ticketLeido.setReserva(reserva);
                 JSONObject empleadoJson = json.getJSONObject("empleado");
                 Empleado empleado = null;
@@ -223,98 +380,6 @@ public class Ticket {
             e.printStackTrace();
         }
         return ticketLeido;
-    }
-
-    public Ticket ingresarTicket() {
-
-        System.out.println("Complete con los datos:\n");
-
-        Reserva res = new Reserva();
-        boolean resValida = false;
-        while (!resValida) {
-            System.out.println("Por favor, ingresa ID de la reserva:");
-            int id = scanner.nextInt();
-            res = gestionReserva.encontrarUsuario(id);
-            gestionReserva.darDeBajaUsuario(res);
-            int cliente = res.getCliente();
-            if(cliente != 0 && res != null){
-                resValida = true;
-            }else {
-                System.out.println("No se encontro la reserva, intentelo nuevamente.");
-            }
-        }
-
-        Empleado empleado = null;
-        boolean empleadoValido = false;
-        while (!empleadoValido){
-            System.out.println("Ingrese el DNI del empleado: ");
-            String dni = scanner.nextLine();
-            empleado = gestionEmpleados.encontrarUsuario(dni);
-            if (empleado != null){
-                empleadoValido=true;
-            }else {
-                System.out.println("No se encontro el empleado.");
-            }
-        }
-
-        platos = new ArrayList<>();
-        boolean salir = false;
-        while (!salir){
-            System.out.println("1. Agregar plato.");
-            System.out.println("2. Salir.");
-            int opcion = scanner.nextInt();
-            scanner.nextLine();
-            switch (opcion){
-                case 1:
-                    menuRestaurante.listarPlatosTicket();
-                    System.out.println("Ingrese el ID del plato:");
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
-                    Plato plato = menuRestaurante.encontrarUsuario(id);
-                    platos.add(plato);
-                    break;
-                case 2:
-                    System.out.println("Platos cargados con exito.");
-                    salir=true;
-                    break;
-            }
-
-            for (Plato p : platos){
-                precio += p.getPrecio();
-            }
-
-            TipoPago tipoPago = null;
-            boolean tipoPagoValido = false;
-            while (!tipoPagoValido){
-                System.out.println("Seleccione el tipo de pago: ");
-                System.out.println("1. Efectivo.");
-                System.out.println("2. Debito.");
-                System.out.println("3. Credito");
-                int opTipoPago = scanner.nextInt();
-                scanner.nextLine();
-                switch (opTipoPago){
-                    case 1:
-                        tipoPago = TipoPago.EFECTIVO;
-                        break;
-                    case 2:
-                        tipoPago = TipoPago.DEBITO;
-                        break;
-                    case 3:
-                        tipoPago = TipoPago.CREDITO;
-                        break;
-                    default:
-                        System.out.println("Opcion invalida.");
-                        break;
-                }
-            }
-
-
-        }
-
-        horaEmision = LocalDateTime.now();
-
-        Ticket ticket = new Ticket(res, empleado, horaEmision, platos, cliente, precio, tipoPago);
-        return ticket;
     }
 
     public void mostrarTicket (Ticket t){
@@ -399,12 +464,15 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Restaurante.Ticket{" +
+        return "Ticket{" +
                 "id=" + id +
                 ", reserva=" + reserva +
                 ", empleado=" + empleado +
                 ", horaEmision=" + horaEmision +
+                ", platos=" + platos +
                 ", precio=" + precio +
+                ", tipoPago=" + tipoPago +
+                ", cliente=" + cliente +
                 '}';
     }
 }

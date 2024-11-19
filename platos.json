@@ -1,8 +1,18 @@
-[{
-                "descripcion": "fideos",
-                "precio": 6600,
-                "tipoPlato": "ALMUERZO",
-                "id": 100,
-                "nombre": "Fideos con tuco",
-                "disponible": true
-}]
+[
+                {
+                                "descripcion": "fideos",
+                                "precio": 6600,
+                                "tipoPlato": "ALMUERZO",
+                                "id": 100,
+                                "nombre": "Fideos con tuco",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "Carne asada",
+                                "precio": 26500,
+                                "tipoPlato": "CENA",
+                                "id": 169031,
+                                "nombre": "Asado",
+                                "disponible": true
+                }
+]

@@ -1,3 +1,48 @@
-[
-
-]
+[{
+                "cliente": 103,
+                "precio": 33100,
+                "empleado": {
+                                "estado": true,
+                                "aniosAntiguedad": 5,
+                                "apellido": "Vera",
+                                "direccion": "Carasa 5609",
+                                "contrasenia": "25186505",
+                                "id": 567334,
+                                "telefono": "2234483600",
+                                "nombre": "Carla",
+                                "dni": "25186505",
+                                "email": "carlavera5609@gmail.com",
+                                "username": "25186505"
+                },
+                "hora": "2024-11-18T22:26:12.168390800",
+                "tipoPago": "EFECTIVO",
+                "id": 301358,
+                "reserva": {
+                                "cliente": 103,
+                                "estado": true,
+                                "mesa": 5,
+                                "hora": "20:00",
+                                "id": 554207,
+                                "cantPersonas": 4,
+                                "dia": "2024-11-20",
+                                "momento": "2024-11-18T19:24:25.618987100"
+                },
+                "platos": [
+                                {
+                                                "descripcion": "Carne asada",
+                                                "precio": 26500,
+                                                "tipoPlato": "CENA",
+                                                "id": 169031,
+                                                "nombre": "Asado",
+                                                "disponible": true
+                                },
+                                {
+                                                "descripcion": "fideos",
+                                                "precio": 6600,
+                                                "tipoPlato": "ALMUERZO",
+                                                "id": 100,
+                                                "nombre": "Fideos con tuco",
+                                                "disponible": true
+                                }
+                ]
+}]

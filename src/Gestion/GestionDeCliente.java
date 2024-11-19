@@ -104,7 +104,37 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
                 System.out.println("ID: " + a.getId());
                 System.out.println("Username: " + a.getUsername());
-                System.out.println("Contraseña: ************");
+                System.out.println("Contraseña: " + a.getContrasenia());
+                System.out.println("Nombre: " + a.getNombre());
+                System.out.println("Apellido: " + a.getApellido());
+                System.out.println("DNI: " + a.getDni());
+                System.out.println("Telefono: " + a.getTelefono());
+                System.out.println("Direccion: " + a.getDireccion());
+                System.out.println("Email: " + a.getEmail());
+                System.out.println("--------------------------------------------");
+
+                return;
+            }
+        }
+
+        System.out.printf("No se encontro al usuario.");
+
+    }
+
+    public void mostrarDatosUsuarioEmpleado (Cliente a) {
+
+        listaDeClientes = cargarArrayConArchivo();
+
+        for (Cliente cliente : listaDeClientes) {
+            if (cliente.getId() == a.getId()) {
+                System.out.println();
+                System.out.println("--------------------------------------------");
+                System.out.println("PERFIL DE CLIENTE: " + a.getNombre() + " " + a.getApellido());
+                System.out.println("--------------------------------------------");
+
+                System.out.println("ID: " + a.getId());
+                System.out.println("Username: " + a.getUsername());
+                System.out.println("Contraseña: **********" );
                 System.out.println("Nombre: " + a.getNombre());
                 System.out.println("Apellido: " + a.getApellido());
                 System.out.println("DNI: " + a.getDni());
@@ -403,6 +433,14 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         listaDeClientes.forEach(cliente -> mostrarDatosUsuario(cliente));
     }
 
+    public void mostrarColeccionEmpleados (){
+        if (listaDeClientes.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
+        listaDeClientes.forEach(cliente -> mostrarDatosUsuarioEmpleado(cliente));
+    }
+
     @Override
     public Cliente encontrarUsuario(String dni) {
         if (listaDeClientes.isEmpty()) {
@@ -428,12 +466,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
     }
 
     @Override
-    public void listarUsuarios(String nombre) {
+    public void listarUsuarios(String apellido) {
         if (listaDeClientes.isEmpty()) {
             cargarArrayConArchivo();
         }
         listaDeClientes.stream()
-                .filter(cliente -> cliente.getNombre().equals(nombre))
+                .filter(cliente -> cliente.getApellido().equals(apellido))
                 .forEach(cliente -> mostrarDatosUsuario(cliente));
     }
 

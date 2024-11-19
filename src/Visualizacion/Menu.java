@@ -861,6 +861,115 @@ public class Menu {
         } while (op != 5);
     }
 
+    public void gestorDeClientesEmpleado() {
+        int op = 0;
+        do {
+            System.out.println();
+            System.out.println("¿Que desea hacer?");
+            System.out.println("1. Mostrar todos los Clientes.");
+            System.out.println("2. Ingresar Cliente.");
+            System.out.println("3. Dar de baja Cliente.");
+            System.out.println("4. Mostrar Clientes Activos.");
+            System.out.println("5. Mostrar Clientes Inactivos.");
+            System.out.println("6. Mostrar Tikets de Cliente.");
+            System.out.println("7. Modificar Cliente.");
+            System.out.println("8. Buscar Cliente.");
+            System.out.println("9. Mostrar reservas.");
+            System.out.println("10. Dar de alta Cliente.");
+            System.out.println("11. Atras.");
+            try {
+                System.out.printf("Selecciona una opcion: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+                        gestionDeCliente.mostrarColeccionEmpleados();
+                        break;
+                    case 2:
+                        gestionDeCliente.ingresarUsuario();
+                        break;
+                    case 3:
+                        System.out.println("Ingrese el dni del Cliente que quiere dar de baja");
+                        String dni = scanner.nextLine();
+
+                        Cliente aux = gestionDeCliente.encontrarUsuario(dni);
+                        gestionDeCliente.darDeBajaUsuarioAdmin(aux);
+                        break;
+                    case 4:
+                        gestionDeCliente.listarUsuarios(true);
+                        break;
+                    case 5:
+                        gestionDeCliente.listarUsuarios(false);
+                        break;
+                    case 6:
+                        System.out.println("Ingrese el dni del Cliente:");
+                        String dni1 = scanner.nextLine();
+
+                        gestionTickets.listarUsuarios(dni1);
+                        break;
+                    case 7:
+                        System.out.println("Ingresar DNI del cliente:");
+                        String d = scanner.nextLine();
+
+                        Cliente cliente= gestionDeCliente.encontrarUsuario(d);
+
+                        gestionDeCliente.modificarUsuario(cliente);
+                        break;
+                    case 8:
+                        System.out.println("1. Buscar por DNI.");
+                        System.out.println("2. Buscar por ID.");
+                        try {
+                            System.out.printf("Selecciona una opcion: ");
+                            int op1 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if(op1 == 1){
+                                System.out.println("Ingresar DNI del cliente:");
+                                String dni2 = scanner.nextLine();
+
+                                Cliente aux1 = gestionDeCliente.encontrarUsuario(dni2);
+                                gestionDeCliente.mostrarDatosUsuario(aux1);
+                            }
+                            else if (op1 == 2) {
+                                System.out.println("Ingresar ID del cliente:");
+                                int id = scanner.nextInt();
+
+                                Cliente aux1 = gestionDeCliente.encontrarUsuario(id);
+                                gestionDeCliente.mostrarDatosUsuario(aux1);
+                            }
+                        }
+                        catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 9:
+                        System.out.println("Ingrese el DNI del Cliente para ver sus reservas:");
+                        String dni3 = scanner.nextLine();
+
+                        gestionReserva.listarUsuarios(dni3);
+                        break;
+                    case 10:
+                        System.out.println("Ingrese el dni del Cliente que quiere dar de alta");
+                        String dni4 = scanner.nextLine();
+
+                        Cliente aux4 = gestionDeCliente.encontrarUsuario(dni4);
+                        gestionDeCliente.darDeAltaUsuario(aux4);
+                        break;
+                    case 11:
+                        System.out.println("Saliendo...");
+                        return;
+                    default:
+                        System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida. Por favor, introduzca un numero.");
+                scanner.nextLine();
+            }
+        } while (op != 11);
+
+    }
+
     public void menuEmpleado() {
         System.out.println("-----------------------------------------");
         System.out.println("   M E N U  D E  E M P L E A D O   ");
@@ -909,7 +1018,7 @@ public class Menu {
                         gestionEmpleados.mostrarDatosUsuario(empleado);
                         break;
                     case 2:
-                        gestorDeClientesAdmin();
+                        gestorDeClientesEmpleado();
                         break;
                     case 3:
                         gestorDeReservasAdmin();

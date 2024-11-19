@@ -470,9 +470,16 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         if (listaDeClientes.isEmpty()) {
             cargarArrayConArchivo();
         }
-        listaDeClientes.stream()
+        boolean en = false;
+
+        en = listaDeClientes.stream()
                 .filter(cliente -> cliente.getApellido().equals(apellido))
-                .forEach(cliente -> mostrarDatosUsuario(cliente));
+                .peek(cliente -> mostrarDatosUsuario(cliente))
+                .count() > 0;
+
+        if(!en){
+            System.out.println("No se encontraron clientes con ese apellido.");
+        }
     }
 
     @Override
@@ -481,9 +488,16 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
             cargarArrayConArchivo();
         }
 
-        listaDeClientes.stream()
+        boolean en = false;
+
+        en = listaDeClientes.stream()
                 .filter(cliente -> cliente.getEstado() == aux)
-                .forEach(cliente -> mostrarDatosUsuario(cliente));
+                .peek(cliente -> mostrarDatosUsuario(cliente))
+                .count() > 0;
+
+        if(!en){
+            System.out.println("No se encontraron clientes");
+        }
     }
 
     @Override

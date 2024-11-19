@@ -673,9 +673,16 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         if (listaEmpleados.isEmpty()) {
             cargarArrayConArchivo();
         }
-        listaEmpleados.stream()
+        boolean en = false;
+
+        en = listaEmpleados.stream()
                 .filter(empleado -> empleado.getNombre().equals(nombre))
-                .forEach(empleado -> mostrarDatosUsuario(empleado));
+                .peek(empleado -> mostrarDatosUsuario(empleado))
+                .count() > 0;
+
+        if(!en){
+            System.out.println("No se encontraron empleados con ese nombre.");
+        }
     }
 
     @Override
@@ -683,10 +690,15 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         if (listaEmpleados.isEmpty()) {
             cargarArrayConArchivo();
         }
-
-        listaEmpleados.stream()
+        boolean en = false;
+        en = listaEmpleados.stream()
                 .filter(empleado -> empleado.getEstado() == aux)
-                .forEach(empleado -> mostrarDatosUsuario(empleado));
+                .peek(empleado -> mostrarDatosUsuario(empleado))
+                .count() > 0;
+
+        if(!en){
+            System.out.println("No se encontraron empleados con ese nombre.");
+        }
     }
 
     @Override

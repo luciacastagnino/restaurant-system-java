@@ -445,10 +445,15 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
+        boolean en = false;
         for (Reserva reserva : reservasPorCliente){
             if (gestionDeCliente.encontrarUsuario(reserva.getCliente()).getDni().equals(dni)){
                 mostrarDatosUsuario(reserva);
+                en = true;
             }
+        }
+        if(!en){
+            System.out.println("No se encontraron reservas del cliente ");
         }
     }
 
@@ -456,10 +461,15 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
+        boolean en = false;
         for (Reserva reserva : reservasPorCliente){
             if (reserva.getDia().equals(dia)){
                 mostrarDatosUsuario(reserva);
+                en = true;
             }
+        }
+        if(!en){
+            System.out.println("No se encontraron reservas ese dia.");
         }
     }
 
@@ -467,10 +477,15 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
+        boolean en = false;
         for (Reserva reserva : reservasPorCliente){
             if (reserva.getHora().equals(hora)){
                 mostrarDatosUsuario(reserva);
+                en = true;
             }
+        }
+        if(!en){
+            System.out.println("No se encontraron reservas a esa hora.");
         }
     }
 
@@ -478,10 +493,15 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
+        boolean en = false;
         for (Reserva reserva : reservasPorCliente){
             if (reserva.getHora().equals(hora) && reserva.getDia().equals(dia)){
                 mostrarDatosUsuario(reserva);
+                en = true;
             }
+        }
+        if(!en){
+            System.out.println("No se encontraron reservas el dia " + dia + " a la hora " + hora);
         }
     }
 
@@ -490,11 +510,15 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
         }
-
+        boolean en = false;
         for (Reserva reserva : reservasPorCliente){
             if (reserva.getEstado() == aux){
                 mostrarDatosUsuario(reserva);
+                en = true;
             }
+        }
+        if(!en){
+            System.out.println("No se encontraron reservas.");
         }
     }
 

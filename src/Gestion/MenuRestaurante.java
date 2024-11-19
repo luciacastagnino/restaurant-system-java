@@ -322,11 +322,15 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         if (listaPlatos.isEmpty()){
             cargarArrayConArchivo();
         }
-
+        boolean en = false;
         for (Plato p : listaPlatos.values()){
             if (p.isDisponibilidad()==aux){
                 p.mostrarPlato();
+                en = true;
             }
+        }
+        if(!en){
+            System.out.println("No se encontraron platos.");
         }
     }
 
@@ -354,11 +358,15 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         if (listaPlatos.isEmpty()){
             cargarArrayConArchivo();
         }
-
+        boolean en = false;
         for (Plato p : listaPlatos.values()){
             if (p.getNombre().contains(nombre)){
                 p.mostrarPlato();
+                en = true;
             }
+        }
+        if(!en){
+            System.out.println("No se encontraron platos con ese nombre");
         }
 
     }

@@ -1,5 +1,7 @@
 package Gestion;
 
+import Restaurante.MesaYaReservadaException;
+
 /**
  * Interfaz que define los métodos básicos de todas las clases de gestion.
  * Las clases que implementen esta interfaz deben proporcionar la implementación de estos métodos
@@ -9,7 +11,7 @@ package Gestion;
  */
 
 public interface MetodosBasicosGestion <T> {
-    public void ingresarUsuario();
+    public void ingresarUsuario() throws MesaYaReservadaException;
     public void mostrarDatosUsuario(T t);
     public T modificarUsuario(T t);
     public void agregarYguardar (T t);

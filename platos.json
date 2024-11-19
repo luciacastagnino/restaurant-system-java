@@ -120,59 +120,59 @@
                                 "disponible": true
                 },
                 {
-                              "descripcion": "tabla de quesos y fiambres",
-                              "precio": 10500,
-                              "tipoPlato": "ENTRADAS",
-                              "id": 118,
-                              "nombre": "Tabla de quesos",
-                              "disponible": true
+                                "descripcion": "tabla de quesos y fiambres",
+                                "precio": 10500,
+                                "tipoPlato": "ENTRADAS",
+                                "id": 118,
+                                "nombre": "Tabla de quesos",
+                                "disponible": true
                 },
                 {
-                              "descripcion": "waffles con frutas y miel",
-                              "precio": 5000,
-                              "tipoPlato": "DESAYUNO",
-                              "id": 119,
-                              "nombre": "Waffles dulces",
-                              "disponible": true
+                                "descripcion": "waffles con frutas y miel",
+                                "precio": 5000,
+                                "tipoPlato": "DESAYUNO",
+                                "id": 119,
+                                "nombre": "Waffles dulces",
+                                "disponible": true
                 },
                 {
-                              "descripcion": "panqueques con dulce de leche",
-                              "precio": 4600,
-                              "tipoPlato": "POSTRE",
-                              "id": 120,
-                              "nombre": "Panqueques",
-                              "disponible": true
+                                "descripcion": "panqueques con dulce de leche",
+                                "precio": 4600,
+                                "tipoPlato": "POSTRE",
+                                "id": 120,
+                                "nombre": "Panqueques",
+                                "disponible": true
                 },
                 {
-                              "descripcion": "omelette de espinaca y queso",
-                              "precio": 3900,
-                              "tipoPlato": "BRUNCH",
-                              "id": 121,
-                              "nombre": "Omelette",
-                              "disponible": true
+                                "descripcion": "omelette de espinaca y queso",
+                                "precio": 3900,
+                                "tipoPlato": "BRUNCH",
+                                "id": 121,
+                                "nombre": "Omelette",
+                                "disponible": true
                 },
                 {
-                              "descripcion": "risotto de hongos",
-                              "precio": 8500,
-                              "tipoPlato": "ALMUERZO",
-                              "id": 122,
-                              "nombre": "Risotto",
-                              "disponible": true
+                                "descripcion": "risotto de hongos",
+                                "precio": 8500,
+                                "tipoPlato": "ALMUERZO",
+                                "id": 122,
+                                "nombre": "Risotto",
+                                "disponible": true
                 },
                 {
-                              "descripcion": "pollo al curry con arroz",
-                              "precio": 9500,
-                              "tipoPlato": "CENA",
-                              "id": 123,
-                              "nombre": "Pollo al curry",
-                              "disponible": true
+                                "descripcion": "pollo al curry con arroz",
+                                "precio": 9500,
+                                "tipoPlato": "CENA",
+                                "id": 123,
+                                "nombre": "Pollo al curry",
+                                "disponible": true
                 },
                 {
-                            "descripcion": "cerveza artesanal",
-                            "precio": 2200,
-                            "tipoPlato": "BEBIDA",
-                            "id": 124,
-                            "nombre": "Cerveza",
-                            "disponible": true
+                                "descripcion": "cerveza artesanal",
+                                "precio": 2200,
+                                "tipoPlato": "BEBIDA",
+                                "id": 124,
+                                "nombre": "Cerveza",
+                                "disponible": true
                 }
 ]

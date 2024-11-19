@@ -257,26 +257,48 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
     public void darDeBajaUsuario(Plato a) {
         listaPlatos = cargarArrayConArchivo();
 
-        for (Plato plato : listaPlatos.values()) {
-            String opcion = null;
-            if (a.equals(plato)) {
-                System.out.println("¿Esta seguro de eliminar el plato? SI o NO.");
-                opcion = scanner.nextLine();
-                if (opcion.equalsIgnoreCase("si")){
-                    a.setDisponibilidad(false);
-                    System.out.println("Plato eliminado con exito.");
-                    cargarArchivoConArreglo(listaPlatos);
-                    return;
-                }else if (opcion.equalsIgnoreCase("no")) {
-                    System.out.println("Operacion cancelada.");
-                    return;
-                } else {
-                    System.out.println("Opcion invalida.");
-                }
-            }
-        }
+        if (listaPlatos.containsKey(a.getId())) {
+            Plato plato = listaPlatos.get(a.getId());
+            System.out.println("¿Está seguro de eliminar el plato? SI o NO.");
+            String opcion = scanner.nextLine();
 
-        System.out.println("No se encontro el plato.");
+            if (opcion.equalsIgnoreCase("si")) {
+                plato.setDisponibilidad(false);
+                cargarArchivoConArreglo(listaPlatos);
+                System.out.println("Plato eliminado con éxito.");
+            } else if (opcion.equalsIgnoreCase("no")) {
+                System.out.println("Operación cancelada.");
+            } else {
+                System.out.println("Opción inválida.");
+            }
+        } else {
+            System.out.println("No se encontró el plato con el ID ingresado.");
+        }
+    }
+
+
+    @Override
+    public void darDeAltaUsuario(Plato a) {
+        listaPlatos = cargarArrayConArchivo();
+
+        if (listaPlatos.containsKey(a.getId())) {
+            Plato plato = listaPlatos.get(a.getId());
+
+            System.out.println("¿Está seguro de dar de alta el plato? SI o NO.");
+            String opcion = scanner.nextLine();
+
+            if (opcion.equalsIgnoreCase("si")) {
+                plato.setDisponibilidad(true);
+                cargarArchivoConArreglo(listaPlatos);
+                System.out.println("Plato dado de alta con éxito.");
+            } else if (opcion.equalsIgnoreCase("no")) {
+                System.out.println("Operación cancelada.");
+            } else {
+                System.out.println("Opción inválida.");
+            }
+        } else {
+            System.out.println("No se encontró el plato con el ID ingresado.");
+        }
     }
 
     @Override
@@ -307,32 +329,6 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
             }
         }
     }
-
-    @Override
-    public void darDeAltaUsuario(Plato a) {
-
-        for (Plato plato : listaPlatos.values()) {
-            String opcion = null;
-            if (a.equals(plato)) {
-                System.out.println("¿Esta seguro de dar de alta el plato? SI o NO.");
-                opcion = scanner.nextLine();
-                if (opcion.equalsIgnoreCase("si")){
-                    a.setDisponibilidad(true);
-                    System.out.println("Plato dado de alta con exito.");
-                    cargarArchivoConArreglo(listaPlatos);
-                    return;
-                }else if (opcion.equalsIgnoreCase("no")) {
-                    System.out.println("Operacion cancelada.");
-                    return;
-                } else {
-                    System.out.println("Opcion invalida.");
-                }
-            }
-        }
-
-        System.out.println("No se encontro el plato.");
-    }
-
 
     @Override
     public void mostrarColeccion() {

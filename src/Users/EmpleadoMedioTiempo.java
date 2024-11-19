@@ -69,6 +69,7 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable {
             jsonObject.put("direccion", e.getDireccion());
             jsonObject.put("email", e.getEmail());
             jsonObject.put("estado", e.getEstado());
+            jsonObject.put("sueldo", e.getSueldo());
             jsonObject.put("horasTrabajadas", e.getHorasTrabajadas());
             jsonObject.put("precioPorHora", e.getPrecioXhora());
         }catch (JSONException ex){
@@ -95,7 +96,8 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable {
             if(json.has("id") && json.has("username") && json.has("contrasenia") &&
                     json.has("nombre") && json.has("apellido") && json.has("dni") &&
                     json.has("telefono") && json.has("direccion") && json.has("email") &&
-                    json.has("estado") && json.has("horasTrabajadas") && json.has("precioPorHora")){
+                    json.has("estado") && json.has("sueldo") && json.has("horasTrabajadas")
+                    && json.has("precioPorHora")){
                 empleadoLeido.setId(json.getInt("id"));
                 empleadoLeido.setUsername(json.getString("username"));
                 empleadoLeido.setContrasenia(json.getString("contrasenia"));
@@ -106,6 +108,7 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable {
                 empleadoLeido.setDireccion(json.getString("direccion"));
                 empleadoLeido.setEmail(json.getString("email"));
                 empleadoLeido.setEstado(json.getBoolean("estado"));
+                empleadoLeido.setSueldo(json.getDouble("sueldo"));
                 empleadoLeido.setHorasTrabajadas(json.getInt("horasTrabajadas"));
                 empleadoLeido.setPrecioXhora(json.getDouble("precioPorHora"));
             }
@@ -151,9 +154,11 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable {
                 ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", email='" + email + '\'' +
-                ", horasTrabajadas=" + horasTrabajadas +
+                ", estado=" + estado +
+                ", sueldo=" + sueldo +
                 ", precioXhora=" + precioXhora +
-                '}';
+                ", horasTrabajadas=" + horasTrabajadas +
+                "} ";
     }
 
     @Override

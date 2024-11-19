@@ -74,8 +74,6 @@ public class GestionTickets{
     public void agregarYguardar (Ticket ticket){
         cargarArrayConArchivo();
         ticketSet.add(ticket);
-        System.out.println("MOSTRANDO COLECCION DE TICKET: ");
-        System.out.println(ticketSet);
         cargarArchivoConArreglo(ticketSet);
     }
 
@@ -263,7 +261,9 @@ public class GestionTickets{
         }
 
         for (Ticket t : ticketSet){
+            System.out.println();
             t.mostrarTicket(t);
+            System.out.println();
         }
     }
 

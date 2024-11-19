@@ -181,6 +181,7 @@ public class Ticket {
         }
 
         platos = new ArrayList<>();
+        System.out.println("¿Que desea hacer?");
         boolean salir = false;
         while (!salir){
             System.out.println("1. Agregar plato.");
@@ -189,12 +190,22 @@ public class Ticket {
             scanner.nextLine();
             switch (opcion){
                 case 1:
+                    System.out.println("PLATOS DISPONIBLES: ");
                     menuRestaurante.listarPlatosTicket();
-                    System.out.println("Ingrese el ID del plato:");
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
-                    Plato plato = menuRestaurante.encontrarUsuario(id);
-                    platos.add(plato);
+                    boolean valid = false;
+                    while (!valid){
+                        System.out.println("Ingrese el ID del plato:");
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+                        Plato plato = menuRestaurante.encontrarUsuario(id);
+                        if (plato!=null){
+                            platos.add(plato);
+                            valid=true;
+                        }else {
+                            System.out.println("Ingrese un ID valido.");
+                        }
+                    }
+
                     break;
                 case 2:
                     System.out.println("Platos cargados con exito.");
@@ -243,61 +254,14 @@ public class Ticket {
 
 
     //TICKET TO JSON
-/*
-    public JSONObject toJson(Ticket t) {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("id", t.getId() != 0 ? t.getId() : JSONObject.NULL);
-
-            if (t.getReserva() != null) {
-                System.out.println("MOSTRANDO RESERVA ANTES DE TOJSON");
-                System.out.println(t.getReserva());
-                jsonObject.put("reserva", t.getReserva().toJson(t.getReserva()));
-            } else {
-                jsonObject.put("reserva", JSONObject.NULL);
-            }
-
-            if (t.getEmpleado() != null) {
-                JSONObject empleadoJSON = new JSONObject();
-                Empleado empleado = t.getEmpleado();
-                if (empleado instanceof EmpleadoTiempoCompleto) {
-                    empleadoJSON = ((EmpleadoTiempoCompleto) empleado).toJson((EmpleadoTiempoCompleto) empleado);
-                } else if (empleado instanceof EmpleadoMedioTiempo) {
-                    empleadoJSON = ((EmpleadoMedioTiempo) empleado).toJson((EmpleadoMedioTiempo) empleado);
-                }
-                jsonObject.put("empleado", empleadoJSON);
-            } else {
-                jsonObject.put("empleado", JSONObject.NULL);
-            }
-
-            JSONArray platosArray = new JSONArray();
-            for (Plato p : t.getPlatos()) {
-                platosArray.put(p.toJson(p));
-            }
-            jsonObject.put("platos", platosArray);
-
-            jsonObject.put("hora", t.getHoraEmision() != null ? t.getHoraEmision().toString() : JSONObject.NULL);
-            jsonObject.put("precio", t.getPrecio());
-            jsonObject.put("tipoPago", t.getTipoPago() != null ? t.getTipoPago().toString() : JSONObject.NULL);
-            jsonObject.put("cliente", t.getCliente() != 0 ? t.getCliente() : JSONObject.NULL);
-
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-        }
-        return jsonObject;
-    }*/
-
 
     public JSONObject toJson (Ticket t){
         JSONObject jsonObject = null;
-        System.out.println("MOSTRANDO TICKET");
-        System.out.println(t);
+
         try{
             jsonObject = new JSONObject();
             jsonObject.put("id", t.getId());
             Reserva reserva = t.getReserva();
-            System.out.println("MOSTRANDO RESERVA ANTES DE TOJSON");
-            System.out.println(reserva);
             JSONObject reservaObj = t.getReserva().toJson(reserva);
             jsonObject.put("reserva", reservaObj);
             Empleado empleado = t.getEmpleado();
@@ -382,31 +346,34 @@ public class Ticket {
         return ticketLeido;
     }
 
+
     public void mostrarTicket (Ticket t){
 
-        System.out.println("--------------------------------------");
-        System.out.println("RESTAURANTE GRASTROLAB S.A");
-        System.out.println("Emitido en: Av. Dorrego 281, Mar del Plata, Argentina");
+        System.out.println("*******************************************************************");
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println("                  RESTAURANTE GRASTROLAB S.A");
+        System.out.println("       Emitido en: Av. Dorrego 281, Mar del Plata, Argentina");
         System.out.println();
-        System.out.println("Users.Empleado: " + empleado.getNombre() + " " + empleado.getApellido());
-        System.out.println("T" + id + "                   " + horaEmision);
-        System.out.println("------------------------------------------");
+        System.out.println("Empleado: " + empleado.getNombre() + " " + empleado.getApellido());
+        System.out.println("T" + id + "                             " + horaEmision);
+        System.out.println("-------------------------------------------------------------------");
         int cant = mostrarPlatos();
-        System.out.println("------------------------------------------");
-        System.out.println(cant + "productos                      TOTAL: $" + precio);
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println(cant + " productos                                 TOTAL: $" + precio);
 
         if (tipoPago == TipoPago.EFECTIVO){
-            System.out.println("                                Pago en efectivo: $" + precio);
+            System.out.println("                                      Pago en efectivo: $" + precio);
         } else if (tipoPago == TipoPago.DEBITO){
-            System.out.println("                                Pago con debito: $" + precio);
+            System.out.println("                                      Pago con debito: $" + precio);
         }else if(tipoPago == TipoPago.CREDITO){
-            System.out.println("                                Impuesto 20%: $" + calcularInteres(precio));
-            System.out.println("                                Pago con credito: $" + calcularPrecioInteres(precio));
+            System.out.println("                                      Impuesto 20%: $" + calcularInteres(precio));
+            System.out.println("                                      Pago con credito: $" + calcularPrecioInteres(precio));
         }
-        System.out.println("**************************************");
-        System.out.println("▌│█║▌║▌║║▌║▌║█│▌║▌║▌║█│▌");
-        System.out.println("*** GRACIAS POR SU VISITA ***");
-        System.out.println("--------------------------------------");
+        System.out.println("******************************************************************");
+        System.out.println("             ▌│█║▌║▌║║▌║▌║█│▌║▌║▌║█│▌▌║█│▌║▌║▌║█│");
+        System.out.println("                *** GRACIAS POR SU VISITA ***   ");
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("******************************************************************");
 
     }
 
@@ -415,7 +382,7 @@ public class Ticket {
         int cant = 0;
 
         for (Plato p : platos){
-            System.out.println(p.getNombre() + "       $ " + p.getPrecio());
+            System.out.println(p.getNombre() + "                   $ " + p.getPrecio());
             cant++;
         }
 

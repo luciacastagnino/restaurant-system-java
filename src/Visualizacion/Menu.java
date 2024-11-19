@@ -28,8 +28,6 @@ import java.util.Scanner;
  * @version 1
  */
 
-
-
 public class Menu {
 
     private final Scanner scanner;

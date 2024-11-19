@@ -90,12 +90,10 @@ public class GestionTickets{
                     System.out.println(e.getMessage());
                 }
             }
+            GestionJSON.agregarElemento("tickets.json", arreglo);
         } catch (JSONException e){
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
-
-        GestionJSON.agregarElemento("tickets.json", arreglo);
-
     }
 
     public void mostrarDatosUsuario(Ticket ticket) {

@@ -1,48 +1,98 @@
-[{
-                "cliente": 103,
-                "precio": 33100,
-                "empleado": {
-                                "estado": true,
-                                "aniosAntiguedad": 5,
-                                "apellido": "Vera",
-                                "direccion": "Carasa 5609",
-                                "contrasenia": "25186505",
-                                "id": 567334,
-                                "telefono": "2234483600",
-                                "nombre": "Carla",
-                                "dni": "25186505",
-                                "email": "carlavera5609@gmail.com",
-                                "username": "25186505"
-                },
-                "hora": "2024-11-18T22:26:12.168390800",
-                "tipoPago": "EFECTIVO",
-                "id": 301358,
-                "reserva": {
+[
+                {
                                 "cliente": 103,
-                                "estado": true,
-                                "mesa": 5,
-                                "hora": "20:00",
-                                "id": 554207,
-                                "cantPersonas": 4,
-                                "dia": "2024-11-20",
-                                "momento": "2024-11-18T19:24:25.618987100"
-                },
-                "platos": [
-                                {
-                                                "descripcion": "Carne asada",
-                                                "precio": 26500,
-                                                "tipoPlato": "CENA",
-                                                "id": 169031,
-                                                "nombre": "Asado",
-                                                "disponible": true
+                                "precio": 33100,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
                                 },
-                                {
-                                                "descripcion": "fideos",
-                                                "precio": 6600,
-                                                "tipoPlato": "ALMUERZO",
+                                "hora": "2024-11-18T22:26:12.168390800",
+                                "tipoPago": "EFECTIVO",
+                                "id": 301358,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 554207,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-11-20",
+                                                "momento": "2024-11-18T19:24:25.618987100"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "Carne asada",
+                                                                "precio": 26500,
+                                                                "tipoPlato": "CENA",
+                                                                "id": 169031,
+                                                                "nombre": "Asado",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "fideos",
+                                                                "precio": 6600,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 100,
+                                                                "nombre": "Fideos con tuco",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 2800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
                                                 "id": 100,
-                                                "nombre": "Fideos con tuco",
-                                                "disponible": true
-                                }
-                ]
-}]
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:03:16.048870",
+                                "tipoPago": "EFECTIVO",
+                                "id": 390972,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 72561,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-05-17",
+                                                "momento": "2024-11-18T22:43:58.868720"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                }
+                                ]
+                }
+]

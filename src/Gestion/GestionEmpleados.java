@@ -426,8 +426,8 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                     System.out.println("6. Telefono.");
                     System.out.println("7. Direccion.");
                     System.out.println("8. Email.");
-                    System.out.println("9. Sueldo.");
-                    System.out.println("10. Años de antiguedad.");
+                    System.out.println("9. Años de antiguedad.");
+                    System.out.println("10. Sueldo.");
                     System.out.println("11 Salir.");
                     int op = scanner.nextInt();
                     scanner.nextLine();

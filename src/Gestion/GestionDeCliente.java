@@ -46,6 +46,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         System.out.println("\nCliente " + aux.getNombre() + " " + aux.getApellido() + " agregado con exito!");
     }
 
+    /**
+     * cargarArrayConArchivo carga los datos de clientes desde un archivo JSON y los convierte en objetos Cliente.
+     *
+     * @return un conjunto de objetos Cliente cargados desde el archivo "clientes.json".
+     */
     public Set<Cliente> cargarArrayConArchivo() {
         JSONTokener aux = GestionJSON.leer("clientes.json");
 
@@ -73,6 +78,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         cargarArchivoConArreglo(listaDeClientes);
     }
 
+    /**
+     * cargarArchivoConArreglo guarda un conjunto de clientes en un archivo JSON.
+     * Convierte cada cliente a un objeto JSON y los almacena en "clientes.json".
+     *
+     * @param listaDeClientes conjunto de clientes que se guardarán en el archivo.
+     */
     public void cargarArchivoConArreglo(Set<Cliente> listaDeClientes) {
         JSONArray arreglo = new JSONArray();
         try {

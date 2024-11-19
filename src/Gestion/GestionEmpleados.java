@@ -60,6 +60,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
     }
 
+    /**
+     * cargarArrayConArchivo carga los datos de empleados desde un archivo JSON
+     * y los convierte en objetos EmpleadoTiempoCompleto o EmpleadoMedioTiempo según corresponda.
+     *
+     * @return un conjunto de objetos Empleado cargados desde el archivo "empleados.json".
+     */
     public Set<Empleado> cargarArrayConArchivo() {
         JSONTokener aux = GestionJSON.leer("empleados.json");
 
@@ -93,6 +99,13 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         cargarArchivoConArreglo(listaEmpleados);
     }
 
+    /**
+     * cargarArchivoConArreglo guarda los datos de los empleados en un archivo JSON,
+     * separando los empleados en dos tipos: EmpleadoTiempoCompleto y EmpleadoMedioTiempo.
+     * Si el tipo de empleado es desconocido, se muestra un mensaje de error.
+     *
+     * @param listaEmpleados un conjunto de objetos Empleado a guardar en el archivo "empleados.json".
+     */
     public void cargarArchivoConArreglo(Set<Empleado> listaEmpleados) {
         JSONArray arreglo = new JSONArray();
         JSONObject json = null;

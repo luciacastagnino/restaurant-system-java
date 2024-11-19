@@ -50,6 +50,8 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
 
     }
 
+
+
     public Set<Administrador> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("administrador.json");
 
@@ -76,6 +78,15 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
         cargarArchivoConArreglo(listaAdmins);
     }
 
+    /**
+     * cargarArchivoConArreglo carga un archivo JSON con un arreglo de administradores.
+     * Convierte cada administrador a JSON y lo agrega al archivo "administrador.json".
+     *
+     * @param listaAdmins conjunto de administradores a procesar.
+     *
+     * Manejo de excepciones:
+     * - Captura errores de formato y de manipulación JSON, mostrando mensajes específicos.
+     */
     public void cargarArchivoConArreglo(Set<Administrador> listaAdmins){
         JSONArray arreglo = new JSONArray();
         try {
@@ -94,6 +105,11 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             System.out.println("Hubo un problema al cargar el archivo con array.");
         }
     }
+
+    /**
+     * mostrarDatosUsuario muestra los datos de un administrador si existe en la lista.
+     * @param a administrador cuyos datos serán buscados y mostrados.
+     */
 
     public void mostrarDatosUsuario (Administrador a){
 
@@ -124,6 +140,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
         System.out.printf("No se encontro al usuario.");
 
     }
+
 
     public Administrador modificarUsuario (Administrador c) {
 

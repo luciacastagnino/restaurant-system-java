@@ -384,29 +384,29 @@ public class Ticket {
 
     public void mostrarTicket (Ticket t){
 
-        System.out.println("--------------------------------------");
+        System.out.println("---------------------------------------------------------");
         System.out.println("RESTAURANTE GRASTROLAB S.A");
         System.out.println("Emitido en: Av. Dorrego 281, Mar del Plata, Argentina");
         System.out.println();
-        System.out.println("Users.Empleado: " + empleado.getNombre() + " " + empleado.getApellido());
-        System.out.println("T" + id + "                   " + horaEmision);
-        System.out.println("------------------------------------------");
+        System.out.println("Empleado: " + empleado.getNombre() + " " + empleado.getApellido());
+        System.out.println("T" + id + "               " + horaEmision);
+        System.out.println("---------------------------------------------------------");
         int cant = mostrarPlatos();
-        System.out.println("------------------------------------------");
-        System.out.println(cant + "productos                      TOTAL: $" + precio);
+        System.out.println("---------------------------------------------------------");
+        System.out.println(cant + " productos                      TOTAL: $" + precio);
 
         if (tipoPago == TipoPago.EFECTIVO){
-            System.out.println("                                Pago en efectivo: $" + precio);
+            System.out.println("                            Pago en efectivo: $" + precio);
         } else if (tipoPago == TipoPago.DEBITO){
-            System.out.println("                                Pago con debito: $" + precio);
+            System.out.println("                            Pago con debito: $" + precio);
         }else if(tipoPago == TipoPago.CREDITO){
-            System.out.println("                                Impuesto 20%: $" + calcularInteres(precio));
-            System.out.println("                                Pago con credito: $" + calcularPrecioInteres(precio));
+            System.out.println("                            Impuesto 20%: $" + calcularInteres(precio));
+            System.out.println("                            Pago con credito: $" + calcularPrecioInteres(precio));
         }
-        System.out.println("**************************************");
-        System.out.println("▌│█║▌║▌║║▌║▌║█│▌║▌║▌║█│▌");
-        System.out.println("*** GRACIAS POR SU VISITA ***");
-        System.out.println("--------------------------------------");
+        System.out.println("**********************************************************");
+        System.out.println("▌│█║▌║▌║║▌║▌║█│▌║▌║▌║█│▌▌║█│▌║▌║▌║█│");
+        System.out.println("   *** GRACIAS POR SU VISITA ***   ");
+        System.out.println("---------------------------------------------------------");
 
     }
 

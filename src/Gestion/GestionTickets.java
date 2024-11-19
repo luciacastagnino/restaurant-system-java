@@ -309,15 +309,4 @@ public class GestionTickets{
             System.out.println("No se encontraron tickets del cliente.");
         }
     }
-
-    public void listarUsuarios(boolean aux) {
-        if (ticketSet.isEmpty()) {
-            cargarArrayConArchivo();
-        }
-        for (Ticket ticket : ticketSet){
-            if (ticket.getReserva().getEstado() == aux){
-                ticket.mostrarTicket(ticket);
-            }
-        }
-    }
 }

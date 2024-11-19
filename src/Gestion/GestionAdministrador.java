@@ -388,9 +388,16 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             cargarArrayConArchivo();
         }
 
-         listaAdmins.stream()
+        boolean encontrado = false;
+
+         encontrado = listaAdmins.stream()
                  .filter(admin -> admin.getNombre().equals(nombre))
-                 .forEach(admin -> mostrarDatosUsuario(admin));
+                 .peek(admin -> mostrarDatosUsuario(admin))
+                 .count() > 0;
+
+         if(!encontrado){
+             System.out.println("No se encontraron administradores con ese nombre.");
+         }
     }
 
     @Override

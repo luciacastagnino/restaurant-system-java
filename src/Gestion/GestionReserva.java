@@ -537,60 +537,6 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return null;
     }
 
-    /// NO SE SI LO DE ABAJO FUNCIONA, ME TIRA ERROR
-
-    /**
-     * Agrega una reserva al registro y actualiza la cantidad de reservas del cliente.
-     * Además, actualiza el tipo de cliente según el número de reservas.
-     *
-     * @param reserva la reserva que se va a agregar.
-     */
-    /*
-    public void agregarReserva(Reserva reserva) {
-        Cliente cliente = reserva.getCliente();
-
-        // Contar las reservas del cliente
-        int cantidadReservas = reservasPorCliente.getOrDefault(cliente, 0) + 1;
-        reservasPorCliente.put(cliente, cantidadReservas);
-
-        // Actualizar el tipo de cliente basado en la cantidad de reservas
-        actualizarTipoCliente(cliente, cantidadReservas);
-    }*/
-/*
-    /**
-     * Actualiza el tipo de cliente según la cantidad de reservas realizadas.
-     *
-     * @param cliente el cliente cuya categoría se desea actualizar.
-     * @param cantidadReservas la cantidad actual de reservas realizadas por el cliente.
-     */
-    /*private void actualizarTipoCliente(Cliente cliente, int cantidadReservas) {
-        if (cantidadReservas >= 10) {
-            cliente.setTipoCliente(TipoCliente.VIP);
-        } else if (cantidadReservas >= 5) {
-            cliente.setTipoCliente(TipoCliente.PREMIUM);
-        } else {
-            cliente.setTipoCliente(TipoCliente.ESTANDAR);
-        }
-    }
-
-*/
-    /**
-     * Obtiene el tipo de cliente según la cantidad de reservas realizadas.
-     *
-     * @param cliente el cliente cuya categoría se desea determinar.
-     * @return el tipo de cliente basado en el número de reservas.
-     */
-   /* public TipoCliente obtenerTipoCliente(Cliente cliente) {
-        return cliente.getTipoCliente();  // Ya está actualizado al agregar la reserva
-    }
-
-    /**
-     * Devuelve la cantidad de reservas realizadas por un cliente.
-     *
-     * @param cliente el cliente cuya cantidad de reservas se desea obtener.
-     * @return la cantidad de reservas del cliente.
-     */
-
     public int obtenerCantidadDeReservas(Cliente cliente) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();

@@ -165,7 +165,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
     }
 
-    public Reserva modificarUsuario (Reserva c) {
+    public Reserva modificarUsuario (Reserva c) throws MesaYaReservadaException {
 
         reservasPorCliente = cargarArrayConArchivo();
         boolean salir = false;
@@ -269,7 +269,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                                     int mesa = scanner.nextInt();
                                     estado = verificarDisponibilidad(mesa, c.getDia(), c.getHora());
                                     if (!estado){
-                                        System.out.println("La mesa no esta disponible, ingrese otra.");
+                                        throw new MesaYaReservadaException("La mesa no esta disponible, ingrese otra.");
                                     }else {
                                         c.setMesa(mesa);
                                         estado=true;

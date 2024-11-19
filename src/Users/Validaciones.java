@@ -32,7 +32,6 @@ public class Validaciones {
      * @throws DatoInvalidoException si el nombre de usuario tiene menos de 5 caracteres, mas de 30 caracteres
      * o espacios
      */
-
     public static void validarNombreUsuario (String username) throws DatoInvalidoException {
         if (username.length() < 5 || username.length() > 30){
             throw new DatoInvalidoException("El username debe tener al menos 5 caracteres.");

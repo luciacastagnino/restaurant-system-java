@@ -30,14 +30,12 @@ public final class RegistroUser{
     public RegistroUser() {
     }
 
-    // REGISTRO DE USUARIO ADMIN
 
     /**
      * registroAdmin es un metodo que pide al usuario que ingrese sus datos para crear un nuevo
      * administrador.
      * @return nuevo Administrador
      */
-
     public Administrador registroAdmin (){
 
         System.out.println("Complete con sus datos:\n");

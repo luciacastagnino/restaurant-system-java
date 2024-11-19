@@ -53,7 +53,6 @@ public class Reserva {
         this.gestionDeCliente = new GestionDeCliente();
     }
 
-    ///Getters y Setters
 
     public int getId() {
         return id;
@@ -127,7 +126,6 @@ public class Reserva {
         this.gestionDeCliente = gestionDeCliente;
     }
 
-    // RESERVA TO JSON
 
     /**
      * toJson es un metodo que permite transformar un objeto RESERVA a un JSONObject, recibe una
@@ -153,8 +151,6 @@ public class Reserva {
         }
         return jsonObject;
     }
-
-    //RESERVA TO JSON
 
     /**
      * jsonToReserva es un metodo que tranforma un JSONObject en un objeto Reserva recibe un

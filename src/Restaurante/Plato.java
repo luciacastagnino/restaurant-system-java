@@ -134,7 +134,6 @@ public class Plato {
             }
         }
 
-
         double precio = 0;
         boolean precioValido = false;
         while (!precioValido) {

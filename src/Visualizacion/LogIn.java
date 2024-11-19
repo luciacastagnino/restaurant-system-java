@@ -19,9 +19,9 @@ import java.util.Scanner;
  *
  * - Incluye como métodos principales los inicios de sesion del cliente, empleado y administrador.
  *
- *  - Valida las credenciales del usuario ingresadas con las almacenadas en los archivos JSON correspondientes.
- *  - Permite reintentar el inicio de sesión en caso de error o salir del proceso según la elección del usuario.
- *  - Interactúa con las clases `GestionJSON` y las entidades de usuario (`Administrador`, `Cliente`, `Empleado`).
+ * - Valida las credenciales del usuario ingresadas con las almacenadas en los archivos JSON correspondientes.
+ * - Permite reintentar el inicio de sesión en caso de error o salir del proceso según la elección del usuario.
+ * - Interactúa con las clases `GestionJSON` y las entidades de usuario (`Administrador`, `Cliente`, `Empleado`).
  *
  * @author Melina
  * @since 2024
@@ -37,11 +37,6 @@ public class LogIn {
         this.scanner = new Scanner(System.in);
     }
 
-    //segun el tipo de usuario, se abre el archivo correspondiente
-    //tipos de usuario
-    // 1. admin, 2. empleado, 3. cliente
-
-    //A CHEQUEAR QUE ESTO FUNCIONE xdddd :')))
 
     public Administrador inicioSesionAdmin(String nombreArch) throws FileNotFoundException {
         if (nombreArch == null) {

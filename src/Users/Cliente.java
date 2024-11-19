@@ -30,17 +30,14 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
     }
 
 
-    ///Getters y Setters
 
     public TipoCliente getTipoCliente() {
         return tipoCliente;
     }
-
     public void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
 
-    // CLIENTE TO JSON
 
     /**
      * toJson es un metodo que permite transformar un objeto Cliente a un JSONObject, recibe un
@@ -70,7 +67,6 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
         return jsonObject;
     }
 
-    //CLIENTE TO JSON
 
     /**
      * jsonToCliente es un metodo que tranforma un JSONObject en un objeto Cliente recibe un
@@ -110,7 +106,6 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
         return clienteLeido;
     }
 
-    //Equals
 
     @Override
     public boolean equals(Object o) {
@@ -144,7 +139,6 @@ public class Cliente extends Usuario implements Comparable<Cliente>{
         return this.dni.compareTo(((Cliente) o).dni);
     }
 
-    ///ToString
 
     @Override
     public String toString() {

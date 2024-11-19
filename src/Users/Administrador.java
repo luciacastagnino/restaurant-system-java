@@ -27,7 +27,6 @@ public class Administrador extends Usuario implements Comparable<Administrador>{
         super(username, contrasenia, nombre, apellido, dni, telefono, direccion, email);
     }
 
-    //ADMIN TO JSON
 
     /**
      * toJson es un metodo que permite transformar un objeto Administrador a un JSONObject, recibe un
@@ -56,7 +55,6 @@ public class Administrador extends Usuario implements Comparable<Administrador>{
         return jsonObject;
     }
 
-    // JSON TO ADMIN
 
     /**
      * jsonToAdmin es un metodo que tranforma un JSONObject en un objeto Administrador recibe un

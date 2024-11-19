@@ -23,7 +23,7 @@ import java.util.Scanner;
 /**
  * La clase Gestion.GestionReserva maneja las reservas realizadas por los clientes.
  *
- * - Tiene como campos una List de reservas (`reservasPorCliente`), un objeto `registroUser` para gestionar el registro de nuevos administradores,
+ * -Tiene como campos una List de reservas (`reservasPorCliente`), un objeto `registroUser` para gestionar el registro de nuevos administradores,
  * un `scanner` para la lectura de entradas del usuario, y un objeto `GestionDeCliente` para manejar los clientes.
  * - tiene un constructor vacio.
  * - incluye metodos para agregar reservas, actualizar el tipo de cliente en función de la cantidad
@@ -66,6 +66,14 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
     }
 
+    /**
+     * verificarDisponibilidad verifica si una mesa está disponible para una reserva en un día y hora específicos.
+     *
+     * @param mesa el número de mesa a verificar.
+     * @param dia el día de la reserva.
+     * @param hora la hora de la reserva.
+     * @return true si la mesa está disponible, false si ya está reservada en ese momento.
+     */
     public boolean verificarDisponibilidad(int mesa, LocalDate dia, LocalTime hora) {
         if(reservasPorCliente.isEmpty()){
             cargarArrayConArchivo();
@@ -81,6 +89,13 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return true;
     }
 
+
+    /**
+     * cargarArrayConArchivo carga las reservas desde un archivo JSON y las agrega a la lista de reservas.
+     * Si el archivo contiene datos en un formato incorrecto, se captura la excepción y no se agregan las reservas inválidas.
+     *
+     * @return una lista de objetos Reserva cargada desde el archivo "reservas.json".
+     */
     public List<Reserva> cargarArrayConArchivo(){
 
         reservasPorCliente.clear();
@@ -118,6 +133,13 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
     }
 
+    /**
+     * cargarArchivoConArreglo guarda las reservas de la lista proporcionada en un archivo JSON.
+     * Convierte cada objeto Reserva en su formato JSON correspondiente antes de agregarlo al archivo.
+     * Si alguna reserva no se puede convertir debido a un formato incorrecto, se captura la excepción y se muestra un mensaje de error.
+     *
+     * @param listaReservas la lista de objetos Reserva que se desea guardar en el archivo "reservas.json".
+     */
     public void cargarArchivoConArreglo(List<Reserva>listaReservas){
         JSONArray arreglo = new JSONArray();
         try {
@@ -537,6 +559,12 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return null;
     }
 
+    /**
+     * obtenerCantidadDeReservas obtiene la cantidad de reservas realizadas por un cliente específico.
+     *
+     * @param cliente el objeto Cliente del cual se desea obtener la cantidad de reservas.
+     * @return la cantidad de reservas realizadas por el cliente.
+     */
     public int obtenerCantidadDeReservas(Cliente cliente) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
@@ -547,8 +575,6 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
                 i++;
             }
         }
-
         return i;
     }
-
 }

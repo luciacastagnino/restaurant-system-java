@@ -28,16 +28,13 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
         this.aniosAntiguedad = aniosAntiguedad;
     }
 
-    ///Getters y Setters
     public int getAniosAntiguedad() {
         return aniosAntiguedad;
     }
-
     public void setAniosAntiguedad(int aniosAntiguedad) {
         this.aniosAntiguedad = aniosAntiguedad;
     }
 
-    ///ToString
 
     @Override
     public String toString() {
@@ -55,7 +52,6 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
                 '}';
     }
 
-    //EMPLEADO TO JSON
 
     /**
      * toJson es un metodo que permite transformar un objeto EmpleadoTiempoCompleto a un JSONObject, recibe un
@@ -86,7 +82,6 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
         return jsonObject;
     }
 
-    //JSON TO EMPLEADO
 
     /**
      * jsonToEmpleadoTC es un metodo que tranforma un JSONObject en un objeto EmpleadoTiempoCompleto

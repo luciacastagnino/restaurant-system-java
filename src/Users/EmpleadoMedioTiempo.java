@@ -79,7 +79,6 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable{
         return jsonObject;
     }
 
-    //JSON TO EMPLEADO
 
     /**
      * jsonToEmpleadoMT es un metodo que tranforma un JSONObject en un objeto EmpleadoMedioTiempo
@@ -128,7 +127,6 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable{
      * @param horasExtra
      * @return (horasTrabajadas * precioXhora) + calcularHorasExtra(horasExtra);
      */
-
     public double calcularSueldo (int horasExtra){
         return (horasTrabajadas * precioXhora) + calcularHorasExtra(horasExtra);
     }

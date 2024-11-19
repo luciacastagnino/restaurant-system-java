@@ -26,7 +26,6 @@ public abstract class Usuario {
     protected boolean estado;
     protected Random random=new Random();
 
-    /// Constructor ////////////
 
     public Usuario() {
     }
@@ -57,7 +56,6 @@ public abstract class Usuario {
         this.estado = true;
     }
 
-    ///Getters y Setters ////////////
 
     public int getId() {
         return id;
@@ -157,7 +155,6 @@ public abstract class Usuario {
                 '}';
     }
 
-    //Equals
 
     @Override
     public boolean equals(Object o) {

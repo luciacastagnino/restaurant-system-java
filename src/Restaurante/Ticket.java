@@ -268,8 +268,6 @@ public class Ticket {
     }
 
 
-    //TICKET TO JSON
-
     public JSONObject toJson (Ticket t){
         JSONObject jsonObject = null;
 
@@ -306,7 +304,6 @@ public class Ticket {
         return jsonObject;
     }
 
-    //JSON TO TICKET
 
     /**
      * jsonToTicket es un metodo que tranforma un JSONObject en un objeto Ticket recibe un

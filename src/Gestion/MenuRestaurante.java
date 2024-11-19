@@ -49,7 +49,6 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         this.scanner=new Scanner(System.in);
     }
 
-    //Get y Set
 
     public void ingresarUsuario(){
         Plato aux = new Plato();
@@ -57,6 +56,14 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         agregarYguardar(aux);
     }
 
+    /**
+     * cargarArrayConArchivo carga una lista de platos desde un archivo JSON a un mapa.
+     * Este método lee el archivo `platos.json`, convierte cada objeto JSON en un objeto Plato
+     * utilizando el método `jsonToPlato` y luego agrega el plato al mapa `listaPlatos` utilizando
+     * el ID del plato como clave.
+     *
+     * @return Un mapa donde las claves son los IDs de los platos y los valores son los objetos Plato correspondientes.
+     */
     public Map<Integer, Plato> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("platos.json");
 
@@ -81,6 +88,13 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         cargarArchivoConArreglo(listaPlatos);
     }
 
+    /**
+     * cargarArchivoConArreglo guarda los platos presentes en el mapa `listaPlatos` en un archivo JSON.
+     * Este método recorre el mapa de platos, convierte cada objeto Plato en un objeto JSON utilizando
+     * el método `toJson` y agrega cada objeto JSON al arreglo que se guardará en el archivo `platos.json`.
+     *
+     * @param listaPlatos El mapa de platos que contiene los objetos Plato a ser guardados en el archivo.
+     */
     public void cargarArchivoConArreglo(Map<Integer, Plato> listaPlatos){
         JSONArray arreglo = new JSONArray();
         try {
@@ -110,7 +124,6 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
                 p.mostrarPlato();
             }
         }
-
     }
 
     @Override

@@ -30,8 +30,6 @@ import java.util.*;
  * @version 1
  */
 
-
-
 public class GestionTickets{
 
     private List<Ticket> ticketSet;
@@ -53,6 +51,12 @@ public class GestionTickets{
         System.out.println("\nTicket cargado con exito!");
     }
 
+
+    /**
+     * cargarArrayConArchivo carga los tickets desde un archivo JSON y los convierte en objetos Ticket.
+     *
+     * @return una lista de objetos Ticket cargados desde el archivo JSON.
+     */
     public List<Ticket> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("tickets.json");
 
@@ -79,6 +83,14 @@ public class GestionTickets{
         cargarArchivoConArreglo(ticketSet);
     }
 
+    /**
+     * cargarArchivoConArreglo guarda los tickets de una lista en un archivo JSON.
+     * Este método recorre la lista de tickets (`ticketSet`), convierte cada objeto Ticket
+     * en un JSON utilizando el método `toJson` y agrega los objetos JSON a un arreglo.
+     * El arreglo se guarda en el archivo `tickets.json` utilizando la clase `GestionJSON`.
+     *
+     * @param ticketSet la lista de objetos Ticket que se desean guardar en el archivo JSON.
+     */
     public void cargarArchivoConArreglo(List<Ticket> ticketSet){
         JSONArray arreglo = new JSONArray();
         try {

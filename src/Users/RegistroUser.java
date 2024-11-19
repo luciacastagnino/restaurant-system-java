@@ -2,6 +2,7 @@ package Users;
 
 import Gestion.GestionAdministrador;
 import Gestion.GestionDeCliente;
+import Gestion.GestionEmpleados;
 import Restaurante.Reserva;
 import Users.Administrador;
 
@@ -39,11 +40,25 @@ public final class RegistroUser{
 
     public boolean existeUser (String username){
         GestionAdministrador gestionAdministrador = new GestionAdministrador();
+        GestionEmpleados gestionEmpleados = new GestionEmpleados();
+        GestionDeCliente gestionDeCliente = new GestionDeCliente();
+
         boolean existe=false;
+
         Set<Administrador> setAdmin = new HashSet<>();
-        setAdmin=gestionAdministrador.cargarArrayConArchivo();
-        for (Administrador administrador : setAdmin){
-            if (administrador.getUsername().equals(username)){
+        Set<Cliente> clienteSet = new HashSet<>();
+        Set<Empleado> empleadoSet = new HashSet<>();
+        setAdmin = gestionAdministrador.cargarArrayConArchivo();
+        clienteSet = gestionDeCliente.cargarArrayConArchivo();
+        empleadoSet = gestionEmpleados.cargarArrayConArchivo();
+
+        Set<String> nombreUsuario = new HashSet<>();
+        setAdmin.forEach(administrador -> nombreUsuario.add(administrador.getUsername()));
+        clienteSet.forEach(cliente -> nombreUsuario.add(cliente.getUsername()));
+        empleadoSet.forEach(empleado -> nombreUsuario.add(empleado.getUsername()));
+
+        for (String nombre : nombreUsuario){
+            if (nombre.equals(username)){
                 existe=true;
             }
         }

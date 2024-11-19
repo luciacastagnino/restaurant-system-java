@@ -990,5 +990,69 @@
                                                                 "disponible": true
                                                 }
                                 ]
+                },
+                {
+                                "cliente": 574542,
+                                "precio": 12900,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-19T09:40:18.020447",
+                                "tipoPago": "CREDITO",
+                                "id": 708474,
+                                "reserva": {
+                                                "cliente": 574542,
+                                                "estado": true,
+                                                "mesa": 2,
+                                                "hora": "21:00",
+                                                "id": 186338,
+                                                "cantPersonas": 2,
+                                                "dia": "2025-03-15",
+                                                "momento": "2024-11-19T09:37:26.488107"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "café con leche y medialunas",
+                                                                "precio": 3200,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 105,
+                                                                "nombre": "Café con medialunas",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "jugo de naranja natural",
+                                                                "precio": 1500,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 106,
+                                                                "nombre": "Jugo de naranja",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "vino tinto malbec",
+                                                                "precio": 7200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 116,
+                                                                "nombre": "Vino tinto",
+                                                                "disponible": true
+                                                }
+                                ]
                 }
 ]

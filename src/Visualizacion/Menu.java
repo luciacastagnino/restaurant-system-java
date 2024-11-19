@@ -57,14 +57,15 @@ public class Menu {
 
         System.out.println();
         System.out.println("Bienvenido a GastroLab");
-        System.out.println("\nSeleccione su tipo de usuario:");
-        System.out.println("\n1. Empleado");
-        System.out.println("2. Cliente");
-        System.out.println("3. Salir.");
-        String opcion = scanner.nextLine();
         boolean valido = false;
-
         while (!valido) {
+            System.out.println("\nSeleccione su tipo de usuario:");
+            System.out.println("\n1. Empleado");
+            System.out.println("2. Cliente");
+            System.out.println("3. Salir.");
+
+            String opcion = scanner.nextLine();
+
             switch (opcion.toLowerCase()) {
                 case "admin":
                     valido = true;

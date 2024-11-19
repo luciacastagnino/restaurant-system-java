@@ -142,5 +142,69 @@
                                                                 "disponible": true
                                                 }
                                 ]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 13000,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-18T22:43:49.204474200",
+                                "tipoPago": "DEBITO",
+                                "id": 81411,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 554207,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-11-20",
+                                                "momento": "2024-11-18T19:24:25.618987100"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "vino tinto malbec",
+                                                                "precio": 7200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 116,
+                                                                "nombre": "Vino tinto",
+                                                                "disponible": true
+                                                }
+                                ]
                 }
 ]

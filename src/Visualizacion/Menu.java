@@ -270,38 +270,26 @@ public class Menu {
                         gestionEmpleados.listarUsuarios(false);
                         break;
                     case 6:
-                        System.out.println("Que desea hacer?");
-                        System.out.println("1. Calcular sueldo de empleado medio tiempo.");
-                        System.out.println("2. Calcular sueldo de empleado tiempo completo.");
                         try {
-                            System.out.printf("Selecciona una opcion: ");
-                            int op1 = scanner.nextInt();
-                            scanner.nextLine();
+                            System.out.println("Ingresar DNI del empleado:");
+                            String dni1 = scanner.nextLine();
+                            Empleado aux1 = gestionEmpleados.encontrarUsuario(dni1);
 
-                            if(op1 == 1){
-                                System.out.println("Ingresar DNI del empleado:");
-                                String dni1 = scanner.nextLine();
-                                EmpleadoMedioTiempo aux1 = (EmpleadoMedioTiempo) gestionEmpleados.encontrarUsuario(dni1);
-
+                            if (aux1 instanceof EmpleadoMedioTiempo) {
                                 System.out.println("Ingrese las horas extra del empleado (0 si no hay horas extra):");
                                 int hs = scanner.nextInt();
 
-                                double total = aux1.calcularSueldo(hs);
+                                double total = ((EmpleadoMedioTiempo) aux1).calcularSueldo(hs);
 
                                 System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
-                            }
-                            else if (op1 == 2) {
-                                System.out.println("Ingresar DNI del empleado:");
-                                String dni1 = scanner.nextLine();
-                                EmpleadoTiempoCompleto aux1 = (EmpleadoTiempoCompleto) gestionEmpleados.encontrarUsuario(dni1);
-
+                            } else if (aux1 instanceof EmpleadoTiempoCompleto) {
                                 System.out.println("Ingrese las horas extra del empleado (0 si no hay horas extra):");
                                 int hs = scanner.nextInt();
 
                                 System.out.println("Ingrese el precio por hora (0 si no hay horas extra):");
                                 double pxh = scanner.nextDouble();
 
-                                double total = aux1.calcularSueldo(hs, pxh);
+                                double total = ((EmpleadoTiempoCompleto)aux1).calcularSueldo(hs, pxh);
                                 System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
                             }
                         }

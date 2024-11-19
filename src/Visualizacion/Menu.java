@@ -217,7 +217,7 @@ public class Menu {
                         gestionAdministrador.darDeBajaUsuario(admin);
                         break;
                     case 4:
-                        System.out.println("Cerrando sesion...");
+                        System.out.println("Saliendo...");
                         return;
                     default:
                         System.out.println("Opcion invalida. Por favor, ingrese una opcion valida.");

@@ -19,16 +19,7 @@ import java.util.Set;
  */
 public class Validaciones {
 
-    private static Set<String> nombresDeUsuario;
-    private static GestionDeCliente gestionDeCliente;
-    private static GestionEmpleados gestionEmpleados;
-    private static GestionAdministrador gestionAdministrador;
-
     public Validaciones() {
-        this.nombresDeUsuario = new HashSet<>();
-        this.gestionAdministrador = new GestionAdministrador();
-        this.gestionDeCliente = new GestionDeCliente();
-        this.gestionEmpleados = new GestionEmpleados();
     }
 
     //VALIDACION INGRESO DE DATOS
@@ -175,17 +166,5 @@ public class Validaciones {
             throw new DatoInvalidoException("El correo electronico debe contener el simbolo '@'.");
         }
     }
-
-    /*public static Set<String> cargarArray(){
-
-        Set<String> cliente = gestionDeCliente.cargarNombresDeUsuario();
-        cliente.stream().forEach(c -> nombresDeUsuario.add(c));
-        Set<String> empleado = gestionEmpleados.cargarNombresDeUsuario();
-        empleado.stream().forEach(c -> nombresDeUsuario.add(c));
-        Set<String> admin= gestionAdministrador.cargarNombresDeUsuario();
-        admin.stream().forEach(c -> nombresDeUsuario.add(c));
-
-        return nombresDeUsuario;
-    }*/
 
 }

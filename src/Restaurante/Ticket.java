@@ -359,15 +359,15 @@ public class Ticket {
         System.out.println("-------------------------------------------------------------------");
         int cant = mostrarPlatos();
         System.out.println("-------------------------------------------------------------------");
-        System.out.println(cant + " productos                                 TOTAL: $" + precio);
+        System.out.println(cant + " productos                                      TOTAL: $" + precio);
 
         if (tipoPago == TipoPago.EFECTIVO){
-            System.out.println("                                      Pago en efectivo: $" + precio);
+            System.out.println("                                        Pago en efectivo: $" + precio);
         } else if (tipoPago == TipoPago.DEBITO){
-            System.out.println("                                      Pago con debito: $" + precio);
+            System.out.println("                                        Pago con debito: $" + precio);
         }else if(tipoPago == TipoPago.CREDITO){
-            System.out.println("                                      Impuesto 20%: $" + calcularInteres(precio));
-            System.out.println("                                      Pago con credito: $" + calcularPrecioInteres(precio));
+            System.out.println("                                        Impuesto 20%: $" + calcularInteres(precio));
+            System.out.println("                                        Pago con credito: $" + calcularPrecioInteres(precio));
         }
         System.out.println("******************************************************************");
         System.out.println("             ▌│█║▌║▌║║▌║▌║█│▌║▌║▌║█│▌▌║█│▌║▌║▌║█│");
@@ -382,7 +382,7 @@ public class Ticket {
         int cant = 0;
 
         for (Plato p : platos){
-            System.out.println(p.getNombre() + "                   $ " + p.getPrecio());
+            System.out.println(p.getId() + " | " + p.getNombre() + "                   $ " + p.getPrecio());
             cant++;
         }
 

@@ -372,7 +372,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
             cargarArrayConArchivo();
         }
         for (Plato p : listaPlatos.values()){
-            System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
+            System.out.println(p.getId() + " - " + p.getNombre() + " / $" + p.getPrecio());
         }
     }
 

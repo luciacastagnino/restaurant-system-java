@@ -94,5 +94,1021 @@
                                                                 "disponible": true
                                                 }
                                 ]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 10700,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:12:43.044204",
+                                "tipoPago": "DEBITO",
+                                "id": 193143,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "21:00",
+                                                "id": 145728,
+                                                "cantPersonas": 12,
+                                                "dia": "2024-12-20",
+                                                "momento": "2024-11-18T23:11:53.254273"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "risotto de hongos",
+                                                                "precio": 8500,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 122,
+                                                                "nombre": "Risotto",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 101,
+                                "precio": 1800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:20:59.670075",
+                                "tipoPago": "CREDITO",
+                                "id": 102542,
+                                "reserva": {
+                                                "cliente": 101,
+                                                "estado": true,
+                                                "mesa": 6,
+                                                "hora": "14:00",
+                                                "id": 754291,
+                                                "cantPersonas": 12,
+                                                "dia": "2025-03-04",
+                                                "momento": "2024-11-18T23:19:03.343708"
+                                },
+                                "platos": [{
+                                                "descripcion": "empanadas de carne",
+                                                "precio": 1800,
+                                                "tipoPlato": "ENTRADAS",
+                                                "id": 117,
+                                                "nombre": "Empanada de carne",
+                                                "disponible": true
+                                }]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 33100,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-18T22:26:12.168390800",
+                                "tipoPago": "EFECTIVO",
+                                "id": 301358,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 554207,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-11-20",
+                                                "momento": "2024-11-18T19:24:25.618987100"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "Carne asada",
+                                                                "precio": 26500,
+                                                                "tipoPlato": "CENA",
+                                                                "id": 169031,
+                                                                "nombre": "Asado",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "fideos",
+                                                                "precio": 6600,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 100,
+                                                                "nombre": "Fideos con tuco",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 2800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:03:16.048870",
+                                "tipoPago": "EFECTIVO",
+                                "id": 390972,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 72561,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-05-17",
+                                                "momento": "2024-11-18T22:43:58.868720"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 10700,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:12:43.044204",
+                                "tipoPago": "DEBITO",
+                                "id": 193143,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "21:00",
+                                                "id": 145728,
+                                                "cantPersonas": 12,
+                                                "dia": "2024-12-20",
+                                                "momento": "2024-11-18T23:11:53.254273"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "risotto de hongos",
+                                                                "precio": 8500,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 122,
+                                                                "nombre": "Risotto",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 101,
+                                "precio": 1800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:20:59.670075",
+                                "tipoPago": "CREDITO",
+                                "id": 102542,
+                                "reserva": {
+                                                "cliente": 101,
+                                                "estado": true,
+                                                "mesa": 6,
+                                                "hora": "14:00",
+                                                "id": 754291,
+                                                "cantPersonas": 12,
+                                                "dia": "2025-03-04",
+                                                "momento": "2024-11-18T23:19:03.343708"
+                                },
+                                "platos": [{
+                                                "descripcion": "empanadas de carne",
+                                                "precio": 1800,
+                                                "tipoPlato": "ENTRADAS",
+                                                "id": 117,
+                                                "nombre": "Empanada de carne",
+                                                "disponible": true
+                                }]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 12700,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:21:28.112386",
+                                "tipoPago": "DEBITO",
+                                "id": 450480,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 1,
+                                                "hora": "12:00",
+                                                "id": 172748,
+                                                "cantPersonas": 3,
+                                                "dia": "2026-04-15",
+                                                "momento": "2024-11-18T23:18:18.140619"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "tabla de quesos y fiambres",
+                                                                "precio": 10500,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 118,
+                                                                "nombre": "Tabla de quesos",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 108,
+                                "precio": 7000,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:24:46.935625",
+                                "tipoPago": "EFECTIVO",
+                                "id": 289955,
+                                "reserva": {
+                                                "cliente": 108,
+                                                "estado": true,
+                                                "mesa": 6,
+                                                "hora": "15:00",
+                                                "id": 687528,
+                                                "cantPersonas": 10,
+                                                "dia": "2025-12-06",
+                                                "momento": "2024-11-18T23:23:57.511492"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "tostadas con palta y huevo",
+                                                                "precio": 4500,
+                                                                "tipoPlato": "BRUNCH",
+                                                                "id": 107,
+                                                                "nombre": "Tostadas de palta",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "jugo de naranja natural",
+                                                                "precio": 1500,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 106,
+                                                                "nombre": "Jugo de naranja",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 33100,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-18T22:26:12.168390800",
+                                "tipoPago": "EFECTIVO",
+                                "id": 301358,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 554207,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-11-20",
+                                                "momento": "2024-11-18T19:24:25.618987100"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "Carne asada",
+                                                                "precio": 26500,
+                                                                "tipoPlato": "CENA",
+                                                                "id": 169031,
+                                                                "nombre": "Asado",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "fideos",
+                                                                "precio": 6600,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 100,
+                                                                "nombre": "Fideos con tuco",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 2800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:03:16.048870",
+                                "tipoPago": "EFECTIVO",
+                                "id": 390972,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 72561,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-05-17",
+                                                "momento": "2024-11-18T22:43:58.868720"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 10700,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:12:43.044204",
+                                "tipoPago": "DEBITO",
+                                "id": 193143,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "21:00",
+                                                "id": 145728,
+                                                "cantPersonas": 12,
+                                                "dia": "2024-12-20",
+                                                "momento": "2024-11-18T23:11:53.254273"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "risotto de hongos",
+                                                                "precio": 8500,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 122,
+                                                                "nombre": "Risotto",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 101,
+                                "precio": 1800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:20:59.670075",
+                                "tipoPago": "CREDITO",
+                                "id": 102542,
+                                "reserva": {
+                                                "cliente": 101,
+                                                "estado": true,
+                                                "mesa": 6,
+                                                "hora": "14:00",
+                                                "id": 754291,
+                                                "cantPersonas": 12,
+                                                "dia": "2025-03-04",
+                                                "momento": "2024-11-18T23:19:03.343708"
+                                },
+                                "platos": [{
+                                                "descripcion": "empanadas de carne",
+                                                "precio": 1800,
+                                                "tipoPlato": "ENTRADAS",
+                                                "id": 117,
+                                                "nombre": "Empanada de carne",
+                                                "disponible": true
+                                }]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 33100,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-18T22:26:12.168390800",
+                                "tipoPago": "EFECTIVO",
+                                "id": 301358,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 554207,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-11-20",
+                                                "momento": "2024-11-18T19:24:25.618987100"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "Carne asada",
+                                                                "precio": 26500,
+                                                                "tipoPlato": "CENA",
+                                                                "id": 169031,
+                                                                "nombre": "Asado",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "fideos",
+                                                                "precio": 6600,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 100,
+                                                                "nombre": "Fideos con tuco",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 2800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:03:16.048870",
+                                "tipoPago": "EFECTIVO",
+                                "id": 390972,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 72561,
+                                                "cantPersonas": 4,
+                                                "dia": "2024-05-17",
+                                                "momento": "2024-11-18T22:43:58.868720"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 103,
+                                "precio": 10700,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:12:43.044204",
+                                "tipoPago": "DEBITO",
+                                "id": 193143,
+                                "reserva": {
+                                                "cliente": 103,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "21:00",
+                                                "id": 145728,
+                                                "cantPersonas": 12,
+                                                "dia": "2024-12-20",
+                                                "momento": "2024-11-18T23:11:53.254273"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "risotto de hongos",
+                                                                "precio": 8500,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 122,
+                                                                "nombre": "Risotto",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 101,
+                                "precio": 1800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:20:59.670075",
+                                "tipoPago": "CREDITO",
+                                "id": 102542,
+                                "reserva": {
+                                                "cliente": 101,
+                                                "estado": true,
+                                                "mesa": 6,
+                                                "hora": "14:00",
+                                                "id": 754291,
+                                                "cantPersonas": 12,
+                                                "dia": "2025-03-04",
+                                                "momento": "2024-11-18T23:19:03.343708"
+                                },
+                                "platos": [{
+                                                "descripcion": "empanadas de carne",
+                                                "precio": 1800,
+                                                "tipoPlato": "ENTRADAS",
+                                                "id": 117,
+                                                "nombre": "Empanada de carne",
+                                                "disponible": true
+                                }]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 12700,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:21:28.112386",
+                                "tipoPago": "DEBITO",
+                                "id": 450480,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 1,
+                                                "hora": "12:00",
+                                                "id": 172748,
+                                                "cantPersonas": 3,
+                                                "dia": "2026-04-15",
+                                                "momento": "2024-11-18T23:18:18.140619"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "tabla de quesos y fiambres",
+                                                                "precio": 10500,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 118,
+                                                                "nombre": "Tabla de quesos",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 108,
+                                "precio": 7000,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:24:46.935625",
+                                "tipoPago": "EFECTIVO",
+                                "id": 289955,
+                                "reserva": {
+                                                "cliente": 108,
+                                                "estado": true,
+                                                "mesa": 6,
+                                                "hora": "15:00",
+                                                "id": 687528,
+                                                "cantPersonas": 10,
+                                                "dia": "2025-12-06",
+                                                "momento": "2024-11-18T23:23:57.511492"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "tostadas con palta y huevo",
+                                                                "precio": 4500,
+                                                                "tipoPlato": "BRUNCH",
+                                                                "id": 107,
+                                                                "nombre": "Tostadas de palta",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "jugo de naranja natural",
+                                                                "precio": 1500,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 106,
+                                                                "nombre": "Jugo de naranja",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 109,
+                                "precio": 25200,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-18T23:26:46.854856",
+                                "tipoPago": "CREDITO",
+                                "id": 760623,
+                                "reserva": {
+                                                "cliente": 109,
+                                                "estado": true,
+                                                "mesa": 1111111,
+                                                "hora": "21:00",
+                                                "id": 272495,
+                                                "cantPersonas": 3,
+                                                "dia": "2024-12-10",
+                                                "momento": "2024-11-18T23:25:37.645413"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "ravioles con salsa bolognesa",
+                                                                "precio": 7500,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 110,
+                                                                "nombre": "Ravioles de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "tabla de quesos y fiambres",
+                                                                "precio": 10500,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 118,
+                                                                "nombre": "Tabla de quesos",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "vino tinto malbec",
+                                                                "precio": 7200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 116,
+                                                                "nombre": "Vino tinto",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 574542,
+                                "precio": 12900,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-19T09:40:18.020447",
+                                "tipoPago": "CREDITO",
+                                "id": 708474,
+                                "reserva": {
+                                                "cliente": 574542,
+                                                "estado": true,
+                                                "mesa": 2,
+                                                "hora": "21:00",
+                                                "id": 186338,
+                                                "cantPersonas": 2,
+                                                "dia": "2025-03-15",
+                                                "momento": "2024-11-19T09:37:26.488107"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "café con leche y medialunas",
+                                                                "precio": 3200,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 105,
+                                                                "nombre": "Café con medialunas",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "jugo de naranja natural",
+                                                                "precio": 1500,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 106,
+                                                                "nombre": "Jugo de naranja",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "vino tinto malbec",
+                                                                "precio": 7200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 116,
+                                                                "nombre": "Vino tinto",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 102,
+                                "precio": 33500,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-19T10:20:58.031444100",
+                                "tipoPago": "DEBITO",
+                                "id": 537677,
+                                "reserva": {
+                                                "cliente": 102,
+                                                "estado": true,
+                                                "mesa": 1,
+                                                "hora": "12:00",
+                                                "id": 172748,
+                                                "cantPersonas": 3,
+                                                "dia": "2026-04-15",
+                                                "momento": "2024-11-18T23:18:18.140619"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "Carne asada",
+                                                                "precio": 26500,
+                                                                "tipoPlato": "CENA",
+                                                                "id": 169031,
+                                                                "nombre": "Asado",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cheesecake de frutos rojos",
+                                                                "precio": 4800,
+                                                                "tipoPlato": "POSTRE",
+                                                                "id": 113,
+                                                                "nombre": "Cheesecake",
+                                                                "disponible": true
+                                                }
+                                ]
                 }
 ]

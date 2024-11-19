@@ -512,6 +512,11 @@ public final class RegistroUser{
         return cliente;
     }
 
+    /**
+     * ingresarReserva es un metodo que le pide al usuario que ingrese los datos de una reserva para crear
+     * un objeto Reserva
+     * @return new Reserva
+     */
     public Reserva ingresarReserva() {
         Scanner scanner = new Scanner(System.in);
         GestionDeCliente gestionDeCliente = new GestionDeCliente();

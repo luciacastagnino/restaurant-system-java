@@ -38,6 +38,39 @@ public final class RegistroUser{
      * @return nuevo Administrador
      */
 
+    public boolean existeDni (String dni, String tipoUsuario){
+
+        boolean existe = false;
+        GestionAdministrador gestionAdministrador = new GestionAdministrador();
+        GestionEmpleados gestionEmpleados = new GestionEmpleados();
+        GestionDeCliente gestionDeCliente = new GestionDeCliente();
+
+        if (tipoUsuario.equalsIgnoreCase("administrador")){
+            Set <Administrador> listaAdmins = gestionAdministrador.cargarArrayConArchivo();
+            for (Administrador administrador : listaAdmins){
+                if (administrador.getDni().equals(dni)){
+                    existe=true;
+                }
+            }
+        }else if (tipoUsuario.equalsIgnoreCase("empleado")){
+            Set<Empleado>listaEmpleado = gestionEmpleados.cargarArrayConArchivo();
+            for (Empleado empleado : listaEmpleado){
+                if (empleado.getDni().equals(dni)){
+                    existe=true;
+                }
+            }
+        }else if (tipoUsuario.equalsIgnoreCase("cliente")){
+            Set<Cliente>listaClientes = gestionDeCliente.cargarArrayConArchivo();
+            for (Cliente cliente : listaClientes){
+                if (cliente.getDni().equals(dni)){
+                    existe=true;
+                }
+            }
+        }
+
+        return existe;
+    }
+
     public boolean existeUser (String username){
         GestionAdministrador gestionAdministrador = new GestionAdministrador();
         GestionEmpleados gestionEmpleados = new GestionEmpleados();
@@ -140,7 +173,11 @@ public final class RegistroUser{
 
             try {
                 Validaciones.validarDNI(dni);
-                dniValido = true;
+                if (!existeDni(dni, "administrador")){
+                    dniValido = true;
+                }else {
+                    System.out.println("El DNI ya existe en el sistema.");
+                }
             }catch (DatoInvalidoException e){
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
             }
@@ -237,7 +274,11 @@ public final class RegistroUser{
 
             try {
                 Validaciones.validarDNI(dni);
-                dniValido = true;
+                if (!existeDni(dni, "empleado")){
+                    dniValido = true;
+                }else {
+                    System.out.println("El DNI ya existe en el sistema.");
+                }
             }catch (DatoInvalidoException e){
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
             }
@@ -344,7 +385,11 @@ public final class RegistroUser{
 
             try {
                 Validaciones.validarDNI(dni);
-                dniValido = true;
+                if (!existeDni(dni, "administrador")){
+                    dniValido = true;
+                }else {
+                    System.out.println("El DNI ya existe en el sistema.");
+                }
             }catch (DatoInvalidoException e){
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
             }
@@ -470,7 +515,11 @@ public final class RegistroUser{
 
             try {
                 Validaciones.validarDNI(dni);
-                dniValido = true;
+                if (!existeDni(dni, "cliente")){
+                    dniValido = true;
+                }else {
+                    System.out.println("El DNI ya existe en el sistema.");
+                }
             }catch (DatoInvalidoException e){
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
             }

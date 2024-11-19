@@ -309,7 +309,6 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
         boolean encontrado = false;
         String opcion = "";
-        System.out.println("entre a dar de baja:");
 
         for (int i = 0; i<reservasPorCliente.size() ; i++) {
             Reserva reserva = reservasPorCliente.get(i);
@@ -334,24 +333,27 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         if (!encontrado){
             System.out.println("No se encontro la reserva con el ID ingresado.");
         }
-
     }
 
     @Override
     public void darDeAltaUsuario(Reserva a) {
         reservasPorCliente = cargarArrayConArchivo();
 
-        for (Reserva reserva : reservasPorCliente) {
-            String opcion = "";
-            if (a.equals(reserva)) {
+        boolean encontrado = false;
+        String opcion = "";
+
+        for (int i = 0; i<reservasPorCliente.size() ; i++) {
+            Reserva reserva = reservasPorCliente.get(i);
+            if (a.getId() == reserva.getId()) {
+                encontrado=true;
                 System.out.println("¿Esta seguro de dar de alta la reserva? SI o NO.");
                 opcion = scanner.nextLine();
-                if (opcion.equalsIgnoreCase("si")){
-                    a.setEstado(true);
-                    System.out.println("Reserva agregada con exito.");
+                if (opcion.equalsIgnoreCase("si")) {
+                    reserva.setEstado(true);
                     cargarArchivoConArreglo(reservasPorCliente);
+                    System.out.println("Reserva dada de alta con exito.");
                     return;
-                }else if (opcion.equalsIgnoreCase("no")) {
+                } else if (opcion.equalsIgnoreCase("no")) {
                     System.out.println("Operacion cancelada.");
                     return;
                 } else {
@@ -360,7 +362,9 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             }
         }
 
-        System.out.println("No se encontro la reserva.");
+        if (!encontrado){
+            System.out.println("No se encontro la reserva con el ID ingresado.");
+        }
     }
 
     @Override

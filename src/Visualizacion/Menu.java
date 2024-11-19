@@ -318,7 +318,12 @@ public class Menu {
                                 String dni1 = scanner.nextLine();
 
                                 Empleado aux1 = gestionEmpleados.encontrarUsuario(dni1);
-                                gestionEmpleados.mostrarDatosUsuario(aux1);
+                                if(aux1 != null){
+                                    gestionEmpleados.mostrarDatosUsuario(aux1);
+                                }
+                                else {
+                                    System.out.println("No se encontro el usuario.");
+                                }
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar ID del empleado:");
@@ -326,7 +331,12 @@ public class Menu {
 
                                 Empleado aux1 = gestionEmpleados.encontrarUsuario(id);
 
-                                gestionEmpleados.mostrarDatosUsuario(aux1);
+                                if(aux1 != null){
+                                    gestionEmpleados.mostrarDatosUsuario(aux1);
+                                }
+                                else {
+                                    System.out.println("No se encontro el usuario.");
+                                }
                             }
                         }
                         catch (RuntimeException e) {
@@ -422,14 +432,24 @@ public class Menu {
                                 String dni2 = scanner.nextLine();
 
                                 Cliente aux1 = gestionDeCliente.encontrarUsuario(dni2);
-                                gestionDeCliente.mostrarDatosUsuario(aux1);
+                                if(aux1 != null){
+                                    gestionDeCliente.mostrarDatosUsuario(aux1);
+                                }
+                                else {
+                                    System.out.println("No se encontro el usuario.");
+                                }
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar ID del cliente:");
                                 int id = scanner.nextInt();
 
                                 Cliente aux1 = gestionDeCliente.encontrarUsuario(id);
-                                gestionDeCliente.mostrarDatosUsuario(aux1);
+                                if(aux1 != null){
+                                    gestionDeCliente.mostrarDatosUsuario(aux1);
+                                }
+                                else {
+                                    System.out.println("No se encontro el usuario.");
+                                }
                             }
                         }
                         catch (RuntimeException e) {
@@ -586,7 +606,12 @@ public class Menu {
                                 System.out.println("Ingresar ID de la Reserva:");
                                 int id2 = scanner.nextInt();
                                 Reserva aux2 = gestionReserva.encontrarUsuario(id2);
-                                gestionReserva.mostrarDatosUsuario(aux2);
+                                if(aux2 != null){
+                                    gestionReserva.mostrarDatosUsuario(aux2);
+                                }
+                                else {
+                                    System.out.println("No se encontro la Reserva.");
+                                }
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar DNI del Cliente:");
@@ -601,7 +626,12 @@ public class Menu {
                                 LocalDate dia = LocalDate.parse(auxiliar1);
 
                                 Reserva reserva = gestionReserva.encontrarUsuarioMuchos(dni1, dia, hs);
-                                gestionReserva.mostrarDatosUsuario(reserva);
+                                if(reserva != null){
+                                    gestionReserva.mostrarDatosUsuario(reserva);
+                                }
+                                else {
+                                    System.out.println("No se encontro la Reserva.");
+                                }
                             }
                         }
                         catch (RuntimeException e) {
@@ -725,14 +755,24 @@ public class Menu {
                                 System.out.println("Ingresar ID del Plato:");
                                 int id2 = scanner.nextInt();
                                 Plato aux2 = menuRestaurante.encontrarUsuario(id2);
-                                menuRestaurante.mostrarDatosUsuario(aux2);
+                                if(aux2 != null){
+                                    menuRestaurante.mostrarDatosUsuario(aux2);
+                                }
+                                else {
+                                    System.out.println("No se encontro el plato.");
+                                }
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar nombre del Plato:");
                                 String nombre = scanner.nextLine();
 
                                 Plato plato = menuRestaurante.encontrarUsuario(nombre);
-                                menuRestaurante.mostrarDatosUsuario(plato);
+                                if(plato != null){
+                                    menuRestaurante.mostrarDatosUsuario(plato);
+                                }
+                                else {
+                                    System.out.println("No se encontro el plato.");
+                                }
                             }
                         }
                         catch (RuntimeException e) {
@@ -826,14 +866,25 @@ public class Menu {
                                 System.out.println("Ingresar ID del Ticket:");
                                 int id2 = scanner.nextInt();
                                 Ticket aux2 = gestionTickets.encontrarUsuario(id2);
-                                gestionTickets.mostrarDatosUsuario(aux2);
+                                if(aux2 != null){
+                                    gestionTickets.mostrarDatosUsuario(aux2);
+                                }
+                                else {
+                                    System.out.println("No se encontro el ticket.");
+                                }
+
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar DNI del Cliente:");
                                 String dni1 = scanner.nextLine();
 
                                 Ticket ticket = gestionTickets.encontrarUsuario(dni1);
-                                gestionTickets.mostrarDatosUsuario(ticket);
+                                if(ticket != null){
+                                    gestionTickets.mostrarDatosUsuario(ticket);
+                                }
+                                else {
+                                    System.out.println("No se encontro el ticket.");
+                                }
                             }
                         }
                         catch (RuntimeException e) {
@@ -921,14 +972,24 @@ public class Menu {
                                 String dni2 = scanner.nextLine();
 
                                 Cliente aux1 = gestionDeCliente.encontrarUsuario(dni2);
-                                gestionDeCliente.mostrarDatosUsuario(aux1);
+                                if(aux1 != null){
+                                    gestionDeCliente.mostrarDatosUsuario(aux1);
+                                }
+                                else {
+                                    System.out.println("No se encontro el usuario.");
+                                }
                             }
                             else if (op1 == 2) {
                                 System.out.println("Ingresar ID del cliente:");
                                 int id = scanner.nextInt();
 
                                 Cliente aux1 = gestionDeCliente.encontrarUsuario(id);
-                                gestionDeCliente.mostrarDatosUsuario(aux1);
+                                if(aux1 != null){
+                                    gestionDeCliente.mostrarDatosUsuario(aux1);
+                                }
+                                else {
+                                    System.out.println("No se encontro el usuario.");
+                                }
                             }
                         }
                         catch (RuntimeException e) {

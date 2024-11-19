@@ -41,8 +41,8 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
     public void ingresarUsuario() {
 
         System.out.println("\nSeleccione el tipo de empleado que desea ingresar: ");
-        System.out.println("1. Users.Empleado tiempo completo.");
-        System.out.println("2. Users.Empleado medio tiempo.");
+        System.out.println("1. Empleado tiempo completo.");
+        System.out.println("2. Empleado medio tiempo.");
 
         int tipoEmpleado = scanner.nextInt();
         scanner.nextLine();

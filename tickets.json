@@ -325,5 +325,209 @@
                                                                 "disponible": true
                                                 }
                                 ]
+                },
+                {
+                                "cliente": 108,
+                                "precio": 10700,
+                                "empleado": {
+                                                "estado": false,
+                                                "aniosAntiguedad": 1,
+                                                "apellido": "Rodriguez",
+                                                "direccion": "San Martín 456",
+                                                "sueldo": 990000,
+                                                "contrasenia": "qwerty12",
+                                                "id": 103,
+                                                "telefono": "2266778899",
+                                                "nombre": "Laura",
+                                                "dni": "45678901",
+                                                "email": "laura.rodriguez@gmail.com",
+                                                "username": "lrodriguez"
+                                },
+                                "hora": "2024-11-19T18:06:20.100095",
+                                "tipoPago": "EFECTIVO",
+                                "id": 425205,
+                                "reserva": {
+                                                "cliente": 108,
+                                                "estado": true,
+                                                "mesa": 6,
+                                                "hora": "15:00",
+                                                "id": 687528,
+                                                "cantPersonas": 10,
+                                                "dia": "2025-12-06",
+                                                "momento": "2024-11-18T23:23:57.511492"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "risotto de hongos",
+                                                                "precio": 8500,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 122,
+                                                                "nombre": "Risotto",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 109,
+                                "precio": 6700,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 1,
+                                                "apellido": "Cirio",
+                                                "direccion": "Arenales 2514",
+                                                "sueldo": 200000,
+                                                "contrasenia": "46534485",
+                                                "id": 469726,
+                                                "telefono": "2234486544",
+                                                "nombre": "Malena",
+                                                "dni": "46534485",
+                                                "email": "malecirio@gmail.com",
+                                                "username": "46534485"
+                                },
+                                "hora": "2024-11-19T18:06:50.141183",
+                                "tipoPago": "DEBITO",
+                                "id": 932845,
+                                "reserva": {
+                                                "cliente": 109,
+                                                "estado": true,
+                                                "mesa": 1111111,
+                                                "hora": "21:00",
+                                                "id": 272495,
+                                                "cantPersonas": 3,
+                                                "dia": "2024-12-10",
+                                                "momento": "2024-11-18T23:25:37.645413"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "tostadas con palta y huevo",
+                                                                "precio": 4500,
+                                                                "tipoPlato": "BRUNCH",
+                                                                "id": 107,
+                                                                "nombre": "Tostadas de palta",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "cerveza artesanal",
+                                                                "precio": 2200,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 124,
+                                                                "nombre": "Cerveza",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 574542,
+                                "precio": 13900,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 2,
+                                                "apellido": "Castagnino",
+                                                "direccion": "Carasa 5609",
+                                                "sueldo": 250000,
+                                                "contrasenia": "46564543",
+                                                "id": 361075,
+                                                "telefono": "2236199551",
+                                                "nombre": "Lucia",
+                                                "dni": "46564543",
+                                                "email": "luciacastagnino@gmail.com",
+                                                "username": "46564543"
+                                },
+                                "hora": "2024-11-19T18:07:17.816250",
+                                "tipoPago": "CREDITO",
+                                "id": 992162,
+                                "reserva": {
+                                                "cliente": 574542,
+                                                "estado": true,
+                                                "mesa": 2,
+                                                "hora": "21:00",
+                                                "id": 186338,
+                                                "cantPersonas": 2,
+                                                "dia": "2025-03-15",
+                                                "momento": "2024-11-19T09:37:26.488107"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "filet de merluza con guarnición",
+                                                                "precio": 8900,
+                                                                "tipoPlato": "CENA",
+                                                                "id": 112,
+                                                                "nombre": "Filet de merluza",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "waffles con frutas y miel",
+                                                                "precio": 5000,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 119,
+                                                                "nombre": "Waffles dulces",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 109,
+                                "precio": 10300,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "probando",
+                                                "direccion": "brown 123",
+                                                "sueldo": 480000,
+                                                "contrasenia": "12345678",
+                                                "id": 100,
+                                                "telefono": "2231456789",
+                                                "nombre": "probando",
+                                                "dni": "12345678",
+                                                "email": "probando@gmail",
+                                                "username": "12345678"
+                                },
+                                "hora": "2024-11-19T18:12:54.897431",
+                                "tipoPago": "DEBITO",
+                                "id": 450052,
+                                "reserva": {
+                                                "cliente": 109,
+                                                "estado": true,
+                                                "mesa": 2,
+                                                "hora": "12:00",
+                                                "id": 508458,
+                                                "cantPersonas": 1,
+                                                "dia": "2025-03-24",
+                                                "momento": "2024-11-19T18:12:16.706414"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "empanadas de carne",
+                                                                "precio": 1800,
+                                                                "tipoPlato": "ENTRADAS",
+                                                                "id": 117,
+                                                                "nombre": "Empanada de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "ravioles con salsa bolognesa",
+                                                                "precio": 7500,
+                                                                "tipoPlato": "ALMUERZO",
+                                                                "id": 110,
+                                                                "nombre": "Ravioles de carne",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                }
+                                ]
                 }
 ]

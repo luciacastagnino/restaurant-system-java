@@ -61,7 +61,7 @@
                 },
                 {
                                 "cliente": 108,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 6,
                                 "hora": "15:00",
                                 "id": 687528,
@@ -71,7 +71,7 @@
                 },
                 {
                                 "cliente": 109,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 1111111,
                                 "hora": "21:00",
                                 "id": 272495,
@@ -81,7 +81,7 @@
                 },
                 {
                                 "cliente": 574542,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 2,
                                 "hora": "21:00",
                                 "id": 186338,
@@ -198,5 +198,55 @@
                                 "cantPersonas": 2,
                                 "dia": "2024-11-22",
                                 "momento": "2024-11-19T11:35:16.827060"
+                },
+                {
+                                "cliente": 102,
+                                "estado": true,
+                                "mesa": 2,
+                                "hora": "12:00",
+                                "id": 594310,
+                                "cantPersonas": 15,
+                                "dia": "2025-05-17",
+                                "momento": "2024-11-19T18:09:19.629349"
+                },
+                {
+                                "cliente": 102,
+                                "estado": true,
+                                "mesa": 2,
+                                "hora": "14:00",
+                                "id": 77800,
+                                "cantPersonas": 10,
+                                "dia": "2024-05-17",
+                                "momento": "2024-11-19T18:10:29.991952"
+                },
+                {
+                                "cliente": 102,
+                                "estado": true,
+                                "mesa": 4,
+                                "hora": "23:00",
+                                "id": 731509,
+                                "cantPersonas": 12,
+                                "dia": "2024-12-31",
+                                "momento": "2024-11-19T18:11:13.364640"
+                },
+                {
+                                "cliente": 109,
+                                "estado": true,
+                                "mesa": 5,
+                                "hora": "13:30",
+                                "id": 918899,
+                                "cantPersonas": 1,
+                                "dia": "2025-12-20",
+                                "momento": "2024-11-19T18:11:34.931121"
+                },
+                {
+                                "cliente": 109,
+                                "estado": false,
+                                "mesa": 2,
+                                "hora": "12:00",
+                                "id": 508458,
+                                "cantPersonas": 1,
+                                "dia": "2025-03-24",
+                                "momento": "2024-11-19T18:12:16.706414"
                 }
 ]

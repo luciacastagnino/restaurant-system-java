@@ -206,8 +206,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                                 username = scanner.nextLine();
                                 try {
                                     Validaciones.validarNombreUsuario(username);
-                                    c.setUsername(username);
-                                    usernameValido = true;
+                                    if (!Validaciones.existeUser(username)){
+                                        c.setUsername(username);
+                                        usernameValido = true;
+                                    }else {
+                                        System.out.println("El DNI ya existe en el sistema.");
+                                    }
                                 } catch (DatoInvalidoException e) {
                                     System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                                 }
@@ -278,8 +282,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                                 dni = scanner.nextLine();
                                 try {
                                     Validaciones.validarDNI(dni);
-                                    c.setDni(dni);
-                                    dniValido = true;
+                                    if (!Validaciones.existeDni(dni, "empleado")){
+                                        c.setDni(dni);
+                                        dniValido = true;
+                                    }else {
+                                        System.out.println("El DNI ya existe en el sistema.");
+                                    }
                                 } catch (DatoInvalidoException e) {
                                     System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                                 }
@@ -442,8 +450,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                                 username = scanner.nextLine();
                                 try {
                                     Validaciones.validarNombreUsuario(username);
-                                    c.setUsername(username);
-                                    usernameValido = true;
+                                    if (!Validaciones.existeUser(username)){
+                                        c.setUsername(username);
+                                        usernameValido = true;
+                                    }else {
+                                        System.out.println("El DNI ya existe en el sistema.");
+                                    }
                                 } catch (DatoInvalidoException e) {
                                     System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                                 }
@@ -514,8 +526,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                                 dni = scanner.nextLine();
                                 try {
                                     Validaciones.validarDNI(dni);
-                                    c.setDni(dni);
-                                    dniValido = true;
+                                    if (!Validaciones.existeDni(dni, "empleado")){
+                                        c.setDni(dni);
+                                        dniValido = true;
+                                    }else {
+                                        System.out.println("El DNI ya existe en el sistema.");
+                                    }
                                 } catch (DatoInvalidoException e) {
                                     System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                                 }

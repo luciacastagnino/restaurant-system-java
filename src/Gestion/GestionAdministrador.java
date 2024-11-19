@@ -158,8 +158,12 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
                                 username = scanner.nextLine();
                                 try {
                                     Validaciones.validarNombreUsuario(username);
-                                    c.setUsername(username);
-                                    usernameValido = true;
+                                    if (!Validaciones.existeUser(username)){
+                                        c.setUsername(username);
+                                        usernameValido = true;
+                                    }else {
+                                        System.out.println("El DNI ya existe en el sistema.");
+                                    }
                                 } catch (DatoInvalidoException e) {
                                     System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                                 }
@@ -234,8 +238,12 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
                                 dni = scanner.nextLine();
                                 try {
                                     Validaciones.validarDNI(dni);
-                                    c.setDni(dni);
-                                    dniValido = true;
+                                    if (!Validaciones.existeDni(dni, "administrador")){
+                                        c.setDni(dni);
+                                        dniValido = true;
+                                    }else {
+                                        System.out.println("El DNI ya existe en el sistema.");
+                                    }
                                 } catch (DatoInvalidoException e) {
                                     System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
                                 }

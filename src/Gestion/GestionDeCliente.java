@@ -160,7 +160,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
             username = scanner.nextLine();
             try {
                 Validaciones.validarNombreUsuario(username);
-                usernameValido = true;
+                if (!Validaciones.existeUser(username)){
+                    usernameValido = true;
+                }else {
+                    System.out.println("El DNI ya existe en el sistema.");
+                }
             } catch (DatoInvalidoException e) {
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
             }
@@ -237,7 +241,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
             dni = scanner.nextLine();
             try {
                 Validaciones.validarDNI(dni);
-                dniValido = true;
+                if (!Validaciones.existeDni(dni, "cliente")){
+                    dniValido = true;
+                }else {
+                    System.out.println("El DNI ya existe en el sistema.");
+                }
             } catch (DatoInvalidoException e) {
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
             }

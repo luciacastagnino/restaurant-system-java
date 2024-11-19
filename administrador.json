@@ -13,6 +13,18 @@
                 },
                 {
                                 "estado": true,
+                                "apellido": "Castagnino",
+                                "direccion": "Carasa 5000",
+                                "contrasenia": "Probando2.",
+                                "id": 1006762,
+                                "telefono": "2234483600",
+                                "nombre": "Lucia",
+                                "dni": "12345678",
+                                "email": "probando@gmail.com",
+                                "username": "Probando2."
+                },
+                {
+                                "estado": true,
                                 "apellido": "Di Meglio",
                                 "direccion": "Paso 1587",
                                 "contrasenia": "Probando2.",

@@ -210,7 +210,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                                         c.setUsername(username);
                                         usernameValido = true;
                                     }else {
-                                        System.out.println("El DNI ya existe en el sistema.");
+                                        System.out.println("El username ya existe en el sistema.");
                                     }
                                 } catch (DatoInvalidoException e) {
                                     System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");
@@ -454,7 +454,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                                         c.setUsername(username);
                                         usernameValido = true;
                                     }else {
-                                        System.out.println("El DNI ya existe en el sistema.");
+                                        System.out.println("El username ya existe en el sistema.");
                                     }
                                 } catch (DatoInvalidoException e) {
                                     System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente");

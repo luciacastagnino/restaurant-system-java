@@ -56,6 +56,8 @@ public class GestionTickets{
     public List<Ticket> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("tickets.json");
 
+        ticketSet.clear();
+
         try {
             JSONArray arreglo = new JSONArray(aux);
             for(int i = 0; i < arreglo.length(); i++){

@@ -131,7 +131,7 @@
                 },
                 {
                                 "cliente": 701292,
-                                "estado": true,
+                                "estado": false,
                                 "mesa": 3,
                                 "hora": "12:00",
                                 "id": 592608,

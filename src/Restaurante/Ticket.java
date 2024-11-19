@@ -208,8 +208,13 @@ public class Ticket {
 
                     break;
                 case 2:
-                    System.out.println("Platos cargados con exito.");
-                    salir=true;
+                    if (platos.isEmpty()){
+                        System.out.println("Debe agregar al menos un plato.");
+                    }else {
+                        System.out.println("Platos cargados con exito.");
+                        salir=true;
+                    }
+
                     break;
             }
         }

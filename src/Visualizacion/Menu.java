@@ -848,11 +848,19 @@ public class Menu {
                         gestionTickets.ingresarUsuario();
                         break;
                     case 3:
-                        System.out.println("Ingrese el ID del Ticket a modificar");
-                        int id1 = scanner.nextInt();
+                        boolean valid = false;
+                        while (!valid){
+                            System.out.println("Ingrese el ID del Ticket a modificar");
+                            int id1 = scanner.nextInt();
 
-                        Ticket aux1 = gestionTickets.encontrarUsuario(id1);
-                        gestionTickets.modificarUsuario(aux1);
+                            Ticket aux1 = gestionTickets.encontrarUsuario(id1);
+                            if (aux1==null){
+                                System.out.println("No se encontro el ticekt a modificar. Ingrese un ID valido.");
+                            }else {
+                                gestionTickets.modificarUsuario(aux1);
+                                valid=true;
+                            }
+                        }
                         break;
                     case 4:
                         System.out.println("1. Buscar Ticket por ID.");

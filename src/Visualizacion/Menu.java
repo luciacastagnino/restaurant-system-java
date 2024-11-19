@@ -190,7 +190,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 6);
+        } while (op != 7);
     }
 
     public void cuentaAdmin(Administrador admin) {

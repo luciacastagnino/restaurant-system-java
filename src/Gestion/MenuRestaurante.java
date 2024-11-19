@@ -372,7 +372,7 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
             cargarArrayConArchivo();
         }
         for (Plato p : listaPlatos.values()){
-            System.out.println("ID: " + p.getId() + " / Plato: " + p.getNombre());
+            System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
         }
     }
 
@@ -382,9 +382,14 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarDesayunoMerienda () {
+
+        if (listaPlatos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
         for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.DESAYUNO) && p.isDisponibilidad()) {
-                System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
+                System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
             }
         }
     }
@@ -395,9 +400,14 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarBrunch () {
+
+        if (listaPlatos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
         for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.BRUNCH) && p.isDisponibilidad()) {
-                System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
+                System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
             }
         }
     }
@@ -408,9 +418,14 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarEntradas () {
+
+        if (listaPlatos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
         for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.ENTRADAS) && p.isDisponibilidad()) {
-                System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
+                System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
             }
         }
     }
@@ -421,9 +436,14 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarAlmuerzo () {
+
+        if (listaPlatos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
         for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.ALMUERZO) && p.isDisponibilidad()) {
-                System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
+                System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
             }
         }
     }
@@ -434,9 +454,14 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarCena () {
+
+        if (listaPlatos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
         for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.CENA) && p.isDisponibilidad()) {
-                System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
+                System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
             }
         }
     }
@@ -447,9 +472,14 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarPostre () {
+
+        if (listaPlatos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
         for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.POSTRE) && p.isDisponibilidad()) {
-                System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
+                System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
             }
         }
     }
@@ -460,9 +490,14 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      *
      */
     public void mostrarBebida () {
+
+        if (listaPlatos.isEmpty()){
+            cargarArrayConArchivo();
+        }
+
         for (Plato p : listaPlatos.values()) {
             if (p.getTipoPlato().equals(TipoPlato.BEBIDA) && p.isDisponibilidad()) {
-                System.out.println("- " + p.getNombre() + "       $" + p.getPrecio());
+                System.out.println("- " + p.getNombre() + " / $" + p.getPrecio());
             }
         }
     }
@@ -475,44 +510,56 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
      * @version 1
      */
     public void mostrarMenuCompleto () {
-        System.out.println("========= MENÚ DEL DÍA =========");
+        System.out.println();
+        System.out.println("----------------------------------------");
+        System.out.println("============= MENÚ DEL DÍA =============");
+        System.out.println("----------------------------------------");
         System.out.println();
 
-        System.out.println(" DESAYUNO / MERIENDA");
-        System.out.println("----------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("         DESAYUNO / MERIENDA");
+        System.out.println("----------------------------------------");
         mostrarDesayunoMerienda();
 
         System.out.println();
-        System.out.println(" BRUNCH");
-        System.out.println("----------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("                BRUNCH");
+        System.out.println("----------------------------------------");
         mostrarBrunch();
 
         System.out.println();
-        System.out.println(" ENTRADAS");
-        System.out.println("----------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("                ENTRADAS");
+        System.out.println("----------------------------------------");
         mostrarEntradas();
 
         System.out.println();
-        System.out.println(" ALMUERZO");
-        System.out.println("----------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("                ALMUERZO");
+        System.out.println("----------------------------------------");
         mostrarAlmuerzo();
 
         System.out.println();
-        System.out.println(" CENA");
-        System.out.println("----------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("                  CENA");
+        System.out.println("----------------------------------------");
         mostrarCena();
 
         System.out.println();
-        System.out.println(" POSTRES");
-        System.out.println("----------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("                POSTRES");
+        System.out.println("----------------------------------------");
         mostrarPostre();
 
         System.out.println();
-        System.out.println(" BEBIDAS");
-        System.out.println("----------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("                BEBIDAS");
+        System.out.println("----------------------------------------");
         mostrarBebida();
 
         System.out.println();
-        System.out.println("================================");
+        System.out.println("========================================");
+        System.out.println("-------------- GastroLab ---------------");
+        System.out.println("========================================");
     }
 }

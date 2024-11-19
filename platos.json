@@ -14,5 +14,165 @@
                                 "id": 169031,
                                 "nombre": "Asado",
                                 "disponible": true
+                },
+                {
+                                "descripcion": "café con leche y medialunas",
+                                "precio": 3200,
+                                "tipoPlato": "DESAYUNO",
+                                "id": 105,
+                                "nombre": "Café con medialunas",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "jugo de naranja natural",
+                                "precio": 1500,
+                                "tipoPlato": "DESAYUNO",
+                                "id": 106,
+                                "nombre": "Jugo de naranja",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "tostadas con palta y huevo",
+                                "precio": 4500,
+                                "tipoPlato": "BRUNCH",
+                                "id": 107,
+                                "nombre": "Tostadas de palta",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "croissant relleno con queso y jamón",
+                                "precio": 4000,
+                                "tipoPlato": "BRUNCH",
+                                "id": 108,
+                                "nombre": "Croissant relleno",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "ensalada cesar con pollo",
+                                "precio": 6800,
+                                "tipoPlato": "ALMUERZO",
+                                "id": 109,
+                                "nombre": "Ensalada César",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "ravioles con salsa bolognesa",
+                                "precio": 7500,
+                                "tipoPlato": "ALMUERZO",
+                                "id": 110,
+                                "nombre": "Ravioles de carne",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "sopa crema de zapallo",
+                                "precio": 5200,
+                                "tipoPlato": "CENA",
+                                "id": 111,
+                                "nombre": "Sopa de zapallo",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "filet de merluza con guarnición",
+                                "precio": 8900,
+                                "tipoPlato": "CENA",
+                                "id": 112,
+                                "nombre": "Filet de merluza",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "cheesecake de frutos rojos",
+                                "precio": 4800,
+                                "tipoPlato": "POSTRE",
+                                "id": 113,
+                                "nombre": "Cheesecake",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "mousse de chocolate",
+                                "precio": 4300,
+                                "tipoPlato": "POSTRE",
+                                "id": 114,
+                                "nombre": "Mousse de chocolate",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "agua mineral sin gas",
+                                "precio": 1000,
+                                "tipoPlato": "BEBIDA",
+                                "id": 115,
+                                "nombre": "Agua sin gas",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "vino tinto malbec",
+                                "precio": 7200,
+                                "tipoPlato": "BEBIDA",
+                                "id": 116,
+                                "nombre": "Vino tinto",
+                                "disponible": true
+                },
+                {
+                                "descripcion": "empanadas de carne",
+                                "precio": 1800,
+                                "tipoPlato": "ENTRADAS",
+                                "id": 117,
+                                "nombre": "Empanada de carne",
+                                "disponible": true
+                },
+                {
+                              "descripcion": "tabla de quesos y fiambres",
+                              "precio": 10500,
+                              "tipoPlato": "ENTRADAS",
+                              "id": 118,
+                              "nombre": "Tabla de quesos",
+                              "disponible": true
+                },
+                {
+                              "descripcion": "waffles con frutas y miel",
+                              "precio": 5000,
+                              "tipoPlato": "DESAYUNO",
+                              "id": 119,
+                              "nombre": "Waffles dulces",
+                              "disponible": true
+                },
+                {
+                              "descripcion": "panqueques con dulce de leche",
+                              "precio": 4600,
+                              "tipoPlato": "POSTRE",
+                              "id": 120,
+                              "nombre": "Panqueques",
+                              "disponible": true
+                },
+                {
+                              "descripcion": "omelette de espinaca y queso",
+                              "precio": 3900,
+                              "tipoPlato": "BRUNCH",
+                              "id": 121,
+                              "nombre": "Omelette",
+                              "disponible": true
+                },
+                {
+                              "descripcion": "risotto de hongos",
+                              "precio": 8500,
+                              "tipoPlato": "ALMUERZO",
+                              "id": 122,
+                              "nombre": "Risotto",
+                              "disponible": true
+                },
+                {
+                              "descripcion": "pollo al curry con arroz",
+                              "precio": 9500,
+                              "tipoPlato": "CENA",
+                              "id": 123,
+                              "nombre": "Pollo al curry",
+                              "disponible": true
+                },
+                {
+                            "descripcion": "cerveza artesanal",
+                            "precio": 2200,
+                            "tipoPlato": "BEBIDA",
+                            "id": 124,
+                            "nombre": "Cerveza",
+                            "disponible": true
                 }
 ]

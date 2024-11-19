@@ -281,7 +281,7 @@ public class Menu {
 
                                 double total = ((EmpleadoMedioTiempo) aux1).calcularSueldo(hs);
 
-                                System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
+                                System.out.println("El sueldo de " + aux1.getNombre() + " " + aux1.getApellido() + " es de: $" + total);
                             } else if (aux1 instanceof EmpleadoTiempoCompleto) {
                                 System.out.println("Ingrese las horas extra del empleado (0 si no hay horas extra):");
                                 int hs = scanner.nextInt();
@@ -290,7 +290,7 @@ public class Menu {
                                 double pxh = scanner.nextDouble();
 
                                 double total = ((EmpleadoTiempoCompleto)aux1).calcularSueldo(hs, pxh);
-                                System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);
+                                System.out.println("El sueldo de " + aux1.getNombre() + " " + aux1.getApellido() + " es de: $" + total);
                             }
                         }
                         catch (RuntimeException e) {

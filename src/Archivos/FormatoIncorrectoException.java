@@ -1,17 +1,9 @@
-/**
- * Exception lanzada cuando un JSON no se puede convertir a objeto porque no tiene el formato correcto
- * Casos de uso: pasar datos de archivo JSON a Users.Cliente, Users.Empleado, Restaurante.Reserva, etc
- *
- *  * @author Brenda
- *  * @since 2024
- *  * @version 1
- */
 package Archivos;
 
 /**
  * Exception lanzada al detectar un formato incorrecto en los datos ingresados o procesados.
  * Casos de uso:
- * - Formato incorrecto de JSON para objetos como Users.Cliente, plato, ticket o cliente.
+ * - Formato incorrecto de JSON para objetos como Cliente, Empleado, Administrador, Plato, Ticket o Reserva.
  * - Error en el formato de fecha dentro del JSON.
  * - Error al intentar parsear un JSON.
  *

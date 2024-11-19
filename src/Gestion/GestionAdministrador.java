@@ -41,8 +41,13 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Metodo para registrar un nuevo administrador en el sistema
+     * Llama al metodo {@code registroAdmin} de la clase {@code registroUser} para crear un
+     * objeto administrador con los datos ingresados.
+     */
+
     public void ingresarUsuario(){
-        Scanner scan = new Scanner(System.in);
             System.out.println();
             Administrador aux = registroUser.registroAdmin();
             agregarYguardar(aux);
@@ -50,7 +55,14 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
 
     }
 
-
+    /**
+     * Metodo para cargar colecciones de tipo Set con la informacion almacenada en el archivo.
+     * Genera un {@code JSONArray} con la informacion del archivo JSON, generando y guardando
+     * administradores en el Set.
+     * En caso de que haya un error al convertir los {@code JSONObject} a administrador,
+     * se captura una excepcion {@code JSONException} e imprime un mensaje de error.
+     * @return {@code Set<Administrador>}
+     */
 
     public Set<Administrador> cargarArrayConArchivo(){
         JSONTokener aux = GestionJSON.leer("administrador.json");
@@ -71,6 +83,12 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
 
         return listaAdmins;
     }
+
+    /**
+     * Este metodo se utiliza para agregar elementos al archivo, sin que haya perdida de
+     * informacion.
+     * @param nuevoAdmin
+     */
 
     public void agregarYguardar (Administrador nuevoAdmin){
         cargarArrayConArchivo();
@@ -141,6 +159,13 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
 
     }
 
+    /**
+     * Este metodo se utiliza para la modificacion de usuarios.
+     * Encuentra a los usuarios a modificar mediante el ID, y luego le
+     * ofrece una lista de opciones para modificar.
+     * @param c
+     * @return el objeto {@code Administrador} modificado.
+     */
 
     public Administrador modificarUsuario (Administrador c) {
 
@@ -339,6 +364,13 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             return null;
     }
 
+    /**
+     * Este metodo da de baja usuarios, en el caso de que se trate de un Administrador,
+     * Cliente o Empleado le solicita que ingrese la contraseña para garantizar
+     * que la cuenta pertenezca al usuario.
+     * @param a
+     */
+
     @Override
     public void darDeBajaUsuario(Administrador a) {
         listaAdmins = cargarArrayConArchivo();
@@ -375,6 +407,9 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
         System.out.println("No se encontro al usuario.");
     }
 
+    /**
+     * El metodo muestra a todos los {@code Administradores} cargados en el sistema.
+     */
 
     public void mostrarColeccion () {
         if (listaAdmins.isEmpty()) {
@@ -382,6 +417,12 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
         }
         listaAdmins.forEach(admin -> mostrarDatosUsuario(admin));
     }
+
+    /**
+     * El metodo lo que hace es buscar usuarios segun el DNI de este.
+     * @param dni
+     * @return {@code Administrador} buscado.
+     */
 
     @Override
     public Administrador encontrarUsuario(String dni) {
@@ -395,6 +436,12 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
                 .orElse(null);
     }
 
+    /**
+     * El metood encuentra a el usuario segun el ID.
+     * @param id
+     * @return {@code Administrador} buscado.
+     */
+
     @Override
     public Administrador encontrarUsuario(int id) {
         if (listaAdmins.isEmpty()) {
@@ -406,6 +453,11 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
                 .findFirst()
                 .orElse(null);
     }
+
+    /**
+     * El metodo muestra a los usuarios que posean el nombre que se mando por parametro.
+     * @param nombre
+     */
 
     @Override
     public void listarUsuarios(String nombre) {
@@ -425,6 +477,12 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
          }
     }
 
+    /**
+     * El metodo lista a los usuarios segun el estado en el que se encuentren.
+     * Se utiliza para filtrar aquellos usuarios que esten activos e inactivos.
+     * @param aux
+     */
+
     @Override
     public void listarUsuarios(boolean aux) {
         if (listaAdmins.isEmpty()) {
@@ -442,6 +500,13 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             System.out.println("No se encontraron administradores.");
         }
     }
+
+    /**
+     * Este metodo da de alta usuarios, en el caso de que se trate de un Administrador,
+     * Cliente o Empleado le solicita que ingrese la contraseña para garantizar
+     * que la cuenta pertenezca al usuario.
+     * @param a
+     */
 
     @Override
     public void darDeAltaUsuario(Administrador a) {

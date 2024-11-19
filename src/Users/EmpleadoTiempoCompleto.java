@@ -78,6 +78,7 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
             jsonObject.put("direccion", e.getDireccion());
             jsonObject.put("email", e.getEmail());
             jsonObject.put("estado", e.getEstado());
+            jsonObject.put("sueldo", e.getSueldo());
             jsonObject.put("aniosAntiguedad", e.getAniosAntiguedad());
         }catch (JSONException ex){
             ex.printStackTrace();
@@ -102,7 +103,7 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
             if(json.has("id") && json.has("username") && json.has("contrasenia") &&
                     json.has("nombre") && json.has("apellido") && json.has("dni") &&
                     json.has("telefono") && json.has("direccion") && json.has("email") &&
-                    json.has("estado") && json.has("aniosAntiguedad")){
+                    json.has("estado") && json.has("sueldo") && json.has("aniosAntiguedad")){
                 empleadoLeido.setId(json.getInt("id"));
                 empleadoLeido.setUsername(json.getString("username"));
                 empleadoLeido.setContrasenia(json.getString("contrasenia"));
@@ -113,6 +114,7 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
                 empleadoLeido.setDireccion(json.getString("direccion"));
                 empleadoLeido.setEmail(json.getString("email"));
                 empleadoLeido.setEstado(json.getBoolean("estado"));
+                empleadoLeido.setSueldo(json.getDouble("sueldo"));
                 empleadoLeido.setAniosAntiguedad(json.getInt("aniosAntiguedad"));
             }
             else {

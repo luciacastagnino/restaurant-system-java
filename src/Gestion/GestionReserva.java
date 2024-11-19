@@ -74,7 +74,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         for (Reserva reserva : reservasPorCliente) {
             if (reserva.getMesa() == mesa &&
                     reserva.getDia().equals(dia) &&
-                    reserva.getHora().equals(hora)) {
+                    reserva.getHora().equals(hora) && reserva.getEstado()==true) {
                 return false;
             }
         }

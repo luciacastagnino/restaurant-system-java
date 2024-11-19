@@ -34,22 +34,6 @@ public abstract class Empleado extends Usuario {
     }
 
     @Override
-    public String toString() {
-        return "Empleado{" +
-                "sueldo=" + sueldo +
-                ", id=" + id +
-                ", username='" + username + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", dni='" + dni + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", email='" + email + '\'' +
-                "} ";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Empleado empleado)) return false;
@@ -62,5 +46,20 @@ public abstract class Empleado extends Usuario {
         return Objects.hash(super.hashCode(), sueldo);
     }
 
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "sueldo=" + sueldo +
+                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", email='" + email + '\'' +
+                ", estado=" + estado +
+                "} " + super.toString();
+    }
 
 }

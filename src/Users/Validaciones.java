@@ -52,7 +52,7 @@ public class Validaciones {
 
         //FALTA AGREGAR VALIDACION PARA QUE NO SE REPITAN LOS USUARIOS :)))
 
-        cargarArray();
+        /*cargarArray();
 
         boolean encontrado = false;
 
@@ -62,7 +62,7 @@ public class Validaciones {
 
         if(encontrado){
             throw new DatoInvalidoException("El nombre de usuario ya esta en uso.");
-        }
+        }*/
     }
 
     /**
@@ -176,7 +176,7 @@ public class Validaciones {
         }
     }
 
-    public static Set<String> cargarArray(){
+    /*public static Set<String> cargarArray(){
 
         Set<String> cliente = gestionDeCliente.cargarNombresDeUsuario();
         cliente.stream().forEach(c -> nombresDeUsuario.add(c));
@@ -186,6 +186,6 @@ public class Validaciones {
         admin.stream().forEach(c -> nombresDeUsuario.add(c));
 
         return nombresDeUsuario;
-    }
+    }*/
 
 }

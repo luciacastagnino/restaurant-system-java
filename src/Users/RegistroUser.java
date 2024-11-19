@@ -1,5 +1,6 @@
 package Users;
 
+import Gestion.GestionAdministrador;
 import Gestion.GestionDeCliente;
 import Restaurante.Reserva;
 import Users.Administrador;
@@ -8,7 +9,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+
 /**
  * La clase Users.RegistroUser tiene como atributo un Scanner para utilizar en los metodos
  * Tiene un constructor que inicializa el Scanner
@@ -32,6 +36,20 @@ public final class RegistroUser{
      * administrador.
      * @return nuevo Administrador
      */
+
+    public boolean existeUser (String username){
+        GestionAdministrador gestionAdministrador = new GestionAdministrador();
+        boolean existe=false;
+        Set<Administrador> setAdmin = new HashSet<>();
+        setAdmin=gestionAdministrador.cargarArrayConArchivo();
+        for (Administrador administrador : setAdmin){
+            if (administrador.getUsername().equals(username)){
+                existe=true;
+            }
+        }
+        return existe;
+    }
+
     public Administrador registroAdmin (){
 
         System.out.println("Complete con sus datos:\n");
@@ -44,7 +62,11 @@ public final class RegistroUser{
             username = scanner.nextLine();
             try {
                 Validaciones.validarNombreUsuario(username);
-                usernameValido=true;
+                if (!existeUser(username)){
+                    usernameValido=true;
+                }else {
+                    System.out.println("El username ya existe en el sistema, ingrese otro.");
+                }
             }catch (DatoInvalidoException e){
                 System.out.println("Error: " + e.getMessage() + ". Por favor, intente nuevamente.");
             }

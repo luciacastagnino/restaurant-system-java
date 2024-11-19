@@ -201,7 +201,7 @@ public class Menu {
             System.out.println("1. Ver mi perfil.");
             System.out.println("2. Modificar mi cuenta.");
             System.out.println("3. Eliminar cuenta.");
-            System.out.println("4. Salir.");
+            System.out.println("4. Atras.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -244,7 +244,7 @@ public class Menu {
             System.out.println("7. Modificar Empleado.");
             System.out.println("8. Buscar Empleado.");
             System.out.println("9. Dar de alta empleado.");
-            System.out.println("10. Salir.");
+            System.out.println("10. Atras.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -370,7 +370,7 @@ public class Menu {
             System.out.println("8. Buscar Cliente.");
             System.out.println("9. Mostrar reservas.");
             System.out.println("10. Dar de alta Cliente.");
-            System.out.println("11. Salir.");
+            System.out.println("11. Atras.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -475,7 +475,7 @@ public class Menu {
             System.out.println("4. Modificar Reserva.");
             System.out.println("5. Buscar Reserva.");
             System.out.println("6. Dar de alta Reserva.");
-            System.out.println("7. Salir.");
+            System.out.println("7. Atras.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -490,7 +490,7 @@ public class Menu {
                         System.out.println("5. Reservas por Hora.");
                         System.out.println("6. Reservas por dia y hora.");
                         System.out.println("7. Reservas por Cliente.");
-                        System.out.println("8. Salir");
+                        System.out.println("8. Atras.");
 
                         try {
                             System.out.printf("Selecciona una opcion: ");
@@ -635,7 +635,7 @@ public class Menu {
             System.out.println("4. Modificar Plato.");
             System.out.println("5. Buscar Plato.");
             System.out.println("6. Dar de alta Plato.");
-            System.out.println("7. Salir.");
+            System.out.println("7. Atras.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -764,7 +764,7 @@ public class Menu {
             System.out.println("2. Ingresar Ticket.");
             System.out.println("3. Modificar Ticket.");
             System.out.println("4. Buscar Ticket.");
-            System.out.println("5. Salir.");
+            System.out.println("5. Atras.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -862,7 +862,6 @@ public class Menu {
 
                 if (empleado != null) {
                     menuInicioSesionEmpleado(empleado);
-                    System.out.println("\nBienvenido/a " + empleado.getNombre() + " " + empleado.getApellido());
                     empleadoLogIn = true;
                 }
                 else {
@@ -876,6 +875,9 @@ public class Menu {
 
     public void menuInicioSesionEmpleado(Empleado empleado) {
         int op = 0;
+
+        System.out.println("\nBienvenido/a " + empleado.getNombre() + " " + empleado.getApellido());
+
         do {
             System.out.println();
             System.out.println("¿Que desea hacer?");
@@ -949,6 +951,10 @@ public class Menu {
 
     public void menuInicioSesionCliente(Cliente cliente) {
         int op = 0;
+
+        System.out.println("\nBienvenido/a " + cliente.getNombre() + " " + cliente.getApellido());
+
+
         do {
             System.out.println();
             System.out.println("¿Que desea hacer?");
@@ -983,7 +989,7 @@ public class Menu {
                         System.out.println("6. Almuerzo.");
                         System.out.println("7. Cena.");
                         System.out.println("8. Postre.");
-                        System.out.println("9. Salir");
+                        System.out.println("9. Atras");
 
                         try {
                             System.out.printf("Selecciona una opcion: ");

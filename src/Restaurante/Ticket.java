@@ -157,7 +157,7 @@ public class Ticket {
             res = gestionReserva.encontrarUsuario(id);
             if (res!=null){
                 System.out.println("Reserva encontrada.");
-                gestionReserva.darDeBajaUsuario(res);
+                gestionReserva.darDeBajaReservaTicket(res);
                 cliente = res.getCliente();
                 if (cliente!=0){
                     resValida = true;

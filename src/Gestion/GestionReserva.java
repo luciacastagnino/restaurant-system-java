@@ -335,6 +335,26 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
     }
 
+    public void darDeBajaReservaTicket (Reserva a) {
+        reservasPorCliente = cargarArrayConArchivo();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i<reservasPorCliente.size() ; i++) {
+            Reserva reserva = reservasPorCliente.get(i);
+            if (a.getId() == reserva.getId()) {
+                encontrado=true;
+                reserva.setEstado(false);
+                cargarArchivoConArreglo(reservasPorCliente);
+                return;
+            }
+        }
+
+        if (!encontrado){
+            System.out.println("No se encontro la reserva con el ID ingresado.");
+        }
+    }
+
     @Override
     public void darDeAltaUsuario(Reserva a) {
         reservasPorCliente = cargarArrayConArchivo();

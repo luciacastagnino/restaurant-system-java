@@ -16,7 +16,7 @@ public class Main {
             while (reader.hasNextLine()){
                 String line = reader.nextLine();
                 System.out.println(line);
-                Thread.sleep(20);
+                Thread.sleep(10);
             }
         }catch (FileNotFoundException e){
             e.printStackTrace();

@@ -21,18 +21,6 @@
                                 "nombre": "Brenda",
                                 "dni": "46564543",
                                 "email": "luciacastagninoo@gmail.com",
-                                "username": "Admin1"
-                },
-                {
-                                "estado": true,
-                                "apellido": "Castagnino",
-                                "direccion": "Carasa 5609",
-                                "contrasenia": "Probando2.",
-                                "id": 2,
-                                "telefono": "2236199551",
-                                "nombre": "Lucia",
-                                "dni": "46564543",
-                                "email": "luciacastagninoo@gmail.com",
-                                "username": "Admin1"
+                                "username": "BrendaF"
                 }
 ]

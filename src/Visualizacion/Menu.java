@@ -84,7 +84,6 @@ public class Menu {
                     break;
                 default:
                     System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
-                    valido = true;
                     break;
             }
         }

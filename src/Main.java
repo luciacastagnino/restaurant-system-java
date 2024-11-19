@@ -9,7 +9,7 @@ public class Main {
 
         //para mostrar el logo, no se si lo podremos hacer de esta forma :)
         try{
-            File file = new File("logo.txt");1
+            File file = new File("logo.txt");
 
             Scanner reader = new Scanner(file);
 

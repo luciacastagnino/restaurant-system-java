@@ -567,7 +567,12 @@ public class Menu {
                         int id1 = scanner.nextInt();
 
                         Reserva aux1 = gestionReserva.encontrarUsuario(id1);
-                        gestionReserva.modificarUsuario(aux1);
+                        try {
+                            gestionReserva.modificarUsuario(aux1);
+                        }
+                        catch (MesaYaReservadaException e){
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 5:
                         System.out.println("1. Buscar Reserva por ID.");

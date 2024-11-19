@@ -13,7 +13,7 @@ import Restaurante.MesaYaReservadaException;
 public interface MetodosBasicosGestion <T> {
     public void ingresarUsuario() throws MesaYaReservadaException;
     public void mostrarDatosUsuario(T t);
-    public T modificarUsuario(T t);
+    public T modificarUsuario(T t) throws MesaYaReservadaException;
     public void agregarYguardar (T t);
     public void darDeBajaUsuario(T t);
     public void mostrarColeccion();

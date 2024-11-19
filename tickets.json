@@ -2494,5 +2494,54 @@
                                                 "nombre": "Risotto",
                                                 "disponible": true
                                 }]
+                },
+                {
+                                "cliente": 116,
+                                "precio": 7800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 2,
+                                                "apellido": "Castagnino",
+                                                "direccion": "Carasa 5609",
+                                                "sueldo": 250000,
+                                                "contrasenia": "46564543",
+                                                "id": 361075,
+                                                "telefono": "2236199551",
+                                                "nombre": "Lucia",
+                                                "dni": "46564543",
+                                                "email": "luciacastagnino@gmail.com",
+                                                "username": "46564543"
+                                },
+                                "hora": "2024-11-19T13:03:35.691558800",
+                                "tipoPago": "EFECTIVO",
+                                "id": 264596,
+                                "reserva": {
+                                                "cliente": 116,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "16:00",
+                                                "id": 397776,
+                                                "cantPersonas": 3,
+                                                "dia": "2024-11-25",
+                                                "momento": "2024-11-19T11:33:51.163682"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "panqueques con dulce de leche",
+                                                                "precio": 4600,
+                                                                "tipoPlato": "POSTRE",
+                                                                "id": 120,
+                                                                "nombre": "Panqueques",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "café con leche y medialunas",
+                                                                "precio": 3200,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 105,
+                                                                "nombre": "Café con medialunas",
+                                                                "disponible": true
+                                                }
+                                ]
                 }
 ]

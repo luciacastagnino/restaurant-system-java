@@ -7,6 +7,7 @@ import Restaurante.Ticket;
 import Users.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.InputMismatchException;
@@ -296,7 +297,7 @@ public class Menu {
                                 int hs = scanner.nextInt();
 
                                 System.out.println("Ingrese el precio por hora (0 si no hay horas extra):");
-                                double pxh = scanner.nextInt();
+                                double pxh = scanner.nextDouble();
 
                                 double total = aux1.calcularSueldo(hs, pxh);
                                 System.out.println("El sueldo de " + aux1.getNombre() + aux1.getApellido() + " es de: $" + total);

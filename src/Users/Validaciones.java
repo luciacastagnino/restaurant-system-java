@@ -1,5 +1,12 @@
 package Users;
 
+import Gestion.GestionAdministrador;
+import Gestion.GestionDeCliente;
+import Gestion.GestionEmpleados;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * La clase Users.Validaciones no tiene atributos, se encarga de verificar que los datos ingresados sean
  * correctos.
@@ -11,6 +18,18 @@ package Users;
  * @version 1
  */
 public class Validaciones {
+
+    private static Set<String> nombresDeUsuario;
+    private static GestionDeCliente gestionDeCliente;
+    private static GestionEmpleados gestionEmpleados;
+    private static GestionAdministrador gestionAdministrador;
+
+    public Validaciones() {
+        this.nombresDeUsuario = new HashSet<>();
+        this.gestionAdministrador = new GestionAdministrador();
+        this.gestionDeCliente = new GestionDeCliente();
+        this.gestionEmpleados = new GestionEmpleados();
+    }
 
     //VALIDACION INGRESO DE DATOS
 
@@ -32,6 +51,18 @@ public class Validaciones {
         }
 
         //FALTA AGREGAR VALIDACION PARA QUE NO SE REPITAN LOS USUARIOS :)))
+
+        cargarArray();
+
+        boolean encontrado = false;
+
+        encontrado = nombresDeUsuario.stream()
+                .filter(user -> user.equals(username))
+                .count() > 0;
+
+        if(encontrado){
+            throw new DatoInvalidoException("El nombre de usuario ya esta en uso.");
+        }
     }
 
     /**
@@ -143,6 +174,18 @@ public class Validaciones {
         if (!email.contains("@")){
             throw new DatoInvalidoException("El correo electronico debe contener el simbolo '@'.");
         }
+    }
+
+    public static Set<String> cargarArray(){
+
+        Set<String> cliente = gestionDeCliente.cargarNombresDeUsuario();
+        cliente.stream().forEach(c -> nombresDeUsuario.add(c));
+        Set<String> empleado = gestionEmpleados.cargarNombresDeUsuario();
+        empleado.stream().forEach(c -> nombresDeUsuario.add(c));
+        Set<String> admin= gestionAdministrador.cargarNombresDeUsuario();
+        admin.stream().forEach(c -> nombresDeUsuario.add(c));
+
+        return nombresDeUsuario;
     }
 
 }

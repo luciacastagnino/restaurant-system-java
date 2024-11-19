@@ -792,4 +792,15 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         }
         listaEmpleados.forEach(empleado -> mostrarDatosUsuario(empleado));
     }
+
+    public Set<String> cargarNombresDeUsuario(){
+        if (listaEmpleados.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        Set<String> nombresUser = new HashSet<>();
+
+        listaEmpleados.stream().forEach(empleado -> nombresUser.add(empleado.getUsername()));
+
+        return nombresUser;
+    }
 }

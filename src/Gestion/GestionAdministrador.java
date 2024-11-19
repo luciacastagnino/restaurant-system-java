@@ -454,6 +454,17 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             System.out.println("No se encontro al usuario.");
     }
 
+    public Set<String> cargarNombresDeUsuario(){
+        if (listaAdmins.isEmpty()) {
+            cargarArrayConArchivo();
+        }
+        Set<String> nombresUser = new HashSet<>();
+
+        listaAdmins.stream().forEach(admin -> nombresUser.add(admin.getUsername()));
+
+        return nombresUser;
+    }
+
 }
 
 

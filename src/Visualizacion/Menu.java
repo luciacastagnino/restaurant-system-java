@@ -785,10 +785,8 @@ public class Menu {
                     case 1:
                         System.out.println("Seleccione una opcion:");
                         System.out.println("1. Todos los Tickets.");
-                        System.out.println("2. Tickets Activos");
-                        System.out.println("3. Tickets inactivos.");
-                        System.out.println("4. Tickets por Cliente.");
-                        System.out.println("5. Salir");
+                        System.out.println("2. Tickets por Cliente.");
+                        System.out.println("3. Salir");
 
                         try {
                             System.out.printf("Selecciona una opcion: ");
@@ -798,13 +796,7 @@ public class Menu {
                             if(op1 == 1){
                                 gestionTickets.mostrarColeccion();
                             }
-                            else if (op1 == 2) {
-                                gestionTickets.listarUsuarios(true);
-                            }
-                            else if (op1 == 3){
-                                gestionTickets.listarUsuarios(false);
-                            }
-                            else if (op1 == 4){
+                            else if (op1 == 2){
                                 System.out.println("Ingrese el DNI del Cliente:");
                                 String aux = scanner.nextLine();
 

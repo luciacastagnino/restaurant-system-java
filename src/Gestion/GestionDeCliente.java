@@ -572,16 +572,5 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         }
         return listaDeClientes;
     }
-
-    public Set<String> cargarNombresDeUsuario(){
-        if (listaDeClientes.isEmpty()) {
-            cargarArrayConArchivo();
-        }
-        Set<String> nombresUser = new HashSet<>();
-
-        listaDeClientes.stream().forEach(cliente -> nombresUser.add(cliente.getUsername()));
-
-        return nombresUser;
-    }
 }
 

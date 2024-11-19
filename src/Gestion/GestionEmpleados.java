@@ -378,7 +378,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                             boolean precioPorHoraValido = false;
 
                             while (!precioPorHoraValido) {
-                                System.out.println("Ingrese sus horas trabajadas:");
+                                System.out.println("Ingrese el precio por hora trabajada:");
                                 double precioPorHora = scanner.nextDouble();
                                 scanner.nextLine();
                                 if (precioPorHora <= 0) {

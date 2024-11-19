@@ -12,6 +12,24 @@ import java.time.LocalTime;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * La clase Menu gestiona la interacción principal del sistema a través de diferentes menús según el rol del usuario.
+ *
+ * - Tiene como campos un objeto Scanner para leer entradas del usuario, y varias instancias de clases que gestionan
+ * funcionalidades específicas como registro, inicio de sesión, y operaciones relacionadas con administradores, clientes, empleados,
+ * reservas, menús y tickets.
+ * - Tiene un constructor vacío que inicializa todos los campos necesarios para el funcionamiento del menú.
+ * - Métodos: MenuPrincipal, menuAdmin, menuInicioSesionAdmin, cuentaAdmin, gestorDeEmpleadosAdmin, gestorDeClientesAdmin,
+ * gestorDeReservasAdmin, gestorDeMenuAdmin, gestorDeTicketsAdmin, menuEmpleado, menuInicioSesionEmpleado, menuCliente,
+ * menuInicioSesionCliente.
+ *
+ * @author Melina
+ * @since 2024
+ * @version 1
+ */
+
+
+
 public class Menu {
 
     private final Scanner scanner;

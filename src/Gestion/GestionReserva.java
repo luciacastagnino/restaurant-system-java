@@ -57,7 +57,7 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             if (verificarDisponibilidad(aux.getMesa(), aux.getDia(), aux.getHora())){
                 agregarYguardar(aux);
                 Cliente cliente = gestionDeCliente.encontrarUsuario(aux.getCliente());
-                System.out.println("\nReserva " + aux.getId() + "de " + cliente.getNombre() + " " + cliente.getApellido() + " agregado con exito!");
+                System.out.println("\nReserva " + aux.getId() + " de " + cliente.getNombre() + " " + cliente.getApellido() + " agregada con exito!");
                 valido=true;
             }else {
                 System.out.println("Hubo un problema, la mesa seleccionada ya esta ocupada. Cargue nuevamente la reserva.");

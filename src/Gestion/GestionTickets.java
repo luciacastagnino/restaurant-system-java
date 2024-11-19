@@ -297,10 +297,18 @@ public class GestionTickets{
         if (ticketSet.isEmpty()) {
             cargarArrayConArchivo();
         }
+
+        boolean encontrado = false;
+
         for (Ticket ticket : ticketSet){
             if (gestionDeCliente.encontrarUsuario(ticket.getCliente()).getDni().equals(dni)){
+                encontrado=true;
                 ticket.mostrarTicket(ticket);
             }
+        }
+
+        if (!encontrado){
+            System.out.println("No se encontraron tickets del cliente.");
         }
     }
 

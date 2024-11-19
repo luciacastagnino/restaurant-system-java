@@ -1,49 +1,100 @@
-[{
-                "cliente": 701292,
-                "precio": 4900,
-                "empleado": {
-                                "estado": true,
-                                "aniosAntiguedad": 2,
-                                "apellido": "Castagnino",
-                                "direccion": "Carasa 5609",
-                                "sueldo": 250000,
-                                "contrasenia": "46564543",
-                                "id": 361075,
-                                "telefono": "2236199551",
-                                "nombre": "Lucia",
-                                "dni": "46564543",
-                                "email": "luciacastagnino@gmail.com",
-                                "username": "46564543"
-                },
-                "hora": "2024-11-19T14:49:38.629275600",
-                "tipoPago": "CREDITO",
-                "id": 709411,
-                "reserva": {
+[
+                {
                                 "cliente": 701292,
-                                "estado": true,
-                                "mesa": 3,
-                                "hora": "12:00",
-                                "id": 592608,
-                                "cantPersonas": 2,
-                                "dia": "2025-07-17",
-                                "momento": "2024-11-19T11:32:26.886148"
-                },
-                "platos": [
-                                {
-                                                "descripcion": "omelette de espinaca y queso",
-                                                "precio": 3900,
-                                                "tipoPlato": "BRUNCH",
-                                                "id": 121,
-                                                "nombre": "Omelette",
-                                                "disponible": true
+                                "precio": 4900,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 2,
+                                                "apellido": "Castagnino",
+                                                "direccion": "Carasa 5609",
+                                                "sueldo": 250000,
+                                                "contrasenia": "46564543",
+                                                "id": 361075,
+                                                "telefono": "2236199551",
+                                                "nombre": "Lucia",
+                                                "dni": "46564543",
+                                                "email": "luciacastagnino@gmail.com",
+                                                "username": "46564543"
                                 },
-                                {
-                                                "descripcion": "agua mineral sin gas",
-                                                "precio": 1000,
-                                                "tipoPlato": "BEBIDA",
-                                                "id": 115,
-                                                "nombre": "Agua sin gas",
-                                                "disponible": true
-                                }
-                ]
-}]
+                                "hora": "2024-11-19T14:49:38.629275600",
+                                "tipoPago": "CREDITO",
+                                "id": 709411,
+                                "reserva": {
+                                                "cliente": 701292,
+                                                "estado": true,
+                                                "mesa": 3,
+                                                "hora": "12:00",
+                                                "id": 592608,
+                                                "cantPersonas": 2,
+                                                "dia": "2025-07-17",
+                                                "momento": "2024-11-19T11:32:26.886148"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "omelette de espinaca y queso",
+                                                                "precio": 3900,
+                                                                "tipoPlato": "BRUNCH",
+                                                                "id": 121,
+                                                                "nombre": "Omelette",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "agua mineral sin gas",
+                                                                "precio": 1000,
+                                                                "tipoPlato": "BEBIDA",
+                                                                "id": 115,
+                                                                "nombre": "Agua sin gas",
+                                                                "disponible": true
+                                                }
+                                ]
+                },
+                {
+                                "cliente": 120,
+                                "precio": 5800,
+                                "empleado": {
+                                                "estado": true,
+                                                "aniosAntiguedad": 5,
+                                                "apellido": "Vera",
+                                                "direccion": "Carasa 5609",
+                                                "sueldo": 750000,
+                                                "contrasenia": "25186505",
+                                                "id": 567334,
+                                                "telefono": "2234483600",
+                                                "nombre": "Carla",
+                                                "dni": "25186505",
+                                                "email": "carlavera5609@gmail.com",
+                                                "username": "25186505"
+                                },
+                                "hora": "2024-11-19T14:57:29.741286300",
+                                "tipoPago": "DEBITO",
+                                "id": 303325,
+                                "reserva": {
+                                                "cliente": 120,
+                                                "estado": true,
+                                                "mesa": 5,
+                                                "hora": "20:00",
+                                                "id": 278701,
+                                                "cantPersonas": 2,
+                                                "dia": "2025-05-17",
+                                                "momento": "2024-11-19T11:26:58.865313"
+                                },
+                                "platos": [
+                                                {
+                                                                "descripcion": "mousse de chocolate",
+                                                                "precio": 4300,
+                                                                "tipoPlato": "POSTRE",
+                                                                "id": 114,
+                                                                "nombre": "Mousse de chocolate",
+                                                                "disponible": true
+                                                },
+                                                {
+                                                                "descripcion": "jugo de naranja natural",
+                                                                "precio": 1500,
+                                                                "tipoPlato": "DESAYUNO",
+                                                                "id": 106,
+                                                                "nombre": "Jugo de naranja",
+                                                                "disponible": true
+                                                }
+                                ]
+                }
+]

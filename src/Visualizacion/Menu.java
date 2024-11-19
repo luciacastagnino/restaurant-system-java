@@ -816,7 +816,6 @@ public class Menu {
                 scanner.nextLine();
                 switch (op) {
                     case 1:
-                        System.out.println("Seleccione una opcion:");
                         System.out.println("1. Todos los Tickets.");
                         System.out.println("2. Tickets por Cliente.");
                         System.out.println("3. Salir");
@@ -1163,7 +1162,6 @@ public class Menu {
                         gestionReserva.listarUsuarios(cliente.getDni());
                         break;
                     case 4:
-                        System.out.println("Seleccione una opcion:");
                         System.out.println("1. Menu Completo.");
                         System.out.println("2. Bebidas");
                         System.out.println("3. Desayuno y Merienda.");

@@ -141,6 +141,16 @@ public class Ticket {
         this.precio = precio;
     }
 
+    public boolean validarReserva (Reserva reserva){
+
+        boolean esValida = false;
+
+        if (reserva!=null && reserva.getEstado()==true){
+            esValida=true;
+        }
+
+        return esValida;
+    }
 
     public Ticket ingresarTicket() {
 
@@ -155,15 +165,15 @@ public class Ticket {
             int id = scanner.nextInt();
             scanner.nextLine();
             res = gestionReserva.encontrarUsuario(id);
-            if (res!=null){
+            if (!validarReserva(res)){
+                System.out.println("No se encontro la reserva en el sistema");
+            }else{
                 System.out.println("Reserva encontrada.");
                 gestionReserva.darDeBajaReservaTicket(res);
                 cliente = res.getCliente();
                 if (cliente!=0){
                     resValida = true;
                 }
-            }else {
-                System.out.println("No se encontro la reserva, intentelo nuevamente.");
             }
         }
 

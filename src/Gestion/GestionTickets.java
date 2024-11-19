@@ -133,21 +133,23 @@ public class GestionTickets{
                         case 1:
 
                             GestionReserva gestionReserva = new GestionReserva();
-                            Reserva res = null;
+                            Reserva res = new Reserva();
                             int cliente = 0;
                             boolean resValida = false;
                             while (!resValida) {
                                 System.out.println("Por favor, ingresa ID de la reserva:");
                                 int id = scanner.nextInt();
+                                scanner.nextLine();
                                 res = gestionReserva.encontrarUsuario(id);
-                                //cliente=res.getCliente();
-                                gestionReserva.darDeBajaUsuario(res);
-                                if(res != null && cliente!=0){
-                                    t.setReserva(res);
-                                    t.setCliente(cliente);
-                                    resValida = true;
-                                }else {
-                                    System.out.println("No se encontro la reserva, intentelo nuevamente.");
+                                if (!t.validarReserva(res)){
+                                    System.out.println("No se encontro la reserva en el sistema");
+                                }else{
+                                    System.out.println("Reserva encontrada.");
+                                    gestionReserva.darDeBajaReservaTicket(res);
+                                    cliente = res.getCliente();
+                                    if (cliente!=0){
+                                        resValida = true;
+                                    }
                                 }
                             }
 

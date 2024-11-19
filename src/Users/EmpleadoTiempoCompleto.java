@@ -135,7 +135,7 @@ public class EmpleadoTiempoCompleto extends Empleado implements Comparable{
      * @return Total del sueldo
      */
 
-    public double calcularSueldo (double horasExtra, double precioXhora){
+    public double calcularSueldo (int horasExtra, double precioXhora){
         return sueldo + (horasExtra * precioXhora);
     }
 

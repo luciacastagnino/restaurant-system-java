@@ -129,7 +129,7 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable{
      * @return (horasTrabajadas * precioXhora) + calcularHorasExtra(horasExtra);
      */
 
-    public double calcularSueldo (double horasExtra){
+    public double calcularSueldo (int horasExtra){
         return (horasTrabajadas * precioXhora) + calcularHorasExtra(horasExtra);
     }
 
@@ -139,8 +139,8 @@ public class EmpleadoMedioTiempo extends Empleado implements Comparable{
      * @param horasExtra
      * @return horasExtra * Math.pow(precioXhora, 2);
      */
-    public double calcularHorasExtra (double horasExtra){
-        return horasExtra * Math.pow(precioXhora, 2);
+    public double calcularHorasExtra (int horasExtra){
+        return horasExtra * ((double) precioXhora * 2);
     }
 
     @Override

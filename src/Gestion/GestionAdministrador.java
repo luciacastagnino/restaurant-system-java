@@ -383,14 +383,22 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
     }
 
     @Override
-    public void listarUsuarios(String nombre) {
+    public void listarUsuarios(String apellido) {
         if (listaAdmins.isEmpty()) {
             cargarArrayConArchivo();
         }
 
-         listaAdmins.stream()
-                 .filter(admin -> admin.getNombre().equals(nombre))
-                 .forEach(admin -> mostrarDatosUsuario(admin));
+         long encontrados = listaAdmins.stream()
+                 .filter(admin -> admin.getApellido().equals(apellido))
+                 .peek(admin -> mostrarDatosUsuario(admin))
+                 .forEach(admin -> mostrarDatosUsuario(admin))
+                 .count();
+
+        if (encontrados==0){
+            System.out.println("No se encontraron administradores con el apellido.");
+        }
+
+
     }
 
     @Override
@@ -399,9 +407,13 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             cargarArrayConArchivo();
         }
 
-        listaAdmins.stream()
+        long encontrados = listaAdmins.stream()
                 .filter(admin -> admin.getEstado() == aux)
-                .forEach(admin -> mostrarDatosUsuario(admin));
+                .peek(admin -> mostrarDatosUsuario(admin))
+                .count();
+        if (encontrados == 0) {
+            System.out.println("No se encontró ningún administrador con el estado especificado.");
+        }
     }
 
     @Override

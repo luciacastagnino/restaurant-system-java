@@ -794,7 +794,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 System.out.println("¿Esta seguro de dar de alta al Empleado? SI o NO.");
                 opcion = scanner.nextLine();
                 if (opcion.equalsIgnoreCase("si")){
-                    a.setEstado(true);
+                    empleado.setEstado(true);
                     System.out.println("Empleado agregado con exito.");
                     cargarArchivoConArreglo(listaEmpleados);
                     return;
@@ -823,7 +823,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 System.out.println("¿Esta seguro de eliminar al Empleado? SI o NO.");
                 opcion = scanner.nextLine();
                 if (opcion.equalsIgnoreCase("si")){
-                    a.setEstado(false);
+                    empleado.setEstado(false);
                     System.out.println("Empleado eliminado con exito.");
                     cargarArchivoConArreglo(listaEmpleados);
                     return;
@@ -857,7 +857,7 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                         System.out.println("Ingrese su contraseña para eliminar su cuenta:");
                         String contraseña = scanner.nextLine();
                         if (contraseña.equals(a.getContrasenia())) {
-                            a.setEstado(false);
+                            empleado.setEstado(false);
                             System.out.println("Cuenta eliminada con exito.");
                             cargarArchivoConArreglo(listaEmpleados);
                             return;

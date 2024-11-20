@@ -183,7 +183,7 @@
                 },
                 {
                                 "tipoCliente": "ESTANDAR",
-                                "estado": true,
+                                "estado": false,
                                 "apellido": "Pérez",
                                 "direccion": "Las Heras 808",
                                 "contrasenia": "perez808",

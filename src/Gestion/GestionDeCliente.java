@@ -493,7 +493,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
                         System.out.println("Ingrese su contraseña para eliminar su cuenta:");
                         String contraseña = scanner.nextLine();
                         if (contraseña.equals(a.getContrasenia())){
-                            a.setEstado(false);
+                            cliente.setEstado(false);
                             System.out.println("Cuenta eliminada con exito.");
                             cargarArchivoConArreglo(listaDeClientes);
                             return;
@@ -634,7 +634,7 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
                 System.out.println("¿Esta seguro de dar de alta al Cliente? SI o NO.");
                 opcion = scanner.nextLine();
                 if (opcion.equalsIgnoreCase("si")){
-                    a.setEstado(true);
+                    cliente.setEstado(true);
                     System.out.println("Cliente agregado con exito.");
                     cargarArchivoConArreglo(listaDeClientes);
                     return;

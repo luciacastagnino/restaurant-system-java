@@ -163,6 +163,9 @@ public class Menu {
                 switch (op) {
                     case 1:
                         cuentaAdmin(admin);
+                        if(admin.getEstado() == false){
+                            op = 7;
+                        }
                         break;
                     case 2:
                         gestorDeEmpleadosAdmin();
@@ -216,6 +219,7 @@ public class Menu {
                         break;
                     case 3:
                         gestionAdministrador.darDeBajaUsuario(admin);
+                        op = 5;
                         break;
                     case 4:
                         System.out.println("Ingrese el dni del Administrador que quiere dar de alta");

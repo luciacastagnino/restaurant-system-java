@@ -219,7 +219,9 @@ public class Menu {
                         break;
                     case 3:
                         gestionAdministrador.darDeBajaUsuario(admin);
-                        op = 5;
+                        if(admin.getEstado() == false){
+                            op = 5;
+                        }
                         break;
                     case 4:
                         System.out.println("Ingrese el dni del Administrador que quiere dar de alta");
@@ -1105,6 +1107,9 @@ public class Menu {
                         break;
                     case 6:
                         gestionEmpleados.darDeBajaUsuario(empleado);
+                        if(empleado.getEstado() == false){
+                            op = 7;
+                        }
                         break;
                     case 7:
                         System.out.println("Cerrando sesion...");
@@ -1225,6 +1230,9 @@ public class Menu {
                         break;
                     case 5:
                         gestionDeCliente.darDeBajaUsuario(cliente);
+                        if(cliente.getEstado() == false){
+                            op = 6;
+                        }
                         break;
                     case 6:
                         System.out.println("Cerrando sesion...");

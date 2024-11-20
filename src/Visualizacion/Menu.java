@@ -163,9 +163,6 @@ public class Menu {
                 switch (op) {
                     case 1:
                         cuentaAdmin(admin);
-                        if(admin.getEstado() == false){
-                            op = 7;
-                        }
                         break;
                     case 2:
                         gestorDeEmpleadosAdmin();
@@ -219,12 +216,10 @@ public class Menu {
                         break;
                     case 3:
                         gestionAdministrador.darDeBajaUsuario(admin);
-                        if(admin.getEstado() == false){
-                            op = 5;
-                        }
+                        op=5;
                         break;
                     case 4:
-                        System.out.println("Ingrese el dni del Administrador que quiere dar de alta");
+                        System.out.println("Ingrese el DNI del Administrador que quiere dar de alta:");
                         String dni1 = scanner.nextLine();
 
                         Administrador aux1 = gestionAdministrador.encontrarUsuario(dni1);
@@ -1083,8 +1078,9 @@ public class Menu {
             System.out.println("3. Gestion reservas.");
             System.out.println("4. Gestion menu/platos.");
             System.out.println("5. Gestion Tickets.");
-            System.out.println("6. Eliminar Cuenta.");
-            System.out.println("7. Salir.");
+            System.out.println("6. Modificar cuenta.");
+            System.out.println("7. Eliminar Cuenta.");
+            System.out.println("8. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -1106,12 +1102,13 @@ public class Menu {
                         gestorDeTiketsAdmin();
                         break;
                     case 6:
-                        gestionEmpleados.darDeBajaUsuario(empleado);
-                        if(empleado.getEstado() == false){
-                            op = 7;
-                        }
+                        gestionEmpleados.modificarUsuario(empleado);
                         break;
                     case 7:
+                        gestionEmpleados.darDeBajaUsuario(empleado);
+                        op=8;
+                        break;
+                    case 8:
                         System.out.println("Cerrando sesion...");
                         return;
                     default:
@@ -1122,7 +1119,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 7);
+        } while (op != 8);
     }
 
     public void menuCliente() {
@@ -1162,8 +1159,9 @@ public class Menu {
             System.out.println("2. Ver tickets");
             System.out.println("3. Ver reservas.");
             System.out.println("4. Ver menu.");
-            System.out.println("5. Eliminar Cuenta.");
-            System.out.println("6. Salir.");
+            System.out.println("5. Modificar perfil.");
+            System.out.println("6. Eliminar Cuenta.");
+            System.out.println("7. Salir.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -1229,12 +1227,13 @@ public class Menu {
                         }
                         break;
                     case 5:
-                        gestionDeCliente.darDeBajaUsuario(cliente);
-                        if(cliente.getEstado() == false){
-                            op = 6;
-                        }
+                        gestionDeCliente.modificarUsuario(cliente);
                         break;
                     case 6:
+                        gestionDeCliente.darDeBajaUsuario(cliente);
+                        op = 7;
+                        break;
+                    case 7:
                         System.out.println("Cerrando sesion...");
                         return;
                     default:
@@ -1245,6 +1244,6 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 6);
+        } while (op != 7);
     }
 }

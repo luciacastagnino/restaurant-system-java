@@ -1,6 +1,6 @@
 [
                 {
-                                "estado": false,
+                                "estado": true,
                                 "apellido": "Fernandez",
                                 "direccion": "Brown 10400",
                                 "contrasenia": "Probando2.",
@@ -12,7 +12,7 @@
                                 "username": "BrendaF"
                 },
                 {
-                                "estado": true,
+                                "estado": false,
                                 "apellido": "Di Meglio",
                                 "direccion": "Paso 1587",
                                 "contrasenia": "Probando2.",

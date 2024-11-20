@@ -516,7 +516,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
                 System.out.println("¿Esta seguro de dar de alta al Administrador? SI o NO.");
                 opcion = scanner.nextLine();
                 if (opcion.equalsIgnoreCase("si")){
-                    a.setEstado(true);
+                    administrador.setEstado(true);
                     System.out.println("Administrador agregado con exito.");
                     cargarArchivoConArreglo(listaAdmins);
                     return;

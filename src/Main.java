@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //para mostrar el logo, no se si lo podremos hacer de esta forma :)
         try{
             File file = new File("logo.txt");
 

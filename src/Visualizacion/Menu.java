@@ -1057,8 +1057,9 @@ public class Menu {
                 if (empleado != null) {
                     menuInicioSesionEmpleado(empleado);
                     empleadoLogIn = true;
-                }
-                else {
+                }else if (empleado == null){
+                    empleadoLogIn=true;
+                }else {
                     System.out.println("Ingrese un usuario valido.");
                 }
             }

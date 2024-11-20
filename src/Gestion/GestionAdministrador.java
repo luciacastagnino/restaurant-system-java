@@ -2,10 +2,7 @@ package Gestion;
 
 import Archivos.FormatoIncorrectoException;
 import Archivos.GestionJSON;
-import Users.Administrador;
-import Users.DatoInvalidoException;
-import Users.RegistroUser;
-import Users.Validaciones;
+import Users.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,8 +61,10 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
      * @return {@code Set<Administrador>}
      */
 
-    public Set<Administrador> cargarArrayConArchivo(){
+    public Set<Administrador> cargarArrayConArchivo() {
         JSONTokener aux = GestionJSON.leer("administrador.json");
+
+        listaAdmins.clear();
 
         try {
 
@@ -379,27 +378,27 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
             if (a.equals(admin)){
                 System.out.println("¿Esta seguro de eliminar el usuario? SI o NO.");
                 String opcion = scanner.nextLine();
-                if (opcion.toLowerCase().equals("si")){
+                if (opcion.equalsIgnoreCase("si")){
                     int intentosContra = 0;
                     while (intentosContra < 3){
-                        System.out.printf("Ingrese su contraseña para eliminar su cuenta:");
+                        System.out.println("Ingrese su contraseña para eliminar su cuenta:");
                         String contraseña = scanner.nextLine();
                         if (contraseña.equals(a.getContrasenia())){
-                            a.setEstado(true);
-                            System.out.printf("Cuenta eliminada con exito.");
+                            admin.setEstado(false);
+                            System.out.println("Cuenta eliminada con exito.");
                             cargarArchivoConArreglo(listaAdmins);
                             return;
                         }else {
                             intentosContra++;
-                            System.out.printf("Contraseña incorrecta, intentelo nuevamente.");
+                            System.out.println("Contraseña incorrecta, intentelo nuevamente.");
                         }
                     }
-                    System.out.printf("Se supero el numero maximo de intentos. El usuario no fue dado de baja.");
-                }else if (opcion.toLowerCase().equals("no")){
-                    System.out.printf("Operacion cancelada.");
+                    System.out.println("Se supero el numero maximo de intentos. El usuario no fue dado de baja.");
+                }else if (opcion.equalsIgnoreCase("no")){
+                    System.out.println("Operacion cancelada.");
                     return;
                 }else {
-                    System.out.printf("Opcion invalida.");
+                    System.out.println("Opcion invalida.");
                 }
             }
         }
@@ -522,7 +521,7 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
                             System.out.printf("Ingrese su contraseña dar de alta su cuenta:");
                             String contraseña = scanner.nextLine();
                             if (contraseña.equals(a.getContrasenia())){
-                                a.setEstado(true);
+                                admin.setEstado(true);
                                 System.out.printf("Cuenta agregada con exito.");
                                 cargarArchivoConArreglo(listaAdmins);
                                 return;

@@ -1,6 +1,7 @@
 package Gestion;
 
 import Restaurante.MesaYaReservadaException;
+import Users.Empleado;
 
 /**
  * Interfaz que define los métodos básicos de todas las clases de gestion.

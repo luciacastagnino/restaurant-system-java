@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * La clase Gestion.GestionAdministrador gestiona un conjunto de usuarios administradores.
@@ -509,38 +508,27 @@ public class GestionAdministrador implements MetodosBasicosGestion<Administrador
 
     @Override
     public void darDeAltaUsuario(Administrador a) {
-            listaAdmins = cargarArrayConArchivo();
+        listaAdmins = cargarArrayConArchivo();
 
-            for (Administrador admin : listaAdmins){
-                if (a.equals(admin)){
-                    System.out.println("¿Esta seguro de dar de alta el usuario? SI o NO.");
-                    String opcion = scanner.nextLine();
-                    if (opcion.toLowerCase().equals("si")){
-                        int intentosContra = 0;
-                        while (intentosContra < 3){
-                            System.out.printf("Ingrese su contraseña dar de alta su cuenta:");
-                            String contraseña = scanner.nextLine();
-                            if (contraseña.equals(a.getContrasenia())){
-                                admin.setEstado(true);
-                                System.out.printf("Cuenta agregada con exito.");
-                                cargarArchivoConArreglo(listaAdmins);
-                                return;
-                            }else {
-                                intentosContra++;
-                                System.out.printf("Contraseña incorrecta, intentelo nuevamente.");
-                            }
-                        }
-                        System.out.printf("Se supero el numero maximo de intentos. El usuario no fue dado de alta.");
-                    }else if (opcion.toLowerCase().equals("no")){
-                        System.out.printf("Operacion cancelada.");
-                        return;
-                    }else {
-                        System.out.printf("Opcion invalida.");
-                    }
+        for (Administrador administrador: listaAdmins) {
+            String opcion = null;
+            if (a.equals(administrador)) {
+                System.out.println("¿Esta seguro de dar de alta al Administrador? SI o NO.");
+                opcion = scanner.nextLine();
+                if (opcion.equalsIgnoreCase("si")){
+                    a.setEstado(true);
+                    System.out.println("Administrador agregado con exito.");
+                    cargarArchivoConArreglo(listaAdmins);
+                    return;
+                }else if (opcion.equalsIgnoreCase("no")) {
+                    System.out.println("Operacion cancelada.");
+                    return;
+                } else {
+                    System.out.println("Opcion invalida.");
                 }
             }
-
-            System.out.println("No se encontro al usuario.");
+        }
+        System.out.println("No se encontro al Administrador.");
     }
 
 }

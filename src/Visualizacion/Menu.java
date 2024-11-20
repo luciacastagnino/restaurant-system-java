@@ -201,7 +201,8 @@ public class Menu {
             System.out.println("1. Ver mi perfil.");
             System.out.println("2. Modificar mi cuenta.");
             System.out.println("3. Eliminar cuenta.");
-            System.out.println("4. Atras.");
+            System.out.println("4. Dar de alta administrador.");
+            System.out.println("5. Atras.");
             try {
                 System.out.printf("Selecciona una opcion: ");
                 op = scanner.nextInt();
@@ -217,6 +218,13 @@ public class Menu {
                         gestionAdministrador.darDeBajaUsuario(admin);
                         break;
                     case 4:
+                        System.out.println("Ingrese el dni del Administrador que quiere dar de alta");
+                        String dni1 = scanner.nextLine();
+
+                        Administrador aux1 = gestionAdministrador.encontrarUsuario(dni1);
+                        gestionAdministrador.darDeAltaUsuario(aux1);
+                        break;
+                    case 5:
                         System.out.println("Saliendo...");
                         return;
                     default:
@@ -227,7 +235,7 @@ public class Menu {
                 System.out.println("Opcion invalida. Por favor, introduzca un numero.");
                 scanner.nextLine();
             }
-        } while (op != 4);
+        } while (op != 5);
     }
 
     public void gestorDeEmpleadosAdmin() {

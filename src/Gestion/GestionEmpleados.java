@@ -38,6 +38,10 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * El metodo permite ingresar usuarios del tipo Empleado al sistema.
+     */
+
     public void ingresarUsuario() {
 
         System.out.println("\nSeleccione el tipo de empleado que desea ingresar: ");
@@ -132,6 +136,11 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         }
     }
 
+    /**
+     * El metodo muestra los datos del usuario pasado por parametro.
+     * @param a
+     */
+
     public void mostrarDatosUsuario(Empleado a) {
 
         listaEmpleados = cargarArrayConArchivo();
@@ -169,6 +178,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
     }
 
+    /**
+     * El metodo permite modificar empleados, segun el tipo de empleado que sean.
+     * @param empleado
+     * @return {@code Empleado} modificado.
+     */
+
     @Override
     public Empleado modificarUsuario(Empleado empleado) {
 
@@ -182,6 +197,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
             throw new IllegalArgumentException("El tipo de empleado no es valido.");
         }
     }
+
+    /**
+     * El metodo permite modificar empleados de MEDIO TIEMPO.
+     * @param c
+     * @return {@code Empleado Medio Tiempo} modificado.
+     */
 
     public EmpleadoMedioTiempo modificarEmpleadoMT(EmpleadoMedioTiempo c) {
 
@@ -428,6 +449,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         return null;
     }
 
+    /**
+     * El metodo permite modificar empleados del tipo EMPLEADO TIEMPO COMPLETO.
+     * @param c
+     * @return {@code Empleado Tiempo Completo} modificado.
+     */
+
     public EmpleadoTiempoCompleto modificarEmpleadoTC (EmpleadoTiempoCompleto c){
 
         listaEmpleados = cargarArrayConArchivo();
@@ -655,6 +682,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         return null;
     }
 
+    /**
+     * El metodo permite encontrar usuarios segun el DNI.
+     * @param dni
+     * @return {@code Empleado} encontrado.
+     */
+
     @Override
     public Empleado encontrarUsuario(String dni) {
         if (listaEmpleados.isEmpty()) {
@@ -675,6 +708,12 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 })
                 .orElse(null);
     }
+
+    /**
+     * El metodo permite encontrar usuarios segun el ID.
+     * @param id
+     * @return {@code Empleado} encontrado.
+     */
 
     @Override
     public Empleado encontrarUsuario(int id) {
@@ -697,6 +736,11 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
                 .orElse(null);
     }
 
+    /**
+     * El metodo permite listar usuarios segun el nombre.
+     * @param nombre
+     */
+
     @Override
     public void listarUsuarios(String nombre) {
         if (listaEmpleados.isEmpty()) {
@@ -714,6 +758,11 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         }
     }
 
+    /**
+     * El metodo permite listar usuarios segun el estado en el que se encuentren (activo o inactivo)
+     * @param aux
+     */
+
     @Override
     public void listarUsuarios(boolean aux) {
         if (listaEmpleados.isEmpty()) {
@@ -729,6 +778,11 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
             System.out.println("No se encontraron empleados con ese nombre.");
         }
     }
+
+    /**
+     * El metodo le permite al usuario darse de alta en el sistema.
+     * @param a
+     */
 
     @Override
     public void darDeAltaUsuario(Empleado a) {
@@ -755,6 +809,11 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         System.out.println("No se encontro al Empleado.");
     }
 
+    /**
+     * El metodo le permite al usuario Admin, dar de baja empleados.
+     * @param a
+     */
+
     public void darDeBajaUsuarioAdmin(Empleado a) {
         listaEmpleados = cargarArrayConArchivo();
 
@@ -779,6 +838,11 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
 
         System.out.println("No se encontro al Empleado.");
     }
+
+    /**
+     * El metodo le permite a los usuarios darse de baja del sistema.
+     * @param a
+     */
 
     @Override
     public void darDeBajaUsuario (Empleado a){
@@ -814,6 +878,9 @@ public class GestionEmpleados implements MetodosBasicosGestion<Empleado> {
         System.out.println("No se encontro al usuario.");
     }
 
+    /**
+     * El metodo permite mostrar todos los usuarios guardados en el sistema.
+     */
 
     public void mostrarColeccion () {
         if (listaEmpleados.isEmpty()) {

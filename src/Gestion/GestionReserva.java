@@ -187,6 +187,14 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
 
     }
 
+    /**
+     * El metodo le permite a los usuarios modificar los datos de las reservas cargadas.
+     * Lanza una excepcion si la mesa que se quiere ingresar ya se encuentra ocupada.
+     * @param c
+     * @return
+     * @throws MesaYaReservadaException
+     */
+
     public Reserva modificarUsuario (Reserva c) throws MesaYaReservadaException {
 
         reservasPorCliente = cargarArrayConArchivo();
@@ -329,6 +337,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return null;
     }
 
+    /**
+     * El metodo permite dar de baja reservas.
+     * @param a
+     */
+
     @Override
     public void darDeBajaUsuario(Reserva a) {
         reservasPorCliente = cargarArrayConArchivo();
@@ -361,6 +374,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
     }
 
+    /**
+     * El metodo da de baja la reserva una vez que se genera el Ticket de esta.
+     * @param a
+     */
+
     public void darDeBajaReservaTicket (Reserva a) {
         reservasPorCliente = cargarArrayConArchivo();
 
@@ -380,6 +398,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             System.out.println("No se encontro la reserva con el ID ingresado.");
         }
     }
+
+    /**
+     * El metodo le permite a los usuarios dar de alta reservas.
+     * @param a
+     */
 
     @Override
     public void darDeAltaUsuario(Reserva a) {
@@ -413,6 +436,10 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
     }
 
+    /**
+     * El metodo muestra todas las reservas, sin importar su estado.
+     */
+
     @Override
     public void mostrarColeccion() {
 
@@ -428,6 +455,12 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             }
         }
     }
+
+    /**
+     * El metodo le permite al usuario encontrar una reserva segun el DNI del cliente que la hizo.
+     * @param dni
+     * @return {@code Reserva} encontrada.
+     */
 
     @Override
     public Reserva encontrarUsuario(String dni) {
@@ -446,6 +479,15 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         return null;
     }
 
+    /**
+     * El metodo le permite al usuario encontrar una reserva segun la informacion enviada a traves de
+     * los parametros.
+     * @param dni
+     * @param dia
+     * @param hs
+     * @return
+     */
+
     public Reserva encontrarUsuarioMuchos(String dni, LocalDate dia, LocalTime hs) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
@@ -461,6 +503,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         System.out.println("No se encontro la reserva.");
         return null;
     }
+
+    /**
+     * El metodo lista las reservas realizadas por un Cliente segun su DNI.
+     * @param dni
+     */
 
     @Override
     public void listarUsuarios(String dni) {
@@ -479,6 +526,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
     }
 
+    /**
+     * El metodo lista las reservas segun el dia enviado por parametro.
+     * @param dia
+     */
+
     public void listarUsuarios(LocalDate dia) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
@@ -494,6 +546,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             System.out.println("No se encontraron reservas ese dia.");
         }
     }
+
+    /**
+     * El metodo lista las reservas segun la hora de estas.
+     * @param hora
+     */
 
     public void listarUsuarios(LocalTime hora) {
         if (reservasPorCliente.isEmpty()) {
@@ -511,6 +568,12 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
         }
     }
 
+    /**
+     * El metodo lista las reservas segun su dia y hora.
+     * @param dia
+     * @param hora
+     */
+
     public void listarUsuarios(LocalDate dia, LocalTime hora) {
         if (reservasPorCliente.isEmpty()) {
             cargarArrayConArchivo();
@@ -526,6 +589,11 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             System.out.println("No se encontraron reservas el dia " + dia + " a la hora " + hora);
         }
     }
+
+    /**
+     * El metodo lista las reservas segun el estado de estas (activo o inactivo).
+     * @param aux
+     */
 
     @Override
     public void listarUsuarios(boolean aux) {
@@ -543,6 +611,12 @@ public class GestionReserva implements MetodosBasicosGestion<Reserva>{
             System.out.println("No se encontraron reservas.");
         }
     }
+
+    /**
+     * El metodo busca la reserva segun su ID:
+     * @param id
+     * @return {@code Reserva} encontrada.
+     */
 
     @Override
     public Reserva encontrarUsuario(int id) {

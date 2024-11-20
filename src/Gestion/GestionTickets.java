@@ -110,6 +110,11 @@ public class GestionTickets{
         }
     }
 
+    /**
+     * El metodo muestra los datos del ticket pasado por parametro.
+     * @param ticket
+     */
+
     public void mostrarDatosUsuario(Ticket ticket) {
         if (ticketSet.isEmpty()){
             cargarArrayConArchivo();
@@ -121,6 +126,12 @@ public class GestionTickets{
             }
         }
     }
+
+    /**
+     * Le permite al usuario modificar los datos del Ticket.
+     * @param t
+     * @return {@code Ticket} modificado.
+     */
 
     public Ticket modificarUsuario (Ticket t) {
 
@@ -269,6 +280,10 @@ public class GestionTickets{
         return null;
     }
 
+    /**
+     * El metodo muestra todos los ticket que existen en el sistema.
+     */
+
     public void mostrarColeccion() {
         if (ticketSet.isEmpty()){
             cargarArrayConArchivo();
@@ -280,6 +295,12 @@ public class GestionTickets{
             System.out.println();
         }
     }
+
+    /**
+     * El metodo encuentra un Ticket segun el DNI del cliente.
+     * @param dni
+     * @return {@code Ticket} encontrado.
+     */
 
     public Ticket encontrarUsuario(String dni) {
         if (ticketSet.isEmpty()){
@@ -294,6 +315,12 @@ public class GestionTickets{
         return null;
     }
 
+    /**
+     * El metodo encuentra un Ticket segun el ID del ticket.
+     * @param id
+     * @return {@code Ticket} encontrado.
+     */
+
     public Ticket encontrarUsuario(int id) {
         if (ticketSet.isEmpty()){
             cargarArrayConArchivo();
@@ -306,6 +333,11 @@ public class GestionTickets{
         }
         return null;
     }
+
+    /**
+     * El metodo lista todos los ticket segun el DNI del cliente.
+     * @param dni
+     */
 
     public void listarUsuarios(String dni) {
         if (ticketSet.isEmpty()) {

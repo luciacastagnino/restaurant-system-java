@@ -113,6 +113,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
     }
 
+    /**
+     * El metodo muestra el plato que se envia por parametro.
+     * @param plato
+     */
+
     @Override
     public void mostrarDatosUsuario(Plato plato) {
         if (listaPlatos.isEmpty()){
@@ -125,6 +130,12 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
             }
         }
     }
+
+    /**
+     * El metodo le permite al usuario modificar los datos del Plato.
+     * @param c
+     * @return {@code Plato} modificado.
+     */
 
     @Override
     public Plato modificarUsuario (Plato c) {
@@ -266,6 +277,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         return null;
     }
 
+    /**
+     * El metodo le permite al usuario dar de baja platos.
+     * @param a
+     */
+
     @Override
     public void darDeBajaUsuario(Plato a) {
         listaPlatos = cargarArrayConArchivo();
@@ -289,6 +305,10 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
     }
 
+    /**
+     * El metodo le permite al usuario dar de alta Platos.
+     * @param a
+     */
 
     @Override
     public void darDeAltaUsuario(Plato a) {
@@ -314,6 +334,12 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
     }
 
+    /**
+     * El metodo le permite al usuario encontrar platos segun su descripcion.
+     * @param descripcion
+     * @return {@code Plato} encontrado.
+     */
+
     @Override
     public Plato encontrarUsuario(String descripcion) {
 
@@ -329,6 +355,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
 
         return null;
     }
+
+    /**
+     * El metodo lista los platos segun su estado (activo o inactivo).
+     * @param aux
+     */
 
     @Override
     public void listarUsuarios(boolean aux) {
@@ -347,10 +378,20 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
     }
 
+    /**
+     * El metodo muestra el menu completo, dividido por categorias.
+     */
+
     @Override
     public void mostrarColeccion() {
        mostrarMenuCompleto();
     }
+
+    /**
+     * El metodo le permite al usuario encontrar Platos segun su ID.
+     * @param id
+     * @return {@code Plato} encontrado.
+     */
 
     @Override
     public Plato encontrarUsuario(int id) {
@@ -365,6 +406,11 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
         return null;
     }
+
+    /**
+     * El metodo le permite al usuario listar platos segun el nombre.
+     * @param nombre
+     */
 
     @Override
     public void listarUsuarios(String nombre) {
@@ -383,6 +429,10 @@ public class MenuRestaurante implements MetodosBasicosGestion<Plato>{
         }
 
     }
+
+    /**
+     * El metodo muestra a los platos disponibles, solo mostrando su ID, nombre y precio.
+     */
 
     public void listarPlatosTicket (){
         if (listaPlatos.isEmpty()){

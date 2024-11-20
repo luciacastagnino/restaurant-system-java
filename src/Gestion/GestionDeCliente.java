@@ -71,6 +71,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         return listaDeClientes;
     }
 
+    /**
+     * Este metodo se utiliza para agregar elementos al archivo, sin que haya perdida de
+     * informacion.
+     * @param nuevoCliente
+     */
+
     public void agregarYguardar(Cliente nuevoCliente) {
         cargarArrayConArchivo();
         listaDeClientes.add(nuevoCliente);
@@ -102,6 +108,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         }
     }
 
+    /**
+     * El metodo permite mostrar al usuario.
+     * @param a
+     */
+
     public void mostrarDatosUsuario(Cliente a) {
 
         listaDeClientes = cargarArrayConArchivo();
@@ -131,6 +142,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         System.out.printf("No se encontro al usuario.");
 
     }
+
+    /**
+     * El metodo permite mostrar al usuario, no permitiendo ver la contraseña,
+     * se utiliza para mostrar los clientes a los empleados sin que tengan acceso a esta.
+     * @param a
+     */
 
     public void mostrarDatosUsuarioEmpleado (Cliente a) {
 
@@ -162,6 +179,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
     }
 
+    /**
+     * Se utiliza para modificar el nombre de usuario de un cliente
+     * @return {@code String} con el nuevo nombre de usuario.
+     */
+
     public String modificarUsername() {
         String username = "";
         boolean usernameValido = false;
@@ -183,6 +205,14 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
         return username;
     }
+
+    /**
+     * El metodo le permite al usuario modificar la contraseña. Le pide al usuario
+     * que ingrese la contraseña actual para asegurarse de que la cuenta pertenezca al
+     * usuario.
+     * @param c
+     * @return {@code String} con la nueva contraseña.
+     */
 
     public String modificarContraseña(Cliente c) {
 
@@ -207,6 +237,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         return contrasenia;
     }
 
+    /**
+     * El metodo permite al usuario ingresar un nuevo nombre .
+     * @return {@code String} con el nuevo nombre.
+     */
+
     public String modificarNombre() {
         String nombre = "";
         boolean nombreValido = false;
@@ -223,6 +258,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         }
         return nombre;
     }
+
+    /**
+     * El metodo permita que el usuario ingrese un nuevo apellido para modificarlo.
+     * @return {@code String} con el nuevo apellido.
+     */
 
     public String modificarApellido() {
 
@@ -241,6 +281,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         }
         return apellido;
     }
+
+    /**
+     * Permite que el usuario ingrese un nuevo DNI.
+     * @return {@code String} con el nuevo DNI.
+     */
 
     public String modificarDni(){
 
@@ -264,6 +309,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         return dni;
     }
 
+    /**
+     * Permite modificar el telefono
+     * @return {@code String} con el nuevo telefono.
+     */
+
     public String modificarTelefono (){
 
         String telefono = "";
@@ -281,6 +331,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         }
         return telefono;
     }
+
+    /**
+     * Le permite al usuario ingresar una nueva direccion.
+     * @return {@code String} con la nueva direccion.
+     */
 
     public String modificarDireccion (){
 
@@ -300,6 +355,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         return direccion;
     }
 
+    /**
+     * Le permite al usuario ingresar una nueva direccion de email.
+     * @return {@code String} con la nueva direccion de email.
+     */
+
     public String modificarEmail (){
         String email = "";
         boolean emailValido = false;
@@ -317,6 +377,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
         return email;
     }
+
+    /**
+     * Le permite al usuario modificar diversos datos de su cuenta.
+     * @param c
+     * @return {@code Cliente} modificado.
+     */
 
     public Cliente modificarUsuario (Cliente c) {
 
@@ -408,6 +474,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         return null;
     }
 
+    /**
+     * El metodo le permite al usuario darse de baja del sistema.
+     * @param a
+     */
+
     @Override
     public void darDeBajaUsuario(Cliente a) {
         listaDeClientes = cargarArrayConArchivo();
@@ -444,6 +515,9 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         System.out.println("No se encontro al usuario.");
     }
 
+    /**
+     * El metodo muestra todos los clientes almacenados en el sistema.
+     */
 
     public void mostrarColeccion () {
         if (listaDeClientes.isEmpty()) {
@@ -452,6 +526,10 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         listaDeClientes.forEach(cliente -> mostrarDatosUsuario(cliente));
     }
 
+    /**
+     * El metodo muestra todos los clientes almacenados en el sistema, sin mostrar la contraseña.
+     */
+
     public void mostrarColeccionEmpleados (){
         if (listaDeClientes.isEmpty()){
             cargarArrayConArchivo();
@@ -459,6 +537,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
         listaDeClientes.forEach(cliente -> mostrarDatosUsuarioEmpleado(cliente));
     }
+
+    /**
+     * El metodo le permite al usuario encontrar un cliente por su DNI.
+     * @param dni
+     * @return {@code Cliente} encontrado.
+     */
 
     @Override
     public Cliente encontrarUsuario(String dni) {
@@ -472,6 +556,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
                 .orElse(null);
     }
 
+    /**
+     * El metodo le permite al usuario encontrar un cliente por su ID.
+     * @param id
+     * @return {@code Cliente} encontrado.
+     */
+
     @Override
     public Cliente encontrarUsuario(int id) {
         if (listaDeClientes.isEmpty()) {
@@ -483,6 +573,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
                 .findFirst()
                 .orElse(null);
     }
+
+    /**
+     * El metodo lista a los usuarios segun el apellido.
+     * @param apellido
+     */
 
     @Override
     public void listarUsuarios(String apellido) {
@@ -501,6 +596,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         }
     }
 
+    /**
+     * EL metodo permite listar a los usuarios segun el estado de este (activo o inactivo).
+     * @param aux
+     */
+
     @Override
     public void listarUsuarios(boolean aux) {
         if (listaDeClientes.isEmpty()) {
@@ -518,6 +618,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
             System.out.println("No se encontraron clientes");
         }
     }
+
+    /**
+     * El metodo le permite al usuario darse de alta en el sistema.
+     * @param a
+     */
 
     @Override
     public void darDeAltaUsuario(Cliente a) {
@@ -545,6 +650,12 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
         System.out.println("No se encontro al Cliente.");
     }
 
+    /**
+     * El metodo se utiliza para dar de baja a los Clientes en caso de que seas un Administrador,
+     * ya que no pide la credencial contraseña.
+     * @param a
+     */
+
     public void darDeBajaUsuarioAdmin(Cliente a) {
         listaDeClientes = cargarArrayConArchivo();
 
@@ -569,6 +680,11 @@ public class GestionDeCliente implements MetodosBasicosGestion<Cliente> {
 
         System.out.println("No se encontro al Cliente.");
     }
+
+    /**
+     * El metodo actualiza y guarda el tipo de cliente segun la cantidad de reservas que tenga.
+     * @return {@code Set <Cliente>} con el estado de los clientes actualizados.
+     */
 
     public Set<Cliente> GuardarTipoDeCliente(){
         if (listaDeClientes.isEmpty()) {

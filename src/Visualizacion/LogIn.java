@@ -58,11 +58,14 @@ public class LogIn {
 
                 String adminUsername = adminObj.getString("username");
                 String adminContra = adminObj.getString("contrasenia");
+                boolean adminEstado = adminObj.getBoolean("estado");
 
-                if (adminUsername.equals(username) && adminContra.equals(contrasenia)) {
+                if (adminUsername.equals(username) && adminContra.equals(contrasenia) && adminEstado==true) {
                     adminLeido = new Administrador();
                     adminLeido = adminLeido.jsonToAdmin(adminObj);
                     return adminLeido;
+                }else if (adminUsername.equals(username) && adminContra.equals(contrasenia) && adminEstado==false){
+                    System.out.println("Su cuenta se encuentra dada de baja.");
                 }else if (adminUsername.equals(username) || adminContra.equals(contrasenia)){
                     System.out.println("Username o contraseña incorrectos.");
                 }
@@ -105,12 +108,15 @@ public class LogIn {
 
                 String clienteUsername = clienteObj.getString("username");
                 String clienteContra = clienteObj.getString("contrasenia");
+                boolean estado = clienteObj.getBoolean("estado");
 
-                if (clienteUsername.equals(username) && clienteContra.equals(contrasenia)) {
+                if (clienteUsername.equals(username) && clienteContra.equals(contrasenia) && estado==true) {
                     clienteLeido = new Cliente();
                     clienteLeido = clienteLeido.jsonToCliente(clienteObj);
                     return clienteLeido;
-                }else if (clienteUsername.equals(username) || clienteContra.equals(contrasenia)){
+                }else if (clienteUsername.equals(username) && clienteContra.equals(contrasenia) && estado==false){
+                    System.out.println("El cliente se encuentra dado de baja.");
+                } else if (clienteUsername.equals(username) || clienteContra.equals(contrasenia)){
                     System.out.println("Username o contraseña incorrectos.");
                 }
             }
@@ -150,7 +156,8 @@ public class LogIn {
                 JSONObject empleadoObj = empleados.getJSONObject(i);
                 String empleadoUsername = empleadoObj.getString("username");
                 String empleadoContra = empleadoObj.getString("contrasenia");
-                if (empleadoUsername.equals(username) && empleadoContra.equals(contrasenia)) {
+                boolean empleadoEstado = empleadoObj.getBoolean("estado");
+                if (empleadoUsername.equals(username) && empleadoContra.equals(contrasenia) && empleadoEstado==true) {
                     if (empleadoObj.has("aniosAntiguedad")){
                         empleadoLeido = new EmpleadoTiempoCompleto().jsonToEmpleadoTC(empleadoObj);
                         return empleadoLeido;
@@ -158,7 +165,9 @@ public class LogIn {
                         empleadoLeido = new EmpleadoMedioTiempo().jsonToEmpleadoMT(empleadoObj);
                         return empleadoLeido;
                     }
-                }else if (empleadoUsername.equals(username) || empleadoContra.equals(contrasenia)){
+                } else if (empleadoUsername.equals(username) && empleadoContra.equals(contrasenia) && empleadoEstado==false) {
+                    System.out.println("El usuario se encuentra dado de baja.");
+                } else if (empleadoUsername.equals(username) || empleadoContra.equals(contrasenia)){
                     System.out.println("Users.Usuario o contraseña incorrectos.");
                 }
             }
